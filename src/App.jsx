@@ -17,19 +17,16 @@ const App = () => {
   // setLoggedIn(true); // hard coded until we set up auth
 
   return (
-      <DashboardContainer />
-
-    // <div className="router">
-    //   <Navbar/>
-    //   <div className="routerMain" id="content">
-    //     <Routes>
-    //       <Route exact path="/" element={<LandingPage/>} /> // first timers
-    //       <Route exact path="/auth" element={<Auth/>} />  // login /signup toggleable
-    //       <Route exact path="/dashboard" element={<DashboardContainer/>} />
-    //       {/* <Route exact path="/docs" element={<Docs/>} /> */}
-    //     </Routes>
-    //   </div>
-    // </div>
+    <div className="router">
+      <div className="routerMain" id="content">
+        <Routes>
+          {/* <Route exact path="/" element={<LandingPage/>} /> // first timers welcome
+          <Route exact path="/auth" element={<Auth/>} />  // login & signup (toggleable) */}
+          <Route exact path="/dashboard" element={<DashboardContainer/>} />
+          {/* <Route exact path="/docs" element={<Docs/>} /> */}
+        </Routes>
+      </div>
+    </div>
   );
 };
 

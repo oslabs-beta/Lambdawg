@@ -1,3 +1,5 @@
+/* temp pre-styling css for basic layout views, should containerize styles in future and use styles folder */
+
 
 body{
   margin: 0px;
@@ -15,15 +17,26 @@ body{
   justify-content: flex-start;
   height: 70vh;
   border: 1px solid black;
-
 }
 
+#panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
+  padding: 5px;
+  border: 1px solid gray;
+  overflow: auto;
+}
 
+#panel-wrapper {
+  resize: horizontal;
+  overflow: auto;
+}
+#dashboard-wrapper {
+  resize: vertical;
+}
 
-#NavbarContainer {
+#navbar-container {
   display: flex;
   justify-content: space-between;
-  height: 10vh;
+  height: 8vh;
 }
 #headerRight {
   display: flex;

@@ -10,7 +10,7 @@ const Navbar = (props) => {
 
   return(
 
-    <div id="NavbarContainer">
+    <div id="navbar-container">
 
       <h1>L A M B D A W G </h1>
       <div id="headerRight">
