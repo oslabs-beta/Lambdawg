@@ -6,7 +6,9 @@ const DiagramContainer = (props) => {
 
 
   return(
-    <h1>Diagram</h1>
+      <div id='diagram-container-wrapper'>
+        <img src='src/assets/cluster.png' id='cluster-temp-img'/>
+      </div>
   )
 }
 export default DiagramContainer;
