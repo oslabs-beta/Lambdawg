@@ -20,6 +20,7 @@ const App = () => {
     <div className="router">
       <div className="routerMain" id="content">
         <Routes>
+          <Route exact path="/" element={<h1>LAMBDAWG landing page</h1>} />  
           {/* <Route exact path="/" element={<LandingPage/>} /> // first timers welcome
           <Route exact path="/auth" element={<Auth/>} />  // login & signup (toggleable) */}
           <Route exact path="/dashboard" element={<DashboardContainer/>} />
