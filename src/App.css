@@ -1,0 +1,56 @@
+* {
+  border: 1px solid black;
+}
+#NavbarContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  width: 95vw;
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-rows: 10% 70% 20%;
+  grid-template-columns: 30% 70%;
+  /* grid-template-areas: 
+    "navbar navbar"
+    "left-window chart-window"
+    "bottom-window data-window"; */
+  height: 90vh;
+  row-gap: 10px;
+}
+
+.navbar {
+  /* grid-area: navbar; */
+  grid-row: 1;
+  grid-column: 1/2;
+}
+.left-window{
+  /* grid-area: left-window; */
+  grid-row: 2;
+  grid-column: 1;
+}
+.chart-window{
+  /* grid-area: chart; */
+  grid-row: 2;
+  grid-column: 2;
+}
+.bottom-window{
+  /* grid-area: data-window;
+  width: 100vw; */
+  grid-row: 1;
+  grid-column: 1/2;
+}
+
+#headerRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.headerLogo {
+  width: 250px;
+}
+.tempSettingsIcon {
+  width: 50px;
+}
