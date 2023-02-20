@@ -2,14 +2,23 @@
   "name": "lambdawg",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "main": "./client/index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite; export NODE_ENV=development",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fulldev": "concurrently \"nodemon server/server.js\" \"vite\""
   },
   "dependencies": {
+    "@aws-sdk/client-cloudformation": "^3.272.0",
+    "@aws-sdk/client-cloudwatch": "^3.272.0",
+    "@aws-sdk/client-cloudwatch-logs": "^3.272.0",
+    "@aws-sdk/client-lambda": "^3.272.0",
+    "@aws-sdk/client-sts": "^3.272.0",
+    "concurrently": "^7.6.0",
     "express": "^4.18.2",
+    "node": "^19.6.0",
+    "nodemon": "^2.0.20",
     "path": "^0.12.7",
     "pg": "^8.9.0",
     "react": "^18.2.0",
