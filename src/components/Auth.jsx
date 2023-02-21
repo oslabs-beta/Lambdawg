@@ -18,7 +18,6 @@ const Auth = (props) => {
 
   return(
     <div>
-
       {
       formType === 'signIn' ? 
       <SignInForm toggleFormType={toggleFormType} /> :

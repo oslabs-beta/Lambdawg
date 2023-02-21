@@ -13,8 +13,9 @@ const signUpForm = (props) => {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      if (formData.password != formData.confirmPassword) handleMismatchedPasswords();
-      
+      if (formData.password != formData.confirmPassword) return handleMismatchedPasswords();
+      if (formData.password == formData.confirmPassword) console.log('signing up....')
+
       // if they do match, submit form (make POST req to DB, redirect to settingsPage passing in formdata)
       // redirect to sign in
     };
@@ -32,23 +33,23 @@ const signUpForm = (props) => {
       <form onSubmit={handleSubmit}>
         <label>
         First / Last name<br />
-        <input type="name" name="full_name" value={formData.full_name} onChange={handleInputChange} />
+        <input type="name" name="full_name" value={formData.full_name} onChange={handleInputChange} required/>
       </label>
       <label>
         Username<br />
-        <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} />
+        <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
       </label>
       <label>
         Email<br />
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
+        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required/>
       </label>
       <label>
         Password<br />
-        <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
+        <input type="password" name="password" value={formData.password} onChange={handleInputChange} required/>
       </label>
       <label>
         Confirm Password<br />
-        <input type="password" name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} />
+        <input type="password" name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required/>
       </label>
       <br />
       <div className='flex-wrapper'>

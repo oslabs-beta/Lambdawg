@@ -13,6 +13,7 @@ const signInForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log('signing in....')
     // check credentials against database
     // if no match, hangleWrongPassword();
     // if matched, create cookie and redirect to dashboard
@@ -24,7 +25,6 @@ const signInForm = (props) => {
    };
 
 
-
 return(
 
   <div className='form-container'>
@@ -32,12 +32,12 @@ return(
 
     <label>
       Username<br />
-      <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} />
+      <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
     </label>
 
     <label>
       Password<br />
-      <input type="password" name="password" id="password" value={formData.password} onChange={handleInputChange} />
+      <input type="password" name="password" id="password" value={formData.password} onChange={handleInputChange} required/>
     </label>
    
     <br />
