@@ -1,3 +1,4 @@
+
 /* temp pre-styling css for basic layout views, should containerize styles in future and use styles folder */
 
 
@@ -5,6 +6,9 @@ body{
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+h1 {
+  text-align: center;
 }
 
 #dashboard-container {
@@ -62,4 +66,37 @@ body{
   max-width: 70vw;
 }
 
+input{
+  border: none;
+  border: 1px solid gray;
+  border-radius: 3px;
+  width: 200px;
+  margin-bottom: 5px;
+}
 
+label{
+  font-size: .7rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  justify-content: space-between;
+
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.centered-text {
+  text-align: center;
+}

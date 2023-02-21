@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import Navbar from './components/Navbar.jsx';
 import DashboardContainer from './containers/DashboardContainer.jsx';
-// import Auth from './components/Auth.jsx';
+import LandingPageContainer from './containers/LandingPageContainer.jsx';
+import Auth from './components/Auth.jsx';
 // import Docs from './components/Docs.jsx';
 import './App.css';
 
@@ -20,11 +21,12 @@ const App = () => {
     <div className="router">
       <div className="routerMain" id="content">
         <Routes>
-          <Route exact path="/" element={<h1>LAMBDAWG landing page</h1>} />  
-          {/* <Route exact path="/" element={<LandingPage/>} /> // first timers welcome
-          <Route exact path="/auth" element={<Auth/>} />  // login & signup (toggleable) */}
+          <Route exact path="/" element={<LandingPageContainer/>} /> // first timers welcome
+          <Route exact path="/auth" element={<Auth/>} />  // login & signup (toggleable)
           <Route exact path="/dashboard" element={<DashboardContainer/>} />
           {/* <Route exact path="/docs" element={<Docs/>} /> */}
+          {/* <Route exact path="/settings" element={<Settings/>} /> */}
+
         </Routes>
       </div>
     </div>
