@@ -1,33 +1,27 @@
 
 import React, { useState } from 'react';
-import Switch from 'react-switch'
+// import Switch from 'react-switch'
 
 const Navbar = (props) => {
 
     const docsLink = '/docs';
     const settingsLink = '/settings'
-    const logo = 'src/assets/lambdawg_logo.png'
     const tempSettingsIcon = 'src/assets/temp_settings_icon.png'
 
   return(
-    // Logo
-    <div id="NavbarContainer">
 
-      <img src={logo} alt="LAMBDAWG logo" className="headerLogo"/>
+    <div id="navbar-container">
+
+      <h1>L A M B D A W G </h1>
       <div id="headerRight">
         <a href={docsLink}>READ ME</a>
-
-
-
-        <img src={tempSettingsIcon} className="tempSettingsIcon"/>
+        <a href={settingsLink}>
+          <img src={tempSettingsIcon} className="tempSettingsIcon"/>
+          </a>
       </div>
-
 
     </div>
 
-    // Docs
-    // Dark Mode toggle
-    // Settings 
   )
 }
 export default Navbar;

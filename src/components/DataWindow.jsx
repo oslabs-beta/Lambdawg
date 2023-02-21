@@ -6,7 +6,25 @@ const DataWindow = (props) => {
 
 
   return(
-    <h1>Data Window</h1>
+    <div id='data-window-wrapper'>
+
+<ul>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+  <li>ERROR: You are too cool for school</li>
+</ul>
+    </div>
   )
 }
 export default DataWindow;
