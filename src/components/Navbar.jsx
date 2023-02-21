@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
-// import Switch from 'react-switch'
 
 const Navbar = (props) => {
 
     const docsLink = '/docs';
-    const settingsLink = '/settings'
+    const settingsLink = './settings';
+
     const tempSettingsIcon = 'src/assets/temp_settings_icon.png'
 
   return(

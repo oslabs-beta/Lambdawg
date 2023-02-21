@@ -1,0 +1,17 @@
+#navbar-container {
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+}
+#headerRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.headerLogo {
+  width: 250px;
+}
+
+.tempSettingsIcon {
+  width: 50px;
+}

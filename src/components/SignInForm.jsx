@@ -41,9 +41,9 @@ return(
     </label>
    
     <br />
-    <div className='flex-wrapper'>
-      <button type="submit">Sign In</button>
-      <button onClick={toggleFormType}>Sign Up</button>
+    <div className='button-flex-wrapper'>
+      <button type="submit" className='primary-button'>Sign In</button>
+      <button onClick={toggleFormType} className='secondary-button'>Sign Up</button>
     </div>
     <br />
     <label className='centered-text'>I forgot my password / username</label>

@@ -52,9 +52,9 @@ const signUpForm = (props) => {
         <input type="password" name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required/>
       </label>
       <br />
-      <div className='flex-wrapper'>
-        <button type="submit">Sign Up</button>
-        <button onClick={toggleFormType}>Sign In</button>
+      <div className='button-flex-wrapper'>
+        <button type="submit" className='primary-button'>Sign Up</button>
+        <button onClick={toggleFormType} className='secondary-button'>Sign In</button>
       </div>
 
   </form>
