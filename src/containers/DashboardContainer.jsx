@@ -7,15 +7,20 @@ import DataWindow from '../components/DataWindow.jsx';
 
 const DashboardContainer = (props) => {
   return (
-    <div>
-      <div className='dashboard-container'>
-        <Navbar className='navbar'/>
-        <Panel className='left-window'/>
-        <DiagramContainer className='chart-window'/>
-        <DataWindow className='bottom-window'/>
+    
+      <div id='dashboard-container'>
+
+        <Navbar id='navbar-container'/>
+
+          <div id="dashboard-wrapper">
+            <Panel />
+            <DiagramContainer />
+          </div>
+
+        <DataWindow />
 
       </div>
-    </div>
+    
   )
 }
 export default DashboardContainer;
