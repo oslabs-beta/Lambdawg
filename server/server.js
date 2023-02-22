@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 
-const apiRouter = require('./routesTests/apiTest');
+const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 
@@ -15,17 +15,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Handle requests for Static Files here
-//--------------
-// app.use(express.static(path.resolve(__dirname, '../src/main')));
+//--------------**Not working how I expected**-Ted
+app.use(express.static(path.resolve(__dirname, '../src')));
 //Define Route handlers Here
 //---------------
-app.use('/apiTest', apiRouter);
+app.use('/api', apiRouter);
+
+// app.get('/', apiRouter);
+
+// app.post('/');
 
 //Catch All Route Handler for any requests to an unkown route
 //----------------
 app.use((req, res) => res.status(404).send('This page cannot be found...'));
 
-//Add default Error Handler here
+//Default Express Error Handler here
 //____________
 app.use((err, req, res, next) => {
   const defaultErr = {
