@@ -4,6 +4,7 @@ import SignInForm from './SignInForm.jsx';
 
 
 const Auth = (props) => {
+  const mascot = 'src/assets/mascot.png'
   const [formType, setFormType] = useState("signIn");
 
   const toggleFormType = () => {
@@ -12,7 +13,8 @@ const Auth = (props) => {
 
 
   return(
-    <div>
+    <div id='auth-container'>
+      <img src={mascot} className='large-mascot'/>
       {
       formType === 'signIn' ? 
       <SignInForm toggleFormType={toggleFormType} /> :
