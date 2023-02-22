@@ -1,0 +1,9 @@
+$primary-font-color: #363343;
+$secondary-font-color: lighten($primary-font-color, 30%);
+$tertiary-font-color:  lighten($primary-font-color, 50%);
+
+$box-shadow-color: lighten($primary-font-color, 70%); 
+
+$button-color: #6e82e4;
+$secondary-button-color: lighten($button-color, 70%);
+$button-font: #ffffff;

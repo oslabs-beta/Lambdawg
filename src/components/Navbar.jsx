@@ -1,25 +1,33 @@
 
 import React, { useState } from 'react';
-// import Switch from 'react-switch'
+import { VscSettingsGear, VscBook, VscColorMode } from 'react-icons/vsc';
 
 const Navbar = (props) => {
 
     const docsLink = '/docs';
-    const settingsLink = '/settings'
-    const tempSettingsIcon = 'src/assets/temp_settings_icon.png'
+    const settingsLink = './settings';
+    const mascot = 'src/assets/mascot.png'
 
   return(
 
     <div id="navbar-container">
 
-      <h1>L A M B D A W G </h1>
-      <div id="headerRight">
-        <a href={docsLink}>READ ME</a>
-        <a href={settingsLink}>
-          <img src={tempSettingsIcon} className="tempSettingsIcon"/>
-          </a>
-      </div>
+      <span className='nav-item-logo'>
+        <img src={mascot} className='mascot'/>
+        <h1>L A M B D A W G </h1>
+      </span>
 
+      <div className='nav-item-group'>
+        <VscColorMode className='nav-icon'/>
+        <a href={docsLink}>
+          <VscBook className='nav-icon'/>
+        </a>
+
+        <a href={settingsLink}>
+          <VscSettingsGear className='nav-icon'/>
+        </a>
+
+      </div>       
     </div>
 
   )

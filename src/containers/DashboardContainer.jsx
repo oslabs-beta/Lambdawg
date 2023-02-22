@@ -10,7 +10,7 @@ const DashboardContainer = (props) => {
     
       <div id='dashboard-container'>
 
-        <Navbar id='navbar-container'/>
+        {/* <Navbar id='navbar-container'/> */}
 
           <div id="dashboard-wrapper">
             <Panel />

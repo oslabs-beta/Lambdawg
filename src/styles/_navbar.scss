@@ -1,0 +1,28 @@
+#navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  margin: 0px 10px 0px 10px;
+  border-bottom: 1px solid $tertiary-font-color;
+}
+.nav-item-group {
+  display: flex;
+  align-items: baseline;
+}
+.nav-item-logo {
+  display: flex;
+  align-items: center;
+}
+
+.mascot {
+  height: 6vh;
+  transform: scaleX(-1);
+  margin-right: 10px;
+}
+
+.nav-icon {
+  margin-left: 10px;
+  color: "$primary-font-color";
+  font-size: 1.5rem;
+}
