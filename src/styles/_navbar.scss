@@ -43,9 +43,15 @@
 
 // media queries
 @media (max-width: 1000px) {
- #hamburger-icon {
-  visibility: visible;
- }
+
+  #navbar-container{
+  position: fixed;
+  z-index: 999;
+  }
+
+  #hamburger-icon {
+    visibility: visible;
+  }
 
   body {
     overflow-x: hidden;
@@ -78,12 +84,15 @@
     left: 0px;
     list-style: none;
     z-index: 999;
+    border-bottom-left-radius: 30px;
   }
 
   li {
    background-color: $tertiary-font-color;
    padding: 1rem;
-   border-bottom: 1px solid $secondary-font-color;
+   border-top: 1px solid $secondary-font-color;
+   border-bottom-left-radius: 30px;
+  //  color: $button-font;
   }
 }
 
