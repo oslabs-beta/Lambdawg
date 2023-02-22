@@ -7,15 +7,20 @@
 @import 'navbar';
 @import 'auth';
 
+
+
 // global css stuff here
+*{
+  box-sizing: border-box;
+}
 
 body{
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   color: $primary-font-color;
 }
+
 
 h1 {
   text-align: center;
@@ -36,4 +41,9 @@ a:visited {
 a:active {
   color: $tertiary-font-color;
 }
- 
+
+
+// media queries
+@media (max-width: 1000px) {
+
+}
