@@ -45,14 +45,17 @@
 @media (max-width: 1000px) {
  #hamburger-icon {
   visibility: visible;
-
  }
 
   body {
     overflow-x: hidden;
   }
 
-  .mascot, .nav-icon {
+  .mascot {
+    display: none;
+  }
+  
+  .nav-icon {
     visibility: hidden;
   }
 
