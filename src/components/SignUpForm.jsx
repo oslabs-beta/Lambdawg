@@ -21,9 +21,10 @@ const signUpForm = (props) => {
     };
 
     const handleMismatchedPasswords = () => {
-        const passwordInput = document.getElementById('confirmPassword');
-        passwordInput.style.border = '2px solid red';
-     };
+      console.log('passwords do not match')
+      const passwordInput = document.getElementById('confirmPassword');
+      passwordInput.style.border = '2px solid red';
+    };
 
 
 

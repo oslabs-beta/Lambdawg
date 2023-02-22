@@ -9,12 +9,7 @@ const Auth = (props) => {
   const toggleFormType = () => {
     setFormType(prevFormType => prevFormType === 'signIn' ? 'signUp' : 'signIn');
   };
-  // const handleFormType = () => {
-  //   useEffect(() => {
-  //     if (formType === "signIn") setFormType("signUp");
-  //     else setFormType("signIn");
-  //   }, [formType, setFormType]);
-  // };
+
 
   return(
     <div>

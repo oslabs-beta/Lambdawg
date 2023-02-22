@@ -17,13 +17,13 @@
 }
 
 #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
-  padding: 5px;
   border: 1px solid gray;
   overflow: auto;
 }
 
 #panel-wrapper {
   resize: horizontal;
+  padding: 0px 15px 0px 0px;
 }
 
 #diagram-container-wrapper {
@@ -31,3 +31,4 @@
   display: flex;
   justify-content: center;
 }
+

@@ -1,17 +1,28 @@
 #navbar-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 8vh;
+  margin: 0px 10px 0px 10px;
+  border-bottom: 1px solid $tertiary-font-color;
 }
-#headerRight {
+.nav-item-group {
   display: flex;
-  justify-content: flex-end;
+  align-items: baseline;
+}
+.nav-item-logo {
+  display: flex;
   align-items: center;
 }
-.headerLogo {
-  width: 250px;
+
+.mascot {
+  height: 6vh;
+  transform: scaleX(-1);
+  margin-right: 10px;
 }
 
-.tempSettingsIcon {
-  width: 50px;
+.nav-icon {
+  margin-left: 10px;
+  color: "$primary-font-color";
+  font-size: 1.5rem;
 }

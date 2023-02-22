@@ -1,6 +1,6 @@
 input{
   border: none;
-  border: 1px solid $tertiary-font-color;
+  border: 1px solid gray;
   border-radius: 3px;
   width: 200px;
   margin-bottom: 5px;
@@ -8,7 +8,6 @@ input{
 
 label{
   font-size: .7rem;
-  color: $secondary-font-color;
 }
 
 form {
@@ -22,7 +21,9 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2vh;
 }
+
 .button-flex-wrapper {
   display: flex;
   flex-direction: row;
@@ -30,14 +31,14 @@ form {
   align-items: center;
 }
 button {
-  padding: 3px 10px 3px 10px;
+  padding: 5px 10px 5px 10px;
   border-radius: 3px;
 }
 .primary-button {
   border: none;
   background-color: $button-color;
   color: $button-font;
-  border: 1px solid $button-color;
+  border: 1px solid $primary-font-color;
 }
 .secondary-button {
   border: none;
