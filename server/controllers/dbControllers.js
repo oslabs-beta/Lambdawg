@@ -3,7 +3,7 @@ const db = require('../models/dbPool');
 const dbControllers = {};
 
 dbControllers.getUsers = (req, res, next) => {
-  const text = 'SELECT * FROM "public"."users" LIMIT 10';
+  const text = 'SELECT * FROM "public"."users"';
   db.query(text)
     .then((response) => {
       res.locals.data = response;
@@ -20,12 +20,12 @@ dbControllers.getUsers = (req, res, next) => {
     });
 };
 
-dbControllers.addUser = (req, res, next) => {
+dbControllers.addUser = (req, res, next) => {   
   const text =
     'INSERT INTO "public"."users" (full_name, user_name, email, password_) VALUES ($1, $2, $3, $4)';
   const { full_name, user_name, email, password_ } = req.body[0];
-
-  db.query(text, [full_name, user_name, email, password_], (err, result) => {
+  
+  db.query(text, [full_name, user_name, email, password_], (err, result) => { 
     // console.log(req.body);
     // console.log(
     //   'full_name ',

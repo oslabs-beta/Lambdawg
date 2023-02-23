@@ -9,7 +9,16 @@ router.get('/', dbController.getUsers, (req, res) => {
   res.status(200).json(res.locals.data.rows);
 });
 
-router.post('/', dbController.addUser, (req, res) => res.status(200).json({}));
+router.post('/', dbController.addUser, (req, res) => {
+  res.status(200).json({});
+});
+
+// router.delete(
+//   '/',
+//   authController.verifyUN_Pass,
+//   dbController.deleteUser,
+//   (req, res) => res.status(200).json({})
+// );
 
 router.delete(
   '/',

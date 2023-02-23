@@ -4,6 +4,18 @@ $tertiary-font-color:  lighten($primary-font-color, 50%);
 
 $box-shadow-color: lighten($primary-font-color, 70%); 
 
-$button-color: #6e82e4;
+$button-color: #272220;
 $secondary-button-color: lighten($button-color, 70%);
-$button-font: #ffffff;
+$button-font: #d9d6d6;
+
+$theme-color-1:  #efc8d4;
+$theme-color-2:  #8fccd0;
+$theme-color-3:  #9be5a4;
+$theme-color-4:  #ee965c;
+$theme-color-5:  #f7f2f2;
+
+$theme-primary-font-color:  #f0eeee;
+$theme-secondary-font-color:  darken($theme-primary-font-color, 30%);
+$theme-tertiray-font-color:  darken($theme-primary-font-color, 50%);
+
+$theme-primary-bg-color: #1e1c1b;

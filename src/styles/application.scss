@@ -1,24 +1,34 @@
 // import fonts
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap');
 
 // import style modules
 @import 'variables';
 @import 'form';
 @import 'dashboard';
 @import 'navbar';
+@import 'auth';
+
+
 
 // global css stuff here
-
-body{
-  margin: 0px;
-  padding: 0px;
+*{
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  color: $primary-font-color;
 }
 
+body{
+  // background-color: $theme-color-1;
+  margin: 0px;
+  padding: 0px;
+  color: $primary-font-color;
+  font-family: 'Roboto', sans-serif;
+}
+
+
 h1 {
+  font-family: 'Press Start 2P', 'Roboto', sans-serif;
   text-align: center;
   font-size: 1.5rem;
+  color: $primary-font-color;
 
 }
 .centered-text {
@@ -35,4 +45,9 @@ a:visited {
 a:active {
   color: $tertiary-font-color;
 }
- 
+
+
+// media queries
+@media (max-width: 1000px) {
+
+}
