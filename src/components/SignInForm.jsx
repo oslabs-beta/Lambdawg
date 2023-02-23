@@ -5,6 +5,7 @@ const signInForm = (props) => {
 
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
   const { toggleFormType } = props
+  const { loggedIn, setLoggedIn } = props
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -32,6 +33,7 @@ const signInForm = (props) => {
     
       if (response.ok) { // password was correct
         console.log('Sign in attempt passed auth');
+        setLoggedIn(true);
       } 
       else { // invalid password
         console.log('Invalid password');
