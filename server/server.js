@@ -3,6 +3,9 @@ const path = require('path');
 
 const app = express();
 
+const listLambdasController = require('./controllers/listLambdasController');
+const credentialController = require('./controllers/credentialController');
+
 const apiRouter = require('./routesTests/apiTest');
 
 const PORT = 3000;
@@ -21,6 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 //---------------
 app.use('/apiTest', apiRouter);
 
+app.get(
+  '/getLambdaNames',
+  credentialController.getCredentials,
+  //listLambdasController.getLambdas,
+  (req, res) => {
+    return res.status(200).json(res.locals.lambdaNames);
+  }
+);
 //Catch All Route Handler for any requests to an unkown route
 //----------------
 app.use((req, res) => res.status(404).send('This page cannot be found...'));
