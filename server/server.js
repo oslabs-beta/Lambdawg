@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(
     origin: 'http://localhost:5173',
     credentials: true,
   })
-);//Handle requests for Static Files here
+); //Handle requests for Static Files here
 //--------------**Not working how I expected**-Ted
 app.use(express.static(path.resolve(__dirname, '../src')));
 //Define Route handlers Here
@@ -30,6 +30,14 @@ app.use('/api', apiRouter);
 
 // app.post('/');
 
+app.get(
+  '/getLambdaNames',
+  credentialController.getCredentials,
+  //listLambdasController.getLambdas,
+  (req, res) => {
+    return res.status(200).json(res.locals.lambdaNames);
+  }
+);
 //Catch All Route Handler for any requests to an unkown route
 //----------------
 app.use((req, res) => res.status(404).send('This page cannot be found...'));

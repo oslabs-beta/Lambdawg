@@ -20,7 +20,7 @@ Resources:
               - 'sts:AssumeRole'
             Condition:
               StringEquals:
-                'sts:ExternalId': !Ref ExternalId
+                'sts:ExternalId': 'Labmdawg'
       Path: /
       RoleName: LambdawgDelegationRole
       Policies:
