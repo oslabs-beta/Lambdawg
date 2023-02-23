@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { VscSettingsGear, VscBook, VscColorMode, VscMenu } from 'react-icons/vsc';
 
-const Navbar = (props) => {
+const MainNavbar = (props) => {
 
     const docsLink = '/docs';
     const settingsLink = './settings';
@@ -19,7 +19,9 @@ const Navbar = (props) => {
   
       // Remove the event listener when the component unmounts
       return () => {
-        hamburgerIcon.removeEventListener('click');
+        hamburgerIcon.removeEventListener('click', () => {
+          hamburgerMenu.classList.toggle('collapse-burger-menu');
+        });
       };
     }, []); // Empty dependency array ensures that the effect runs only once
   
@@ -34,19 +36,16 @@ const Navbar = (props) => {
             </span>
         
           <div className='nav-item-group'>
-            <VscColorMode className='nav-icon icon-dark-mode'/>
-            <a href={docsLink}>
-              <VscBook className='nav-icon icon-docs'/>
-            </a>
-            <a href={settingsLink}>
-              <VscSettingsGear className='nav-icon icon-settings'/>
-            </a>
+
+
+            <ul id='desktop-menu' className='collapse-desktop-menu'>
+              <li>Documentation</li>
+              <li>Settings</li>
+              <li>Log in / out</li>
+            </ul>
 
             <VscMenu id='hamburger-icon' />
             <ul id='hamburger-menu' className='collapse-burger-menu'>
-              <li>Docs</li>
-              <li>Settings</li>
-              <li>Log in</li>
               <li>Docs</li>
               <li>Settings</li>
               <li>Log in</li>
@@ -58,4 +57,4 @@ const Navbar = (props) => {
     );
   };
   
-  export default Navbar;
+  export default MainNavbar;

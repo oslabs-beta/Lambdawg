@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardContainer from './containers/DashboardContainer.jsx';
 import LandingPageContainer from './containers/LandingPageContainer.jsx';
 import Auth from './components/Auth.jsx';
@@ -32,10 +32,10 @@ const App = (props) => {
 
       <div className="routerMain" id="content">
         <Routes>
-          <Route exact path="/auth" element={<Auth />} />  
-          <Route exact path="/dashboard" element={<DashboardContainer/>} />
+          <Route exact path="/auth" element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />  
+          <Route exact path="/dashboard" element={<DashboardContainer loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
           <Route exact path="/docs" element={<Docs/>} />
-          <Route exact path="/settings" element={<Settings/>} />
+          <Route exact path="/settings" element={<Settings loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
           <Route exact path="/" element={<LandingPageContainer/>} /> 
 
         </Routes>

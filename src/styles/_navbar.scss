@@ -1,4 +1,8 @@
 
+// *{
+//   border: 1px solid red;
+// }
+
 #navbar-container {
   width: 100vw;
   display: flex;
@@ -10,7 +14,8 @@
 }
 .nav-item-group {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: flex-end;
 }
 .nav-item-logo {
   margin-left: 1rem;
@@ -24,12 +29,12 @@
   margin-right: 10px;
 }
 
-.nav-icon, .icon-docs, .icon-settings, .icon-dark-mode {
-  visibility: visible;
-  margin-left: 10px;
-  color: "$primary-font-color";
-  font-size: 1.5rem;
-}
+// .nav-icon {
+//   visibility: visible;
+//   margin-left: 10px;
+//   color: "$primary-font-color";
+//   font-size: 1.5rem;
+// }
 
 #hamburger-icon {
   visibility: hidden;
@@ -39,10 +44,22 @@
   visibility: hidden;
 }
 
-
+#desktop-menu {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+#desktop-menu > li {
+  padding: 1rem 0px .8rem 1rem;
+  // border: 1px solid pink;
+}
 
 // media queries
 @media (max-width: 1000px) {
+
+  .collapse-desktop-menu{
+    visibility: hidden;
+  }
 
   #navbar-container{
   position: fixed;
@@ -67,30 +84,36 @@
 
   #hamburger-icon {
     visibility: visible;
-    margin: 0px 1rem 0px 1rem;
+    margin: 0px 1rem 0px 0px;
     color: "$primary-font-color";
     font-size: 1.5rem;
   }
 
   #hamburger-menu {
-    background-color: $theme-primary-font-color;
+    background-color: $theme-color-5;
     margin: 0px;
     padding: 1rem 1rem 0px 1rem;
     width: 100vw;
+    max-width: 15rem;
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 8vh;
-    left: 0px;
+    right: 0px;
     list-style: none;
     z-index: 999;
     border-bottom-left-radius: 30px;
+    // opacity: .8;
+    transition: opacity 1s ease-in-out;
   }
-
-  li {
-   background-color: $theme-primary-font-color;
+  #hamburger-menu {
+    opacity: 1;
+  }
+  
+  #hamburger-menu > li {
+   background-color: $theme-color-5;
    padding: 1rem;
-   border-top: 1px solid $secondary-font-color;
+   border-top: 1px solid #ece6e6;
    border-bottom-left-radius: 30px;
   //  color: $button-font;
   }
