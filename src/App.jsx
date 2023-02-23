@@ -28,7 +28,7 @@ const App = (props) => {
   return (
     <div className="router">
       
-        <MainNavbar  id='navbar-container' loggedIn={loggedIn} />
+        <MainNavbar loggedIn={loggedIn} />
 
       <div className="routerMain" id="content">
         <Routes>

@@ -9,16 +9,16 @@ const DashboardContainer = (props) => {
 
   const { loggedIn, setLoggedIn } = props;
 
-  // redirect unauthorized user to auth page
-  useEffect(() => {
-      const isUserAuthenticated = () => {
-        // Check for a session cookie?
-        return true; // Return true or false depending on cookie
-      };
-      setLoggedIn(isUserAuthenticated());
-    }, []);
+  // // redirect unauthorized user to auth page
+  // useEffect(() => {
+  //     const isUserAuthenticated = () => {
+  //       // Check for a session cookie?
+  //       return true; // Return true or false depending on cookie
+  //     };
+  //     setLoggedIn(isUserAuthenticated());
+  //   }, []);
 
-    if (!loggedIn) return <Navigate replace to="/auth" />;
+  //   if (!loggedIn) return <Navigate replace to="/auth" />;
 
   return (
     
