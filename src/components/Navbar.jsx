@@ -18,7 +18,7 @@ const Navbar = (props) => {
            
               <img src='src/assets/mascot.png' className='mascot'/>
               
-              <h1>L A M B D A W G </h1>
+              <h1>LAMBDAWG</h1>
             </span>
         
           <div className='nav-item-group'>

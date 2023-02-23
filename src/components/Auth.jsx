@@ -14,12 +14,16 @@ const Auth = (props) => {
 
   return(
     <div id='auth-container'>
-      <img src={mascot} className='large-mascot'/>
-      {
-      formType === 'signIn' ? 
-      <SignInForm toggleFormType={toggleFormType} /> :
-      <SignUpForm toggleFormType={toggleFormType} />
-       }
+
+      <div id='theme-bg-auth'>
+        <img src={mascot} className='large-mascot'/>
+        {
+        formType === 'signIn' ?
+        <SignInForm toggleFormType={toggleFormType} /> :
+        <SignUpForm toggleFormType={toggleFormType} />
+         }
+      </div>
+
     </div>
   )
  

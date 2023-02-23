@@ -6,7 +6,7 @@
   align-items: center;
   height: 8vh;
   margin: 0px;
-  border-bottom: 1px solid $tertiary-font-color;
+  border-bottom: 1px solid $primary-font-color;
 }
 .nav-item-group {
   display: flex;
@@ -73,7 +73,7 @@
   }
 
   #hamburger-menu {
-    background-color: $tertiary-font-color;
+    background-color: $theme-primary-font-color;
     margin: 0px;
     padding: 1rem 1rem 0px 1rem;
     width: 100vw;
@@ -88,7 +88,7 @@
   }
 
   li {
-   background-color: $tertiary-font-color;
+   background-color: $theme-primary-font-color;
    padding: 1rem;
    border-top: 1px solid $secondary-font-color;
    border-bottom-left-radius: 30px;

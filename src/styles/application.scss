@@ -1,4 +1,5 @@
 // import fonts
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap');
 
 // import style modules
 @import 'variables';
@@ -15,16 +16,19 @@
 }
 
 body{
+  // background-color: $theme-color-1;
   margin: 0px;
   padding: 0px;
-  font-family: Arial, Helvetica, sans-serif;
   color: $primary-font-color;
+  font-family: 'Roboto', sans-serif;
 }
 
 
 h1 {
+  font-family: 'Press Start 2P', 'Roboto', sans-serif;
   text-align: center;
   font-size: 1.5rem;
+  color: $primary-font-color;
 
 }
 .centered-text {

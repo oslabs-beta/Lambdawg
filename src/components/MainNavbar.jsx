@@ -30,7 +30,7 @@ const Navbar = (props) => {
         
             <span className='nav-item-logo'>
               <img src={mascot} className='mascot'/>
-              <h1>L A M B D A W G </h1>
+              <h1>LAMBDAWG</h1>
             </span>
         
           <div className='nav-item-group'>

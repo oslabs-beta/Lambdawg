@@ -1,3 +1,7 @@
+// * {
+//   border: 1px solid red;
+// }
+
 input{
   border: none;
   border: 1px solid gray;
@@ -43,4 +47,14 @@ button {
   border: none;
   background-color: $button-font;
   color: $button-color;
+}
+
+#theme-bg-auth {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: $theme-color-5;
 }
