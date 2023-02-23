@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const signInForm = (props) => {
 
-  const [formData, setFormData] = useState({ user_name: '', password: '' });
+  const [formData, setFormData] = useState({ user_name: '', password_: '' });
   const { toggleFormType } = props
 
   const handleInputChange = (event) => {
@@ -11,18 +11,40 @@ const signInForm = (props) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log('signing in....')
     // check credentials against database
     // if no match, hangleWrongPassword();
     // if matched, create cookie and redirect to dashboard
-  };
+    const signInFormData = {
+      user_name: formData.user_name,
+      password_: formData.password_
+    }
 
-  const handleWrongPassword = () => {
-      const passwordInput = document.getElementById('password');
-      passwordInput.style.border = '2px solid red';
-   };
+    try {
+      const response = await fetch(`http://localhost:3000/api/${formData.user_name}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        // mode: 'no-cors',
+        body: JSON.stringify([signInFormData]),
+      });
+    
+      if (response.ok) { // password was correct
+        console.log('Sign in attempt passed auth');
+      } 
+      else { // invalid password
+        console.log('Invalid password');
+        const passwordInput = document.getElementById('password_');
+        passwordInput.style.border = '2px solid red';
+        passwordInput.value = ''
+      }
+    } 
+    catch (error) { // problem making the request
+      console.error(error);
+      console.log('Unable to sign-in at this time.');
+    }
+  };
 
 
 return(
@@ -37,7 +59,7 @@ return(
 
     <label>
       Password<br />
-      <input type="password" name="password" id="password" value={formData.password} onChange={handleInputChange} required/>
+      <input type="password" name="password_" id="password_" value={formData.password_} onChange={handleInputChange} required/>
     </label>
    
     <br />
