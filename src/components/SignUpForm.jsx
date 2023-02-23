@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const signUpForm = (props) => {
 
 
-    const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password: '', confirmPassword: '' });
+    const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password_: '', confirmPassword: '' });
     const { toggleFormType } = props
 
     const handleInputChange = (event) => {
@@ -11,13 +11,36 @@ const signUpForm = (props) => {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
   
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
-      if (formData.password != formData.confirmPassword) return handleMismatchedPasswords();
-      if (formData.password == formData.confirmPassword) console.log('signing up....')
-
-      // if they do match, submit form (make POST req to DB, redirect to settingsPage passing in formdata)
-      // redirect to sign in
+      const signUpFormData = {
+        full_name: formData.full_name,
+        user_name: formData.user_name,
+        email: formData.email,
+        password_: formData.password_
+      }
+      if (formData.password_ != formData.confirmPassword) return handleMismatchedPasswords();
+      if (formData.password_ == formData.confirmPassword) console.log('signing up....')
+      console.log(signUpFormData)
+      try {
+        const response = await fetch('http://localhost:3000/api', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          // mode: 'no-cors',
+          body: JSON.stringify([signUpFormData]),
+        });
+      
+        if (response.ok) {
+          console.log('Sign up successful');
+          // Redirect the user to the settings page
+          // window.location.href = '/settings';
+        } else {
+          console.log('Sign up failed');
+        }
+      } catch (error) {
+        console.error(error);
+        console.log('Unable to sign-up at this time.');
+      }
     };
 
     const handleMismatchedPasswords = () => {
@@ -46,7 +69,7 @@ const signUpForm = (props) => {
       </label>
       <label>
         Password<br />
-        <input type="password" name="password" value={formData.password} onChange={handleInputChange} required/>
+        <input type="password" name="password_" value={formData.password_} onChange={handleInputChange} required/>
       </label>
       <label>
         Confirm Password<br />
@@ -68,3 +91,7 @@ const signUpForm = (props) => {
 
 
 export default signUpForm;
+
+
+
+

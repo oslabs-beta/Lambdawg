@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 
-const listLambdasController = require('./controllers/listLambdasController');
-const credentialController = require('./controllers/credentialController');
-
-const apiRouter = require('./routesTests/apiTest');
+const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 
@@ -16,13 +14,21 @@ const PORT = 3000;
  */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-//Handle requests for Static Files here
-//--------------
-// app.use(express.static(path.resolve(__dirname, '../src/main')));
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  })
+); //Handle requests for Static Files here
+//--------------**Not working how I expected**-Ted
+app.use(express.static(path.resolve(__dirname, '../src')));
 //Define Route handlers Here
 //---------------
-app.use('/apiTest', apiRouter);
+app.use('/api', apiRouter);
+
+// app.get('/', apiRouter);
+
+// app.post('/');
 
 app.get(
   '/getLambdaNames',
@@ -36,11 +42,11 @@ app.get(
 //----------------
 app.use((req, res) => res.status(404).send('This page cannot be found...'));
 
-//Add default Error Handler here
+//Default Express Error Handler here
 //____________
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
+    log: `Express error handler caught unknown middleware error: ${err}`,
     status: 500,
     message: { err: 'An error occurred' },
   };

@@ -1,6 +1,6 @@
 #cluster-temp-img {
   object-fit: cover;
-  max-width: 70vw;
+  max-width: 100%;
 }
 
 #dashboard-wrapper {
@@ -32,3 +32,33 @@
   justify-content: center;
 }
 
+// media queries
+
+@media (max-width: 1000px) {
+
+  #dashboard-container {
+    height: 100%;
+  }
+
+  #dashboard-wrapper {
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  #diagram-container-wrapper {
+    order: -1;
+    height: 100vh;
+  }
+
+  #panel-wrapper {
+    height: 3.5rem;
+    overflow: auto;
+  }
+
+}
+
+// onClick Panel in mobile functionality add this class to expand
+.panel-wrapper-focused {
+  height: 100vh;
+  overflow: auto;
+}
