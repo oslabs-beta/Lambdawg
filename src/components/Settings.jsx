@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-// import AWS from 'aws-sdk';
+import React, { useState, useEffect } from 'react';
+import { Navigate } from "react-router-dom";// import AWS from 'aws-sdk';
 
 // via chatGPT:
 
@@ -13,6 +13,18 @@ import React, { useState } from 'react';
 
 
 const Settings = (props) => {
+  const { loggedIn, setLoggedIn } = props;
+
+  // redirect unauthorized user to auth page
+  useEffect(() => {
+    const isUserAuthenticated = () => {
+      // Check for a session cookie?
+      return true; // Return true or false depending on cookie
+    };
+    setLoggedIn(isUserAuthenticated());
+  }, []);
+
+  if (!loggedIn) return <Navigate replace to="/auth" />;
 
 
     const [accessKeyId, setAccessKeyId] = useState('');

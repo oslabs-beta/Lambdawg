@@ -9,8 +9,8 @@ const DashboardContainer = (props) => {
 
   const { loggedIn, setLoggedIn } = props;
 
-    // check if they're logged in - if yes, setLoggedIn to true 
-    useEffect(() => {
+  // redirect unauthorized user to auth page
+  useEffect(() => {
       const isUserAuthenticated = () => {
         // Check for a session cookie?
         return true; // Return true or false depending on cookie
