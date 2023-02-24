@@ -14,10 +14,6 @@ const signInForm = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('signing in....')
-    // check credentials against database
-    // if no match, hangleWrongPassword();
-    // if matched, create cookie and redirect to dashboard
     const signInFormData = {
       user_name: formData.user_name,
       password_: formData.password_
@@ -27,7 +23,6 @@ const signInForm = (props) => {
       const response = await fetch(`http://localhost:3000/api/${formData.user_name}`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        // mode: 'no-cors',
         body: JSON.stringify([signInFormData]),
       });
     

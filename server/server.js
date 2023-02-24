@@ -30,14 +30,14 @@ app.use('/api', apiRouter);
 
 // app.post('/');
 
-app.get(
-  '/getLambdaNames',
-  credentialController.getCredentials,
-  //listLambdasController.getLambdas,
-  (req, res) => {
-    return res.status(200).json(res.locals.lambdaNames);
-  }
-);
+// app.get(
+//   '/getLambdaNames',
+//   credentialController.getCredentials,
+//   //listLambdasController.getLambdas,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.lambdaNames);
+//   }
+// );
 //Catch All Route Handler for any requests to an unkown route
 //----------------
 app.use((req, res) => res.status(404).send('This page cannot be found...'));
