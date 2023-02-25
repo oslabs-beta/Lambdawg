@@ -14,16 +14,11 @@
   border-bottom: 1px solid $primary-font-color;
   background-color: white;
   z-index: 999;
-  overflow-x: hidden;
-  overflow-y: hidden;
-
-
 }
 .nav-item-group {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
 }
 .nav-item-logo {
   margin-left: 1rem;
@@ -85,9 +80,7 @@
     overflow-x: hidden;
   }
 
-  // .mascot {
-  //   display: none;
-  // }
+
   
   .nav-icon {
     visibility: hidden;
@@ -115,13 +108,9 @@
     list-style: none;
     z-index: 998;
     border-bottom-left-radius: 30px;
-    // opacity: .8;
-    transition: opacity 1s ease-in-out;
+
   }
-  #hamburger-menu {
-    opacity: 1;
-  }
-  
+
   #hamburger-menu > li {
    background-color: $theme-color-5;
    padding: 1rem;

@@ -19,6 +19,7 @@ const MainNavbar = (props) => {
   
       // Remove the event listener when the component unmounts
       return () => {
+        console.log('click')
         hamburgerIcon.removeEventListener('click', () => {
           hamburgerMenu.classList.toggle('collapse-burger-menu');
         });
