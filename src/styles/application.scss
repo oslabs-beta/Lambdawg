@@ -7,6 +7,8 @@
 @import 'dashboard';
 @import 'navbar';
 @import 'auth';
+@import 'landingpage';
+@import 'settings';
 
 
 
@@ -21,6 +23,8 @@ body{
   padding: 0px;
   color: $primary-font-color;
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+
 }
 
 

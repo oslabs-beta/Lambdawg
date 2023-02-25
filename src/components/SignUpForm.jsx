@@ -54,36 +54,35 @@ const signUpForm = (props) => {
   return(
 
     <div className='form-container'>
+          <h1>Sign Up</h1>
+
       <form onSubmit={handleSubmit}>
         <label>
-        First / Last name<br />
-        <input type="name" name="full_name" value={formData.full_name} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Username<br />
-        <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Email<br />
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Password<br />
-        <input type="password" name="password_" value={formData.password_} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Confirm Password<br />
-        <input type="password" name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required/>
-      </label>
-      <br />
-      <div className='button-flex-wrapper'>
-        <button type="submit" className='primary-button'>Sign Up</button>
-        <button onClick={toggleFormType} className='secondary-button'>Sign In</button>
-      </div>
-
-  </form>
-
-
+          First / Last name<br />
+          <input type="name" name="full_name" value={formData.full_name} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Username<br />
+          <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Email<br />
+          <input type="email" name="email" value={formData.email} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Password<br />
+          <input type="password" name="password_" value={formData.password_} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Confirm Password<br />
+          <input type="password" name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required/>
+        </label>
+        <br />
+        <div className='button-flex-wrapper'>
+          <button type="submit" className='primary-button'>Sign Up</button>
+          <button onClick={toggleFormType} className='secondary-button'>Sign In</button>
+        </div>
+      </form>
     </div>
   
   )

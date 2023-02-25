@@ -1,14 +1,33 @@
 
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar.jsx';
 
 const LandingPageContainer = (props) => {
+  const mascot = 'src/assets/mascot.png'
+  const video1 = 'src/assets/mock-video1.gif'
+
+// our logo
+// a breif description
+// sign up button / read docs button
+// video presentation elements with descriptions
+// basically sell this shit on this page
+
+
   return (
     
-        <div>
-          <h1>Welcome!</h1>
-          <p>This is the landing page</p>
+    <div>
+      <div id='landing-page-container'>
+        <img src={mascot} className='large-mascot'/>
+        <p>a breif description about what it do</p>
+        <div className='button-flex-wrapper'>
+          <button className='primary-button'>Sign in / up</button>
+          <button className='secondary-button'>Read the Docs</button>
         </div>
+        <img src={video1} className='video'/>
+        <p>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer minds</p>
+      </div>
+
+
+    </div>
   )
 }
 export default LandingPageContainer;

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
 
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
-const signInForm = (props) => {
-
+const SignInForm = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
-  const { toggleFormType } = props
-  const { loggedIn, setLoggedIn } = props
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -14,72 +13,63 @@ const signInForm = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('signing in....')
-    // check credentials against database
-    // if no match, hangleWrongPassword();
-    // if matched, create cookie and redirect to dashboard
     const signInFormData = {
       user_name: formData.user_name,
-      password_: formData.password_
-    }
+      password_: formData.password_,
+    };
 
     try {
       const response = await fetch(`http://localhost:3000/api/${formData.user_name}`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        // mode: 'no-cors',
         body: JSON.stringify([signInFormData]),
       });
-    
-      if (response.ok) { // password was correct
+
+      if (response.ok) {
         console.log('Sign in attempt passed auth');
-        setLoggedIn(true);
-      } 
-      else { // invalid password
+        setShouldRedirect(true);
+      } else {
         console.log('Invalid password');
         const passwordInput = document.getElementById('password_');
         passwordInput.style.border = '2px solid red';
-        passwordInput.value = ''
+        passwordInput.value = '';
       }
-    } 
-    catch (error) { // problem making the request
+    } catch (error) {
       console.error(error);
       console.log('Unable to sign-in at this time.');
     }
   };
 
+  if (shouldRedirect) {
+    return <Navigate to="/dashboard" />;
+  }
 
-return(
+  return (
+    <div className="form-container">
+      <h1>Sign In</h1>
 
-  <div className='form-container'>
-    <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username
+          <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required />
+        </label>
 
-    <label>
-      Username<br />
-      <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
-    </label>
+        <label>
+          Password
+          <input type="password" name="password_" id="password_" value={formData.password_} onChange={handleInputChange} required />
+        </label>
 
-    <label>
-      Password<br />
-      <input type="password" name="password_" id="password_" value={formData.password_} onChange={handleInputChange} required/>
-    </label>
-   
-    <br />
-    <div className='button-flex-wrapper'>
-      <button type="submit" className='primary-button'>Sign In</button>
-      <button onClick={toggleFormType} className='secondary-button'>Sign Up</button>
+        <br />
+        <div className="button-flex-wrapper">
+          <button type="submit" className="primary-button">Sign In</button>
+          <button onClick={props.toggleFormType} className="secondary-button">Sign Up</button>
+        </div>
+        <br />
+        
+        <label className="centered-text">I forgot my password / username</label>
+      </form>
     </div>
-    <br />
-    <label className='centered-text'>I forgot my password / username</label>
+  );
+};
 
-</form>
-
-
-  </div>
-
-)
-
-
-}
-
-export default signInForm;
+export default SignInForm;

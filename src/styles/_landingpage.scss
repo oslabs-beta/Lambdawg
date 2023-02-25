@@ -1,0 +1,28 @@
+#landing-page-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+#landing-page-container > .button-flex-wrapper > button {
+  margin: .5rem;
+}
+#landing-page-container > .large-mascot {
+  margin-top: 5rem;  
+}
+
+.video {
+  width: 70vw;
+  max-width: 800px;
+}
+
+// media queries
+@media (max-width: 1000px) {
+
+  .video {
+    width: 90vw;
+  }
+  
+}
