@@ -11,7 +11,7 @@
 #dashboard-container {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -43,13 +43,17 @@
 
 @media (max-width: 1000px) {
 
+  #dashboard-container {
+    width: 100vw;
+  }
+
   #data-window-wrapper {
     margin-top: 2rem;
   }
 
   #dashboard-wrapper {
     flex-direction: column;
-    height: 90vh;
+    height: 100vh;
   }
   #diagram-container-wrapper {
     order: -1;
@@ -67,20 +71,22 @@
  
   .block-button-wrapper {
     position: fixed;
-    bottom: .25rem;
+    bottom: 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     visibility: visible;
-    height: auto;
+    height: 3rem;
+    padding: 1rem 0rem 1rem 0rem;
+    border: 1px solid pink;
   }
 
   #panelButton, #diagramButton, #dataButton {
     width: 33.3vw;
     height: 2.5rem;
     border: 1px solid $primary-font-color;
-    margin: 2px;
+    margin: 3px;
     visibility: visible;
   }
 
