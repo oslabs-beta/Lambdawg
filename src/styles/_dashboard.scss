@@ -1,16 +1,14 @@
-#cluster-temp-img {
-  object-fit: cover;
-  max-width: 100%;
-}
+
 
 #dashboard-wrapper {
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   height: 70vh;
   border: 1px solid black;
   resize: vertical;
-  margin-top:3rem;
 }
+
 #dashboard-container {
   display: flex;
   flex-direction: column;
@@ -33,33 +31,57 @@
   justify-content: center;
 }
 
+#panelButton, #diagramButton, #dataButton, .block-button-wrapper {
+  visibility: hidden;
+  height: 0px;
+  margin: 0px;
+
+}
+
 // media queries
 
 @media (max-width: 1000px) {
 
-  #dashboard-container {
-    height: 100%;
+  #data-window-wrapper {
+    margin-top: 2rem;
   }
 
   #dashboard-wrapper {
     flex-direction: column;
-    height: 100vh;
+    height: 90vh;
   }
-
   #diagram-container-wrapper {
     order: -1;
-    height: 100vh;
+  }
+  .collapse-screen {
+    visibility: hidden !important;
+    height: 0px !important;
+  }
+  .full-screen {
+    margin-top: 1rem;
+    height: 90vh !important;
+    visibility: visible !important;
   }
 
-  #panel-wrapper {
-    height: 3.5rem;
-    overflow: auto;
+ 
+  .block-button-wrapper {
+    position: fixed;
+    bottom: .25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    visibility: visible;
+    height: auto;
+  }
+
+  #panelButton, #diagramButton, #dataButton {
+    width: 33.3vw;
+    height: 2.5rem;
+    border: 1px solid $primary-font-color;
+    margin: 2px;
+    visibility: visible;
   }
 
 }
 
-// onClick Panel in mobile functionality add this class to expand
-.panel-wrapper-focused {
-  height: 100vh;
-  overflow: auto;
-}

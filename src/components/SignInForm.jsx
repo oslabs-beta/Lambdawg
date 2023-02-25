@@ -47,8 +47,9 @@ const signInForm = (props) => {
 return(
 
   <div className='form-container'>
-    <form onSubmit={handleSubmit}>
+    <h1>Sign In</h1>
 
+    <form onSubmit={handleSubmit}>
     <label>
       Username<br />
       <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>

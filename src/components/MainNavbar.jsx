@@ -6,7 +6,7 @@ const MainNavbar = (props) => {
 
     const docsLink = '/docs';
     const settingsLink = './settings';
-    const mascot = 'src/assets/mascot.png'
+    const mascot = 'src/assets/mascot_head.svg'
     const { loggedIn } = props;
 
     useEffect(() => {

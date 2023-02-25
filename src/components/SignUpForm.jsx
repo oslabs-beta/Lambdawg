@@ -54,6 +54,8 @@ const signUpForm = (props) => {
   return(
 
     <div className='form-container'>
+          <h1>Sign Up</h1>
+
       <form onSubmit={handleSubmit}>
         <label>
           First / Last name<br />
