@@ -9,4 +9,3 @@ module.exports = creds;
 
 // https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=lambdwag-permission&param_ExternalId=Lambdawg&templateURL=https://userhelper.s3.amazonaws.com/cloudFormation.yaml
 
-// https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=lambdwag-permission&param_ExternalId=Lambdawg&templateURL=https://userhelper.s3.amazonaws.com/cloudFormation.yaml
