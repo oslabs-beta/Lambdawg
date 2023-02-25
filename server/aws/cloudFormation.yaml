@@ -1,10 +1,5 @@
 Description: 'CloudFormation stack'
 
-Parameters:
-  ExternalId:
-    Description: 'The external ID for the LAMBDAWG delegation role'
-    Type: String
-
 Resources:
   LambdawgDelegationRole:
     Type: 'AWS::IAM::Role'
@@ -20,7 +15,7 @@ Resources:
               - 'sts:AssumeRole'
             Condition:
               StringEquals:
-                'sts:ExternalId': 'Labmdawg'
+                'sts:ExternalId': !Ref ExternalId
       Path: /
       RoleName: LambdawgDelegationRole
       Policies:
@@ -295,6 +290,11 @@ Resources:
               - Effect: Allow
                 Action: 'xray:get*'
                 Resource: '*'
+
+Parameters:
+  ExternalId:
+    Description: 'The external ID for the LAMBDAWG delegation role'
+    Type: String
 
 Outputs:
   Version:
