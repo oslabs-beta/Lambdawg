@@ -4,10 +4,11 @@
 
 input{
   border: none;
-  border: 1px solid gray;
+  border: 1px solid $input-box-border-color;
   border-radius: 3px;
   width: 200px;
   margin-bottom: 5px;
+  background-color: $input-box-background-color;
 }
 
 label{
@@ -41,13 +42,13 @@ button {
 }
 .primary-button {
   border: none;
-  background-color: $button-color;
-  color: $button-font;
+  background-color: $primary-button-color;
+  color: $primary-button-font;
 }
 .secondary-button {
   border: none;
-  background-color: $button-font;
-  color: $button-color;
+  background-color: $secondary-button-color;
+  color: $secondary-button-font;
 }
 
 #theme-bg-auth {
@@ -57,5 +58,5 @@ button {
   align-items: center;
   padding: 1rem 2rem 2rem 2rem;
   border-radius: 1.5rem;
-  background-color: $theme-color-5;
+  background-color: $auth-form-bg-color;
 }

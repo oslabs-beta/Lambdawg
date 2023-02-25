@@ -1,5 +1,5 @@
 
-#dashboard-wrapper {
+#dashboard-wrapper { // panel and diagram
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -13,7 +13,7 @@
   height: 90vh;
   overflow-x: hidden;
   overflow-y: hidden;
-
+  background-color: $dashboard-background-color;
 }
 
 #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
@@ -28,6 +28,7 @@
 #panel-wrapper {
   resize: horizontal;
   padding: 0px 15px 0px 0px;
+  background-color: $panel-background-color;
 }
 #panel-wrapper, #diagram-container-wrapper {
   border-radius: 1rem;
@@ -36,14 +37,14 @@
 
 #data-window-wrapper {
   padding: .5rem 1rem 1rem 1rem;
-  
+  background-color: $data-window-background-color;
 }
 
 #diagram-container-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: $diagram-background-color;
 }
 
 #panelButton, #diagramButton, #dataButton, .block-button-wrapper {
@@ -100,7 +101,7 @@
     visibility: visible;
     height: 3rem;
     padding: 1rem 0rem 1rem 0rem;
-    background-color: black;
+    background-color: $button-background-color;
   }
 
   #panelButton, #diagramButton, #dataButton {
@@ -109,6 +110,8 @@
     border: 1px solid $primary-font-color;
     margin: 3px;
     visibility: visible;
+    background-color: $button-color;
+    color: $button-font-color;
   }
   #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
     border: none !important;

@@ -11,8 +11,8 @@
   align-items: center;
   height: 3rem;
   margin: 0px;
-  border-bottom: 1px solid $primary-font-color;
-  background-color: white;
+  border-bottom: 1px solid $nav-border;
+  background-color: $nav-background-color;
   z-index: 999;
 }
 .nav-item-group {
@@ -54,7 +54,6 @@
 }
 #desktop-menu > li {
   padding: 1rem 0px .8rem 1rem;
-  // border: 1px solid pink;
 }
 
 // media queries
@@ -89,13 +88,13 @@
   #hamburger-icon {
     visibility: visible;
     margin: 0px 1rem 0px 0px;
-    color: "$primary-font-color";
+    color: $hamburger-icon-color;
     font-size: 1.5rem;
   }
 
   #hamburger-menu {
     position: fixed;
-    background-color: $theme-color-5;
+    background-color: $hamburger-menu-bg-color;
     margin: 0px;
     padding: 1rem 1rem 0px 1rem;
     width: 100vw;
@@ -112,11 +111,11 @@
   }
 
   #hamburger-menu > li {
-   background-color: $theme-color-5;
+   background-color: $hamburger-menu-bg-color;
    padding: 1rem;
-   border-top: 1px solid #ece6e6;
+   border-top: 1px solid $hamburger-menu-lines;
    border-bottom-left-radius: 30px;
-  //  color: $button-font;
+   color: $hamburger-menu-font;
   }
 }
 
