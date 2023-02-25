@@ -1,5 +1,4 @@
 
-
 #dashboard-wrapper {
   display: flex;
   flex-direction: row;
@@ -12,7 +11,9 @@
 #dashboard-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 90vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
