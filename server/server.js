@@ -31,9 +31,10 @@ app.use('/api', apiRouter);
 // app.post('/');
 
 // app.get(
-//   '/getLambdaNames',
+//   "/getLambdaNames",
 //   credentialController.getCredentials,
-//   //listLambdasController.getLambdas,
+//   listLambdasController.getLambdas,
+//   rdsMetricsController.getRDSCPUUtilizationMetrics,
 //   (req, res) => {
 //     return res.status(200).json(res.locals.lambdaNames);
 //   }

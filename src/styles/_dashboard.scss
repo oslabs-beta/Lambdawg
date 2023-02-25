@@ -89,6 +89,8 @@
     margin: 3px;
     visibility: visible;
   }
-
+  #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
+    border: none !important;
+  }
 }
 
