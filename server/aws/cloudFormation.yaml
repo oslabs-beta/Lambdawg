@@ -1,5 +1,9 @@
 Description: 'CloudFormation stack'
 
+Parameters:
+  ExternalId:
+    Description: 'The external ID for the LAMBDAWG delegation role'
+    Type: String
 
 Resources:
   LambdawgDelegationRole:
@@ -16,7 +20,7 @@ Resources:
               - 'sts:AssumeRole'
             Condition:
               StringEquals:
-                'sts:ExternalId': 'Labmdawg'
+                'sts:ExternalId': !Ref ExternalId
       Path: /
       RoleName: LambdawgDelegationRole
       Policies:
