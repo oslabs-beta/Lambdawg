@@ -1,32 +1,40 @@
 //require the AWS SDK for Node.js
-const {
-  CloudWatchClient,
-  GetMetricDataCommand,
-} = require('@aws-sdk/client-cloudwatch');
+const { CloudWatchClient, GetMetricDataCommand } = require("@aws-sdk/client-cloudwatch");
 
 //declare an rdsMetricsController object
 const rdsMetricsController = {};
 
 //getRDSCPUUtilizationMetrics function, which will be called by the getRDSCPUUtilizationMetrics route handler
 rdsMetricsController.getRDSCPUUtilizationMetrics = async (req, res, next) => {
-  const AWS = require('aws-sdk');
+  console.log("in rdsMetricsController");
+  const AWS = require("aws-sdk");
   //declare a constant variable called cloudwatch, which will be used to call the AWS CloudWatch API
-  const cloudwatch = new AWS.CloudWatch({ region: req.query.region });
+  const cloudwatch = new AWS.CloudWatch({ region: "us-east-1" });
 
   //declare a constant variable called params, which will be used to pass the parameters of the RDSCpuUtilization metrics to the AWS CloudWatch API
+  // const params = {
+  //   MetricName: "CPUUtilization",
+  //   Namespace: "AWS/RDS",
+  //   Period: 300,
+  //   Dimensions: [
+  //     {
+  //       Name: "DBInstanceIdentifier",
+  //       Value: req.query.DBInstanceIdentifier,
+  //     },
+  //   ],
+  //   StartTime: new Date(Date.now() - 24 * 60 * 60 * 1000),
+  //   EndTime: new Date(),
+  //   Statistics: ["Average"],
+  // };
+
   const params = {
-    MetricName: 'CPUUtilization',
-    Namespace: 'AWS/RDS',
-    Period: 300,
-    Dimensions: [
-      {
-        Name: 'DBInstanceIdentifier',
-        Value: req.query.DBInstanceIdentifier,
-      },
-    ],
-    StartTime: new Date(Date.now() - 24 * 60 * 60 * 1000),
-    EndTime: new Date(),
-    Statistics: ['Average'],
+    MetricName,
+    Namespace,
+    Period,
+    Dimensions,
+    StartTime,
+    EndTime,
+    Statistics,
   };
 
   //try to call the AWS CloudWatch API to get the RDSCpuUtilization metrics

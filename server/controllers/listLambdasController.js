@@ -1,15 +1,13 @@
-const {
-  LambdaClient,
-  ListFunctionsCommand,
-} = require('@aws-sdk/client-lambda');
+const { LambdaClient, ListFunctionsCommand } = require("@aws-sdk/client-lambda");
 
 const listLambdasController = {};
 
 //retrieve name of all user's lambda functions
 listLambdasController.getLambdas = async (req, res, next) => {
+  console.log("in list Lambdas controller");
   //create new instance of LambdaClient with user's region and credentials
   const lambdaClient = new LambdaClient({
-    region: req.query.region,
+    region: "us-east-1",
     credentials: res.locals.credentials,
   });
 
@@ -18,16 +16,17 @@ listLambdasController.getLambdas = async (req, res, next) => {
     const allFuncs = await lambdaClient.send(
       new ListFunctionsCommand({
         MaxItems: 10,
-        FunctionVersion: 'ALL',
+        FunctionVersion: "ALL",
       })
     );
 
     const funcList = allFuncs.Functions.map((func) => func.FunctionName);
     res.locals.lambdaNames = funcList;
+    console.log("res.locals lambdaNames", res.locals.lambdaNames);
 
     return next();
   } catch (err) {
-    console.log('Error in listLambdas', err);
+    console.log("Error in listLambdas", err);
     return next(err);
   }
 };
