@@ -130,6 +130,7 @@ dbControllers.deleteUser = (req, res, next) => {
   const text = 'DELETE FROM "public"."users" WHERE user_name = $1';
   const { user_name } = req.body[0];
 
+  console.log(req.params);
   db.query(text, [user_name], (err, result) => {
     if (err) {
       console.log('Error at dbControllers.deleteUser: ', err);
@@ -144,23 +145,15 @@ dbControllers.deleteUser = (req, res, next) => {
   });
 };
 //
-//Under Construction -Ted
+//
 //
 dbControllers.editUser = (req, res, next) => {
   const { full_name, user_name, email, _id } = req.body[0];
-  // if (!validator.isLength(full_name, { min: 1, max: 255 })) {
-  //   return res.status(400).send('Full Name must be between 1-255 Characters');
-  // }
-  // if (!validator.isLength(user_name, { min: 1, max: 255 })) {
-  //   return res.status(400).send('User Name must be between 1-255 Characters');
-  // }
-  // if (!validator.isEmail(email, { min: 1, max: 255 })) {
-  //   return res.status(400).send('Invalid Email Address');
-  // }
-  const text =
-    'UPDATE "public"."users" SET full_name = $1, user_name = $2, email = $3 WHERE _id = $4';
 
-  db.query(text, [full_name, user_name, email, _id], (err, result) => {
+  const text =
+    'UPDATE "public"."users" SET full_name = $1, email = $2 WHERE _id = $3';
+
+  db.query(text, [full_name, email, _id], (err, result) => {
     if (err) {
       console.log(`Error Updating User: ${user_name}`, err);
       return res.status(500).send(`Error Updating User: ${user_name}`);

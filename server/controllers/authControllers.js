@@ -33,7 +33,7 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     return next();
   });
 };
-
+// I started using TESTtest@1 for my PW
 authControllers.validator = (req, res, next) => {
   const { full_name, user_name, email, password_ } = req.body[0];
   if (!validator.isLength(full_name, { min: 1, max: 255 })) {
