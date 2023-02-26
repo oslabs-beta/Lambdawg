@@ -10,10 +10,8 @@ encryptionController.hashPW = (req, res, next) => {
       return res.status(500).send('Error Saving User Credentials');
     } else {
       console.log('Credentials Saved Successfully');
-      //   console.log('hash ', hash);
-      //   console.log('res ', res.locals);
+
       res.locals.password_ = hash;
-      //   console.log('res ', res.locals.password_);
       return next();
     }
   });

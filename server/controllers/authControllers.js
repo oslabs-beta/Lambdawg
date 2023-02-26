@@ -33,7 +33,7 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     return next();
   });
 };
-// I started using TESTtest@1 for my PW
+
 authControllers.validator = (req, res, next) => {
   const { full_name, user_name, email, password_ } = req.body[0];
   if (!validator.isLength(full_name, { min: 1, max: 255 })) {
@@ -48,21 +48,24 @@ authControllers.validator = (req, res, next) => {
   if (!validator.isLength(password_, { min: 8, max: 255 })) {
     console.log('Password must be at least 8 characters long');
     return res.status(400).send('Password must be at least 8 characters long');
-  } else if (
-    !validator.matches(
-      password_,
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/
-    )
-  ) {
-    console.log(
-      'Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character'
-    );
-    return res
-      .status(400)
-      .send(
-        'Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character'
-      );
-  } else {
+  }
+  //the below regex will ensure that the user puts in a more secure password
+  // else if (
+  //   !validator.matches(
+  //     password_,
+  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/
+  //   )
+  // ) {
+  //   console.log(
+  //     'Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character'
+  //   );
+  //   return res
+  //     .status(400)
+  //     .send(
+  //       'Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character'
+  //     );
+  // }
+  else {
     console.log('Password is valid');
     return next();
   }
