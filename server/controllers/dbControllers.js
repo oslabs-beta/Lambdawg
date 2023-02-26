@@ -119,7 +119,7 @@ dbControllers.addUser = (req, res, next) => {
   db.query(text, [full_name, user_name, email, password_], (err, result) => {
     if (err) {
       console.log('Error at dbControllers.addUser: ', err);
-      return res.status(500).send('Error Executing Insert Query');
+      return res.status(500).send('Error Executing Insert Query ');
     }
     console.log('Add User Query Executed Successfully', result);
     next();
@@ -148,15 +148,15 @@ dbControllers.deleteUser = (req, res, next) => {
 //
 dbControllers.editUser = (req, res, next) => {
   const { full_name, user_name, email, _id } = req.body[0];
-  if (!validator.isLength(full_name, { min: 1, max: 255 })) {
-    return res.status(400).send('Full Name must be between 1-255 Characters');
-  }
-  if (!validator.isLength(user_name, { min: 1, max: 255 })) {
-    return res.status(400).send('User Name must be between 1-255 Characters');
-  }
-  if (!validator.isEmail(email, { min: 1, max: 255 })) {
-    return res.status(400).send('Invalid Email Address');
-  }
+  // if (!validator.isLength(full_name, { min: 1, max: 255 })) {
+  //   return res.status(400).send('Full Name must be between 1-255 Characters');
+  // }
+  // if (!validator.isLength(user_name, { min: 1, max: 255 })) {
+  //   return res.status(400).send('User Name must be between 1-255 Characters');
+  // }
+  // if (!validator.isEmail(email, { min: 1, max: 255 })) {
+  //   return res.status(400).send('Invalid Email Address');
+  // }
   const text =
     'UPDATE "public"."users" SET full_name = $1, user_name = $2, email = $3 WHERE _id = $4';
 

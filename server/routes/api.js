@@ -11,7 +11,8 @@ router.get('/', dbController.getUsers, (req, res) => {
 });
 
 router.post(
-  '/user',
+  '/newUser',
+  authController.validator,
   encryptionController.hashPW,
   dbController.addUser,
   (req, res) => {
@@ -43,8 +44,13 @@ router.patch(
 );
 
 // sign in -> add a middleware controller after verify to set session cookie
-router.post('/:user_name', authController.verifyUN_Pass, (req, res) => {
-  res.status(200).json();
-});
+router.post(
+  '/:user_name',
+  authController.validator,
+  authController.verifyUN_Pass,
+  (req, res) => {
+    res.status(200).json();
+  }
+);
 
 module.exports = router;

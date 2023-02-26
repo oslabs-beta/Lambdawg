@@ -1,9 +1,11 @@
 const db = require('../models/dbPool');
 const bcrypt = require('bcrypt');
+const validator = require('validator');
+
 const authControllers = {};
 
 authControllers.verifyUN_Pass = (req, res, next) => {
-  const { user_name } = req.body[0];
+  const { user_name, password_ } = req.body[0];
   console.log(user_name, password_);
 
   const text = 'SELECT * FROM public.users WHERE user_name = $1';
@@ -18,17 +20,52 @@ authControllers.verifyUN_Pass = (req, res, next) => {
       return res.status(401).send('Invalid Credentials');
     }
 
-    const { password_hash } = result.rows[0];
+    const password_hash = result.rows[0].password_;
+
     const match = await bcrypt.compare(password_, password_hash);
 
     if (!match) {
-      console.log('Invalid Credentials');
-      return res.status(401).send('Invalid Credentials');
+      console.log('Invalid Credentials!');
+      return res.status(401).send('Invalid Credentials!');
     }
 
     console.log('User Authentication Successful');
     return next();
   });
+};
+
+authControllers.validator = (req, res, next) => {
+  const { full_name, user_name, email, password_ } = req.body[0];
+  if (!validator.isLength(full_name, { min: 1, max: 255 })) {
+    return res.status(400).send('Full Name must be between 1-255 Characters');
+  }
+  if (!validator.isLength(user_name, { min: 1, max: 255 })) {
+    return res.status(400).send('User Name must be between 1-255 Characters');
+  }
+  if (!validator.isEmail(email, { min: 1, max: 255 })) {
+    return res.status(400).send('Invalid Email Address');
+  }
+  if (!validator.isLength(password_, { min: 8, max: 255 })) {
+    console.log('Password must be at least 8 characters long');
+    return res.status(400).send('Password must be at least 8 characters long');
+  } else if (
+    !validator.matches(
+      password_,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/
+    )
+  ) {
+    console.log(
+      'Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character'
+    );
+    return res
+      .status(400)
+      .send(
+        'Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character'
+      );
+  } else {
+    console.log('Password is valid');
+    return next();
+  }
 };
 
 module.exports = authControllers;
