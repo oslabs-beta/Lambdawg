@@ -17,6 +17,7 @@
     "@aws-sdk/client-lambda": "^3.272.0",
     "@aws-sdk/client-sts": "^3.272.0",
     "axios": "^1.3.3",
+    "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -30,7 +31,8 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
     "react-switch": "^7.0.0",
-    "sass": "^1.58.3"
+    "sass": "^1.58.3",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
