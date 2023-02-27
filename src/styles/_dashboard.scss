@@ -53,6 +53,16 @@
   margin: 0px;
 
 }
+#chart-frame {
+  height: 100%;
+  overflow: hidden !important;
+
+}
+iframe {
+  padding: 0px;
+  overflow: hidden;
+  border: none;
+}
 
 // media queries
 
@@ -115,6 +125,11 @@
   }
   #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
     border: none !important;
+  }
+  #chart-frame {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 }
 
