@@ -1,4 +1,5 @@
 const db = require('../models/dbPool');
+const validator = require('validator');
 
 const dbControllers = {};
 
@@ -23,23 +24,13 @@ dbControllers.getUsers = (req, res, next) => {
 dbControllers.addUser = (req, res, next) => {
   const text =
     'INSERT INTO "public"."users" (full_name, user_name, email, password_) VALUES ($1, $2, $3, $4)';
-  const { full_name, user_name, email, password_ } = req.body[0];
+  const { full_name, user_name, email } = req.body[0];
+  const { password_ } = res.locals;
 
   db.query(text, [full_name, user_name, email, password_], (err, result) => {
-    // console.log(req.body);
-    // console.log(
-    //   'full_name ',
-    //   full_name,
-    //   ' user_name ',
-    //   user_name,
-    //   ' email ',
-    //   email,
-    //   ' password_ ',
-    //   password_
-    // );
     if (err) {
       console.log('Error at dbControllers.addUser: ', err);
-      return res.status(500).send('Error Executing Insert Query');
+      return res.status(500).send('Error Executing Insert Query ');
     }
     console.log('Add User Query Executed Successfully', result);
     next();
@@ -50,6 +41,7 @@ dbControllers.deleteUser = (req, res, next) => {
   const text = 'DELETE FROM "public"."users" WHERE user_name = $1';
   const { user_name } = req.body[0];
 
+  console.log(req.params);
   db.query(text, [user_name], (err, result) => {
     if (err) {
       console.log('Error at dbControllers.deleteUser: ', err);
@@ -63,15 +55,14 @@ dbControllers.deleteUser = (req, res, next) => {
     next();
   });
 };
-//
-//Under Construction -Ted
-//
+
 dbControllers.editUser = (req, res, next) => {
-  const text =
-    'UPDATE "public"."users" SET full_name = $1, user_name = $2, email = $3 WHERE _id = $4';
   const { full_name, user_name, email, _id } = req.body[0];
 
-  db.query(text, [full_name, user_name, email, _id], (err, result) => {
+  const text =
+    'UPDATE "public"."users" SET full_name = $1, email = $2 WHERE _id = $3';
+
+  db.query(text, [full_name, email, _id], (err, result) => {
     if (err) {
       console.log(`Error Updating User: ${user_name}`, err);
       return res.status(500).send(`Error Updating User: ${user_name}`);
