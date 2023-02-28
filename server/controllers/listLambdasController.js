@@ -9,7 +9,7 @@ const listLambdasController = {};
 listLambdasController.getLambdas = async (req, res, next) => {
   //create new instance of LambdaClient with user's region and credentials
   const lambdaClient = new LambdaClient({
-    region: req.query.region,
+    region: 'us-east-1',
     credentials: res.locals.credentials,
   });
 
