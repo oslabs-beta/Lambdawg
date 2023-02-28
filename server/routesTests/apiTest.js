@@ -1,13 +1,13 @@
-const express = require('express');
+// const express = require('express');
 
-const dbControllerTest = require('../controllers/dbControllersTest');
+// const dbControllerTest = require('../controllers/dbControllersTest');
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get('/', dbControllerTest.getUsers, (req, res) => {
-  res.status(200).json(res.locals.data.rows);
-});
+// router.get('/', dbControllerTest.getUsers, (req, res) => {
+//   res.status(200).json(res.locals.data.rows);
+// });
 
-router.post('/');
+// router.post('/');
 
-module.exports = router;
+// module.exports = router;

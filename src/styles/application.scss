@@ -17,6 +17,7 @@
   box-sizing: border-box;
 }
 
+
 body{
   margin: 0px;
   padding: 0px;
@@ -27,7 +28,8 @@ body{
 
 }
 #content {
-  padding-top: 3rem;
+  padding-top: 0rem;
+
 }
 code {
   color: $code-font-color;

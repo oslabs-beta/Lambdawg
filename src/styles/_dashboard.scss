@@ -1,11 +1,4 @@
-::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-  background-color: transparent; /* Set the background color to transparent */
-}
- 
-::-webkit-scrollbar-thumb {
-  background-color: $scroll-bar-color;
-}
+
 
 
 #dashboard-wrapper { // panel and diagram
@@ -18,10 +11,10 @@
 #dashboard-container {
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  height: 100vh;
+  overflow: hidden;
   background-color: $dashboard-background-color;
+  padding: .5rem;
 }
 
 #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
@@ -34,7 +27,8 @@
 }
 #panel-wrapper {
   resize: horizontal;
-  padding: 0px 15px 0px 0px;
+  padding: 1rem;
+  margin-right: .5rem;
   background-color: $panel-background-color;
   overflow-y: scroll;
 }
@@ -92,6 +86,7 @@ iframe {
   #dashboard-container {
     width: 100vw;
     height: 100vh;
+    padding: 0rem;
     background-color: $dashboard-background-color-mobile;
   }
 
@@ -101,11 +96,12 @@ iframe {
     height: 90vh !important;
   }
   #panel-wrapper {
-    width: 100vw;
+    width: 100%;
+    margin: 0px;
   }
 
   #dashboard-wrapper {
-    flex-direction: column;
+    // flex-direction: column;
   }
   #diagram-container-wrapper {
     order: -1;

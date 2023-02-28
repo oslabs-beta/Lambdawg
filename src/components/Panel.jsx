@@ -17,7 +17,7 @@ const Panel = (props) => {
     return(
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
         {names}
-        <div id='testClick'></div>
+        {/* <div id='testClick'></div> */}
         {/* <ul id='panelUl'> */}
           {/* <li> This is a thing </li>
             <ul>
