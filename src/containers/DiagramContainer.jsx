@@ -14,6 +14,7 @@ function receiveMessage(event) {
 }
 
 
+
   return(
 
       <div id='diagram-container-wrapper' className={diagramFullScreen? 'full-screen' : 'collapse-screen'}> 

@@ -42,7 +42,7 @@
   visibility: hidden;
 }
 
-.collapse-burger-menu{
+.collapse-burger-menu {
   visibility: hidden;
 }
 
@@ -116,6 +116,8 @@
    border-top: 1px solid $hamburger-menu-lines;
    border-bottom-left-radius: 30px;
    color: $hamburger-menu-font;
+   z-index: 999;
+
   }
 }
 

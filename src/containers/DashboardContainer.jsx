@@ -44,6 +44,15 @@ const DashboardContainer = (props) => {
   //   return <Navigate to="/auth" />;
   // }
   
+
+    /// get function names, pass them panel / datawindow
+      /// within panel >
+        // iterate through names creating new componants that house all metrics info
+          // display only their names?
+          // onclick render all mettrics data / highlight node in chart
+        
+
+
   return (
     <div id='dashboard-container'>
 
