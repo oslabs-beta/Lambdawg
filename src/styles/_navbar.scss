@@ -25,6 +25,10 @@
   display: flex;
   align-items: center;
 }
+.nav-item-logo > h1 {
+  color: $lambdawg-color;
+
+}
 
 .mascot {
   height: 6vh;
@@ -32,12 +36,7 @@
   margin-right: 10px;
 }
 
-// .nav-icon {
-//   visibility: visible;
-//   margin-left: 10px;
-//   color: "$primary-font-color";
-//   font-size: 1.5rem;
-// }
+
 
 #hamburger-icon {
   visibility: hidden;
@@ -69,6 +68,7 @@
   #navbar-container{
   position: fixed;
   z-index: 999;
+  
   }
 
   #hamburger-icon {

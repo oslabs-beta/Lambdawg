@@ -1,10 +1,18 @@
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+  background-color: transparent; /* Set the background color to transparent */
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: $scroll-bar-color;
+}
+
 
 #dashboard-wrapper { // panel and diagram
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   height: 70vh;
-  border: 1px solid black;
 }
 
 #dashboard-container {
@@ -17,7 +25,7 @@
 }
 
 #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
-  border: 1px solid gray;
+  border: 1px solid $dashboard-border-boxes;
   overflow: auto;
 }
 #data-window-wrapper {
@@ -29,6 +37,7 @@
   resize: horizontal;
   padding: 0px 15px 0px 0px;
   background-color: $panel-background-color;
+  overflow-y: scroll;
 }
 #panel-wrapper, #diagram-container-wrapper {
   border-radius: 1rem;
@@ -64,13 +73,19 @@ iframe {
   border: none;
 }
 
+#hideDetails {
+
+}
 // media queries
 
 @media (max-width: 1000px) {
-
+  #hideDetails {
+    display: none;
+  }
   #dashboard-container {
     width: 100vw;
     height: 100vh;
+    background-color: $dashboard-background-color-mobile;
   }
 
   #data-window-wrapper {
@@ -103,7 +118,7 @@ iframe {
  
   .block-button-wrapper {
     position: fixed;
-    bottom: 0rem;
+    bottom: .5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,13 +126,13 @@ iframe {
     visibility: visible;
     height: 3rem;
     padding: 1rem 0rem 1rem 0rem;
-    background-color: $dashboard-background-color;
+    background-color: $dashboard-background-color-mobile;
   }
 
   #panelButton, #diagramButton, #dataButton {
     width: 33.3vw;
     height: 2.5rem;
-    border: 1px solid $primary-font-color;
+    // border: 1px solid $primary-font-color;
     margin: 3px;
     visibility: visible;
     background-color: $button-color;
@@ -131,5 +146,6 @@ iframe {
     overflow-x: hidden;
     overflow-y: hidden;
   }
+
 }
 
