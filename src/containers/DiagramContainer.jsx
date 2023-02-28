@@ -9,7 +9,8 @@ const { diagramFullScreen, setDiagramFullScreen } = props;
     // <div id='diagram-container-wrapper' className='full-screen'>
 
       <div id='diagram-container-wrapper' className={diagramFullScreen? 'full-screen' : 'collapse-screen'}> 
-        <img src='src/assets/cluster.png' id='cluster-temp-img'/>
+        {/* <img src='src/assets/cluster.png' id='cluster-temp-img'/> */}
+        <iframe id='chart-frame' width='100%' src='/src/Chart/index.html' />
       </div>
   )
 }

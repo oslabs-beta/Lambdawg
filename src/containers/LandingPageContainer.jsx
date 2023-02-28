@@ -22,8 +22,11 @@ const LandingPageContainer = (props) => {
           <button className='primary-button'>Sign in / up</button>
           <button className='secondary-button'>Read the Docs</button>
         </div>
-        <img src={video1} className='video'/>
-        <p>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer minds</p>
+
+        <div id='landing-page-flex'>
+          <img src={video1} className='video'/>
+          <p className='landing-card'>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer minds</p>
+        </div>
       </div>
 
 

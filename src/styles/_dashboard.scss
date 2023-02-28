@@ -1,35 +1,50 @@
 
-#dashboard-wrapper {
+#dashboard-wrapper { // panel and diagram
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   height: 70vh;
   border: 1px solid black;
-  resize: vertical;
 }
 
 #dashboard-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 90vh;
   overflow-x: hidden;
   overflow-y: hidden;
+  background-color: $dashboard-background-color;
 }
 
 #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
   border: 1px solid gray;
   overflow: auto;
 }
+#data-window-wrapper {
+  padding-top: 1rem;
+  height: 100%;
 
+}
 #panel-wrapper {
   resize: horizontal;
   padding: 0px 15px 0px 0px;
+  background-color: $panel-background-color;
+}
+#panel-wrapper, #diagram-container-wrapper {
+  border-radius: 1rem;
+  margin: .5rem;
+}
+
+#data-window-wrapper {
+  padding: .5rem 1rem 1rem 1rem;
+  background-color: $data-window-background-color;
 }
 
 #diagram-container-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
+  background-color: $diagram-background-color;
 }
 
 #panelButton, #diagramButton, #dataButton, .block-button-wrapper {
@@ -38,6 +53,16 @@
   margin: 0px;
 
 }
+#chart-frame {
+  height: 100%;
+  overflow: hidden !important;
+
+}
+iframe {
+  padding: 0px;
+  overflow: hidden;
+  border: none;
+}
 
 // media queries
 
@@ -45,18 +70,25 @@
 
   #dashboard-container {
     width: 100vw;
+    height: 100vh;
   }
 
   #data-window-wrapper {
     margin-top: 2rem;
+    overflow: visible;
+    overflow-y: scroll;
+    height: 90vh !important;
+  }
+  #panel-wrapper {
+    width: 100vw;
   }
 
   #dashboard-wrapper {
     flex-direction: column;
-    height: 100vh;
   }
   #diagram-container-wrapper {
     order: -1;
+    overflow: hidden;
   }
   .collapse-screen {
     visibility: hidden !important;
@@ -79,7 +111,7 @@
     visibility: visible;
     height: 3rem;
     padding: 1rem 0rem 1rem 0rem;
-    border: 1px solid pink;
+    background-color: $dashboard-background-color;
   }
 
   #panelButton, #diagramButton, #dataButton {
@@ -88,9 +120,16 @@
     border: 1px solid $primary-font-color;
     margin: 3px;
     visibility: visible;
+    background-color: $button-color;
+    color: $button-font-color;
   }
   #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
     border: none !important;
+  }
+  #chart-frame {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 }
 
