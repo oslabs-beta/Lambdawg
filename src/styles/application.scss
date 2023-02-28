@@ -9,7 +9,7 @@
 @import 'auth';
 @import 'landingpage';
 @import 'settings';
-
+@import 'panel';
 
 
 // global css stuff here
@@ -26,7 +26,9 @@ body{
   background-color: $body-bg-color;
 
 }
-
+#content {
+  padding-top: 3rem;
+}
 code {
   color: $code-font-color;
   font-size: .75rem;

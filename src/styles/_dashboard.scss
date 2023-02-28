@@ -29,7 +29,6 @@
   overflow: auto;
 }
 #data-window-wrapper {
-  padding-top: 1rem;
   height: 100%;
 
 }
@@ -39,13 +38,21 @@
   background-color: $panel-background-color;
   overflow-y: scroll;
 }
+#panel-wrapper > button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: left;
+}
 #panel-wrapper, #diagram-container-wrapper {
   border-radius: 1rem;
-  margin: .5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 #data-window-wrapper {
-  padding: .5rem 1rem 1rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   background-color: $data-window-background-color;
 }
 
@@ -89,7 +96,6 @@ iframe {
   }
 
   #data-window-wrapper {
-    margin-top: 2rem;
     overflow: visible;
     overflow-y: scroll;
     height: 90vh !important;
@@ -110,7 +116,7 @@ iframe {
     height: 0px !important;
   }
   .full-screen {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     height: 90vh !important;
     visibility: visible !important;
   }
@@ -140,6 +146,8 @@ iframe {
   }
   #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
     border: none !important;
+    border-radius: 0px;
+
   }
   #chart-frame {
     height: 100vh;
