@@ -10,7 +10,7 @@ Resources:
           - Effect: Allow
             Principal:
               AWS:
-                - arn:aws:iam::803618042980:user/lambdawg-user
+                - arn:aws:iam::403777712406:user/serverless
             Action:
               - 'sts:AssumeRole'
             Condition:
@@ -294,7 +294,7 @@ Parameters:
   ExternalId:
     Description: 'The external ID for the LAMBDAWG delegation role'
     Type: String
-    
+
 Outputs:
   Version:
     Description: LAMBDAWG CF template version
