@@ -1,10 +1,5 @@
 const { Pool } = require('pg');
-<<<<<<< Updated upstream
 const dotenv = require('dotenv').config();
-=======
-// const dotenv = require('dotenv').config();
-// const PG_URI = process.env.MONGO_URI;
->>>>>>> Stashed changes
 
 const { PG_URI } = process.env;
 
