@@ -23,12 +23,12 @@ const MainNavbar = (props) => {
         
           <div className='nav-item-group'>
 
-
+{/* 
             <ul id='menu' className=''>
               <li><a href={docsLink}><VscFileCode className='nav-icon'/>Documentation</a></li>
               <li><a href={settingsLink}><VscSettingsGear className='nav-icon'/>Settings</a></li>
               <li><a href='./auth'><VscKey className='nav-icon'/>Log in/out</a></li>
-            </ul>
+            </ul> */}
 
           <div id='mobile-menu' className=''>
             <a href={docsLink}><VscFileCode className='nav-icon'/></a>

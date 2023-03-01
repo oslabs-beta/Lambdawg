@@ -101,7 +101,7 @@ d3.json("miserables.json", function(error, graph) {
       node.on("click", function(d) {
         console.log(d3.select(this).select("title").text());
         // alert('clicked')
-        parent.postMessage(d.id , "http://localhost:5173/index.html");
+        // parent.postMessage(d.id , "http://localhost:5173/index.html");
       });
 
 

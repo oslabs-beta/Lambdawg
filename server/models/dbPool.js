@@ -3,6 +3,8 @@ const dotenv = require('dotenv').config();
 
 const { PG_URI } = process.env;
 
+
+
 //create a new pool using the connection string above that brings us to our database
 
 const pool = new Pool({
