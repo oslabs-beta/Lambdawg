@@ -12,7 +12,7 @@ dbControllers.getUsers = (req, res, next) => {
     })
     .catch((err) => {
       next({
-        log: 'Express Error Handler caught getUsers error',
+        log: `Express Error Handler caught getUsers error: ${err}`,
         status: 500,
         message: {
           err: 'dbControllerTest.getUsers encountered an error',

@@ -1,47 +1,70 @@
 
+
+
 #dashboard-wrapper { // panel and diagram
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  height: 70vh;
-  border: 1px solid black;
+  max-height: 60vh;
 }
 
 #dashboard-container {
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  height: 100vh;
+  overflow: hidden;
   background-color: $dashboard-background-color;
+  padding: .5rem;
 }
 
 #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
-  border: 1px solid gray;
+  border: 1px solid $dashboard-border-boxes;
   overflow: auto;
 }
 #data-window-wrapper {
-  padding-top: 1rem;
-  height: 100%;
+  height: 80%;
+}
 
-}
 #panel-wrapper {
+  flex-shrink: 0;
+  // display: flex;
+  // justify-content: center;
   resize: horizontal;
-  padding: 0px 15px 0px 0px;
+  padding: 1rem;
+  margin-right: .5rem;
   background-color: $panel-background-color;
+  overflow-y: scroll;
 }
+#panel-wrapper > button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100vw;
+  text-align: left;
+  // border: none;
+  flex-shrink: 0;
+}
+// .panel-names{
+//   margin: 20px;
+//   width: 100%;
+//   flex-shrink: 0;
+//   border: none;
+
+// }
 #panel-wrapper, #diagram-container-wrapper {
   border-radius: 1rem;
-  margin: .5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 #data-window-wrapper {
-  padding: .5rem 1rem 1rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   background-color: $data-window-background-color;
 }
 
 #diagram-container-wrapper {
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   background-color: $diagram-background-color;
@@ -59,32 +82,45 @@
 
 }
 iframe {
-  padding: 0px;
+  padding: 0px !important;
   overflow: hidden;
-  border: none;
 }
 
+#hideDetails {
+
+}
 // media queries
 
 @media (max-width: 1000px) {
-
+  #content {
+    padding-top: 3rem !important;
+  }
+  #hideDetails {
+    display: none;
+  }
   #dashboard-container {
     width: 100vw;
     height: 100vh;
+    padding: 0rem;
+    background-color: $dashboard-background-color-mobile;
   }
 
   #data-window-wrapper {
-    margin-top: 2rem;
     overflow: visible;
     overflow-y: scroll;
     height: 90vh !important;
   }
   #panel-wrapper {
-    width: 100vw;
+    width: 100% !important;
+    margin: 0px;
   }
+  // #panel-wrapper > button {
+  //   width: 100vw;
+  // }
 
   #dashboard-wrapper {
     flex-direction: column;
+    width: 100vw;
   }
   #diagram-container-wrapper {
     order: -1;
@@ -95,7 +131,7 @@ iframe {
     height: 0px !important;
   }
   .full-screen {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     height: 90vh !important;
     visibility: visible !important;
   }
@@ -103,7 +139,7 @@ iframe {
  
   .block-button-wrapper {
     position: fixed;
-    bottom: 0rem;
+    bottom: .5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,13 +147,13 @@ iframe {
     visibility: visible;
     height: 3rem;
     padding: 1rem 0rem 1rem 0rem;
-    background-color: $dashboard-background-color;
+    background-color: $dashboard-background-color-mobile;
   }
 
   #panelButton, #diagramButton, #dataButton {
     width: 33.3vw;
     height: 2.5rem;
-    border: 1px solid $primary-font-color;
+    // border: 1px solid $primary-font-color;
     margin: 3px;
     visibility: visible;
     background-color: $button-color;
@@ -125,11 +161,14 @@ iframe {
   }
   #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
     border: none !important;
+    border-radius: 0px;
+
   }
   #chart-frame {
     height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
   }
+
 }
 

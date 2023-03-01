@@ -7,6 +7,7 @@ import Auth from './components/Auth.jsx';
 import Docs from './components/Docs.jsx';
 import SettingsContainer from './containers/SettingsContainer.jsx';
 import MainNavbar from './components/MainNavbar.jsx';
+import Navbar from './components/Navbar.jsx';
 
 import './styles/application.scss';
 
@@ -25,7 +26,8 @@ const App = (props) => {
 
   return (
     <div className="router">
-      
+              {/* <Navbar loggedIn={loggedIn} /> */}
+
         <MainNavbar loggedIn={loggedIn} />
 
       <div className="routerMain" id="content">
