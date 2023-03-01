@@ -15,6 +15,7 @@ const MainNavbar = (props) => {
   
       hamburgerIcon.addEventListener('click', () => {
         hamburgerMenu.classList.toggle('collapse-burger-menu');
+        console.log('hamburger icon clicked')
       });
   
       // Remove the event listener when the component unmounts
@@ -40,16 +41,16 @@ const MainNavbar = (props) => {
 
 
             <ul id='desktop-menu' className='collapse-desktop-menu'>
-              <li>Documentation</li>
-              <li>Settings</li>
-              <li>Log in / out</li>
+              <li><a href={docsLink}>Documentation</a></li>
+              <li><a href={settingsLink}>Settings</a></li>
+              <li><a href='./auth'>Log in/out</a></li>
             </ul>
 
             <VscMenu id='hamburger-icon' />
             <ul id='hamburger-menu' className='collapse-burger-menu'>
-              <li>Docs</li>
-              <li>Settings</li>
-              <li>Log in</li>
+              <li><a href={docsLink}>Documentation</a></li>
+              <li><a href={settingsLink}>Settings</a></li>
+              <li><a href='./auth'>Log in/out</a></li>
             </ul>
 
           </div>

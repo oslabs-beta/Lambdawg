@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const LandingPageContainer = (props) => {
   const mascot = 'src/assets/mascot.png'
   const video1 = 'src/assets/mock-video1.gif'
-
+  const screenshot = 'src/assets/screenshot.png';
 // our logo
 // a breif description
 // sign up button / read docs button
@@ -24,7 +24,7 @@ const LandingPageContainer = (props) => {
         </div>
 
         <div id='landing-page-flex'>
-          <img src={video1} className='video'/>
+          <img src={screenshot} className='video'/>
           <p className='landing-card'>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer minds</p>
         </div>
       </div>

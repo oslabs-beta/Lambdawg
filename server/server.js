@@ -11,7 +11,7 @@ const app = express();
 
 const apiRouter = require("./routes/api");
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 /**
  * Automatically parse urlencoded body content and form data from incoming requests and place it
