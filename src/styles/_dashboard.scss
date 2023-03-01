@@ -39,7 +39,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  max-width: 100vw;
   text-align: left;
   // border: none;
   flex-shrink: 0;
@@ -111,9 +111,12 @@ iframe {
     height: 90vh !important;
   }
   #panel-wrapper {
-    width: 100%;
+    width: 100% !important;
     margin: 0px;
   }
+  // #panel-wrapper > button {
+  //   width: 100vw;
+  // }
 
   #dashboard-wrapper {
     flex-direction: column;

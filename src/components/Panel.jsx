@@ -17,6 +17,7 @@ const Panel = (props) => {
     return(
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
         {names}
+        {names}
       </div>
     )
   }
