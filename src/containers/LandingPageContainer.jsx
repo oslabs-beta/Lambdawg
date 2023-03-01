@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom'
+import { VscZoomIn, VscBook, VscColorMode, VscMenu, VscKey, VscFileCode } from 'react-icons/vsc';
 
 const LandingPageContainer = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
@@ -38,9 +39,9 @@ if (shouldRedirect) {
         <div id='landing-page-flex'>
 
           <div className='info-card-wrapper'>
-            <div className='info-card'><h1>Stuff</h1>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world </div>
-            <div className='info-card'><h1>About</h1>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world </div>
-            <div className='info-card'><h1>Things</h1>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world </div>
+            <div className='info-card'><h1>STUFF</h1>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world </div>
+            <div className='info-card'><h1>ABOUT</h1>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world </div>
+            <div className='info-card'><h1>THINGS</h1>Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world </div>
           </div>
 
           <div className='info-card-wrapper'>
