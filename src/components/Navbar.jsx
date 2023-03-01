@@ -6,6 +6,7 @@ const MainNavbar = (props) => {
 
     const docsLink = '/docs';
     const settingsLink = './settings';
+    const authLink = './auth';
     const mascot = 'src/assets/mascot_head.svg'
     const { loggedIn } = props;
 
@@ -14,30 +15,50 @@ const MainNavbar = (props) => {
 
     return(
       
-        <div id="navbar-container">
-        
-            <span className='nav-item-logo'>
-              <img src={mascot} className='mascot'/>
-              <h1>LAMBDAWG</h1>
-            </span>
-        
-          <div className='nav-item-group'>
-
-{/* 
-            <ul id='menu' className=''>
-              <li><a href={docsLink}><VscFileCode className='nav-icon'/>Documentation</a></li>
-              <li><a href={settingsLink}><VscSettingsGear className='nav-icon'/>Settings</a></li>
-              <li><a href='./auth'><VscKey className='nav-icon'/>Log in/out</a></li>
-            </ul> */}
-
-          <div id='mobile-menu' className=''>
-            <a href={docsLink}><VscFileCode className='nav-icon'/></a>
-            <a href={settingsLink}><VscSettingsGear className='nav-icon' /></a>
-            <a href="./auth"><VscKey className='nav-icon' /></a>
+        <div class="nav">
+          <input type="checkbox" id="nav-check" />
+          <div class="nav-header">
+            <div class="nav-title">
+            <div class='nav-log-wrapper'>
+              <img src={mascot} className='nav-logo'/>
+              <h1 class='nav-text-logo'>LAMBDAWG</h1>
+            </div>
+            </div>
           </div>
-
+          <div class="nav-btn">
+            <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+            </label>
+          </div>
+          
+          <div class="nav-links">
+            <a href={docsLink} target="_blank">Documentaion</a>
+            <a href={settingsLink} target="_blank">Settings</a>
+            <a href={authLink} target="_blank">Login</a>
+        
           </div>
         </div>
+      
+        // <div id="menu-navbar-container">
+        
+        //     <span className='nav-item-logo'>
+        //       <img src={mascot} className='mascot'/>
+        //       <h1>LAMBDAWG</h1>
+        //     </span>
+        
+        //   <div className='menu-nav-item-group'>
+
+        //   <ul className='menu-desktop'>
+        //     <a href="">Documentaion</a><br />
+        //     <a href="">Settings</a><br />
+        //     <a href="">Login</a><br />
+        //   </ul>
+
+
+        //   </div>
+        // </div>
    
     );
   };

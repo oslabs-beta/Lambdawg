@@ -10,10 +10,10 @@ const Panel = (props) => {
   // the corresponding node on the diagram will be highlighted
 
   const names = []
-
+  let i = 0;
   if (msNames){
     msNames.forEach((name) => {
-      names.push(<Microservice name={name} id={`${name}MsEl`} className='panel-names'/>)
+      names.push(<Microservice name={name} key={`${name}MsEl${i}`} className='panel-names'/>)
     })
   }
 
@@ -22,7 +22,7 @@ const Panel = (props) => {
     return(
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
         {names}
-        <h1>hello</h1>
+        {/* <h1>hello</h1> */}
       </div>
     )
   }

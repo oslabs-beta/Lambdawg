@@ -1,5 +1,7 @@
 
-
+// * {
+//   border: 1px solid red;
+// }
 
 #dashboard-wrapper { // panel and diagram
   display: flex;
@@ -94,9 +96,9 @@ iframe {
 // media queries
 
 @media (max-width: 1000px) {
-  #content {
-    padding-top: 3rem !important;
-  }
+  // #content {
+  //   padding-top: 3rem !important;
+  // }
   #hideDetails {
     display: none;
   }
@@ -118,6 +120,7 @@ iframe {
   #panel-wrapper {
     width: 100% !important;
     margin: 0px;
+
   }
   // #panel-wrapper > button {
   //   width: 100vw;

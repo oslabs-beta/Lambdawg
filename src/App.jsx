@@ -26,9 +26,9 @@ const App = (props) => {
 
   return (
     <div className="router">
-              {/* <Navbar loggedIn={loggedIn} /> */}
+              <Navbar loggedIn={loggedIn} />
 
-        <MainNavbar loggedIn={loggedIn} />
+        {/* <MainNavbar loggedIn={loggedIn} /> */}
 
       <div className="routerMain" id="content">
         <Routes>
