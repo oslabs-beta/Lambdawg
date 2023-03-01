@@ -8,6 +8,8 @@ const MainNavbar = (props) => {
     const settingsLink = './settings';
     const authLink = './auth';
     const mascot = 'src/assets/mascot_head.svg'
+    const logoText = 'src/assets/logo-text.png'
+
     const { loggedIn } = props;
 
 
@@ -19,9 +21,11 @@ const MainNavbar = (props) => {
           <input type="checkbox" id="nav-check" />
           <div class="nav-header">
             <div class="nav-title">
-            <div class='nav-log-wrapper'>
+            <div class='nav-logo-wrapper'>
               <img src={mascot} className='nav-logo'/>
-              <h1 class='nav-text-logo'>LAMBDAWG</h1>
+              <img src={logoText} className='text-logo'/>
+
+              {/* <h1 class='nav-text-logo'>LAMBDAWG</h1> */}
             </div>
             </div>
           </div>

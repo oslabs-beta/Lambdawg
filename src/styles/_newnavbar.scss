@@ -27,9 +27,9 @@
 * {
   box-sizing: border-box;
 }
-.nav-log-wrapper {
+.nav-logo-wrapper {
   display: flex;
-  // margin-top: -.8rem;
+  margin-top: .4rem;
   align-items: center;
 }
 
@@ -38,12 +38,14 @@
   height: 2.5rem;
   margin-right: .5rem;
   margin-left: 1rem;
-  margin-top: -.5rem;
+  // margin-top: -.5rem;
 }
 .nav-text-logo {
-  margin-top: .6rem;
+  // margin-top: .6rem;
 }
-
+.text-logo {
+  max-height: 2rem;
+}
 .nav {
   height: 50px;
   width: 100%;

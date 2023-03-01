@@ -6,7 +6,7 @@ import { VscZoomIn, VscBook, VscColorMode, VscMenu, VscKey, VscFileCode } from '
 const LandingPageContainer = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  const mascot = 'src/assets/mascot.png'
+  const mascot = 'src/assets/logo.png'
   const video1 = 'src/assets/mock-video1.gif'
   const mobile = 'src/assets/mobile.png'
   const screenshot = 'src/assets/screenshot.png';
@@ -29,7 +29,7 @@ if (shouldRedirect) {
       <div id='landing-page-container'>
 
        
-          <img src={mascot} className='large-mascot'/>
+          <img src={mascot} className='langing-logo'/>
           <p>An amazing app that blows socks off of seasoned developers.</p>
           <div className='button-flex-wrapper'>
             <button id='get-started-button' className='primary-button' onClick={redirectToAuth}>Get Started</button>

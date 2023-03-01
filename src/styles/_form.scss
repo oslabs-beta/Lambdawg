@@ -10,9 +10,16 @@ input{
   margin-bottom: 5px;
   background-color: $input-box-background-color;
 }
-
+.auth-logo {
+  max-width: 250px;
+  margin-bottom: 1rem;
+}
 label{
   font-size: .7rem;
+}
+.form-container > h1 {
+  margin-top: -2.4rem;
+  color: $info-card-background-color;
 }
 
 form {

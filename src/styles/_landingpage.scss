@@ -13,6 +13,10 @@
   max-width: 800px;
   margin-top: 1rem;
 }
+.langing-logo {
+  max-width: 400px;
+}
+
 #get-started-button {
   padding: .5rem 1rem .5rem 1rem;
   font-size: 1.5rem;
@@ -78,5 +82,8 @@
     flex-direction: column;
   }
 
+  .langing-logo {
+    max-width: 300px;
+  }
   
 }
