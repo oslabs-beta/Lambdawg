@@ -3,7 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const credentialController = require('./controllers/credentialController');
 const listLambdasController = require('./controllers/listLambdasController');
-const rdsMetricsController = require('./controllers/Metricstest.js');
+const rdsMetricsController = require('./controllers/MetricsController.js');
 const lambdaLogsController = require('./controllers/lambdaLogsController');
 
 const app = express();
@@ -44,6 +44,29 @@ app.get(
     return res.status(200).json(res.locals.lambdaNames);
   }
 );
+
+app.get(
+  '/getLambdaLogs',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  lambdaLogsController.getLambdaLogs,
+  // rdsMetricsController.getRDSCPUUtilizationMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.functionLogs);
+  }
+);
+
+app.get(
+  '/getLambdaMetrics',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  // lambdaLogsController.getLambdaLogs,
+  rdsMetricsController.getMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.getLambdaMetrics);
+  }
+);
+
 //Catch All Route Handler for any requests to an unkown route
 //----------------
 app.use((req, res) => res.status(404).send('This page cannot be found...'));
