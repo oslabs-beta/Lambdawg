@@ -33,7 +33,7 @@
   // display: flex;
   // justify-content: center;
   resize: horizontal;
-  padding: 1rem;
+  padding: 01rem;
   margin-right: .5rem;
   background-color: $panel-background-color;
   overflow-y: scroll;
@@ -62,7 +62,6 @@
 
 #data-window-wrapper {
   padding: 0rem 1rem 1rem 1rem;
-  background-color: $data-window-background-color;
 }
 
 #diagram-container-wrapper {
@@ -122,9 +121,7 @@ iframe {
     margin: 0px;
 
   }
-  // #panel-wrapper > button {
-  //   width: 100vw;
-  // }
+
 
   #dashboard-wrapper {
     flex-direction: column;

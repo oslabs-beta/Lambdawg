@@ -72,14 +72,39 @@ useEffect(() => {
   }
 }, []);
 
-
-// console.log('for real now', sortedMetrics[name].errorsSum)
-
+// Populate logs in data window
   const togglePanel = () => {
+    // console.log('for real now', sortedMetrics[name].errorsSum)
     setIsPanelOpen(!isPanelOpen);
-    console.log(msLogs[0])
-    const logsDisplay = document.getElementById('data-window-wrapper');
-    logsDisplay.innerText = 'hello';
+    console.log('test', msLogs[0])
+    let i = 0;
+    const logsDisplay = document.getElementById('log-ul');
+
+    msLogs[0].logs.forEach(log => {
+      const message = msLogs[0].logs[i].message;
+      const timestamp = msLogs[0].logs[i].timestamp;
+
+      const logwrap = document.createElement('span')
+      const funcName = document.createElement('li')
+      const messageLi = document.createElement('li')
+      const timestampLi = document.createElement('li')
+
+      logwrap.className = 'log-wrap'
+      funcName.className = 'log-name'
+      messageLi.className = 'msg-name'
+      timestampLi.className = 'time-name'
+
+      funcName.innerText = `${msLogs[0].FunctionName}`
+      messageLi.innerText = `${message}`;
+      timestampLi.innerText = `${timestamp}`;
+      logsDisplay.appendChild(logwrap)
+      logwrap.appendChild(funcName)
+      logwrap.appendChild(messageLi)
+      logwrap.appendChild(timestampLi)
+
+      i++;
+    })
+
     
   }
   
@@ -88,7 +113,7 @@ useEffect(() => {
     <div>
       {sortedMetrics[name] && (
         <div>
-          <button id={name} onClick={togglePanel}>{`${name}`}</button>
+          <button id={name} className='metrics-button' onClick={togglePanel}>{`${name}`}</button>
   
           <div
             id={`${name} Metrics`}

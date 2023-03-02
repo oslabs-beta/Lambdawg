@@ -9,54 +9,9 @@ const { dataWindowFullScreen, setDataWindowFullScreen } = props
     <div id='data-window-wrapper' className={dataWindowFullScreen ? 'fullscreen' : 'collapse-screen'}>
 
     <code>
-      <ul>
-      <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-        <li>ERROR: You are too cool for school</li>
-      </ul>
+      <ul id='log-ul'></ul>
     </code>
+    
     </div>
   )
 }

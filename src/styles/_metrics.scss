@@ -1,3 +1,17 @@
+.metrics-button {
+  width: 300px;
+  background-color: $secondary-button-color;
+  border: none;
+  border: 1px solid $error-font-color;
+  margin-bottom: .2rem;
+  color: $primary-font-color;
+}
+
+#data-window-wrapper {
+  padding: 0rem 1rem 1rem 1rem;
+  background-color: $data-window-background-color;
+}
+
 .timestamps-list {
   display: flex;
   flex-direction: column;
@@ -24,4 +38,38 @@
 }
 .metrics-toggle-panel.open {
   display: block;
+}
+
+
+#log-ul  {
+  list-style: none;
+}
+#log-ul  > li {
+  color: $code-font-color;
+  font-size: .8rem;
+}
+.log-wrap {
+  margin-bottom: 1rem;
+  // border: 1px solid red;
+}
+.log-name {
+ color: $error-font-color;
+ padding-bottom: .5rem;
+
+}
+.msg-name {
+ padding-bottom: .5rem;
+}
+.time-name {
+
+}
+
+
+@media (max-width: 1000px) {
+  #log-ul  {
+   padding: 0px;
+  }
+  .metrics-button {
+    width: 90vw;
+  }
 }

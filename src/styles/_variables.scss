@@ -26,25 +26,29 @@ $nav-border: rgb(199, 192, 192);
 $lambdawg-color: #f75215;
 $nav-links-color: #f75215;
 
-$hamburger-icon-color: black;
-$hamburger-menu-bg-color: #343434;
+$hamburger-icon-color: $primary-font-color;
+$hamburger-menu-bg-color: #595959;
 $hamburger-menu-lines: #4c4c4c;
-$hamburger-menu-font: $nav-background-color;
+// $hamburger-menu-font: $nav-background-color;
 
 /// Dashboard
 $dashboard-background-color: #595959;
+$dashboard-border-boxes: none;
+$dashboard-background-color-mobile: #fff;
+
 
 $panel-background-color: #fff;
 $error-font-color: #f75215;
 
+
 $diagram-background-color:  #fff;
+
 $data-window-background-color:  #595959;
 $button-background-color: white;
+
 $button-color: #f75215;
 $button-font-color: black;
-$dashboard-border-boxes: none;
 
-$dashboard-background-color-mobile: $diagram-background-color;
 
 /// Forms
 $input-box-background-color: white;
@@ -53,7 +57,7 @@ $auth-form-bg-color: #fad6c9;
 
 /// Buttons
 $primary-button-color: #f75215;
-$secondary-button-color: lighten($primary-button-color, 70%);
+$secondary-button-color: lighten($primary-button-color, 40%);
 $primary-button-font: #fff;
 $secondary-button-font: #2c2828;
 
