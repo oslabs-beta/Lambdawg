@@ -1,0 +1,27 @@
+.timestamps-list {
+  display: flex;
+  flex-direction: column;
+}
+.timestamp-error {
+  color: $error-font-color;
+}
+.timestamp, .timestamp-error {
+  font-size: .8rem;
+  padding: .1rem;
+}
+
+.metrics-toggle-panel > ul {
+  list-style: none;
+  border: 1px solid $error-font-color;
+  border-top: none;
+  padding-right: 1rem;
+}
+.metrics-toggle-panel > ul > li {
+  color: $primary-font-color;
+}
+.metrics-toggle-panel {
+  display: none;
+}
+.metrics-toggle-panel.open {
+  display: block;
+}

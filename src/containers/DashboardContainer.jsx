@@ -11,7 +11,7 @@ const DashboardContainer = (props) => {
   const [diagramFullScreen, setDiagramFullScreen] = useState(true);
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
   const [msNames, setMsNames] = useState([]);
-  const [msMetrics, setMsMetrics] = useState([]);
+  const [msMetrics, setMsMetrics] = useState({});
 
   const handlePanelClick = () => {
     if (panelFullScreen) {
@@ -46,11 +46,7 @@ const DashboardContainer = (props) => {
   // }
   
 
-    /// get function names, pass them panel / datawindow
-      /// within panel >
-        // iterate through names creating new componants that house all metrics info
-          // display only their names?
-          // onclick render all mettrics data / highlight node in chart
+
 useEffect(() => { 
   const fetchNames = async() => {
     try{
@@ -61,7 +57,7 @@ useEffect(() => {
       });
       const data = await response.json()
       setMsNames(data);
-      // console.log('names:', data)
+      console.log('names:', data)
     }
     catch(error){
       console.log(error, 'error fetching MsNames')
@@ -71,32 +67,33 @@ useEffect(() => {
 }, [])
 
 
-// useEffect(() => {
-//   if (msNames){
-//     try {
-//       const fetchMetrics = async() => {
-//         const response = await fetch('/getLambdaMetrics', {
-//           method: 'POST',
-//           headers: {'Content-Type': 'application/json'},
-//           body: JSON.stringify(msNames)
-//         })
-//         const data = await response.json;
-//         setMsMetrics(data);
-//         console.log('metrics: ', data)
-//       }
-//     }
-//       catch(error){
-//         console.log('error fetching metrics', error);
-//       }
-//   }
-// }, [msNames])
+useEffect(() => {
+  if (msNames) {
+    const fetchMetrics = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/getLambdaMetrics', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+          muteHttpExceptions: true,
+        });
+        const data = await response.json();
+        setMsMetrics(data.MetricDataResults);
+        console.log('dashboard metrics: ', msMetrics);
+      } catch (error) {
+        console.log('error fetching metrics', error);
+      }
+    };
+    fetchMetrics();
+  }
+}, []);
+
 
 
   return (
     <div id='dashboard-container'>
 
       <div id='dashboard-wrapper' className={dataWindowFullScreen ? 'collapse-screen' : 'full-screen'}>
-        <Panel msNames={msNames} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} />
+        <Panel msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} />
         <DiagramContainer diagramFullScreen={diagramFullScreen} setDiagramFullScreen={setDiagramFullScreen} />
       </div>
 
