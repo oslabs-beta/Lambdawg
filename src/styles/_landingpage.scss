@@ -34,14 +34,14 @@
 .screen-shot {
   width: 70vw;
   max-width: 700px;
-  border: 1px solid black;
+  border: 1px solid $nav-background-color;
   border-radius: 1rem;
   margin: 1rem;
 }
 .screen-shot-mobile {
   max-width: 70vw;
   max-width: 200px;
-  border: 1px solid black;
+  border: 1px solid $nav-background-color;
   border-radius: 1rem;
   margin: .5rem;
 
@@ -82,8 +82,12 @@
     flex-direction: column;
   }
 
-  .langing-logo {
+  .landing-logo {
     max-width: 300px;
   }
-  
+  .screen-shot-mobile, .screen-shot {
+    max-width: 70vw;
+    min-width: 70vw;
+
+  }
 }

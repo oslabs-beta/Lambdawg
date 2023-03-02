@@ -8,8 +8,11 @@ const LandingPageContainer = (props) => {
 
   const mascot = 'src/assets/logo.png'
   const video1 = 'src/assets/mock-video1.gif'
-  const mobile = 'src/assets/mobile.png'
-  const screenshot = 'src/assets/screenshot.png';
+  const mobilemap = 'src/assets/mobile-map.png'
+  const mobilelog = 'src/assets/mobile-logs.png'
+  const mobilemetrics = 'src/assets/mobile-metrics.png'
+
+  const screenshot = 'src/assets/desktop.png';
 // our logo
 // a breif description
 // sign up button / read docs button
@@ -29,7 +32,7 @@ if (shouldRedirect) {
       <div id='landing-page-container'>
 
        
-          <img src={mascot} className='langing-logo'/>
+          <img src={mascot} className='landing-logo'/>
           <p>An amazing app that blows socks off of seasoned developers.</p>
           <div className='button-flex-wrapper'>
             <button id='get-started-button' className='primary-button' onClick={redirectToAuth}>Get Started</button>
@@ -46,9 +49,9 @@ if (shouldRedirect) {
 
           <div className='info-card-wrapper'>
             <img src={screenshot} className='screen-shot'/>
-            <img src={mobile} className='screen-shot-mobile'/>
-            <img src={mobile} className='screen-shot-mobile'/>
-            <img src={mobile} className='screen-shot-mobile'/>
+            <img src={mobilemap} className='screen-shot-mobile'/>
+            <img src={mobilemetrics} className='screen-shot-mobile'/>
+            <img src={mobilelog} className='screen-shot-mobile'/>
 
           </div>
 

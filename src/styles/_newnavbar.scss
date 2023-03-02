@@ -51,6 +51,7 @@
   width: 100%;
   background-color: $nav-background-color;
   position: relative;
+  z-index: 999;
 }
 
 .nav > .nav-header {
