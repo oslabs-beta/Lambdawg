@@ -1,19 +1,20 @@
 const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
-const creds = require('../aws/secret');
-// const dotenv = require('dotenv');
-// dotenv.config();
+// const creds = require('../aws/secret');
+const dotenv = require('dotenv').config();
+
+const { _KEY, _SKEY, USER_ARN } = process.env;
 
 const credentialController = {};
 //declare a constant variable called credentials, which will be used to call the AWS STS API, passing in the access key id and secret access key of the cloudband account
 const credentials = {
-  accessKeyId: creds.key,
-  secretAccessKey: creds.sKey,
+  accessKeyId: _KEY,
+  secretAccessKey: _SKEY,
 };
 
 //get user's access key id and secret access key from AWS
 credentialController.getCredentials = async (req, res, next) => {
   console.log('whatever!!!!');
-  const arn = creds.userARN;
+  const arn = USER_ARN;
   const region = 'us-east-1';
   const info = {
     RoleArn: arn,

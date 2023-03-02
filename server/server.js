@@ -5,6 +5,7 @@ const credentialController = require('./controllers/credentialController');
 const listLambdasController = require('./controllers/listLambdasController');
 const rdsMetricsController = require('./controllers/Metricstest.js');
 const lambdaLogsController = require('./controllers/lambdaLogsController');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 

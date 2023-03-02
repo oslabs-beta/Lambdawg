@@ -3,12 +3,18 @@ const express = require('express');
 const dbController = require('../controllers/dbControllers');
 const authController = require('../controllers/authControllers');
 const encryptionController = require('../controllers/encryptionController');
+const cookieController = require('../controllers/cookieControllers.js');
 
 const router = express.Router();
 
-router.get('/', dbController.getUsers, (req, res) => {
-  res.status(200).json(res.locals.data.rows);
-});
+router.get(
+  '/',
+  cookieController.authenticateCookie,
+  dbController.getUsers,
+  (req, res) => {
+    res.status(200).json(res.locals.data.rows);
+  }
+);
 
 //consider having a cache of username /email, so we
 //could use the cache to check if username/email already exists
@@ -43,8 +49,13 @@ router.patch(
 );
 
 // sign in -> add a middleware controller after verify to set session cookie
-router.post('/:user_name', authController.verifyUN_Pass, (req, res) => {
-  res.status(200).json();
-});
+router.post(
+  '/:user_name',
+  authController.verifyUN_Pass,
+  cookieController.setCookie,
+  (req, res) => {
+    res.status(200).json();
+  }
+);
 
 module.exports = router;

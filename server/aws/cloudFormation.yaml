@@ -10,7 +10,7 @@ Resources:
           - Effect: Allow
             Principal:
               AWS:
-                - arn:aws:iam::403777712406:user/serverless
+                - arn:aws:iam::403777712406:user/New-Lambdawg
             Action:
               - 'sts:AssumeRole'
             Condition:
