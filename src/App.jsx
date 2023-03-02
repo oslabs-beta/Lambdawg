@@ -6,7 +6,7 @@ import LandingPageContainer from './containers/LandingPageContainer.jsx';
 import Auth from './components/Auth.jsx';
 import Docs from './components/Docs.jsx';
 import SettingsContainer from './containers/SettingsContainer.jsx';
-import MainNavbar from './components/MainNavbar.jsx';
+// import MainNavbar from './components/MainNavbar.jsx';
 import Navbar from './components/Navbar.jsx';
 
 import './styles/application.scss';

@@ -13,7 +13,8 @@
   max-width: 800px;
   margin-top: 1rem;
 }
-.langing-logo {
+.landing-logo {
+  width: 400px;
   max-width: 400px;
 }
 
@@ -41,7 +42,8 @@
 .screen-shot-mobile {
   max-width: 70vw;
   max-width: 200px;
-  border: 1px solid $nav-background-color;
+  border: 5px solid $nav-background-color;
+  padding: -.2rem;
   border-radius: 1rem;
   margin: .5rem;
 
