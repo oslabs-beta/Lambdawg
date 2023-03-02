@@ -24,7 +24,7 @@ const Microservice = (props) => {
       const timeStamps = [];
   
       if (label === 'Invocations') {
-        invocationsSum = metricsObj.Values.reduce((a, b) => a + b);
+        invocationsSum = metricsObj.Values.reduce((a, b) => {a + b} ,0);
       } else if (label === 'Errors') {
         metricsObj.Values.forEach((num, i) => {
           errorsSum += num;

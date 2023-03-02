@@ -41,7 +41,7 @@ app.get(
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   // lambdaLogsController.getLambdaLogs,
-  rdsMetricsController.getRDSCPUUtilizationMetrics,
+  // rdsMetricsController.getRDSCPUUtilizationMetrics,
   (req, res) => {
     return res.status(200).json(res.locals.lambdaNames);
   }
@@ -51,7 +51,7 @@ app.get(
   "/getTraces",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
-  tracesController.getTraces,
+  // tracesController.getTraces,
   (req, res) => {
     return res.status(200).json(res.locals.traces);
   }
