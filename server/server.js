@@ -46,9 +46,15 @@ app.get(
   }
 );
 
-app.get("/getTraces", credentialController.getCredentials, tracesController.getTraces, (req, res) => {
-  return res.status(200).json(res.locals.traces);
-});
+app.get(
+  "/getTraces",
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  tracesController.getTraces,
+  (req, res) => {
+    return res.status(200).json(res.locals.traces);
+  }
+);
 //Catch All Route Handler for any requests to an unkown route
 //----------------
 app.use((req, res) => res.status(404).send("This page cannot be found..."));
