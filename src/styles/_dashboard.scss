@@ -1,11 +1,14 @@
 
-
+// * {
+//   border: 1px solid red;
+// }
 
 #dashboard-wrapper { // panel and diagram
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   max-height: 60vh;
+  min-height: 60vh;
 }
 
 #dashboard-container {
@@ -30,7 +33,7 @@
   // display: flex;
   // justify-content: center;
   resize: horizontal;
-  padding: 1rem;
+  padding: 01rem;
   margin-right: .5rem;
   background-color: $panel-background-color;
   overflow-y: scroll;
@@ -59,7 +62,6 @@
 
 #data-window-wrapper {
   padding: 0rem 1rem 1rem 1rem;
-  background-color: $data-window-background-color;
 }
 
 #diagram-container-wrapper {
@@ -84,6 +86,7 @@
 iframe {
   padding: 0px !important;
   overflow: hidden;
+  border: none;
 }
 
 #hideDetails {
@@ -92,9 +95,9 @@ iframe {
 // media queries
 
 @media (max-width: 1000px) {
-  #content {
-    padding-top: 3rem !important;
-  }
+  // #content {
+  //   padding-top: 3rem !important;
+  // }
   #hideDetails {
     display: none;
   }
@@ -109,14 +112,16 @@ iframe {
     overflow: visible;
     overflow-y: scroll;
     height: 90vh !important;
+    position: absolute;
+    top: 3rem;
+    width: 100%;
   }
   #panel-wrapper {
     width: 100% !important;
     margin: 0px;
+
   }
-  // #panel-wrapper > button {
-  //   width: 100vw;
-  // }
+
 
   #dashboard-wrapper {
     flex-direction: column;
@@ -131,7 +136,6 @@ iframe {
     height: 0px !important;
   }
   .full-screen {
-    // margin-top: 1rem;
     height: 90vh !important;
     visibility: visible !important;
   }

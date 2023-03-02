@@ -19,9 +19,9 @@ credentialController.getCredentials = async (req, res, next) => {
   const region = 'us-east-1';
   const info = {
     RoleArn: arn,
-    RoleSessionName: 'LambdawgRoleSession',
+    RoleSessionName: "LambdawgRoleSession",
     DurationSeconds: 900,
-    ExternalId: 'Lambdawg',
+    ExternalId: "Lambdawg",
   };
   //create new STS client instance with cloudband's region and credentials
   const stsClient = new STSClient({ region: region, credentials: credentials });

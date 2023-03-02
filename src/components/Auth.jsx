@@ -4,7 +4,7 @@ import SignInForm from './SignInForm.jsx';
 
 
 const Auth = (props) => {
-  const mascot = 'src/assets/mascot.png'
+  const mascot = 'src/assets/logo.png'
   const [formType, setFormType] = useState("signIn");
 
   const { loggedIn, setLoggedIn } = props
@@ -16,7 +16,7 @@ const Auth = (props) => {
 
   return(
     <div id='auth-container'>
-        <img src={mascot} className='large-mascot'/>
+          <img src={mascot} className='auth-logo'/>
       <div id='theme-bg-auth'>
         {/* <img src={mascot} className='large-mascot'/> */}
         {

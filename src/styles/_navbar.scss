@@ -1,25 +1,4 @@
 
-// *{
-//   border: 1px solid red;
-// }
-
-
-/////////////
-// .nav-icon {
-//   margin-right: 5px;
-//   margin-left: 15px;
-// }
-// #menu {
-//   display: flex;
-//   list-style: none;
-//   margin-right: 1rem;
-// }
-// #mobile-menu {
-//   visibility: hidden;
-// }
-
-////////////
-
 #navbar-container {
   width: 100vw;
   min-height: 2rem;
@@ -45,6 +24,7 @@
 .nav-item-logo > h1 {
   color: $lambdawg-color;
 }
+
 
 .mascot {
   height: 6vh;
@@ -77,12 +57,7 @@
 @media (max-width: 1000px) {
 
 /////////////
-// #menu {
-//   display: hidden;
-// }
-// #mobile-menu {
-//   visibility: visible;
-// }
+
 
 ////////////
 
