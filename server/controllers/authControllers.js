@@ -5,6 +5,7 @@ const validator = require('validator');
 const authControllers = {};
 
 authControllers.verifyUN_Pass = (req, res, next) => {
+  // const { user_name } = req.params;
   const { user_name, password_ } = req.body[0];
   console.log(user_name, password_);
 

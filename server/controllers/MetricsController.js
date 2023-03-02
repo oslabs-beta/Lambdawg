@@ -1,38 +1,66 @@
-//require the AWS SDK for Node.js
-const {
-  CloudWatchClient,
-  GetMetricDataCommand,
-} = require('@aws-sdk/client-cloudwatch');
-
 //declare an rdsMetricsController object
 const rdsMetricsController = {};
 
 //getRDSCPUUtilizationMetrics function, which will be called by the getRDSCPUUtilizationMetrics route handler
-rdsMetricsController.getRDSCPUUtilizationMetrics = async (req, res, next) => {
-  const AWS = require('aws-sdk');
+rdsMetricsController.getMetrics = async (req, res, next) => {
+  console.log('in metrics');
+  const {
+    CloudWatch,
+    GetMetricDataCommand,
+  } = require('@aws-sdk/client-cloudwatch');
   //declare a constant variable called cloudwatch, which will be used to call the AWS CloudWatch API
-  const cloudwatch = new AWS.CloudWatch({ region: req.query.region });
+  const cloudwatch = new CloudWatch({
+    region: 'us-east-1',
+    credentials: res.locals.credentials,
+  });
 
   //declare a constant variable called params, which will be used to pass the parameters of the RDSCpuUtilization metrics to the AWS CloudWatch API
   const params = {
-    MetricName: 'CPUUtilization',
-    Namespace: 'AWS/RDS',
-    Period: 300,
-    Dimensions: [
-      {
-        Name: 'DBInstanceIdentifier',
-        Value: req.query.DBInstanceIdentifier,
-      },
-    ],
-    StartTime: new Date(Date.now() - 24 * 60 * 60 * 1000),
-    EndTime: new Date(),
-    Statistics: ['Average'],
+    MetricDataQueries: [],
+    StartTime: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // one hour ago
+    EndTime: new Date(), // now
+    ScanBy: 'TimestampDescending', // the order to return data, newest first
   };
 
   //try to call the AWS CloudWatch API to get the RDSCpuUtilization metrics
+  for (const Lambda in res.locals.lambdaNames) {
+    console.log('lambdaName ' + Lambda);
+    params.MetricDataQueries.push({
+      Id: `invocations${Lambda}`,
+      MetricStat: {
+        Metric: {
+          Namespace: 'AWS/Lambda',
+          MetricName: 'Invocations',
+          Dimensions: [
+            { Name: 'FunctionName', Value: res.locals.lambdaNames[Lambda] },
+          ],
+        },
+        Period: 300, // the granularity of the data, in seconds
+        Stat: 'Sum', // the statistic to retrieve for this metric
+      },
+      ReturnData: true, // whether to return the data for this query
+    });
+    params.MetricDataQueries.push({
+      Id: `errors${Lambda}`,
+      MetricStat: {
+        Metric: {
+          Namespace: 'AWS/Lambda',
+          MetricName: 'Errors',
+          Dimensions: [
+            { Name: 'FunctionName', Value: res.locals.lambdaNames[Lambda] },
+          ],
+        },
+        Period: 300, // the granularity of the data, in seconds
+        Stat: 'Sum', // the statistic to retrieve for this metric
+      },
+      ReturnData: true, // whether to return the data for this query
+    });
+  }
   try {
-    const data = await cloudwatch.getMetricData(params).promise();
-    res.locals.getRDSCPUUtilizationMetrics = data;
+    console.log('in try');
+    // const data = await cloudwatch.getMetricData(params);
+    const data = await cloudwatch.send(new GetMetricDataCommand(params));
+    res.locals.getLambdaMetrics = data;
     return next();
     //if there is an error, log the error and throw the error
   } catch (error) {
