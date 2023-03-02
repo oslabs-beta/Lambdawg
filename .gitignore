@@ -16,3 +16,6 @@ server/aws/
 
 .env
 
+# postgres table creator
+
+postgres_table_create.sql
