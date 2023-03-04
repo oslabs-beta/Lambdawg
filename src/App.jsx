@@ -39,8 +39,11 @@ const App = (props) => {
             loggedIn ? <SettingsContainer loggedIn={loggedIn}/> : 
             <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
           } /> 
-
-          <Route exact path="/auth" element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />  
+          <Route exact path="/auth" element={
+            loggedIn ? <DashboardContainer loggedIn={loggedIn}/> : 
+            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+          } /> 
+          {/* <Route exact path="/auth" element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />   */}
           {/* <Route exact path="/dashboard" element={<DashboardContainer loggedIn={loggedIn}/>} /> */}
           <Route exact path="/docs" element={<Docs/>} />
           {/* <Route exact path="/settings" element={<SettingsContainer loggedIn={loggedIn}/>} /> */}

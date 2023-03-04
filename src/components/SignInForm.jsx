@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 
 const SignInForm = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
