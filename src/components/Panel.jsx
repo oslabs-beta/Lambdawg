@@ -10,7 +10,7 @@ const Panel = (props) => {
   // the corresponding node on the diagram will be highlighted
 
   // iterate through function names and display as buttons > send metrics data to microservices
-  if (msMetrics) console.log('panel metrics', msMetrics)
+  // if (msMetrics) console.log('panel metrics', msMetrics)
   const names = []
   let i = 0;
   if (msNames){
