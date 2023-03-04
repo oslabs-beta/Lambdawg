@@ -13,7 +13,13 @@ const Auth = (props) => {
     setFormType(prevFormType => prevFormType === 'signIn' ? 'signUp' : 'signIn');
   };
 
-
+  useEffect(() => {
+    if (loggedIn) {
+      // Render the DashboardContainer component if the user is logged in
+      return <DashboardContainer />;
+    }
+  }, [loggedIn]);
+  
   return(
     <div id='auth-container'>
           <img src={mascot} className='auth-logo'/>

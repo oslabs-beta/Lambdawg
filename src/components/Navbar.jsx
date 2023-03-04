@@ -11,8 +11,9 @@ const Navbar = (props) => {
     const docsLink = '/docs';
     const settingsLink = './settings';
     const authLink = './auth';
-    const mascot = 'src/assets/mascot_head.svg'
-    const logoText = 'src/assets/logo-text.png'
+    const homeLink = '/';
+    const mascot = 'src/assets/mascot_head.svg';
+    const logoText = 'src/assets/logo-text.png';
 
     const handleLinkClick = () => {
       setNavChecked(false);
@@ -25,8 +26,10 @@ const Navbar = (props) => {
           <div class="nav-header">
             <div class="nav-title">
             <div class='nav-logo-wrapper'>
-              <img src={mascot} className='nav-logo'/>
-              <img src={logoText} className='text-logo'/>
+              <Link to={homeLink}>
+                <img src={mascot} className='nav-logo'/>
+                <img src={logoText} className='text-logo'/>
+              </Link>
 
             </div>
             </div>
