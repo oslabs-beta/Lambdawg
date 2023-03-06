@@ -13,3 +13,35 @@
   max-width: 150px;
 
 }
+.settings-button-wrap {
+  justify-content: space-between;
+}
+.settings-button-wrap > button {
+  margin: .25rem;
+  
+}
+.horizontal-line {
+  border-top: 1px solid black;
+  padding-top: .5rem;
+}
+.stack-button {
+  border-radius: 3px;
+  margin-right: 5px;
+  height: 2rem;
+
+}
+.settings-form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+
+}
+.settings-form-container > form > label > input{
+  // width: 150px;
+  height: 2rem;
+}
+
+// * {
+//   border: 1px solid red;
+// }
