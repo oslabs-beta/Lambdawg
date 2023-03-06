@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom"; 
 
 const Settings = (props) => {
-  const [formData, setFormData] = useState({ user_name: '', arn: '', region: '', password_: '' });
-  const { userName } = props;
+  const { user, setUser } = props;
+  const [formData, setFormData] = useState({ 
+    password_: '',
+    arn: user.arn,
+    region: user.aws_region,
+  });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -14,11 +18,11 @@ const Settings = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const arnFormData = {
-      // full_name: , 
-      // user_name: userName,
-      // email: , 
-      // password_: formData.password_,
-      // id: ,
+      full_name: user.full_name, 
+      user_name: user.user_name,
+      email: user.email, 
+      password_: formData.password_,
+      _id: user._id,
       // arn: formData.arn,
       // region: formData.aws_region,
     };

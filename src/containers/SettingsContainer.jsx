@@ -4,7 +4,7 @@ import SettingsForm from '../components/SettingsForm.jsx';
 
 const SettingsContainer = (props) => {
 
-  const { loggedIn, userName } = props
+  const { loggedIn, user } = props
   const mascot = 'src/assets/logo.png'
 
 
@@ -13,8 +13,8 @@ const SettingsContainer = (props) => {
       <img src={mascot} className='large-mascot'/>
 
       <div id='theme-bg-settings'>
-        <h1>Welcome, {`${userName}`}!</h1>
-        <SettingsForm loggedIn={loggedIn} userName={userName}/> 
+        <h1>Welcome, {`${user.full_name}`}!</h1>
+        <SettingsForm loggedIn={loggedIn} user={user}/> 
 
       </div>
 

@@ -27,11 +27,14 @@ const SignInForm = (props) => {
       if (response.ok) {
         console.log('Sign in attempt passed auth');
         const data = await response.json();
-        const { user_name, full_name, email } = data
+        const { user_name, full_name, email, _id } = data
         setUser({
           full_name: full_name,
           user_name: user_name, 
-          email: email
+          email: email,
+          _id: _id,
+          // arn: arn,
+          // region: region
         })
         setLoggedIn(true);
       } 

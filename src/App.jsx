@@ -33,7 +33,7 @@ const App = (props) => {
         <Routes>
           
           <Route exact path="/dashboard" element={
-            loggedIn ? <DashboardContainer loggedIn={loggedIn}/> : 
+            loggedIn ? <DashboardContainer loggedIn={loggedIn} user={user}/> : 
             <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
           } /> 
           <Route exact path="/settings" element={
@@ -41,7 +41,7 @@ const App = (props) => {
             <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
           } /> 
           <Route exact path="/auth" element={
-            loggedIn ? <DashboardContainer loggedIn={loggedIn}/> : 
+            loggedIn ? <DashboardContainer loggedIn={loggedIn} user={user}/> : 
             <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
           } /> 
           {/* <Route exact path="/auth" element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />   */}
