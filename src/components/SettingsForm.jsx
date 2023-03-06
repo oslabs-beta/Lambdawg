@@ -25,14 +25,32 @@ const Settings = (props) => {
 
 
   return(
-    <div>
-      <p>Create your AWS stack / get ARN key</p>
+    <div className='horizontal-line'>
+      <p>
+        Step 1: <span className='visible-link'><a href="" target='blank'>Connect your AWS account</a><br /><br /></span>
+        Step 2: Paste your ARN key below<br />
+      </p>
       <div className='settings-form-container'>
         <form onSubmit={handleSubmit}>
             <input type="username" name="user_name" placeholder=' ARN key' value={formData.user_name} onChange={handleInputChange} required />
+           <p>Step 3. Select your region</p>
+           <select name="aws_region" value={formData.aws_region} onChange={handleInputChange} required>
+              <option value="">Select AWS Region</option>
+              <option value="us-east-1">US East (N. Virginia)</option>
+              <option value="us-west-1">US West (N. California)</option>
+              <option value="us-west-2">US West (Oregon)</option>
+              <option value="eu-west-1">EU (Ireland)</option>
+              <option value="eu-central-1">EU (Frankfurt)</option>
+              <option value="ap-southeast-1">Asia Pacific (Singapore)</option>
+              <option value="ap-southeast-2">Asia Pacific (Sydney)</option>
+              <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
+              <option value="sa-east-1">South America (São Paulo)</option>
+            </select>
         </form>
-        <button className='settings-primary-button stack-button'>Get my metrics</button>
       </div>
+      <button className='settings-secondary-button stack-button'>Read the Docs</button>
+      <button className='settings-primary-button stack-button'>Get my metrics</button>
+
     </div>
   
 

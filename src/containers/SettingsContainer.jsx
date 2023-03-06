@@ -20,7 +20,7 @@ const SettingsContainer = (props) => {
         <SettingsForm loggedIn={loggedIn} setLoggedIn={setLoggedIn}/> 
       </div>
 
-    <p className='horizontal-line'>Need help getting started? <a href={'/docs'}><button className='settings-secondary-button'>Read the Docs</button></a> </p>
+   
     <span className='settings-button-wrap'>
           <button className='settings-secondary-button'>Update Profile</button>
           <button className='settings-secondary-button'>Change Password</button>
