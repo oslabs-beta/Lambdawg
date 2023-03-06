@@ -51,6 +51,7 @@ const Settings = (props) => {
       console.log('Something went wrong in settings patch req')
 
     }
+    setUser({ arn: formData.arn, region: formData.aws_region })
   }
 
 console.log(user.arn)
