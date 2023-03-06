@@ -8,7 +8,7 @@ const Auth = (props) => {
   const mascot = 'src/assets/logo.png'
   const [formType, setFormType] = useState("signIn");
 
-  const { loggedIn, setLoggedIn, userName, setUserName } = props
+  const { loggedIn, setLoggedIn, user, setUser } = props
   
   const toggleFormType = () => {
     setFormType(prevFormType => prevFormType === 'signIn' ? 'signUp' : 'signIn');
@@ -28,7 +28,7 @@ const Auth = (props) => {
         {/* <img src={mascot} className='large-mascot'/> */}
         {
         formType === 'signIn' ?
-        <SignInForm toggleFormType={toggleFormType} loggedIn={loggedIn} setLoggedIn={setLoggedIn} userName={userName} setUserName={setUserName}/> :
+        <SignInForm toggleFormType={toggleFormType} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/> :
         <SignUpForm toggleFormType={toggleFormType} />
          }
       </div>

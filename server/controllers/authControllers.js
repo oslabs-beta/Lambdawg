@@ -31,6 +31,7 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     }
 
     console.log('User Authentication Successful');
+    res.locals.user = result.rows[0]
     return next();
   });
 };

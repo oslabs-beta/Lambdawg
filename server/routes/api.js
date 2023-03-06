@@ -54,7 +54,7 @@ router.post(
   authController.verifyUN_Pass,
   cookieController.setCookie,
   (req, res) => {
-    res.status(200).json();
+    res.status(200).json(res.locals.user);
   }
 );
 

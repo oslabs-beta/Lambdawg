@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Navigate } from "react-router-dom";// import AWS from 'aws-sdk';
+import { Link, useNavigate } from "react-router-dom"; 
 
 const Settings = (props) => {
   const [formData, setFormData] = useState({ user_name: '', arn: '', region: '', password_: '' });
@@ -13,16 +13,31 @@ const Settings = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const signInFormData = {
-      user_name: userName,
-      arn: formData.arn,
-      region: formData.aws_region,
-      password_: formData.password_,
+    const arnFormData = {
+      // full_name: , 
+      // user_name: userName,
+      // email: , 
+      // password_: formData.password_,
+      // id: ,
+      // arn: formData.arn,
+      // region: formData.aws_region,
     };
+    console.log(arnFormData)
+
     try{
-      // POST to server app.post /setUserArn
-      // create a secret file (touch)
-      // write to it the ARN key and region
+      const response = await fetch('/wherever', {
+        method: 'PATCH',
+        headers: {'content type': 'application/json'},
+        body: JSON.stringify(arnFormData)
+      })
+      if (response.ok){
+        const navigate = useNavigate();
+        navigate('/dashboard');
+      }
+      else {
+        console.log('Unable to patch arn etc from settings')
+      }
+
     }
     catch(error){
 
@@ -56,11 +71,11 @@ const Settings = (props) => {
             <input type="password" name="password_" placeholder=' Your LAMBDAWG password' value={formData.password_} onChange={handleInputChange} required />
         </form>
       </div>
-      <a href="/docs"><button className='settings-secondary-button stack-button'>Read the Docs</button></a>
+      <Link to="/docs" ><button className='settings-secondary-button stack-button'>Read the Docs</button></Link>
       <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
 
     </div>
-  
+
 
   )
 

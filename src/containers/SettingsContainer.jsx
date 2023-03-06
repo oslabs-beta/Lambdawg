@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import SettingsForm from '../components/SettingsForm.jsx';
 
 
@@ -15,22 +14,18 @@ const SettingsContainer = (props) => {
 
       <div id='theme-bg-settings'>
         <h1>Welcome, {`${userName}`}!</h1>
-
-
         <SettingsForm loggedIn={loggedIn} userName={userName}/> 
+
       </div>
 
    
     <span className='settings-button-wrap'>
-          <button className='settings-secondary-button'>Update Profile</button>
-          <button className='settings-secondary-button'>Change Password</button>
+          <button className='settings-secondary-button'>Update profile settings / change password</button>
         </span>
 
     </div>
   )
  
-
-
 }
 
 export default SettingsContainer;
