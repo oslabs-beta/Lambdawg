@@ -29,7 +29,7 @@ const Auth = (props) => {
         {
         formType === 'signIn' ?
         <SignInForm toggleFormType={toggleFormType} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/> :
-        <SignUpForm toggleFormType={toggleFormType} />
+        <SignUpForm toggleFormType={toggleFormType} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
          }
       </div>
 
