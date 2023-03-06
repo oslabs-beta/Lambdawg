@@ -9,7 +9,7 @@ const cookieController = require('../controllers/cookieControllers.js');
 const router = express.Router();
 
 router.use(cookieParser());
-
+//make this to acquire 1 user rather than all users
 router.get(
   '/',
   cookieController.authenticateCookie,

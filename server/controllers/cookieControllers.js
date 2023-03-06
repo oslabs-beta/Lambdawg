@@ -27,17 +27,16 @@ cookieControllers.authenticateCookie = (req, res, next) => {
   //if it does, verifies if its legit
   //if not legit sends back an error
   if (!token) {
-    return res
-      .status(401)
-      .json({ message: 'Get outta Here! You are not AUTHORIZED' });
+    return res.status(401);
+    // .json({ message: 'Get outta Here! You are not AUTHORIZED' });
   }
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_SECRET_TOKEN);
+    res.locals.user_name = decoded;
     return next();
   } catch (err) {
-    return res
-      .status(401)
-      .json({ message: 'Get outta Here! You are not AUTHORIZED' });
+    return res.status(401);
+    // .json({ message: 'Get outta Here! You are not AUTHORIZED' });
   }
 };
 

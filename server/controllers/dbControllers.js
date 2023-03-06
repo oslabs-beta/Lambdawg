@@ -4,7 +4,9 @@ const validator = require('validator');
 const dbControllers = {};
 
 dbControllers.getUsers = (req, res, next) => {
-  const text = 'SELECT * FROM "public"."users"';
+  //we will be getting the user name from the authenticate cookie here
+  const { user_name } = res.locals;
+  const text = `SELECT * FROM "public"."users" WHERE "user_name" = '${user_name}'`;
   db.query(text)
     .then((response) => {
       res.locals.data = response;
