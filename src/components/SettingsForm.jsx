@@ -53,7 +53,7 @@ const Settings = (props) => {
     }
   }
 
-
+console.log(user.arn)
   return(
     <div className='horizontal-line'>
       <p>
@@ -63,9 +63,24 @@ const Settings = (props) => {
       </p>
       <div className='settings-form-container'>
         <form onSubmit={handleSubmit}>
-            <input type="password" name="arn" placeholder=' ARN key' value={formData.arn} onChange={handleInputChange} required />
+            {/* <input type="password" name="arn" placeholder=' ARN key' value={formData.arn} onChange={handleInputChange} required /> */}
+            <input
+              type="password"
+              name="arn"
+              placeholder={user.arn ? user.arn : ' ARN key'}
+              value={formData.arn}
+              onChange={handleInputChange}
+              required
+            />
+
            <p>Step 3. Select your region</p>
-           <select name="aws_region" value={formData.aws_region} onChange={handleInputChange} required>
+           <select
+            name="aws_region"
+            value={formData.aws_region}
+            onChange={handleInputChange}
+            required
+            defaultValue={user.region || ''}
+           >
               <option value="">Select AWS Region</option>
               <option value="us-east-1">US East (N. Virginia)</option>
               <option value="us-west-1">US West (N. California)</option>
