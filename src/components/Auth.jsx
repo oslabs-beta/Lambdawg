@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SignUpForm from './SignUpForm.jsx';
 import SignInForm from './SignInForm.jsx';
+import DashboardContainer from '../containers/DashboardContainer.jsx';
 
 
 const Auth = (props) => {
@@ -13,6 +14,12 @@ const Auth = (props) => {
     setFormType(prevFormType => prevFormType === 'signIn' ? 'signUp' : 'signIn');
   };
 
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     // Render the DashboardContainer component if the user is logged in
+  //     return <DashboardContainer />;
+  //   }
+  // }, [loggedIn]);
 
   return(
     <div id='auth-container'>

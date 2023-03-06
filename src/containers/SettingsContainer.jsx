@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import SettingsForm from '../components/SettingsForm.jsx';
 
 
 const SettingsContainer = (props) => {
-  const mascot = 'src/assets/mascot.png'
+
   const { loggedIn, setLoggedIn } = props
-  
+  const mascot = 'src/assets/logo.png'
+
 
   return(
     <div id='settings-container'>
+      <img src={mascot} className='large-mascot'/>
 
       <div id='theme-bg-settings'>
-        <img src={mascot} className='large-mascot'/>
+        <h1>Welcome, Username!</h1>
+
+
         <SettingsForm loggedIn={loggedIn} setLoggedIn={setLoggedIn}/> 
-         
       </div>
+
+    <p className='horizontal-line'>Need help getting started? <a href={'/docs'}><button className='settings-secondary-button'>Read the Docs</button></a> </p>
+    <span className='settings-button-wrap'>
+          <button className='settings-secondary-button'>Update Profile</button>
+          <button className='settings-secondary-button'>Change Password</button>
+        </span>
 
     </div>
   )

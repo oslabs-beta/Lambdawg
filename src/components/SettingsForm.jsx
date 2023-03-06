@@ -3,6 +3,21 @@ import React, { useState, useEffect } from 'react';
 import { Navigate } from "react-router-dom";// import AWS from 'aws-sdk';
 
 const Settings = (props) => {
+  const [formData, setFormData] = useState({ user_name: '', password_: '' });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const signInFormData = {
+      user_name: formData.user_name,
+      password_: formData.password_,
+    };
+  }
+
 // apon arrival, check session cookie - if none, redirect to sign up
 // send cookie to db to verify which profile to display
 // display current username and email in the fields
@@ -10,14 +25,14 @@ const Settings = (props) => {
 
 
   return(
-
-    <div className='form-container'>
-      <form>
-      <p>This can't really be anything yet because we will have actual bcrypt thus no password updating,
-        this should really be where we have them input secret keys (that do NOT get saved somehow...)
-      </p>
-      
-      </form>
+    <div>
+      <p>Create your AWS stack / get ARN key</p>
+      <div className='settings-form-container'>
+        <form onSubmit={handleSubmit}>
+            <input type="username" name="user_name" placeholder=' ARN key' value={formData.user_name} onChange={handleInputChange} required />
+        </form>
+        <button className='settings-primary-button stack-button'>Get my metrics</button>
+      </div>
     </div>
   
 

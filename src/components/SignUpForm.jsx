@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 const signUpForm = (props) => {
 
-
     const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password_: '', confirmPassword: '' });
-    const { toggleFormType } = props
+    const { toggleFormType, loggedIn, setLoggedIn } = props
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -32,8 +31,7 @@ const signUpForm = (props) => {
       
         if (response.ok) {
           console.log('Sign up successful');
-          // Redirect the user to the settings page
-          // window.location.href = '/settings';
+          setLoggedIn(true);
         } else {
           console.log('Sign up failed');
         }

@@ -48,7 +48,7 @@ const getLambdaLog = async (req, res, next) => {
       })
     );
 
-    console.log('LogEvents ' + JSON.stringify(logEvents));
+    // console.log('LogEvents ' + JSON.stringify(logEvents));
     //if there are no logs, return to next middleware
     if (!logEvents) {
       return next();
@@ -138,7 +138,7 @@ const getLambdaLogs = async (req, res, next) => {
         })
       );
 
-      console.log('LogEvents ' + JSON.stringify(logEvents));
+      // console.log('LogEvents ' + JSON.stringify(logEvents));
       //if there are no logs, return to next middleware
       if (!logEvents) {
         return next();

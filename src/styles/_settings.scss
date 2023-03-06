@@ -13,3 +13,46 @@
   max-width: 150px;
 
 }
+.settings-button-wrap {
+  justify-content: space-between;
+}
+.settings-button-wrap > button {
+  margin: .25rem;
+  
+}
+.horizontal-line {
+  border-top: 1px solid black;
+  padding-top: .5rem;
+}
+.stack-button {
+  border-radius: 3px;
+  margin-right: 5px;
+  height: 2rem;
+
+}
+.settings-form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+
+}
+.settings-form-container > form > input{
+  // width: 150px;
+  height: 2rem;
+}
+.settings-primary-button {
+  border: none;
+  background-color: $primary-button-color;
+  color: $primary-button-font;
+}
+.settings-secondary-button {
+  border: 1px solid $primary-button-color;
+  background-color: $body-bg-color;
+  color: $secondary-button-font;
+}
+
+
+// * {
+//   border: 1px solid red;
+// }

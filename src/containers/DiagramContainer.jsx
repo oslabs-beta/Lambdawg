@@ -11,11 +11,11 @@ const { diagramFullScreen, setDiagramFullScreen } = props;
 // }
 
 
-
   return(
 
       <div id='diagram-container-wrapper' className={diagramFullScreen? 'full-screen' : 'collapse-screen'}> 
         <iframe id='chart-frame' width='100%' src='/src/Chart/index.html' />
+
       </div>
   )
 }

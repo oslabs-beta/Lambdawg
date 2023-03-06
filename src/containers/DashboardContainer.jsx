@@ -46,7 +46,7 @@ const DashboardContainer = (props) => {
   // }
   
 
-
+// fetch names
 useEffect(() => { 
   const fetchNames = async() => {
     try{
@@ -66,7 +66,7 @@ useEffect(() => {
   fetchNames(); 
 }, [])
 
-
+// fetch metrics
 useEffect(() => {
   if (msNames) {
     const fetchMetrics = async () => {

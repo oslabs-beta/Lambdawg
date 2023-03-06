@@ -1,10 +1,9 @@
 
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 
 const SignInForm = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const { loggedIn, setLoggedIn } = props;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -27,8 +26,9 @@ const SignInForm = (props) => {
 
       if (response.ok) {
         console.log('Sign in attempt passed auth');
-        setShouldRedirect(true);
-      } else {
+        setLoggedIn(true);
+      } 
+      else {
         console.log('Invalid password');
         const passwordInput = document.getElementById('password_');
         passwordInput.style.border = '2px solid red';
@@ -40,9 +40,6 @@ const SignInForm = (props) => {
     }
   };
 
-  if (shouldRedirect) {
-    return <Navigate to="/dashboard" />;
-  }
 
   return (
     <div className="form-container">
