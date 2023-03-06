@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const signUpForm = (props) => {
 
     const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password_: '', confirmPassword: '' });
-    const { toggleFormType, loggedIn, setLoggedIn } = props
+    const { toggleFormType, loggedIn, setLoggedIn, user, setUser } = props
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -25,12 +25,21 @@ const signUpForm = (props) => {
         const response = await fetch('http://localhost:3000/api/newUser', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          // mode: 'no-cors',
           body: JSON.stringify([signUpFormData]),
         });
       
         if (response.ok) {
           console.log('Sign up successful');
+          const data = await response.json();
+          const { user_name, full_name, email, _id } = data
+          setUser({
+            full_name: full_name,
+            user_name: user_name, 
+            email: email,
+            _id: _id,
+            // arn: arn,
+            // region: region
+          })
           setLoggedIn(true);
         } else {
           console.log('Sign up failed');

@@ -6,13 +6,14 @@ import DiagramContainer from '../containers/DiagramContainer.jsx';
 import DataWindow from '../components/DataWindow.jsx';
 
 const DashboardContainer = (props) => {
-  const { loggedIn, setLoggedIn } = props;
+  const { loggedIn, setLoggedIn, user } = props;
   const [panelFullScreen, setPanelFullScreen] = useState(false);
   const [diagramFullScreen, setDiagramFullScreen] = useState(true);
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
 
+  
   const handlePanelClick = () => {
     if (panelFullScreen) {
       return;
