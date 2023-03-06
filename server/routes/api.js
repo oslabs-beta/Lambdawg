@@ -12,7 +12,7 @@ router.use(cookieParser());
 
 router.get(
   '/',
-  cookieController.authenticateCookie,
+  // cookieController.authenticateCookie,
   dbController.getUsers,
   (req, res) => {
     res.status(200).json(res.locals.data.rows);
@@ -57,9 +57,7 @@ router.post(
   authController.verifyUN_Pass,
   cookieController.setCookie,
   (req, res) => {
-    console.log('res.headers -> ', res.getHeaders());
-
-    res.sendStatus(200);
+    res.status(200).json(res.locals.user);
   }
 );
 

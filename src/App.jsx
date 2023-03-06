@@ -12,6 +12,7 @@ import './styles/application.scss';
 
 const App = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
 
   // check if they're logged in - if yes, setLoggedIn to true 
   useEffect(() => {
@@ -32,16 +33,16 @@ const App = (props) => {
         <Routes>
           
           <Route exact path="/dashboard" element={
-            loggedIn ? <DashboardContainer loggedIn={loggedIn}/> : 
-            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+            loggedIn ? <DashboardContainer loggedIn={loggedIn} user={user}/> : 
+            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
           } /> 
           <Route exact path="/settings" element={
-            loggedIn ? <SettingsContainer loggedIn={loggedIn}/> : 
-            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+            loggedIn ? <SettingsContainer loggedIn={loggedIn} user={user} setUser={setUser}/> : 
+            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
           } /> 
           <Route exact path="/auth" element={
-            loggedIn ? <DashboardContainer loggedIn={loggedIn}/> : 
-            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+            loggedIn ? <DashboardContainer loggedIn={loggedIn} user={user}/> : 
+            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
           } /> 
           {/* <Route exact path="/auth" element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />   */}
           {/* <Route exact path="/dashboard" element={<DashboardContainer loggedIn={loggedIn}/>} /> */}
