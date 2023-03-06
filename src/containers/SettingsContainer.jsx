@@ -14,7 +14,7 @@ const SettingsContainer = (props) => {
       <img src={mascot} className='large-mascot'/>
 
       <div id='theme-bg-settings'>
-        <h1>Welcome, {`${userName}`}</h1>
+        <h1>Welcome, {`${userName}`}!</h1>
 
 
         <SettingsForm loggedIn={loggedIn} userName={userName}/> 

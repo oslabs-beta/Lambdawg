@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Navigate } from "react-router-dom";// import AWS from 'aws-sdk';
 
 const Settings = (props) => {
-  const [formData, setFormData] = useState({ user_name: '', password_: '' });
+  const [formData, setFormData] = useState({ user_name: '', arn: '', region: '', password_: '' });
   const { userName } = props;
 
   const handleInputChange = (event) => {
@@ -16,14 +16,18 @@ const Settings = (props) => {
     const signInFormData = {
       user_name: userName,
       arn: formData.arn,
+      region: formData.aws_region,
       password_: formData.password_,
     };
+    try{
+      // POST to server app.post /setUserArn
+      // create a secret file (touch)
+      // write to it the ARN key and region
+    }
+    catch(error){
+
+    }
   }
-
-// apon arrival, check session cookie - if none, redirect to sign up
-// send cookie to db to verify which profile to display
-// display current username and email in the fields
-
 
 
   return(
