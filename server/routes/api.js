@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get(
   '/',
-  cookieController.authenticateCookie,
+  // cookieController.authenticateCookie,
   dbController.getUsers,
   (req, res) => {
     res.status(200).json(res.locals.data.rows);

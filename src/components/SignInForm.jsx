@@ -10,6 +10,7 @@ const SignInForm = (props) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  // sign in form logic > logs in & saves { user } to state
   const handleSubmit = async (event) => {
     event.preventDefault();
     const signInFormData = {
@@ -20,6 +21,7 @@ const SignInForm = (props) => {
     try {
       const response = await fetch(`http://localhost:3000/api/${formData.user_name}`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify([signInFormData]),
       });
@@ -27,14 +29,14 @@ const SignInForm = (props) => {
       if (response.ok) {
         console.log('Sign in attempt passed auth');
         const data = await response.json();
-        const { user_name, full_name, email, _id } = data
+        const { user_name, full_name, email, _id, arn, region } = data
         setUser({
           full_name: full_name,
           user_name: user_name, 
           email: email,
           _id: _id,
-          // arn: arn,
-          // region: region
+          arn: arn,
+          region: region
         })
         setLoggedIn(true);
       } 
