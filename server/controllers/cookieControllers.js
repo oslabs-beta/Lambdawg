@@ -5,14 +5,24 @@ const cookieControllers = {};
 
 cookieControllers.setCookie = (req, res, next) => {
   const { user_name } = req.params;
-  const user = { user_name: user_name };
+  console.log('USERNAME ', user_name);
+  console.log(
+    'WHERE AM I ??????????????????????????????????????????????????????????'
+  );
+  // const user = { user_name: user_name }; //why did i use an objecxt here?
+  const user = user_name;
   console.log('cookieController username from params ', user_name);
 
   const accessToken = jwt.sign(user, process.env.ACCESS_SECRET_TOKEN);
-
+  console.log('Cookie Value-> ', accessToken);
   //sends the token as a cookie
+  // , secure: true
   res.cookie('jwt', accessToken, { httpOnly: true });
-  //   res.json({ accessToken: accessToken });  //sends the JWT back to the front end in an object
+  // res.cookie('cookie', 'cookie');
+  // console.log('res.headers -> ', res.getHeaders());
+  // res.json();
+
+  // res.locals.json(); //sends the JWT back to the front end in an object
   return next();
 };
 
@@ -33,9 +43,9 @@ cookieControllers.authenticateCookie = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_SECRET_TOKEN);
-    req.user_name = decoded;
+    req.params.user_name = decoded;
     console.log('decoded ', decoded);
-    next();
+    return next();
   } catch (err) {
     return res
       .status(401)
