@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const dbController = require('../controllers/dbControllers');
 const authController = require('../controllers/authControllers');
@@ -6,6 +7,8 @@ const encryptionController = require('../controllers/encryptionController');
 const cookieController = require('../controllers/cookieControllers.js');
 
 const router = express.Router();
+
+router.use(cookieParser());
 
 router.get(
   '/',
@@ -54,7 +57,9 @@ router.post(
   authController.verifyUN_Pass,
   cookieController.setCookie,
   (req, res) => {
-    res.status(200).json();
+    console.log('res.headers -> ', res.getHeaders());
+
+    res.sendStatus(200);
   }
 );
 
