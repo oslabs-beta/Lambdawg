@@ -34,13 +34,24 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: center;
 
 }
-.settings-form-container > form > label > input{
+.settings-form-container > form > input{
   // width: 150px;
   height: 2rem;
 }
+.settings-primary-button {
+  border: none;
+  background-color: $primary-button-color;
+  color: $primary-button-font;
+}
+.settings-secondary-button {
+  border: 1px solid $primary-button-color;
+  background-color: $body-bg-color;
+  color: $secondary-button-font;
+}
+
 
 // * {
 //   border: 1px solid red;

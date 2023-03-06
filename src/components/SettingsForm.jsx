@@ -25,17 +25,14 @@ const Settings = (props) => {
 
 
   return(
-
-    <div className='settings-form-container'>
-
-      <button className='primary-button stack-button'>Create Stack</button>
-      <form onSubmit={handleSubmit}>
-        <label>
-          
-          <input type="username" name="user_name" placeholder=' ARN key' value={formData.user_name} onChange={handleInputChange} required />
-        </label>
-      
-      </form>
+    <div>
+      <p>Create your AWS stack / get ARN key</p>
+      <div className='settings-form-container'>
+        <form onSubmit={handleSubmit}>
+            <input type="username" name="user_name" placeholder=' ARN key' value={formData.user_name} onChange={handleInputChange} required />
+        </form>
+        <button className='settings-primary-button stack-button'>Get my metrics</button>
+      </div>
     </div>
   
 
