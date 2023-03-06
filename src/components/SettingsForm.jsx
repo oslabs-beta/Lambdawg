@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";// import AWS from 'aws-sdk';
 
 const Settings = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
+  const { userName } = props;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -13,7 +14,8 @@ const Settings = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const signInFormData = {
-      user_name: formData.user_name,
+      user_name: userName,
+      arn: formData.arn,
       password_: formData.password_,
     };
   }
@@ -27,12 +29,13 @@ const Settings = (props) => {
   return(
     <div className='horizontal-line'>
       <p>
-        Step 1: <span className='visible-link'><a href="" target='blank'>Connect your AWS account</a><br /><br /></span>
+        Step 1: <span className='visible-link'><a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=lambdawg-permission&param_ExternalId=Lambdawg&templateURL=https://lambdawg.s3.amazonaws.com/cloudFormation.yaml" target='blank'>
+          Connect your AWS account</a><br /><br /></span>
         Step 2: Paste your ARN key below<br />
       </p>
       <div className='settings-form-container'>
         <form onSubmit={handleSubmit}>
-            <input type="username" name="user_name" placeholder=' ARN key' value={formData.user_name} onChange={handleInputChange} required />
+            <input type="password" name="arn" placeholder=' ARN key' value={formData.arn} onChange={handleInputChange} required />
            <p>Step 3. Select your region</p>
            <select name="aws_region" value={formData.aws_region} onChange={handleInputChange} required>
               <option value="">Select AWS Region</option>
@@ -45,11 +48,12 @@ const Settings = (props) => {
               <option value="ap-southeast-2">Asia Pacific (Sydney)</option>
               <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
               <option value="sa-east-1">South America (São Paulo)</option>
-            </select>
+            </select><br/>
+            <input type="password" name="password_" placeholder=' Your LAMBDAWG password' value={formData.password_} onChange={handleInputChange} required />
         </form>
       </div>
-      <button className='settings-secondary-button stack-button'>Read the Docs</button>
-      <button className='settings-primary-button stack-button'>Get my metrics</button>
+      <a href="/docs"><button className='settings-secondary-button stack-button'>Read the Docs</button></a>
+      <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
 
     </div>
   

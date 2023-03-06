@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const SignInForm = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
-  const { loggedIn, setLoggedIn } = props;
+  const { loggedIn, setLoggedIn, userName, setUserName } = props;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,6 +26,8 @@ const SignInForm = (props) => {
 
       if (response.ok) {
         console.log('Sign in attempt passed auth');
+        // console.log(formData.user_name)
+        setUserName(formData.user_name);
         setLoggedIn(true);
       } 
       else {
