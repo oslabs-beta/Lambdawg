@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const SignInForm = (props) => {
@@ -39,8 +38,7 @@ const SignInForm = (props) => {
           region: region
         })
         setLoggedIn(true);
-      } 
-      else {
+      } else {
         console.log('Invalid password');
         const passwordInput = document.getElementById('password_');
         passwordInput.style.border = '2px solid red';
@@ -52,30 +50,46 @@ const SignInForm = (props) => {
     }
   };
 
-
   return (
-    <div className="form-container">
+    <div className='form-container'>
       <h1>SIGN IN</h1>
 
       <form onSubmit={handleSubmit}>
         <label>
           Username
-          <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required />
+          <input
+            type='username'
+            name='user_name'
+            value={formData.user_name}
+            onChange={handleInputChange}
+            required
+          />
         </label>
 
         <label>
           Password
-          <input type="password" name="password_" id="password_" value={formData.password_} onChange={handleInputChange} required />
+          <input
+            type='password'
+            name='password_'
+            id='password_'
+            value={formData.password_}
+            onChange={handleInputChange}
+            required
+          />
         </label>
 
         <br />
-        <div className="button-flex-wrapper">
-          <button type="submit" className="primary-button">Sign In</button>
-          <button onClick={props.toggleFormType} className="secondary-button">Sign Up</button>
+        <div className='button-flex-wrapper'>
+          <button type='submit' className='primary-button'>
+            Sign In
+          </button>
+          <button onClick={props.toggleFormType} className='secondary-button'>
+            Sign Up
+          </button>
         </div>
         <br />
-        
-        <label className="centered-text">I forgot my password / username</label>
+
+        <label className='centered-text'>I forgot my password / username</label>
       </form>
     </div>
   );

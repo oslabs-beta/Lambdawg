@@ -17,3 +17,5 @@ export default defineConfig({
     },
   },
 });
+
+// /api on line 12

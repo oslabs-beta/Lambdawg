@@ -39,9 +39,9 @@ dbControllers.addUser = (req, res, next) => {
 
 dbControllers.deleteUser = (req, res, next) => {
   const text = 'DELETE FROM "public"."users" WHERE user_name = $1';
-  const { user_name } = req.body[0];
+  const { user_name } = req.params;
 
-  console.log(req.params);
+  // console.log(req.params);
   db.query(text, [user_name], (err, result) => {
     if (err) {
       console.log('Error at dbControllers.deleteUser: ', err);
