@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 
 const dbController = require("../controllers/dbControllers");
 const authController = require("../controllers/authControllers");
@@ -7,7 +8,10 @@ const cookieController = require("../controllers/cookieControllers.js");
 
 const router = express.Router();
 
+router.use(cookieParser());
+//make this to acquire 1 user rather than all users
 router.get("/", cookieController.authenticateCookie, dbController.getUsers, (req, res) => {
+  console.log(res.locals.data.rows[0]);
   res.status(200).json(res.locals.data.rows);
 });
 
@@ -31,7 +35,9 @@ router.patch("/edit", authController.verifyUN_Pass, dbController.editUser, (req,
 
 // sign in -> add a middleware controller after verify to set session cookie
 router.post("/:user_name", authController.verifyUN_Pass, cookieController.setCookie, (req, res) => {
-  res.status(200).json(res.locals.ssid);
+  console.log("res.headers -> ", res.getHeaders());
+
+  res.sendStatus(200);
 });
 
 module.exports = router;

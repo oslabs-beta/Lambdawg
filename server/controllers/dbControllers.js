@@ -4,7 +4,9 @@ const validator = require('validator');
 const dbControllers = {};
 
 dbControllers.getUsers = (req, res, next) => {
-  const text = 'SELECT * FROM "public"."users"';
+  //we will be getting the user name from the authenticate cookie here
+  const { user_name } = res.locals;
+  const text = `SELECT * FROM "public"."users" WHERE "user_name" = '${user_name}'`;
   db.query(text)
     .then((response) => {
       res.locals.data = response;
@@ -39,9 +41,9 @@ dbControllers.addUser = (req, res, next) => {
 
 dbControllers.deleteUser = (req, res, next) => {
   const text = 'DELETE FROM "public"."users" WHERE user_name = $1';
-  const { user_name } = req.body[0];
+  const { user_name } = req.params;
 
-  console.log(req.params);
+  // console.log(req.params);
   db.query(text, [user_name], (err, result) => {
     if (err) {
       console.log('Error at dbControllers.deleteUser: ', err);

@@ -5,9 +5,9 @@ const validator = require('validator');
 const authControllers = {};
 
 authControllers.verifyUN_Pass = (req, res, next) => {
-  // const { user_name } = req.params;
-  const { user_name, password_ } = req.body[0];
-  console.log(user_name, password_);
+  const { user_name } = req.params;
+  const { password_ } = req.body[0];
+  // console.log(user_name, password_);
 
   const text = 'SELECT * FROM public.users WHERE user_name = $1';
   db.query(text, [user_name], async (err, result) => {
@@ -31,6 +31,7 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     }
 
     console.log('User Authentication Successful');
+    res.locals.user = result.rows[0]
     return next();
   });
 };

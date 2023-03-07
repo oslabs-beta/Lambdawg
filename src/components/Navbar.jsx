@@ -21,11 +21,11 @@ const Navbar = (props) => {
 
     return(
       
-        <div class="nav">
+        <div className="nav">
       <input type="checkbox" id="nav-check" checked={navChecked} onChange={() => setNavChecked(!navChecked)} />
-          <div class="nav-header">
-            <div class="nav-title">
-            <div class='nav-logo-wrapper'>
+          <div className="nav-header">
+            <div className="nav-title">
+            <div className='nav-logo-wrapper'>
               <Link to={homeLink}>
                 <img src={mascot} className='nav-logo'/>
                 <img src={logoText} className='text-logo'/>
@@ -34,15 +34,15 @@ const Navbar = (props) => {
             </div>
             </div>
           </div>
-          <div class="nav-btn">
-            <label for="nav-check">
+          <div className="nav-btn">
+            <label htmlFor="nav-check">
         <span></span>
         <span></span>
         <span></span>
             </label>
           </div>
           
-          <div class="nav-links">
+          <div className="nav-links">
             <Link to={docsLink} onClick={handleLinkClick}>Documentaion</Link>
             <Link to={settingsLink} onClick={handleLinkClick}>Settings</Link>
             <Link to={authLink} onClick={handleLinkClick}>Login</Link>
