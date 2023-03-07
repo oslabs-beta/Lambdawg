@@ -1,17 +1,18 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const cookieControllers = {};
 
 cookieControllers.setCookie = (req, res, next) => {
   const { user_name } = req.params;
   const user = { user_name: user_name };
-  console.log('cookieController username from params ', user_name);
+  console.log("cookieController username from params ", user_name);
 
   const accessToken = jwt.sign(user, process.env.ACCESS_SECRET_TOKEN);
 
   //sends the token as a cookie
-  res.cookie('jwt', accessToken, { httpOnly: true });
+  res.cookie("jwt", accessToken, { httpOnly: true });
+
   //   res.json({ accessToken: accessToken });  //sends the JWT back to the front end in an object
   return next();
 };
@@ -27,19 +28,15 @@ cookieControllers.authenticateCookie = (req, res, next) => {
   //if it does, verifies if its legit
   //if not legoit sends back an error
   if (!token) {
-    return res
-      .status(401)
-      .json({ message: 'Get outta Here! You are not athorized' });
+    return res.status(401).json({ message: "Get outta Here! You are not athorized" });
   }
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_SECRET_TOKEN);
     req.user_name = decoded;
-    console.log('decoded ', decoded);
+    console.log("decoded ", decoded);
     next();
   } catch (err) {
-    return res
-      .status(401)
-      .json({ message: 'Get outta Here! You are not athorized' });
+    return res.status(401).json({ message: "Get outta Here! You are not athorized" });
   }
 };
 

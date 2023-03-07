@@ -1,9 +1,8 @@
-
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import Panel from '../components/Panel.jsx';
-import DiagramContainer from '../containers/DiagramContainer.jsx';
-import DataWindow from '../components/DataWindow.jsx';
+import Panel from "../components/Panel.jsx";
+import DiagramContainer from "../containers/DiagramContainer.jsx";
+import DataWindow from "../components/DataWindow.jsx";
 
 const DashboardContainer = (props) => {
   const { loggedIn, setLoggedIn } = props;
@@ -12,6 +11,7 @@ const DashboardContainer = (props) => {
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
+  const [msTraces, setMsTraces] = useState([]);
 
   const handlePanelClick = () => {
     if (panelFullScreen) {
@@ -20,7 +20,7 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(!panelFullScreen);
     setDiagramFullScreen(false);
     setDataWindowFullScreen(false);
-    console.log(panelFullScreen)
+    console.log(panelFullScreen);
   };
 
   const handleDiagramClick = () => {
@@ -44,70 +44,120 @@ const DashboardContainer = (props) => {
   // if (!loggedIn) {
   //   return <Navigate to="/auth" />;
   // }
-  
 
-// fetch names
-useEffect(() => { 
-  const fetchNames = async() => {
-    try{
-      const response = await fetch('http://localhost:3000/getLambdaNames', {
-        method: 'GET', 
-        headers: {'Content-Type': 'application/json'},
-        muteHttpExceptions: true
-      });
-      const data = await response.json()
-      setMsNames(data);
-      console.log('names:', data)
-    }
-    catch(error){
-      console.log(error, 'error fetching MsNames')
-    }
-  }; 
-  fetchNames(); 
-}, [])
-
-// fetch metrics
-useEffect(() => {
-  if (msNames) {
-    const fetchMetrics = async () => {
+  // fetch names
+  useEffect(() => {
+    const fetchNames = async () => {
       try {
-        const response = await fetch('http://localhost:3000/getLambdaMetrics', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
+        const response = await fetch("http://localhost:3000/getLambdaNames", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
           muteHttpExceptions: true,
         });
         const data = await response.json();
-        setMsMetrics(data.MetricDataResults);
-        console.log('dashboard metrics: ', msMetrics);
+        setMsNames(data);
+        console.log("names:", data);
       } catch (error) {
-        console.log('error fetching metrics', error);
+        console.log(error, "error fetching MsNames");
       }
     };
-    fetchMetrics();
-  }
-}, []);
+    fetchNames();
+  }, []);
 
+  // fetch metrics
+  useEffect(() => {
+    if (msNames) {
+      const fetchMetrics = async () => {
+        try {
+          const response = await fetch("http://localhost:3000/getLambdaMetrics", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            muteHttpExceptions: true,
+          });
+          const data = await response.json();
+          setMsMetrics(data.MetricDataResults);
+          console.log("dashboard metrics: ", msMetrics);
+        } catch (error) {
+          console.log("error fetching metrics", error);
+        }
+      };
+      fetchMetrics();
+    }
+  }, []);
 
+  //fetch individual lambda trace data for latency graphs
+  useEffect(() => {
+    //we need names to fetch traces also
+    if (msNames) {
+      const fetchTraces = async () => {
+        try {
+          const response = await fetch("http://localhost:3000/getTraces", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            muteHttpExceptions: true,
+          });
+          const data = await response.json();
+          //methinks this is what I'd do
+          //just parsing name, duration, responseTime, service trails
+          const traceData = await data.map((obj) => {
+            if (!obj.summary.length) {
+              return {
+                name: obj.data,
+                duration: undefined,
+                responseTime: undefined,
+                serviceIds: undefined,
+              };
+            } else {
+              return {
+                name: obj.data,
+                duration: obj.summary[0].Duration,
+                responseTime: obj.summary[0].ResponseTime,
+                serviceIds: obj.summary[0].ServiceIds,
+              };
+            }
+          });
+          setMsTraces(traceData);
+          console.log("dashboard traces useEffect: ", msTraces);
+        } catch (error) {
+          console.log("error fetching traces", error);
+        }
+      };
+      fetchTraces();
+    }
+  }, []);
 
   return (
-    <div id='dashboard-container'>
-
-      <div id='dashboard-wrapper' className={dataWindowFullScreen ? 'collapse-screen' : 'full-screen'}>
-        <Panel msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} />
-        <DiagramContainer diagramFullScreen={diagramFullScreen} setDiagramFullScreen={setDiagramFullScreen} />
+    <div id="dashboard-container">
+      <div id="dashboard-wrapper" className={dataWindowFullScreen ? "collapse-screen" : "full-screen"}>
+        <Panel
+          msNames={msNames}
+          msMetrics={msMetrics}
+          panelFullScreen={panelFullScreen}
+          setPanelFullScreen={setPanelFullScreen}
+        />
+        <DiagramContainer
+          msNames={msNames}
+          msMetrics={msMetrics}
+          msTraces={msTraces}
+          diagramFullScreen={diagramFullScreen}
+          setDiagramFullScreen={setDiagramFullScreen}
+        />
       </div>
-
       <DataWindow dataWindowFullScreen={dataWindowFullScreen} setDataWindowFullScreen={setDataWindowFullScreen} />
 
-      <div className='block-button-wrapper dashboard-buttons'>
-        <button className='secondary-button' id='panelButton' onClick={handlePanelClick}>Panel</button>
-        <button className='secondary-button' id='dataButton' onClick={handleDataClick}>Log</button>
-        <button className='secondary-button' id='diagramButton' onClick={handleDiagramClick}>Map</button>
+      <div className="block-button-wrapper dashboard-buttons">
+        <button className="secondary-button" id="panelButton" onClick={handlePanelClick}>
+          Panel
+        </button>
+        <button className="secondary-button" id="dataButton" onClick={handleDataClick}>
+          Log
+        </button>
+        <button className="secondary-button" id="diagramButton" onClick={handleDiagramClick}>
+          Map
+        </button>
       </div>
-      
     </div>
   );
 };
 
 export default DashboardContainer;
-
