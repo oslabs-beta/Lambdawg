@@ -4,7 +4,9 @@ const validator = require('validator');
 const dbControllers = {};
 
 dbControllers.getUsers = (req, res, next) => {
-  const text = 'SELECT * FROM "public"."users"';
+  //we will be getting the user name from the authenticate cookie here
+  const { user_name } = res.locals;
+  const text = `SELECT * FROM "public"."users" WHERE "user_name" = '${user_name}'`;
   db.query(text)
     .then((response) => {
       res.locals.data = response;
@@ -57,13 +59,12 @@ dbControllers.deleteUser = (req, res, next) => {
 };
 
 dbControllers.editUser = (req, res, next) => {
-  console.log('inside edit user controller')
-  const { full_name, user_name, email, _id, cookie, arn, region } = req.body[0];
+  const { full_name, user_name, email, _id, cookie } = req.body[0];
 
   const text =
-    'UPDATE "public"."users" SET full_name = $1, email = $2, arn = $3, region = $4 WHERE _id = $5';
+    'UPDATE "public"."users" SET full_name = $1, email = $2 ,cookie = $3 WHERE _id = $4';
 
-  db.query(text, [full_name, email, arn, region, _id], (err, result) => {
+  db.query(text, [full_name, email, cookie, _id], (err, result) => {
     if (err) {
       console.log(`Error Updating User: ${user_name}`, err);
       return res.status(500).send(`Error Updating User: ${user_name}`);
@@ -72,6 +73,5 @@ dbControllers.editUser = (req, res, next) => {
     next();
   });
 };
-
 
 module.exports = dbControllers;

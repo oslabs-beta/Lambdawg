@@ -26,7 +26,7 @@ const SignInForm = (props) => {
       });
 
       if (response.ok) {
-        console.log('Sign in attempt passed auth');
+        console.log(document.cookie, 'Sign in attempt passed auth (signInForm)');
         const data = await response.json();
         const { user_name, full_name, email, _id, arn, region } = data
         setUser({
@@ -38,7 +38,8 @@ const SignInForm = (props) => {
           region: region
         })
         setLoggedIn(true);
-      } else {
+      } 
+      else {
         console.log('Invalid password');
         const passwordInput = document.getElementById('password_');
         passwordInput.style.border = '2px solid red';
@@ -46,7 +47,7 @@ const SignInForm = (props) => {
       }
     } catch (error) {
       console.error(error);
-      console.log('Unable to sign-in at this time.');
+      console.log('Unable to sign-in at this time. (signInForm');
     }
   };
 

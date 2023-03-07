@@ -9,12 +9,13 @@ const cookieController = require('../controllers/cookieControllers.js');
 const router = express.Router();
 
 router.use(cookieParser());
-
+//make this to acquire 1 user rather than all users
 router.get(
   '/',
-  // cookieController.authenticateCookie,
+  cookieController.authenticateCookie,
   dbController.getUsers,
   (req, res) => {
+    console.log(res.locals.data.rows[0])
     res.status(200).json(res.locals.data.rows);
   }
 );
@@ -57,7 +58,9 @@ router.post(
   authController.verifyUN_Pass,
   cookieController.setCookie,
   (req, res) => {
-    res.status(200).json(res.locals.user);
+    console.log('res.headers -> ', res.getHeaders());
+
+    res.sendStatus(200);
   }
 );
 
