@@ -9,11 +9,11 @@ const cookieController = require('../controllers/cookieControllers.js');
 const router = express.Router();
 
 router.use(cookieParser());
-//make this to acquire 1 user rather than all users
+
 router.get(
   '/',
   cookieController.authenticateCookie,
-  dbController.getUsers,
+  dbController.getUser,
   (req, res) => {
     res.status(200).json(res.locals.data.rows);
   }
@@ -62,5 +62,9 @@ router.post(
     res.sendStatus(200);
   }
 );
+
+router.use('/logout', cookieController.deleteCookie, (req, res) => {
+  res.status(200).json();
+});
 
 module.exports = router;
