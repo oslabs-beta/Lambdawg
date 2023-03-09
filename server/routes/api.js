@@ -15,6 +15,7 @@ router.get(
   cookieController.authenticateCookie,
   dbController.getUsers,
   (req, res) => {
+    console.log(res.locals.data.rows[0])
     res.status(200).json(res.locals.data.rows);
   }
 );
