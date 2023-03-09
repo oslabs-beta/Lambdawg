@@ -5,11 +5,14 @@ const dbControllers = {};
 
 dbControllers.getUsers = (req, res, next) => {
   //we will be getting the user name from the authenticate cookie here
-  const { user_name } = res.locals;
+  const { user_name } = res.locals.user;
+  console.log('line 9 in dbconoller', user_name)
   const text = `SELECT * FROM "public"."users" WHERE "user_name" = '${user_name}'`;
   db.query(text)
     .then((response) => {
       res.locals.data = response;
+      console.log('dbcontrol.getusers', res.locals.data.rows)
+
       return next();
     })
     .catch((err) => {

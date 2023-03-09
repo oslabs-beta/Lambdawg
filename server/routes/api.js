@@ -59,7 +59,8 @@ router.post(
   cookieController.setCookie,
   dbController.getUsers,
   (req, res) => {
-    console.log('res.headers -> ', res.getHeaders());
+    // console.log('res.headers -> ', res.getHeaders());
+    console.log('last stop router.post', res.locals.data.rows)
     res.status(200).json(res.locals.data.rows);
   }
 );

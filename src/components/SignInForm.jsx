@@ -28,7 +28,7 @@ const SignInForm = (props) => {
       if (response.ok) {
         console.log('Sign in attempt passed auth (signInForm)');
         const data = await response.json();
-        const { user_name, full_name, email, _id, arn, region } = data
+        const { user_name, full_name, email, _id, arn, region } = data[0]
         setUser({
           full_name: full_name,
           user_name: user_name, 
