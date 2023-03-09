@@ -17,19 +17,24 @@ describe('database unit tests', () => {
     // });
 
     it('returns our array of objects from the database', async () => {
-      const text = 'SELECT * FROM "public"."users" LIMIT 10';
+      const text = `SELECT * FROM "public"."users" WHERE "full_name" = 'cookieMonster2'`;
       const result = await db.query(text);
-
+      console.log('Result ', result);
       const users = [
         {
-          _id: 1,
-          full_name: 'John Doe',
-          user_name: 'JohnnyD',
-          email: 'johnnyd@johnnyd.com',
-          password_: 'jdpassword',
+          _id: 67,
+          arn: null,
+          email: 'cm2@cm2.com',
+          full_name: 'cookieMonster2',
+          password_:
+            '$2b$10$bxjdez4j.gbvz1KQs1EPWugqSqUQZNtSjevM2qwxJ2PXdT0uGROBm',
+          region: null,
+          user_name: 'cookieMonster2',
         },
       ];
       expect(result.rows).toEqual(users);
+      // expect(response.status).toBe(200);
+      // expect(response.data).toEqual(users);
     });
   });
   ////////////
