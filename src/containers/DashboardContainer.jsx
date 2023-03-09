@@ -42,8 +42,6 @@ const DashboardContainer = (props) => {
     setDataWindowFullScreen(!dataWindowFullScreen);
   };
 
-
-
 // fetch names
 useEffect(() => { 
   const fetchNames = async() => {
@@ -92,13 +90,11 @@ useEffect(() => {
   }
 }, []);
 
-
-
   return (
     <div id='dashboard-container'>
 
       <div id='dashboard-wrapper' className={dataWindowFullScreen ? 'collapse-screen' : 'full-screen'}>
-        <Panel msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} />
+        <Panel user={user} msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} />
         <DiagramContainer diagramFullScreen={diagramFullScreen} setDiagramFullScreen={setDiagramFullScreen} />
       </div>
 

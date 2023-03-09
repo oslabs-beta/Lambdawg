@@ -4,7 +4,7 @@ import Microservice from '../components/Microservice.jsx';
 
 const Panel = (props) => {
 
-  const { setPanelFullScreen, panelFullScreen, msNames, msMetrics } = props;
+  const { setPanelFullScreen, panelFullScreen, msNames, msMetrics, user } = props;
   // get the list of functions in heirarchal order and display them as a list of 'buttons' >
   // onClick a button will expand display the functions metrics in the same window, onClick it will hide them
   // the corresponding node on the diagram will be highlighted
@@ -16,7 +16,7 @@ const Panel = (props) => {
   if (msNames){
     msNames.forEach((name) => {
       i++;
-      names.push(<Microservice name={name} key={`${name}MsEl${i}`} msMetrics={msMetrics} className='panel-names'/>)
+      names.push(<Microservice name={name} key={`${name}MsEl${i}`} msMetrics={msMetrics} user={user} className='panel-names'/>)
     })
   }
 

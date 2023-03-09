@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from 'react';
 
 const Microservice = (props) => {
-  const { name, msMetrics } = props;
+  const { name, msMetrics, user } = props;
   const [sortedMetrics, setSortedMetrics] = useState({});
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [msLogs, setMsLogs] = useState({})
 
 // Parse metrics for specific name (this could happen in panel but whatever for now)
   useEffect(() => {
+
     if (!msMetrics || !Array.isArray(msMetrics)) return console.log('no metrics here dawg');
     console.log('microservice metrics', msMetrics)
   
@@ -30,11 +31,12 @@ const Microservice = (props) => {
           errorsSum += num;
           if (num > 0) {
             timeStamps.push(
-              <span className='timestamp-error'>{metricsObj.Timestamps[i]}</span>
+              <span key={i} className='timestamp-error'>{metricsObj.Timestamps[i]}</span>
             );
+            
           } else {
             timeStamps.push(
-              <span className='timestamp'>{metricsObj.Timestamps[i]}</span>
+              <span key={i} className='timestamp'>{metricsObj.Timestamps[i]}</span>
             );
           }
         });
@@ -54,6 +56,8 @@ const Microservice = (props) => {
 // Fetch Logs for individual buttons onclick (cahed or whatever later - currently its going to just be a get req for ALL)
 useEffect(() => {
   if (msMetrics) {
+    console.log('fetchlogs line 59')
+
     const fetchLogs = async () => {
       try {
         const response = await fetch('http://localhost:3000/getLambdaLogs', {
@@ -79,7 +83,7 @@ useEffect(() => {
   const togglePanel = () => {
     // console.log('for real now', sortedMetrics[name].errorsSum)
     setIsPanelOpen(!isPanelOpen);
-    console.log('test', msLogs[0])
+    console.log('LOGS FROM Microserv', msLogs[0])
     let i = 0;
     const logsDisplay = document.getElementById('log-ul');
 
