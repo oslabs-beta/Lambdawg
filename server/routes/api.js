@@ -48,7 +48,8 @@ router.patch(
   authController.verifyUN_Pass,
   dbController.editUser,
   (req, res) => {
-    res.status(200).json({});
+    console.log(res.locals.user)
+    res.status(200).json(res.locals.user);
   }
 );
 

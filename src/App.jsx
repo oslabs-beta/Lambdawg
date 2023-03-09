@@ -14,6 +14,7 @@ const App = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
 
+  console.log('app.jsx, user in state', user)
   // check for cookie and if found, log user in and save userdata
   useEffect(() => {
     const checkAuth = async () => {

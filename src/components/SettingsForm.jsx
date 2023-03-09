@@ -18,7 +18,7 @@ const Settings = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log('username in handlesubmit settings ', user.user_name)
+    console.log('username in handlesubmit settings ', user.user_name)
 
     const arnFormData = {
       full_name: user.full_name, 
@@ -31,7 +31,7 @@ const Settings = (props) => {
     };
 
     try{
-      // console.log('TRY in settings', arnFormData)
+      console.log('TRY in settings (the form data)', arnFormData)
       const response = await fetch(`http://localhost:3000/api/edit/${user.user_name}`, {
         method: 'PATCH',
         credentials: 'include',
@@ -41,7 +41,7 @@ const Settings = (props) => {
 
       if (response.ok){
         const data = await response.json();
-        console.log('user updated from settings!')
+        console.log('user updated from settings! response:', data)
         // const navigate = useNavigate();
         // navigate('/dashboard');
       }
