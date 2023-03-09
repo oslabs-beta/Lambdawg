@@ -9,6 +9,7 @@ const Navbar = (props) => {
   const [navChecked, setNavChecked] = useState(false);
 
     const docsLink = '/docs';
+    const dashLink = '/dashboard';
     const settingsLink = './settings';
     const authLink = './auth';
     const homeLink = '/';
@@ -43,7 +44,8 @@ const Navbar = (props) => {
           </div>
           
           <div className="nav-links">
-            <Link to={docsLink} onClick={handleLinkClick}>Documentaion</Link>
+            <Link to={docsLink} onClick={handleLinkClick}>Documentation</Link>
+            <Link to={dashLink} onClick={handleLinkClick}>Dashboard</Link>
             <Link to={settingsLink} onClick={handleLinkClick}>Settings</Link>
             <Link to={authLink} onClick={handleLinkClick}>Login</Link>
           </div>

@@ -59,12 +59,13 @@ dbControllers.deleteUser = (req, res, next) => {
 };
 
 dbControllers.editUser = (req, res, next) => {
-  const { full_name, user_name, email, _id } = req.body[0];
+  // const { full_name, user_name, email, _id } = req.body[0];
+  const { arn, region, _id, user_name } = req.body[0];
 
   const text =
-    'UPDATE "public"."users" SET full_name = $1, email = $2 WHERE _id = $3';
+    'UPDATE "public"."users" SET arn = $1, region = $2 WHERE _id = $3';
 
-  db.query(text, [full_name, email, _id], (err, result) => {
+  db.query(text, [arn, region, _id], (err, result) => {
     if (err) {
       console.log(`Error Updating User: ${user_name}`, err);
       return res.status(500).send(`Error Updating User: ${user_name}`);

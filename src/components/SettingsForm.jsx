@@ -9,7 +9,7 @@ const Settings = (props) => {
     arn: '',
     region: '',
   });
-  console.log('user ', user.user_name)
+  // console.log('user ', user.user_name)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -18,7 +18,7 @@ const Settings = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('username in handlesubmit settings ', user.user_name)
+    // console.log('username in handlesubmit settings ', user.user_name)
 
     const arnFormData = {
       full_name: user.full_name, 
@@ -31,7 +31,7 @@ const Settings = (props) => {
     };
 
     try{
-      console.log('TRY in settings', arnFormData)
+      // console.log('TRY in settings', arnFormData)
       const response = await fetch(`http://localhost:3000/api/edit/${user.user_name}`, {
         method: 'PATCH',
         credentials: 'include',
@@ -59,7 +59,7 @@ const Settings = (props) => {
     setUser((prevUser) => ({ ...prevUser, arn: formData.arn, region: formData.aws_region }));
   }
 
-console.log(user.arn)
+// console.log(user.arn)
 
   return(
     <div className='horizontal-line'>
@@ -86,7 +86,7 @@ console.log(user.arn)
             value={formData.aws_region}
             onChange={handleInputChange}
             required
-            defaultValue={user.region || ''}
+            defaultValue={user.region}
            >
               <option value="">Select AWS Region</option>
               <option value="us-east-1">US East (N. Virginia)</option>

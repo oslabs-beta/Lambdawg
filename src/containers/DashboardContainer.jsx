@@ -42,10 +42,7 @@ const DashboardContainer = (props) => {
     setDataWindowFullScreen(!dataWindowFullScreen);
   };
 
-  // if (!loggedIn) {
-  //   return <Navigate to="/auth" />;
-  // }
-  
+
 
 // fetch names
 useEffect(() => { 
