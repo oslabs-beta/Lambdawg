@@ -11,6 +11,10 @@ const Settings = (props) => {
   });
   // console.log('user ', user.user_name)
 
+  useEffect(()=>{
+    console.log('use effect in settings form')
+  }, [user])
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -103,7 +107,7 @@ const Settings = (props) => {
         </form>
       </div>
       <Link to="/docs" ><button className='settings-secondary-button stack-button'>Read the Docs</button></Link>
-      <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
+     <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
 
     </div>
 

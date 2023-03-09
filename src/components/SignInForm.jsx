@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SignInForm = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
@@ -28,7 +28,8 @@ const SignInForm = (props) => {
       if (response.ok) {
         console.log('Sign in attempt passed auth (signInForm)');
         const data = await response.json();
-        const { user_name, full_name, email, _id, arn, region } = data[0]
+        console.log(data, 'line 31 signin')
+        const { user_name, full_name, email, _id, arn, region } = data
         setUser({
           full_name: full_name,
           user_name: user_name, 
@@ -50,6 +51,10 @@ const SignInForm = (props) => {
       console.log('Unable to sign-in at this time. (signInForm');
     }
   };
+
+  useEffect(() => {
+    console.log(user, 'sign in form')
+  }, [user])
 
   return (
     <div className='form-container'>
