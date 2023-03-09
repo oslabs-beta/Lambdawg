@@ -20,7 +20,7 @@ const signUpForm = (props) => {
       }
       if (formData.password_ != formData.confirmPassword) return handleMismatchedPasswords();
       if (formData.password_ == formData.confirmPassword) console.log('signing up....')
-      console.log(signUpFormData)
+      // console.log(signUpFormData)
       try {
         const response = await fetch('http://localhost:3000/api/newUser', {
           method: 'POST',
@@ -31,16 +31,16 @@ const signUpForm = (props) => {
         if (response.ok) {
           console.log('Sign up successful');
           const data = await response.json();
-          const { user_name, full_name, email, _id } = data
+          // const { user_name, full_name, email, _id } = data
           setUser({
-            full_name: full_name,
-            user_name: user_name, 
-            email: email,
-            _id: _id,
+            full_name: formData.full_name,
+            user_name: formData.user_name, 
+            email: formData.email,
+            _id: formData._id,
             // arn: arn,
             // region: region
           })
-          setLoggedIn(true);
+          // setLoggedIn(true);
         } else {
           console.log('Sign up failed');
         }

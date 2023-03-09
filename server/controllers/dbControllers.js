@@ -27,7 +27,7 @@ dbControllers.getUser = (req, res, next) => {
 
 dbControllers.addUser = (req, res, next) => {
   const text =
-    'INSERT INTO "public"."users" (full_name, user_name, email, password_) VALUES ($1, $2, $3, $4)';
+    'INSERT INTO "public"."users" (full_name, user_name, email, password_) VALUES ($1, $2, $3, $4) RETURNING _id, full_name, user_name, email';
   const { full_name, user_name, email } = req.body[0];
   const { password_ } = res.locals;
 
@@ -36,7 +36,9 @@ dbControllers.addUser = (req, res, next) => {
       console.log('Error at dbControllers.addUser: ', err);
       return res.status(500).send('Error Executing Insert Query ');
     }
-    console.log('Add User Query Executed Successfully', result);
+    console.log('Add User Query Executed Successfully', result.rows[0])
+    res.locals.user = result.rows[0];
+
     next();
   });
 };

@@ -31,7 +31,7 @@ router.post(
   encryptionController.hashPW,
   dbController.addUser,
   (req, res) => {
-    res.status(200).json({});
+    res.status(200).json(res.locals.user);
   }
 );
 //this will probably be somewhere after the user has already been verified
