@@ -7,19 +7,14 @@ import DashboardContainer from '../containers/DashboardContainer.jsx';
 const Auth = (props) => {
   const mascot = 'src/assets/logo.png'
   const [formType, setFormType] = useState("signIn");
-
   const { loggedIn, setLoggedIn, user, setUser } = props
+
+
   
   const toggleFormType = () => {
     setFormType(prevFormType => prevFormType === 'signIn' ? 'signUp' : 'signIn');
   };
 
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     // Render the DashboardContainer component if the user is logged in
-  //     return <DashboardContainer />;
-  //   }
-  // }, [loggedIn]);
 
   return(
     <div id='auth-container'>

@@ -53,7 +53,7 @@ const App = (props) => {
 
   return (
     <div className="router">
-      <Navbar loggedIn={loggedIn} />
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
       <div className="routerMain" id="content">
         <Routes>
           

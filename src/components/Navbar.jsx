@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 // import { VscSettingsGear, VscBook, VscColorMode, VscMenu, VscKey, VscFileCode } from 'react-icons/vsc';
 
 const Navbar = (props) => {
-  const { loggedIn } = props;
+  const { loggedIn, setLoggedIn } = props;
   const [navChecked, setNavChecked] = useState(false);
 
     const docsLink = '/docs';
@@ -19,6 +19,19 @@ const Navbar = (props) => {
     const handleLinkClick = () => {
       setNavChecked(false);
     };
+
+    const handleLinkClickAuth = async () => {
+      if (loggedIn){
+        const response = await fetch('/api/logout')
+        if (response.ok) {
+          setLoggedIn(false);
+          console.log('logout worked yo!')
+        }
+        else console.log('logout didnt work brah')
+      }
+      // setLoggedIn(false);
+      setNavChecked(false);
+    }
 
     return(
       
@@ -47,7 +60,7 @@ const Navbar = (props) => {
             <Link to={docsLink} onClick={handleLinkClick}>Documentation</Link>
             <Link to={dashLink} onClick={handleLinkClick}>Dashboard</Link>
             <Link to={settingsLink} onClick={handleLinkClick}>Settings</Link>
-            <Link to={authLink} onClick={handleLinkClick}>Login</Link>
+            <Link to={authLink} onClick={handleLinkClickAuth}>{loggedIn ? 'Log out' : 'Log in'}</Link>
           </div>
         </div>
     );
