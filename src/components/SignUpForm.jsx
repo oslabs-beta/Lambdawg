@@ -31,12 +31,12 @@ const signUpForm = (props) => {
         if (response.ok) {
           console.log('Sign up successful');
           const data = await response.json();
-          // const { user_name, full_name, email, _id } = data
+          const { user_name, full_name, email, _id } = data
           setUser({
-            full_name: formData.full_name,
-            user_name: formData.user_name, 
-            email: formData.email,
-            _id: formData._id,
+            full_name: full_name,
+            user_name: user_name, 
+            email: email,
+            _id: _id,
             // arn: arn,
             // region: region
           })
