@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 // import { VscSettingsGear, VscBook, VscColorMode, VscMenu, VscKey, VscFileCode } from 'react-icons/vsc';
 
 const Navbar = (props) => {
-  const { loggedIn, setLoggedIn } = props;
+  const { loggedIn, setLoggedIn, user } = props;
   const [navChecked, setNavChecked] = useState(false);
 
     const docsLink = '/docs';
@@ -58,7 +58,7 @@ const Navbar = (props) => {
           
           <div className="nav-links">
             <Link to={docsLink} onClick={handleLinkClick}>Documentation</Link>
-            <Link to={dashLink} onClick={handleLinkClick}>Dashboard</Link>
+            {user.arn && <Link to={dashLink} onClick={handleLinkClick}>Dashboard</Link>}
             <Link to={settingsLink} onClick={handleLinkClick}>Settings</Link>
             <Link to={authLink} onClick={handleLinkClickAuth}>{loggedIn ? 'Log out' : 'Log in'}</Link>
           </div>

@@ -9,7 +9,8 @@ const Settings = (props) => {
     arn: '',
     region: '',
   });
-  // console.log('user ', user.user_name)
+
+  const navigate = useNavigate();
 
   useEffect(()=>{
     console.log('use effect in settings form')
@@ -46,8 +47,7 @@ const Settings = (props) => {
       if (response.ok){
         const data = await response.json();
         console.log('user updated from settings! response:', data)
-        // const navigate = useNavigate();
-        // navigate('/dashboard');
+        navigate('/dashboard');
       }
       else {
         console.log('Unable to patch arn etc from settings')

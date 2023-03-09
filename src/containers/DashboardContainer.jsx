@@ -13,6 +13,8 @@ const DashboardContainer = (props) => {
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
 
+  useEffect(()=>{ console.log('listening for arn in dashboard') }, [user])
+
   /// toggle full screen for mobile
   const handlePanelClick = () => {
     if (panelFullScreen) {
@@ -45,26 +47,25 @@ const DashboardContainer = (props) => {
 // fetch names
 useEffect(() => { 
   const fetchNames = async() => {
-    console.log('user arn', user.arn)
-    try{
-      const response = await fetch('http://localhost:3000/getLambdaNames', {
-        method: 'POST', 
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          arn: user.arn
-        }),
-        muteHttpExceptions: true
-      });
-      const data = await response.json()
-      setMsNames(data);
-      console.log('names:', data)
-    }
-    catch(error){
-      console.log(error, 'error fetching MsNames')
-    }
-  }; 
-  fetchNames(); 
-}, [])
+      try{
+        const response = await fetch('http://localhost:3000/getLambdaNames', {
+          method: 'POST', 
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            arn: user.arn
+          }),
+          muteHttpExceptions: true
+        });
+        const data = await response.json()
+        setMsNames(data);
+        console.log('names:', data)
+      }
+      catch(error){
+        console.log(error, 'error fetching MsNames')
+      }
+    }; 
+    fetchNames(); 
+}, [user])
 
 // fetch metrics
 useEffect(() => {

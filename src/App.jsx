@@ -54,7 +54,7 @@ const App = (props) => {
 
   return (
     <div className="router">
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user}/>
       <div className="routerMain" id="content">
         <Routes>
           

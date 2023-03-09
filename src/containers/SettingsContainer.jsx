@@ -12,7 +12,6 @@ const SettingsContainer = (props) => {
 
   return(
     <div>
-      {/* {user.user_name && (  */}
 
       <div id='settings-container'>
         <img src={mascot} className='large-mascot'/>
@@ -30,7 +29,6 @@ const SettingsContainer = (props) => {
 
     </div>
 
-    {/* )} */}
 </div>
 
   )
