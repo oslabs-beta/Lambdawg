@@ -42,9 +42,9 @@ router.delete(
   dbController.deleteUser,
   (req, res) => res.status(200).json({})
 );
-//will only edit full_name & email
+
 router.patch(
-  '/edit',
+  '/edit/:user_name',
   authController.verifyUN_Pass,
   dbController.editUser,
   (req, res) => {
@@ -59,8 +59,7 @@ router.post(
   cookieController.setCookie,
   dbController.getUsers,
   (req, res) => {
-    // console.log('res.headers -> ', res.getHeaders());
-    console.log('leaving the user sign in api route')
+    console.log('res.headers -> ', res.getHeaders());
     res.status(200).json(res.locals.data.rows);
   }
 );

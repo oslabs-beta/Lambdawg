@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const cookieControllers = {};
 
 cookieControllers.setCookie = (req, res, next) => {
-  console.log('inside set cookie')
+  // console.log('inside set cookie')
   const { user_name } = req.params;
 
   const accessToken = jwt.sign(user_name, process.env.ACCESS_SECRET_TOKEN);

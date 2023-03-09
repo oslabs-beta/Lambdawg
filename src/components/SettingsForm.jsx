@@ -9,6 +9,7 @@ const Settings = (props) => {
     arn: '',
     region: '',
   });
+  console.log('user ', user.user_name)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -17,6 +18,8 @@ const Settings = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('username in handlesubmit settings ', user.user_name)
+
     const arnFormData = {
       full_name: user.full_name, 
       user_name: user.user_name,
@@ -26,10 +29,10 @@ const Settings = (props) => {
       arn: formData.arn,
       region: formData.aws_region,
     };
-    console.log([arnFormData])
 
     try{
-      const response = await fetch('http://localhost:3000/api/edit', {
+      console.log('TRY in settings', arnFormData)
+      const response = await fetch(`http://localhost:3000/api/edit/${user.user_name}`, {
         method: 'PATCH',
         credentials: 'include',
         headers: {'content-type': 'application/json'},
@@ -44,6 +47,7 @@ const Settings = (props) => {
       }
       else {
         console.log('Unable to patch arn etc from settings')
+        console.log('user inside else block of fetch in settings', user)
       }
 
     }
@@ -51,10 +55,12 @@ const Settings = (props) => {
       console.log('Something went wrong in settings patch req')
 
     }
-    setUser({ arn: formData.arn, region: formData.aws_region })
+    // setUser({ user_name: user.user_name, arn: formData.arn, region: formData.aws_region })
+    setUser((prevUser) => ({ ...prevUser, arn: formData.arn, region: formData.aws_region }));
   }
 
 console.log(user.arn)
+
   return(
     <div className='horizontal-line'>
       <p>

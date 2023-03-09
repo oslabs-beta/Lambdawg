@@ -15,6 +15,7 @@ const Panel = (props) => {
   let i = 0;
   if (msNames){
     msNames.forEach((name) => {
+      i++;
       names.push(<Microservice name={name} key={`${name}MsEl${i}`} msMetrics={msMetrics} className='panel-names'/>)
     })
   }
@@ -24,7 +25,6 @@ const Panel = (props) => {
     return(
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
         {names}
-        {/* <h1>hello</h1> */}
       </div>
     )
   }

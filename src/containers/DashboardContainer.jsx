@@ -50,6 +50,7 @@ const DashboardContainer = (props) => {
 // fetch names
 useEffect(() => { 
   const fetchNames = async() => {
+    console.log('user arn', user.arn)
     try{
       const response = await fetch('http://localhost:3000/getLambdaNames', {
         method: 'POST', 
@@ -76,8 +77,11 @@ useEffect(() => {
     const fetchMetrics = async () => {
       try {
         const response = await fetch('http://localhost:3000/getLambdaMetrics', {
-          method: 'GET',
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            arn: user.arn
+          }),
           muteHttpExceptions: true,
         });
         const data = await response.json();

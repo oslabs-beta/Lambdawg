@@ -57,8 +57,11 @@ useEffect(() => {
     const fetchLogs = async () => {
       try {
         const response = await fetch('http://localhost:3000/getLambdaLogs', {
-          method: 'GET',
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            arn: user.arn
+          }),
           muteHttpExceptions: true,
         });
         const data = await response.json();
