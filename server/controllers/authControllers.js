@@ -7,7 +7,7 @@ const authControllers = {};
 authControllers.verifyUN_Pass = (req, res, next) => {
   const { user_name } = req.params;
   const { password_ } = req.body[0];
-  // console.log(user_name, password_);
+  console.log('inside verifyUN in auth controller');
 
   const text = 'SELECT * FROM public.users WHERE user_name = $1';
   db.query(text, [user_name], async (err, result) => {

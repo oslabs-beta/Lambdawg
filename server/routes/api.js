@@ -57,10 +57,11 @@ router.post(
   '/:user_name',
   authController.verifyUN_Pass,
   cookieController.setCookie,
+  dbController.getUsers,
   (req, res) => {
-    console.log('res.headers -> ', res.getHeaders());
-
-    res.sendStatus(200);
+    // console.log('res.headers -> ', res.getHeaders());
+    console.log('leaving the user sign in api route')
+    res.status(200).json(res.locals.data.rows);
   }
 );
 

@@ -26,7 +26,7 @@ const SignInForm = (props) => {
       });
 
       if (response.ok) {
-        console.log(document.cookie, 'Sign in attempt passed auth (signInForm)');
+        console.log('Sign in attempt passed auth (signInForm)');
         const data = await response.json();
         const { user_name, full_name, email, _id, arn, region } = data
         setUser({
@@ -46,7 +46,7 @@ const SignInForm = (props) => {
         passwordInput.value = '';
       }
     } catch (error) {
-      console.error(error);
+      console.error(error, 'error from signIn catch');
       console.log('Unable to sign-in at this time. (signInForm');
     }
   };

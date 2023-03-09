@@ -13,7 +13,7 @@ const DashboardContainer = (props) => {
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
 
-  
+  /// toggle full screen for mobile
   const handlePanelClick = () => {
     if (panelFullScreen) {
       return;
@@ -52,8 +52,11 @@ useEffect(() => {
   const fetchNames = async() => {
     try{
       const response = await fetch('http://localhost:3000/getLambdaNames', {
-        method: 'GET', 
+        method: 'POST', 
         headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          arn: user.arn
+        }),
         muteHttpExceptions: true
       });
       const data = await response.json()

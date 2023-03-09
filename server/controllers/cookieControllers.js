@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const cookieControllers = {};
 
 cookieControllers.setCookie = (req, res, next) => {
+  console.log('inside set cookie')
   const { user_name } = req.params;
 
   const accessToken = jwt.sign(user_name, process.env.ACCESS_SECRET_TOKEN);
@@ -12,15 +13,14 @@ cookieControllers.setCookie = (req, res, next) => {
   // , secure: true  // If I want to make it via https only add this in the object below
   // res.cookie('jwt', accessToken);
   res.cookie('jwt', accessToken, {
-    httpOnly: false,
+    httpOnly: true,
     sameSite: 'none',
-    secure: true
   });
   return next();
 };
 
 cookieControllers.authenticateCookie = (req, res, next) => {
-  console.log('inside cookie controller', JSON.stringify(req.cookie))
+  console.log('inside authenticate cookie', JSON.stringify(req.cookie))
 
   //assigns the jwt string to authHeader
   const authHeader = req.headers.cookie;
