@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import HorizontalBarChart from "../Chart/BarChart2";
-import BarChart from "../Chart/BarChart";
 import Bubbles from "../Chart/BubbleChart";
+import NodeChart from "../Chart/NodeChart";
 const DiagramContainer = (props) => {
   const { diagramFullScreen, setDiagramFullScreen } = props;
   const { msNames, msMetrics, msTraces } = props;
+  console.log("diagram container mstraces", msTraces, msMetrics);
   // window.addEventListener("message", receiveMessage, false);
   // function receiveMessage(event) {
   //   if (event.origin !== "http://localhost:5173") return;
@@ -13,9 +14,9 @@ const DiagramContainer = (props) => {
 
   return (
     <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
-      <HorizontalBarChart msNames={msNames} msTraces={msTraces} />
-      {/* <BarChart /> */}
-      <Bubbles msMetrics={msMetrics} />
+      {/* <HorizontalBarChart msNames={msNames} msTraces={msTraces} /> */}
+      {/* <Bubbles msMetrics={msMetrics} /> */}
+      <NodeChart />
       {/* <iframe id='chart-frame' width='100%' src='/src/Chart/index.html' /> */}
     </div>
   );

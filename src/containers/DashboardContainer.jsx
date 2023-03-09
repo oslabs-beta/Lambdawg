@@ -13,7 +13,6 @@ const DashboardContainer = (props) => {
   const [msMetrics, setMsMetrics] = useState({});
   const [msTraces, setMsTraces] = useState([]);
 
-  
   const handlePanelClick = () => {
     if (panelFullScreen) {
       return;
@@ -89,42 +88,44 @@ const DashboardContainer = (props) => {
   //fetch individual lambda trace data for latency graphs
   useEffect(() => {
     //we need names to fetch traces also
-    if (msNames) {
-      const fetchTraces = async () => {
-        try {
-          const response = await fetch("http://localhost:3000/getTraces", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            muteHttpExceptions: true,
-          });
-          const data = await response.json();
-          //methinks this is what I'd do
-          //just parsing name, duration, responseTime, service trails
-          const traceData = await data.map((obj) => {
-            if (!obj.summary.length) {
-              return {
-                name: obj.data,
-                duration: undefined,
-                responseTime: undefined,
-                serviceIds: undefined,
-              };
-            } else {
-              return {
-                name: obj.data,
-                duration: obj.summary[0].Duration,
-                responseTime: obj.summary[0].ResponseTime,
-                serviceIds: obj.summary[0].ServiceIds,
-              };
-            }
-          });
-          setMsTraces(traceData);
-          console.log("dashboard traces useEffect: ", msTraces);
-        } catch (error) {
-          console.log("error fetching traces", error);
-        }
-      };
-      fetchTraces();
-    }
+    const fetchTraces = async () => {
+      console.log("in fetch traces");
+      try {
+        const response = await fetch("http://localhost:3000/getTraces", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          muteHttpExceptions: true,
+        });
+        const data = await response.json();
+
+        //dataArray from backend is array of obj
+        //just parsing name, duration, responseTime, service trails
+        const traceData = await data.map((obj) => {
+          if (!obj.summary.length) {
+            return {
+              name: obj.name,
+              duration: undefined,
+              responseTime: undefined,
+              serviceIds: undefined,
+            };
+          } else {
+            return {
+              name: obj.name,
+              duration: obj.summary[0].Duration,
+              responseTime: obj.summary[0].ResponseTime,
+              serviceIds: obj.summary[0].ServiceIds,
+            };
+          }
+        });
+        //trying to parse serviceIdData all at once
+        setMsTraces(traceData);
+        console.log("dashboard traces useEffect: ", msTraces);
+      } catch (error) {
+        console.log("error fetching traces", error);
+      }
+    };
+    fetchTraces();
+    console.log("mstraces in fetch dashboard", msTraces);
   }, []);
 
   return (
