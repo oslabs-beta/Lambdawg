@@ -41,7 +41,7 @@ app.use('/api', apiRouter);
 
 // app.post('/');
 
-app.get(
+app.post(
   '/getLambdaNames',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
@@ -52,7 +52,7 @@ app.get(
   }
 );
 
-app.get(
+app.post(
   '/getTraces',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
@@ -62,7 +62,7 @@ app.get(
   }
 );
 
-app.get(
+app.post(
   '/getLambdaLogs',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
@@ -73,7 +73,7 @@ app.get(
   }
 );
 
-app.get(
+app.post(
   '/getLambdaMetrics',
   credentialController.getCredentials,
   listLambdasController.getLambdas,

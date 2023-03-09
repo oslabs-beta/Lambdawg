@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 
 const SignInForm = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
-  const { loggedIn, setLoggedIn } = props;
+  const { loggedIn, setLoggedIn, user, setUser } = props;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  // sign in form logic > logs in & saves { user } to state
   const handleSubmit = async (event) => {
     event.preventDefault();
     const signInFormData = {
@@ -17,20 +18,28 @@ const SignInForm = (props) => {
     };
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/${formData.user_name}`,
-        {
-          method: 'POST',
-          credentials: 'include',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify([signInFormData]),
-        }
-      );
+      const response = await fetch(`http://localhost:3000/api/${formData.user_name}`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify([signInFormData]),
+      });
 
       if (response.ok) {
-        console.log('Sign in attempt passed auth');
+        console.log(document.cookie, 'Sign in attempt passed auth (signInForm)');
+        const data = await response.json();
+        const { user_name, full_name, email, _id, arn, region } = data
+        setUser({
+          full_name: full_name,
+          user_name: user_name, 
+          email: email,
+          _id: _id,
+          arn: arn,
+          region: region
+        })
         setLoggedIn(true);
-      } else {
+      } 
+      else {
         console.log('Invalid password');
         const passwordInput = document.getElementById('password_');
         passwordInput.style.border = '2px solid red';
@@ -38,7 +47,7 @@ const SignInForm = (props) => {
       }
     } catch (error) {
       console.error(error);
-      console.log('Unable to sign-in at this time.');
+      console.log('Unable to sign-in at this time. (signInForm');
     }
   };
 
