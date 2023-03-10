@@ -12,6 +12,7 @@ const DashboardContainer = (props) => {
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
+  const [msLogs, setMsLogs] = useState({})
 
   useEffect(()=>{ console.log('listening for arn in dashboard') }, [user])
 
@@ -104,11 +105,11 @@ useEffect(() => {
     <div id='dashboard-container'>
 
       <div id='dashboard-wrapper' className={dataWindowFullScreen ? 'collapse-screen' : 'full-screen'}>
-        <Panel user={user} msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} />
+        <Panel user={user} msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} msLogs={msLogs} setMsLogs={setMsLogs}/>
         <DiagramContainer diagramFullScreen={diagramFullScreen} setDiagramFullScreen={setDiagramFullScreen} />
       </div>
 
-      <DataWindow dataWindowFullScreen={dataWindowFullScreen} setDataWindowFullScreen={setDataWindowFullScreen} />
+      <DataWindow dataWindowFullScreen={dataWindowFullScreen} setDataWindowFullScreen={setDataWindowFullScreen} msLogs={msLogs} setMsLogs={setMsLogs}/>
 
       <div className='block-button-wrapper dashboard-buttons'>
         <button className='secondary-button' id='panelButton' onClick={handlePanelClick}>Panel</button>
