@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 // import { VscSettingsGear, VscBook, VscColorMode, VscMenu, VscKey, VscFileCode } from 'react-icons/vsc';
 
 const Navbar = (props) => {
@@ -16,20 +16,28 @@ const Navbar = (props) => {
     const mascot = 'src/assets/mascot_head.svg';
     const logoText = 'src/assets/logo-text.png';
 
+    const navigate = useNavigate();
     const handleLinkClick = () => {
       setNavChecked(false);
     };
 
     const handleLinkClickAuth = async () => {
       if (loggedIn){
-        const response = await fetch('/api/logout')
+        try{
+        const response = await fetch('http://localhost:3000/api/logout', {
+          credentials: 'include'
+        })
         if (response.ok) {
           setLoggedIn(false);
+          navigate('/auth');
           console.log('logout worked yo!')
         }
-        else console.log('logout didnt work brah')
+        else console.log('logout didnt work brah', loggedIn)
       }
-      // setLoggedIn(false);
+      catch(error){
+        console.log('catch block in logout')
+      }
+      }
       setNavChecked(false);
     }
 

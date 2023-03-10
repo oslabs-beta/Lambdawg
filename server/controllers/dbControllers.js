@@ -10,7 +10,7 @@ dbControllers.getUser = (req, res, next) => {
   db.query(text)
     .then((response) => {
       res.locals.data = response;
-      console.log('dbcontrol.getusers:', res.locals.data.rows)
+      // console.log('dbcontrol.getusers:', res.locals.data.rows)
 
       return next();
     })

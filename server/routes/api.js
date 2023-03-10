@@ -64,7 +64,7 @@ router.post(
   }
 );
 
-router.use('/logout', cookieController.deleteCookie, (req, res) => {
+router.get('/logout', cookieController.deleteCookie, (req, res) => {
   res.status(200).json();
 });
 
