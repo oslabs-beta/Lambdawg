@@ -51,18 +51,18 @@
 }
 .log-wrap {
   margin-bottom: 1rem;
+  // border: 1px solid red;
 }
 .log-name {
  color: $error-font-color;
  padding-bottom: .5rem;
- border-bottom: 1px solid $code-font-color;
 
 }
 .msg-name {
  padding-bottom: .5rem;
 }
-.time-stamp {
-  color: $error-font-color;
+.time-name {
+
 }
 
 
