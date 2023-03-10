@@ -7,11 +7,14 @@ function Log(props) {
   console.log('inside LOG', logs)
   return (
     <div id={functionName}>
-      <h2>{functionName}</h2>
-      <ul>
+      <h2 className='log-name'>{functionName}</h2>
+      <ul id='log-ul'>
         {logs.map((log, index) => (
-          <li key={index}>
-            <div>{log.timestamp}: {log.message}</div>
+          <li className='log-wrap' key={index}>
+            <div>
+              <span className='time-stamp'>{log.timestamp}</span>: <br />
+              {log.message}
+              </div>
           </li>
         ))}
       </ul>
