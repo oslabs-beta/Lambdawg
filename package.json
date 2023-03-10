@@ -37,6 +37,7 @@
     "react-router-dom": "^6.8.1",
     "react-switch": "^7.0.0",
     "redis": "^4.6.5",
+    "redis-server": "^1.2.2",
     "sass": "^1.58.3",
     "validator": "^13.9.0"
   },
