@@ -48,6 +48,8 @@ $button-background-color: white;
 
 $button-color: #f75215;
 $button-font-color: black;
+$button-current-page-indicator: lighten($button-color, 20%);
+
 
 
 /// Forms
