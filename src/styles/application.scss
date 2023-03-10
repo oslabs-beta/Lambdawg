@@ -58,7 +58,9 @@ a:visited {
 a:active {
   color: $tertiary-font-color;
 }
-
+button:active {
+  transform:translateY(2px);
+}
 
 // media queries
 @media (max-width: 1000px) {
