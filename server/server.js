@@ -56,7 +56,7 @@ app.post(
   '/getTraces',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
-  // tracesController.getTraces,
+  tracesController.getTraces,
   (req, res) => {
     return res.status(200).json(res.locals.traces);
   }
