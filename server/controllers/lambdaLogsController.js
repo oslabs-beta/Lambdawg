@@ -119,7 +119,9 @@ const getLambdaLogs = async (req, res, next) => {
         console.log('cache miss');
         const fullfunc = async () => {
           res.locals.functionLogs = [];
-          for (const Lambda of res.locals.lambdaNames) {
+          console.log(res.locals.lambdaNames);
+          for (let Lambda of res.locals.lambdaNames) {
+            console.log('in lambda ' + Lambda);
             const currFunc = Lambda;
             const logGroupName = '/aws/lambda/' + currFunc;
 
@@ -208,7 +210,7 @@ const getLambdaLogs = async (req, res, next) => {
                   });
                 }
               });
-
+              console.log('logeventmessages ' + logEventsMessages);
               res.locals.functionLogs.push({
                 FunctionName: Lambda,
                 logs: logEventsMessages,
@@ -219,13 +221,13 @@ const getLambdaLogs = async (req, res, next) => {
                 'EX',
                 60 * 60
               );
-              return next();
             } catch (err) {
               if (err) console.error(err);
               console.log('there was an error in the loop : ' + err);
               //return next(err);
             }
           }
+          return next();
         };
         fullfunc();
       }
