@@ -80,6 +80,6 @@ function HorizontalBarChart(props) {
     console.log("this is lambda serviceid array", tempLambdaServices);
   }, []);
 
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} className='chart-container'/>;
 }
 export default HorizontalBarChart;

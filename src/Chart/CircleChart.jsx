@@ -49,7 +49,7 @@ const CircleChart = (props) => {
   return (
     <div className="charts" style={{ width: width, margin: "0 auto" }}>
       <div className="bubbleChart" style={{ background: "$theme-color-1" }}>
-        <BubbleChart bubbleChartData={bubbleChartData} handleTogglePanel={handleTogglePanel} />
+        <BubbleChart bubbleChartData={bubbleChartData} handleTogglePanel={handleTogglePanel}/>
       </div>
     </div>
   );

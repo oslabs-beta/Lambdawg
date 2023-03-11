@@ -2,6 +2,11 @@
 // * {
 //   border: 1px solid red;
 // }
+.chart-container {
+ max-width: 60vw;
+ padding: 1rem;
+ 
+}
 
 #dashboard-wrapper { // panel and diagram
   display: flex;

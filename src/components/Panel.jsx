@@ -2,6 +2,7 @@
 import React from 'react';
 import LamdaButton from '../components/LamdaButton.jsx';
 import Refresh from '../components/Refresh.jsx';
+// refresh: true in body of refresh request to / set off fresh fetch chain
 
 const Panel = (props) => {
 
