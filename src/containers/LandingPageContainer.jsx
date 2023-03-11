@@ -18,8 +18,8 @@ const LandingPageContainer = (props) => {
   // video presentation elements with descriptions
   // basically sell this shit on this page
   const redirectToAuth = () => {
-    setShouldRedirect(false);
-    // setShouldRedirect(true);
+    // setShouldRedirect(false);
+    setShouldRedirect(true);
   };
 
   if (shouldRedirect) {

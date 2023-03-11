@@ -1,5 +1,5 @@
-const db = require('../models/dbPool');
-const validator = require('validator');
+const db = require("../models/dbPool");
+const validator = require("validator");
 
 const dbControllers = {};
 
@@ -19,7 +19,7 @@ dbControllers.getUser = (req, res, next) => {
         log: `Express Error Handler caught getUsers error: ${err}`,
         status: 500,
         message: {
-          err: 'dbControllerTest.getUsers encountered an error',
+          err: "dbControllerTest.getUsers encountered an error",
         },
       });
     });
@@ -33,10 +33,10 @@ dbControllers.addUser = (req, res, next) => {
 
   db.query(text, [full_name, user_name, email, password_], (err, result) => {
     if (err) {
-      console.log('Error at dbControllers.addUser: ', err);
-      return res.status(500).send('Error Executing Insert Query ');
+      console.log("Error at dbControllers.addUser: ", err);
+      return res.status(500).send("Error Executing Insert Query ");
     }
-    console.log('Add User Query Executed Successfully', result.rows[0])
+    console.log("Add User Query Executed Successfully", result.rows[0]);
     res.locals.user = result.rows[0];
 
     next();
@@ -50,14 +50,14 @@ dbControllers.deleteUser = (req, res, next) => {
   // console.log(req.params);
   db.query(text, [user_name], (err, result) => {
     if (err) {
-      console.log('Error at dbControllers.deleteUser: ', err);
-      return res.status(500).send('Error Executing Delete Query');
+      console.log("Error at dbControllers.deleteUser: ", err);
+      return res.status(500).send("Error Executing Delete Query");
     }
     if (result.rowCount === 0) {
-      console.log('User Not Found');
-      return res.status(404).send('User Not Found');
+      console.log("User Not Found");
+      return res.status(404).send("User Not Found");
     }
-    console.log('Delete User Query Executed Successfully', result);
+    console.log("Delete User Query Executed Successfully", result);
     next();
   });
 };
@@ -66,8 +66,7 @@ dbControllers.editUser = (req, res, next) => {
   // const { full_name, user_name, email, _id } = req.body[0];
   const { arn, region, _id, user_name } = req.body[0];
 
-  const text =
-    'UPDATE "public"."users" SET arn = $1, region = $2 WHERE _id = $3';
+  const text = 'UPDATE "public"."users" SET arn = $1, region = $2 WHERE _id = $3';
 
   db.query(text, [arn, region, _id], (err, result) => {
     if (err) {

@@ -97,7 +97,8 @@ const DashboardContainer = (props) => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              arn: user.arn,
+              // arn: user.arn,
+              arn: "arn:aws:iam::498545057811:role/LambdawgDelegationRole",
             }),
             muteHttpExceptions: true,
           });

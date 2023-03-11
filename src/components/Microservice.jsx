@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Microservice = (props) => {
-  const { name, msMetrics, user, msLogs, setMsLogs } = props;
+  const { name, msMetrics, user } = props;
   const [sortedMetrics, setSortedMetrics] = useState({});
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [msLogs, setMsLogs] = useState({});
