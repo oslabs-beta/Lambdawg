@@ -17,9 +17,9 @@ const DiagramContainer = (props) => {
 
   return (
     <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
-      <HorizontalBarChart msNames={msNames} msTraces={msTraces} />
+      {/* <HorizontalBarChart msNames={msNames} msTraces={msTraces} /> */}
       {/* <Bubbles msMetrics={msMetrics} /> */}
-      <Charts msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} />
+      {/* <Charts msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} /> */}
       {/* <NodeChart msServiceIds={msServiceIds} /> */}
       <iframe id="chart-frame" width="100%" src="/src/Chart/index.html" />
     </div>
