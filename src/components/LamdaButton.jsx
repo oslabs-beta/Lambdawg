@@ -1,6 +1,5 @@
 
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 
 const LamdaButton = (props) => {
@@ -82,6 +81,11 @@ const LamdaButton = (props) => {
 // Populate logs in data window
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
+
+    const logElement = document.getElementById(`${name}log`);
+    if (logElement) {
+      logElement.scrollIntoView();
+    }
   }
   
 
@@ -89,7 +93,7 @@ const LamdaButton = (props) => {
     <div>
       {sortedMetrics[name] && (
         <div>
-          <Link to={`#${name}log`}><button id={name} className='metrics-button' onClick={togglePanel}>{`${name}`}</button></Link>
+            <button id={name} className='metrics-button' onClick={togglePanel}>{`${name}`}</button>
   
           <div
             id={`${name} Metrics`}
@@ -109,5 +113,3 @@ const LamdaButton = (props) => {
 }
 
 export default LamdaButton;
-
-
