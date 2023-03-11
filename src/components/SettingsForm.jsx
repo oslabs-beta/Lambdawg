@@ -12,17 +12,29 @@ const Settings = (props) => {
 
   const navigate = useNavigate();
 
-  // useEffect(()=>{
-  //   console.log('use effect in settings form')
-  // }, [user])
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  const handleInvalidArn = () => {
+    console.log('not a valid arn')
+    const arnInput = document.getElementById('arnInputField');
+    arnInput.style.border = '2px solid red';
+  }
+
+  const handleAuthFail = () => {
+    const pwInput = document.getElementById('arnPasswordField');
+    pwInput.style.border = '2px solid red';
+    setFormData((prevFormData) => ({ ...prevFormData, password_: '' }));
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(formData.arn, 'yeehaw')
+    if (formData.arn.substring(0, 12) !== 'arn:aws:iam:') return handleInvalidArn();
+
     console.log('username in handlesubmit settings ', user.user_name)
 
     const arnFormData = {
@@ -50,6 +62,7 @@ const Settings = (props) => {
         navigate('/dashboard');
       }
       else {
+        handleAuthFail();
         console.log('Unable to patch arn etc from settings')
         console.log('user inside else block of fetch in settings', user)
       }
@@ -76,6 +89,7 @@ const Settings = (props) => {
         <form onSubmit={handleSubmit}>
             {/* <input type="password" name="arn" placeholder=' ARN key' value={formData.arn} onChange={handleInputChange} required /> */}
             <input
+              id='arnInputField'
               type="password"
               name="arn"
               placeholder={user.arn ? user.arn : ' ARN key'}
@@ -103,7 +117,7 @@ const Settings = (props) => {
               <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
               <option value="sa-east-1">South America (São Paulo)</option>
             </select><br/>
-            <input type="password" name="password_" placeholder=' Your LAMBDAWG password' value={formData.password_} onChange={handleInputChange} required />
+            <input id='arnPasswordField' type="password" name="password_" placeholder=' Your LAMBDAWG password' value={formData.password_} onChange={handleInputChange} required />
         </form>
       </div>
       <Link to="/docs" ><button className='settings-secondary-button stack-button'>Read the Docs</button></Link>
