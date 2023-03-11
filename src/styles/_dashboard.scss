@@ -1,7 +1,4 @@
 
-// * {
-//   border: 1px solid red;
-// }
 .chart-container {
  max-width: 60vw;
  padding: 1rem;
@@ -72,8 +69,8 @@
 }
 
 #diagram-container-wrapper {
-  flex-grow: 1;
-  flex-shrink: 0;
+  overflow: hidden;
+  flex: 1;
   display: flex;
   justify-content: center;
   background-color: $diagram-background-color;
