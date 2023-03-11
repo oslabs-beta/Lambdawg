@@ -13,9 +13,8 @@ cookieControllers.setCookie = (req, res, next) => {
   // , secure: true  // If I want to make it via https only add this in the object below
   // res.cookie('jwt', accessToken);
   res.cookie('jwt', accessToken, {
-    httpOnly: false,
+    httpOnly: true,
     sameSite: 'none',
-    secure: true,
   });
   return next();
 };
