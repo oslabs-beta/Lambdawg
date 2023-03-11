@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-const Microservice = (props) => {
+const LamdaButton = (props) => {
   const { name, msMetrics, user, msLogs, setMsLogs } = props;
   const [sortedMetrics, setSortedMetrics] = useState({});
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -11,7 +11,7 @@ const Microservice = (props) => {
   useEffect(() => {
 
     if (!msMetrics || !Array.isArray(msMetrics)) return console.log('no metrics here dawg');
-    // console.log('microservice metrics', msMetrics)
+    // console.log('LamdaButton metrics', msMetrics)
   
     const tempSortedMetrics = {};
     let invocationsSum = 0;
@@ -48,7 +48,7 @@ const Microservice = (props) => {
       }
     });
   
-    // console.log('microservice sorted', tempSortedMetrics[name]);
+    // console.log('LamdaButton sorted', tempSortedMetrics[name]);
     setSortedMetrics(tempSortedMetrics);
   }, [msMetrics]);
 
@@ -107,60 +107,6 @@ const Microservice = (props) => {
   
 }
 
-export default Microservice;
+export default LamdaButton;
 
 
-
-
-
-// import React, { useState } from 'react';
-
-// const Microservice = ({ name, msMetrics }) => {
-//   const [isPanelOpen, setIsPanelOpen] = useState(false);
-
-//   const togglePanel = () => {
-//     setIsPanelOpen(!isPanelOpen);
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={togglePanel}>{name}</button>
-//       <div className={`metrics-toggle-panel ${isPanelOpen ? 'open' : ''}`}>
-//         <ul>
-//           {msMetrics &&
-//             msMetrics.map((metricsObj) => {
-//               const microName = metricsObj.Label.split(' ')[0];
-//               const label = metricsObj.Label.split(' ')[1];
-
-//               if (label === 'Invocations') {
-//                 return (
-//                   <li key={`${microName}-invocations`}>
-//                     Invocations: {metricsObj.Values.reduce((a, b) => a + b)}
-//                   </li>
-//                 );
-//               }
-
-//               if (label === 'Errors') {
-//                 const timeStamps = metricsObj.Values.map((num, i) => (
-//                   <span key={`${microName}-${i}`} className={num > 0 ? 'timestamp-error' : 'timestamp'}>
-//                     {metricsObj.Timestamps[i]}
-//                   </span>
-//                 ));
-
-//                 return (
-//                   <li key={`${microName}-errors`}>
-//                     Errors: {metricsObj.Values.reduce((a, b) => a + b)}
-//                     <ul>{timeStamps}</ul>
-//                   </li>
-//                 );
-//               }
-
-//               return null;
-//             })}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Microservice;
