@@ -1,23 +1,20 @@
-const Redis = require('redis');
+const Redis = require("redis");
 // const getOrSetCache = require('../redis');
 const redisClient = Redis.createClient();
 (async () => {
   await redisClient.connect().catch((err) => {
-    console.log('Redis Connect Error: ' + err.message);
+    console.log("Redis Connect Error: " + err.message);
   });
 })();
 
-const {
-  XRayClient,
-  GetTraceSummariesCommand,
-} = require('@aws-sdk/client-xray');
+const { XRayClient, GetTraceSummariesCommand } = require("@aws-sdk/client-xray");
 const tracesController = {};
 
 tracesController.getTraces = async (req, res, next) => {
-  console.log('in tracescontroller getTraces');
+  console.log("in tracescontroller getTraces");
 
   redisClient
-    .get('LambdaTraces')
+    .get("LambdaTracessss") //get 'LambdaTracessss' to make redis go fetch
     .then((data) => JSON.parse(data))
     .then((data) => {
       console.log(data);
@@ -25,13 +22,13 @@ tracesController.getTraces = async (req, res, next) => {
         res.locals.traces = data;
         return next();
       } else {
-        console.log('cache miss');
+        console.log("cache miss");
         const fullfunc = async () => {
           const { lambdaNames } = res.locals;
 
           console.log(lambdaNames);
           // Set the AWS Region and X-Ray client object
-          const REGION = 'us-east-1';
+          const REGION = "us-east-1";
           const xrayClient = new XRayClient({
             region: REGION,
             credentials: res.locals.credentials,
@@ -49,14 +46,12 @@ tracesController.getTraces = async (req, res, next) => {
             };
             try {
               dataPromise.push(
-                xrayClient
-                  .send(new GetTraceSummariesCommand(params))
-                  .then((data) => {
-                    dataArray.push({
-                      name: lambda,
-                      summary: data.TraceSummaries,
-                    });
-                  })
+                xrayClient.send(new GetTraceSummariesCommand(params)).then((data) => {
+                  dataArray.push({
+                    name: lambda,
+                    summary: data.TraceSummaries,
+                  });
+                })
               );
             } catch (err) {
               console.error(err);
@@ -64,14 +59,9 @@ tracesController.getTraces = async (req, res, next) => {
           });
           await Promise.all(dataPromise);
           res.locals.traces = dataArray;
-          console.log('full montey');
-          await redisClient.set(
-            'LambdaTraces',
-            JSON.stringify(res.locals.traces),
-            'EX',
-            60 * 60
-          );
-          console.log('dataArray', dataArray);
+          console.log("full montey");
+          await redisClient.set("LambdaTraces", JSON.stringify(res.locals.traces), "EX", 60 * 60); //this is seconds, so 1 hour
+          console.log("dataArray", dataArray);
           next();
         };
         fullfunc();

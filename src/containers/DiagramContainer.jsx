@@ -58,7 +58,8 @@ const DiagramContainer = (props) => {
   useEffect(() => {
     if (msServiceIds) {
       //will have to send msServiceIds to this
-      parseService(msServiceIdsExample);
+      console.log('msServiceId', msServiceIds)
+      // parseService(msServiceIdsExample);
     }
   }, []);
 

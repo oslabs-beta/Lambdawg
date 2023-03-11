@@ -1,5 +1,5 @@
-const fs = require("fs");
-
+// const fs = require("fs");
+// import fs from "fs";
 //HARD CODED right now - LAMBDA not generating traces, who why
 const msServiceIds = [
   {
