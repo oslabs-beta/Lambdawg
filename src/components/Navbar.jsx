@@ -24,7 +24,7 @@ const Navbar = (props) => {
     const handleLinkClickAuth = async () => {
       if (loggedIn){
         try{
-        const response = await fetch('http://localhost:3000/api/logout', {
+        const response = await fetch('/api/logout', {
           credentials: 'include'
         })
         if (response.ok) {

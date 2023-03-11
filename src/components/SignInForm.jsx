@@ -18,7 +18,7 @@ const SignInForm = (props) => {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000/api/${formData.user_name}`, {
+      const response = await fetch(`/api/${formData.user_name}`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'content-type': 'application/json' },

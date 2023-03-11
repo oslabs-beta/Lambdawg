@@ -58,7 +58,7 @@ const DashboardContainer = (props) => {
 useEffect(() => { 
   const fetchNames = async() => {
       try{
-        const response = await fetch('http://localhost:3000/getLambdaNames', {
+        const response = await fetch('/aws/getLambdaNames', {
           method: 'POST', 
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

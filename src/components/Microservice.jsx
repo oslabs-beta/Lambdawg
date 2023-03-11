@@ -59,7 +59,7 @@ const Microservice = (props) => {
 
       const fetchLogs = async () => {
         try {
-          const response = await fetch('http://localhost:3000/getLambdaLogs', {
+          const response = await fetch('/aws/getLambdaLogs', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

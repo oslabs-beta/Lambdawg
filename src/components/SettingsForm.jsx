@@ -37,7 +37,7 @@ const Settings = (props) => {
 
     try{
       console.log('TRY in settings (the form data)', arnFormData)
-      const response = await fetch(`http://localhost:3000/api/edit/${user.user_name}`, {
+      const response = await fetch(`/api/edit/${user.user_name}`, {
         method: 'PATCH',
         credentials: 'include',
         headers: {'content-type': 'application/json'},

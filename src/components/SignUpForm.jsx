@@ -23,7 +23,7 @@ const signUpForm = (props) => {
       if (formData.password_ == formData.confirmPassword) console.log('signing up....')
       // console.log(signUpFormData)
       try {
-        const response = await fetch('http://localhost:3000/api/newUser', {
+        const response = await fetch('/api/newUser', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify([signUpFormData]),
