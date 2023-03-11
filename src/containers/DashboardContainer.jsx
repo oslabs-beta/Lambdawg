@@ -70,31 +70,34 @@ const DashboardContainer = (props) => {
 
   // fetch names
   useEffect(() => { 
-    const fetchNames = async() => {
-        try{
-          const response = await fetch('/aws/getLambdaNames', {
-            method: 'POST', 
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              arn: user.arn,
-              user_name: user.user_name
-            }),
-            muteHttpExceptions: true
-          });
-          if (response.ok){
-            const data = await response.json()
-            setMsNames(data);
-            console.log('names in dashboard', msNames)
+    if(user){
+      const fetchNames = async() => {
+          try{
+            const response = await fetch('/aws/getLambdaNames', {
+              method: 'POST', 
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                arn: user.arn,
+                user_name: user.user_name
+              }),
+              muteHttpExceptions: true
+            });
+            if (response.ok){
+              const data = await response.json()
+              setMsNames(data);
+              console.log('names in dashboard', msNames)
+            }
+            else {
+              alert('Please confirm correct ARN and region in settings')
+            }
           }
-          else {
-            alert('Please confirm correct ARN and region in settings')
+          catch(error){
+            console.log(error, 'error fetching MsNames')
           }
-        }
-        catch(error){
-          console.log(error, 'error fetching MsNames')
-        }
-      }; 
-      fetchNames(); 
+        }; 
+        fetchNames(); 
+        console.log('names are being fetched again in dhasboard')
+    }
   }, [user, refreshRedis])
 
   // fetch metrics

@@ -1,13 +1,13 @@
 import React from 'react';
 
 const Refresh = (props) => {
-const { refreshRedis, setRefreshRedis } = props;
+const { refreshRedis, setRefreshRedis, user } = props;
 
   const refreshMetrics = async () => {
     setRefreshRedis(false);
     try{
-      const response = await fetch('/aws/freshRedis', {
-        method: 'POST', 
+      const response = await fetch('/aws/deleteRedis', {
+        method: 'DELETE', 
         header: {'content-type': 'application/json'},
         body: JSON.stringify({
           user_name: user.user_name

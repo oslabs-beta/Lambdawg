@@ -12,9 +12,9 @@ const Settings = (props) => {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    console.log('use effect in settings form')
-  }, [user])
+  // useEffect(()=>{
+  //   console.log('use effect in settings form')
+  // }, [user])
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

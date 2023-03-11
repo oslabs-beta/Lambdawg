@@ -1,4 +1,13 @@
+const Redis = require('redis');
+// const getOrSetCache = require('../redis');
+const redisClient = Redis.createClient();
+(async () => {
+  await redisClient.connect().catch((err) => {
+    console.log('Redis Connect Error: ' + err.message);
+  });
+})();
 const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
+const { triggerAsyncId } = require('async_hooks');
 // const creds = require('../aws/secret');
 const dotenv = require('dotenv').config();
 const { _KEY, _SKEY, USER_ARN } = process.env;
@@ -20,9 +29,9 @@ credentialController.getCredentials = async (req, res, next) => {
   const region = 'us-east-1';
   const info = {
     RoleArn: arn,
-    RoleSessionName: "LambdawgRoleSession",
+    RoleSessionName: 'LambdawgRoleSession',
     DurationSeconds: 900,
-    ExternalId: "Lambdawg",
+    ExternalId: 'Lambdawg',
   };
   //create new STS client instance with cloudband's region and credentials
   const stsClient = new STSClient({ region: region, credentials: credentials });
@@ -39,6 +48,35 @@ credentialController.getCredentials = async (req, res, next) => {
     console.log(error);
     next(error);
   }
+};
+
+credentialController.deleteRedis = async (req, res, next) => {
+  redisClient.del('LambdaTraces', (err, result) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+  });
+  redisClient.del('LambdaLogs', (err, result) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+  });
+  redisClient.del('LambdaList', (err, result) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+  });
+  redisClient.del('LambdaMetrics', (err, result) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+  });
+  console.log('redis user data deleted !');
+  return res.status(200).json('Redis user data deleted');
 };
 
 module.exports = credentialController;

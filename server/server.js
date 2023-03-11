@@ -84,6 +84,10 @@ app.post(
   }
 );
 
+app.delete('/deleteRedis', credentialController.deleteRedis, (req, res) => {
+  return res.status(200).json('cache me outside');
+});
+
 //Catch All Route Handler for any requests to an unkown route
 //----------------
 app.use((req, res) => res.status(404).send("This page cannot be found..."));
