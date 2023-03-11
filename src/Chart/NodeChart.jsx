@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import miserables from "./miserables.json";
 
 const NodeChart = (props) => {
+  const { msServiceIds } = props;
   const styles = {
     body: {
       margin: "0px",
@@ -54,16 +55,16 @@ const NodeChart = (props) => {
 
     const container = d3.select(svgRef.current.parentNode);
 
-    const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", zoomed);
+    // const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", zoomed);
 
-    container.call(zoom);
+    // container.call(zoom);
 
-    function zoomed() {
-      svg.attr("transform", d3.event.transform);
-    }
+    // function zoomed() {
+    //   svg.attr("transform", d3.event.transform);
+    // }
 
     const graph = miserables;
-
+    console.log("miserables", miserables);
     const link = svg.append("g").attr("class", "links").selectAll("line").data(graph.links).enter().append("line");
 
     const node = svg
@@ -74,7 +75,14 @@ const NodeChart = (props) => {
       .enter()
       .append("circle")
       .attr("r", 10.5)
-      .call(d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended));
+      .call(
+        d3
+          .drag()
+          .on("start", dragstarted)
+          .on("drag", (event, d) => dragged(d, event))
+          .on("end", dragended)
+      );
+    //   .call(d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended));
 
     node.append("title").text(function (d) {
       return d.id;
@@ -114,25 +122,27 @@ const NodeChart = (props) => {
     }
 
     function dragstarted(d) {
+      if (!d3.event || !d3.event.active) return;
       if (!d3.event.active) simulation.alphaTarget(0.3).restart();
       d.fx = d.x;
       d.fy = d.y;
     }
 
-    function dragged(d) {
-      d.fx = d3.event.x;
-      d.fy = d3.event.y;
+    function dragged(d, event) {
+      d.fx = d3.pointer(event)[0];
+      d.fy = d3.pointer(event)[1];
     }
 
     function dragended(d) {
+      if (!d3.event || !d3.event.active) return;
       if (!d3.event.active) simulation.alphaTarget(0);
       d.fx = null;
       d.fy = null;
     }
-  }, []);
+  }, {});
 
   return (
-    <div id="container">
+    <div id="node-chart-container">
       <svg viewBox="0 0 960 650" width="960" height="650" className="outline" ref={svgRef} style={styles.svg}></svg>
     </div>
   );

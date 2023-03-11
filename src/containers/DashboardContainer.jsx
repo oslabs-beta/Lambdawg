@@ -12,6 +12,19 @@ const DashboardContainer = (props) => {
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
   const [msTraces, setMsTraces] = useState([]);
+  const [msServiceIds, setMsServiceIds] = useState([]);
+
+  //trying to pass down to charts
+  // const [isPanelOpen, setIsPanelOpen] = useState(false);
+  //need to keep track of which panel needs to be open based on which circle was clicked
+  const [activePanel, setActivePanel] = useState("");
+
+  const handleTogglePanel = (panelName) => {
+    //here, panelName is the circle name passed up from bubble chart
+    console.log("handletogglepanel", panelName);
+    setActivePanel(panelName);
+    console.log("current active panel", activePanel);
+  };
 
   const handlePanelClick = () => {
     if (panelFullScreen) {
@@ -98,8 +111,8 @@ const DashboardContainer = (props) => {
         });
         const data = await response.json();
 
-        //dataArray from backend is array of obj
-        //just parsing name, duration, responseTime, service trails
+        //parsing name, duration, responseTime, service ids
+        const serviceData = [];
         const traceData = await data.map((obj) => {
           if (!obj.summary.length) {
             return {
@@ -109,6 +122,11 @@ const DashboardContainer = (props) => {
               serviceIds: undefined,
             };
           } else {
+            //create a separate serviceData array to pass as msServiceIds
+            serviceData.push({
+              name: obj.name,
+              serviceIds: obj.summary[0].ServiceIds,
+            });
             return {
               name: obj.name,
               duration: obj.summary[0].Duration,
@@ -119,7 +137,9 @@ const DashboardContainer = (props) => {
         });
         //trying to parse serviceIdData all at once
         setMsTraces(traceData);
+        setMsServiceIds(serviceData);
         console.log("dashboard traces useEffect: ", msTraces);
+        console.log("servicedata array in dashboard", serviceData);
       } catch (error) {
         console.log("error fetching traces", error);
       }
@@ -141,8 +161,10 @@ const DashboardContainer = (props) => {
           msNames={msNames}
           msMetrics={msMetrics}
           msTraces={msTraces}
+          msServiceIds={msServiceIds}
           diagramFullScreen={diagramFullScreen}
           setDiagramFullScreen={setDiagramFullScreen}
+          handleTogglePanel={handleTogglePanel}
         />
       </div>
       <DataWindow dataWindowFullScreen={dataWindowFullScreen} setDataWindowFullScreen={setDataWindowFullScreen} />

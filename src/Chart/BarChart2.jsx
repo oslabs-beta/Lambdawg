@@ -46,7 +46,7 @@ function HorizontalBarChart(props) {
         label: "Duration",
         data: duration,
         borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(255, 80, 132, 0.5)",
       },
       {
         label: "Response Time",
