@@ -1,0 +1,52 @@
+.chart-dropdown {
+  position: relative;
+  display: inline-block;
+
+  .chart-dropdown-toggle {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .chart-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    max-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+
+    &.show {
+      display: block;
+    }
+
+    .chart-dropdown-item {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: 400;
+      color: #333;
+      white-space: nowrap;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}

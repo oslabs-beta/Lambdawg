@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HorizontalBarChart from "../Chart/BarChart";
 import CircleChart from "../Chart/CircleChart";
+import Dropdown from "../components/ChartDropDown";
 
 const DiagramContainer = (props) => {
   const { diagramFullScreen, setDiagramFullScreen } = props;
@@ -15,10 +16,13 @@ const DiagramContainer = (props) => {
   // }
 
   return (
-    <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
-      {/* <HorizontalBarChart msNames={msNames} msTraces={msTraces} /> */}
-      <CircleChart msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} />
-      <iframe id="chart-frame" width="100%" src="/src/Chart/index.html" />
+    <div>
+      {/* <Dropdown /> */}
+      <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
+        {/* <HorizontalBarChart msNames={msNames} msTraces={msTraces} /> */}
+        <CircleChart msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} />
+        {/* <iframe id="chart-frame" width="100%" src="/src/Chart/index.html" /> */}
+      </div>
     </div>
   );
 };
