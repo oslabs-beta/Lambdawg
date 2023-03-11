@@ -31,7 +31,7 @@ router.post(
   encryptionController.hashPW,
   dbController.addUser,
   (req, res) => {
-    res.status(200).json({});
+    res.status(200).json(res.locals.user);
   }
 );
 //this will probably be somewhere after the user has already been verified
@@ -41,13 +41,14 @@ router.delete(
   dbController.deleteUser,
   (req, res) => res.status(200).json({})
 );
-//will only edit full_name & email
+
 router.patch(
-  '/edit',
+  '/edit/:user_name',
   authController.verifyUN_Pass,
   dbController.editUser,
   (req, res) => {
-    res.status(200).json({});
+    console.log(res.locals.user)
+    res.status(200).json(res.locals.user);
   }
 );
 
@@ -56,10 +57,10 @@ router.post(
   '/:user_name',
   authController.verifyUN_Pass,
   cookieController.setCookie,
+  dbController.getUser,
   (req, res) => {
-    console.log('res.headers -> ', res.getHeaders());
-
-    res.sendStatus(200);
+    // console.log('res.headers -> ', res.getHeaders());
+    res.status(200).json(res.locals.user);
   }
 );
 

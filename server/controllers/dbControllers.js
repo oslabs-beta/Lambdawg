@@ -10,6 +10,8 @@ dbControllers.getUser = (req, res, next) => {
   db.query(text)
     .then((response) => {
       res.locals.data = response;
+      // console.log('dbcontrol.getusers:', res.locals.data.rows)
+
       return next();
     })
     .catch((err) => {
@@ -25,7 +27,7 @@ dbControllers.getUser = (req, res, next) => {
 
 dbControllers.addUser = (req, res, next) => {
   const text =
-    'INSERT INTO "public"."users" (full_name, user_name, email, password_) VALUES ($1, $2, $3, $4)';
+    'INSERT INTO "public"."users" (full_name, user_name, email, password_) VALUES ($1, $2, $3, $4) RETURNING _id, full_name, user_name, email';
   const { full_name, user_name, email } = req.body[0];
   const { password_ } = res.locals;
 
@@ -34,7 +36,9 @@ dbControllers.addUser = (req, res, next) => {
       console.log('Error at dbControllers.addUser: ', err);
       return res.status(500).send('Error Executing Insert Query ');
     }
-    console.log('Add User Query Executed Successfully', result);
+    console.log('Add User Query Executed Successfully', result.rows[0])
+    res.locals.user = result.rows[0];
+
     next();
   });
 };
@@ -59,12 +63,13 @@ dbControllers.deleteUser = (req, res, next) => {
 };
 
 dbControllers.editUser = (req, res, next) => {
-  const { full_name, user_name, email, _id, cookie } = req.body[0];
+  // const { full_name, user_name, email, _id } = req.body[0];
+  const { arn, region, _id, user_name } = req.body[0];
 
   const text =
-    'UPDATE "public"."users" SET full_name = $1, email = $2 ,cookie = $3 WHERE _id = $4';
+    'UPDATE "public"."users" SET arn = $1, region = $2 WHERE _id = $3';
 
-  db.query(text, [full_name, email, cookie, _id], (err, result) => {
+  db.query(text, [arn, region, _id], (err, result) => {
     if (err) {
       console.log(`Error Updating User: ${user_name}`, err);
       return res.status(500).send(`Error Updating User: ${user_name}`);

@@ -5,6 +5,7 @@ import { VscSettingsGear, VscBook, VscColorMode, VscMenu } from 'react-icons/vsc
 const MainNavbar = (props) => {
 
     const docsLink = '/docs';
+    const dashLink = '/dashboard';
     const settingsLink = './settings';
     const mascot = 'src/assets/mascot_head.svg'
     const { loggedIn } = props;
@@ -41,8 +42,9 @@ const MainNavbar = (props) => {
 
 
             <ul id='desktop-menu' className='collapse-desktop-menu'>
-              <li><a href={docsLink}>Documentation</a></li>
+              <li><a href={docsLink}>Docs</a></li>
               <li><a href={settingsLink}>Settings</a></li>
+              <li><a href={dashLink}>Dashboard</a></li>
               <li><a href='./auth'>Log in/out</a></li>
             </ul>
 
@@ -50,6 +52,7 @@ const MainNavbar = (props) => {
             <ul id='hamburger-menu' className='collapse-burger-menu'>
               <li><a href={docsLink}>Documentation</a></li>
               <li><a href={settingsLink}>Settings</a></li>
+              <li><a href={dashLink}>Dashboard</a></li>
               <li><a href='./auth'>Log in/out</a></li>
             </ul>
 

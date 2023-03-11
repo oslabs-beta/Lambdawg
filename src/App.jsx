@@ -14,15 +14,11 @@ const App = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
 
+  console.log('app.jsx, user in state', user)
+  // check for cookie and if found, log user in and save userdata
   useEffect(() => {
-    const jwt = document.cookie;
-    console.log('cookies??', jwt)
-    // console.log('regex jwt??', document.cookie.match(/jwt=([^;]*)/))
-
     const checkAuth = async () => {
      
-      if (jwt) {
- 
         try {
           const response = await fetch('http://localhost:3000/api/', {
             credentials: 'include'
@@ -39,43 +35,26 @@ const App = (props) => {
               arn: arn,
               region: region
             })
-            // console.log('user', user)
             setLoggedIn(true);
           } 
           else {
             console.error('JWT app.jsx Unable to authenticate jwt');
+            setLoggedIn(false);
           }
-        } catch (error) {
+        } 
+        catch (error) {
           console.error('JWT app.jsx', error);
+          setLoggedIn(false);
         }
-      } 
-      else {
-        console.log('jwt not found')
-      }
     };
     checkAuth();
   }, []);
-  
-  
-  
-  
-
-
-  // // check if they're logged in - if yes, setLoggedIn to true 
-  // useEffect(() => {
-  //   const isUserAuthenticated = () => {
-  //     // Check for a session cookie?
-  //     return (loggedIn)? setLoggedIn(true) : setLoggedIn(false) // temp til cookies work
-  //      // Return true or false depending on cookie
-  //   };
-  //   setLoggedIn(isUserAuthenticated());
-  // }, []);
 
 
 
   return (
     <div className="router">
-      <Navbar loggedIn={loggedIn} />
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user}/>
       <div className="routerMain" id="content">
         <Routes>
           

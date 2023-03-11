@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const signUpForm = (props) => {
 
     const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password_: '', confirmPassword: '' });
-    const { toggleFormType, loggedIn, setLoggedIn, user, setUser } = props
+    const { toggleFormType, loggedIn, setLoggedIn, user, setUser, onSignUpSuccess } = props
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -20,7 +21,7 @@ const signUpForm = (props) => {
       }
       if (formData.password_ != formData.confirmPassword) return handleMismatchedPasswords();
       if (formData.password_ == formData.confirmPassword) console.log('signing up....')
-      console.log(signUpFormData)
+      // console.log(signUpFormData)
       try {
         const response = await fetch('http://localhost:3000/api/newUser', {
           method: 'POST',
@@ -40,7 +41,8 @@ const signUpForm = (props) => {
             // arn: arn,
             // region: region
           })
-          setLoggedIn(true);
+          onSignUpSuccess();
+          // setLoggedIn(true);
         } else {
           console.log('Sign up failed');
         }
