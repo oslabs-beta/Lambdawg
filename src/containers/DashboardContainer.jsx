@@ -11,6 +11,7 @@ const DashboardContainer = (props) => {
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
+  const [msLogs, setMsLogs] = useState({});
   const [msTraces, setMsTraces] = useState([]);
   const [msServiceIds, setMsServiceIds] = useState([]);
 
@@ -19,6 +20,9 @@ const DashboardContainer = (props) => {
   //need to keep track of which panel needs to be open based on which circle was clicked
   const [activePanel, setActivePanel] = useState("");
 
+  useEffect(() => {
+    console.log("listening for arn in dashboard");
+  }, [user]);
   const handleTogglePanel = (panelName) => {
     //here, panelName is the circle name passed up from bubble chart
     console.log("handletogglepanel", panelName);
@@ -33,7 +37,9 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(!panelFullScreen);
     setDiagramFullScreen(false);
     setDataWindowFullScreen(false);
-    console.log(panelFullScreen);
+    document.getElementById("panelButton").classList.add("current-window-button");
+    document.getElementById("diagramButton").classList.remove("current-window-button");
+    document.getElementById("dataButton").classList.remove("current-window-button");
   };
 
   const handleDiagramClick = () => {
@@ -43,6 +49,9 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(false);
     setDiagramFullScreen(!diagramFullScreen);
     setDataWindowFullScreen(false);
+    document.getElementById("diagramButton").classList.add("current-window-button");
+    document.getElementById("panelButton").classList.remove("current-window-button");
+    document.getElementById("dataButton").classList.remove("current-window-button");
   };
 
   const handleDataClick = () => {
@@ -52,19 +61,21 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(false);
     setDiagramFullScreen(false);
     setDataWindowFullScreen(!dataWindowFullScreen);
+    document.getElementById("dataButton").classList.add("current-window-button");
+    document.getElementById("diagramButton").classList.remove("current-window-button");
+    document.getElementById("panelButton").classList.remove("current-window-button");
   };
-
-  // if (!loggedIn) {
-  //   return <Navigate to="/auth" />;
-  // }
 
   // fetch names
   useEffect(() => {
     const fetchNames = async () => {
       try {
         const response = await fetch("http://localhost:3000/getLambdaNames", {
-          method: "GET",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            arn: user.arn,
+          }),
           muteHttpExceptions: true,
         });
         const data = await response.json();
@@ -75,7 +86,7 @@ const DashboardContainer = (props) => {
       }
     };
     fetchNames();
-  }, []);
+  }, [user]);
 
   // fetch metrics
   useEffect(() => {
@@ -83,8 +94,11 @@ const DashboardContainer = (props) => {
       const fetchMetrics = async () => {
         try {
           const response = await fetch("http://localhost:3000/getLambdaMetrics", {
-            method: "GET",
+            method: "POST",
             headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              arn: user.arn,
+            }),
             muteHttpExceptions: true,
           });
           const data = await response.json();
@@ -152,10 +166,13 @@ const DashboardContainer = (props) => {
     <div id="dashboard-container">
       <div id="dashboard-wrapper" className={dataWindowFullScreen ? "collapse-screen" : "full-screen"}>
         <Panel
+          user={user}
           msNames={msNames}
           msMetrics={msMetrics}
           panelFullScreen={panelFullScreen}
           setPanelFullScreen={setPanelFullScreen}
+          msLogs={msLogs}
+          setMsLogs={setMsLogs}
         />
         <DiagramContainer
           msNames={msNames}
@@ -167,7 +184,13 @@ const DashboardContainer = (props) => {
           handleTogglePanel={handleTogglePanel}
         />
       </div>
-      <DataWindow dataWindowFullScreen={dataWindowFullScreen} setDataWindowFullScreen={setDataWindowFullScreen} />
+
+      <DataWindow
+        dataWindowFullScreen={dataWindowFullScreen}
+        setDataWindowFullScreen={setDataWindowFullScreen}
+        msLogs={msLogs}
+        setMsLogs={setMsLogs}
+      />
 
       <div className="block-button-wrapper dashboard-buttons">
         <button className="secondary-button" id="panelButton" onClick={handlePanelClick}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SignInForm = (props) => {
   const [formData, setFormData] = useState({ user_name: '', password_: '' });
@@ -26,8 +26,9 @@ const SignInForm = (props) => {
       });
 
       if (response.ok) {
-        console.log(document.cookie, 'Sign in attempt passed auth (signInForm)');
+        console.log('Sign in attempt passed auth (signInForm)');
         const data = await response.json();
+        console.log(data, 'line 31 signin')
         const { user_name, full_name, email, _id, arn, region } = data
         setUser({
           full_name: full_name,
@@ -46,10 +47,14 @@ const SignInForm = (props) => {
         passwordInput.value = '';
       }
     } catch (error) {
-      console.error(error);
+      console.error(error, 'error from signIn catch');
       console.log('Unable to sign-in at this time. (signInForm');
     }
   };
+
+  useEffect(() => {
+    console.log(user, 'sign in form')
+  }, [user])
 
   return (
     <div className='form-container'>

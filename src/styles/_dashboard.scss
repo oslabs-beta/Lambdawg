@@ -102,6 +102,7 @@ iframe {
     display: none;
   }
   #dashboard-container {
+    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
     padding: 0rem;
@@ -121,7 +122,9 @@ iframe {
     margin: 0px;
 
   }
-
+  .current-window-button{
+    background-color: $button-current-page-indicator !important;
+  }
 
   #dashboard-wrapper {
     flex-direction: column;
@@ -143,22 +146,21 @@ iframe {
  
   .block-button-wrapper {
     position: fixed;
-    bottom: .5rem;
+    bottom: 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     visibility: visible;
-    height: 3rem;
-    padding: 1rem 0rem 1rem 0rem;
+    height: 3.5rem;
+    padding: 1.25rem .25rem 1rem .25rem;
     background-color: $dashboard-background-color-mobile;
   }
 
   #panelButton, #diagramButton, #dataButton {
     width: 33.3vw;
     height: 2.5rem;
-    // border: 1px solid $primary-font-color;
-    margin: 3px;
+    margin: 1rem .25rem 1rem .25rem;
     visibility: visible;
     background-color: $button-color;
     color: $button-font-color;

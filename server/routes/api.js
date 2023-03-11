@@ -21,25 +21,31 @@ router.get("/", cookieController.authenticateCookie, dbController.getUser, (req,
 //if we create a local cache to handle this it would improve
 //the ease for the user rather than having to wait until the db is queried
 router.post("/newUser", authController.validator, encryptionController.hashPW, dbController.addUser, (req, res) => {
-  res.status(200).json({});
+  res.status(200).json(res.locals.user);
 });
 //this will probably be somewhere after the user has already been verified
 router.delete("/delete/:user_name", authController.verifyUN_Pass, dbController.deleteUser, (req, res) =>
   res.status(200).json({})
 );
-//will only edit full_name & email
-router.patch("/edit", authController.verifyUN_Pass, dbController.editUser, (req, res) => {
-  res.status(200).json({});
+
+router.patch("/edit/:user_name", authController.verifyUN_Pass, dbController.editUser, (req, res) => {
+  console.log(res.locals.user);
+  res.status(200).json(res.locals.user);
 });
 
 // sign in -> add a middleware controller after verify to set session cookie
-router.post("/:user_name", authController.verifyUN_Pass, cookieController.setCookie, (req, res) => {
-  console.log("res.headers -> ", res.getHeaders());
+router.post(
+  "/:user_name",
+  authController.verifyUN_Pass,
+  cookieController.setCookie,
+  dbController.getUser,
+  (req, res) => {
+    // console.log('res.headers -> ', res.getHeaders());
+    res.status(200).json(res.locals.user);
+  }
+);
 
-  res.sendStatus(200);
-});
-
-router.use("/logout", cookieController.deleteCookie, (req, res) => {
+router.get("/logout", cookieController.deleteCookie, (req, res) => {
   res.status(200).json();
 });
 

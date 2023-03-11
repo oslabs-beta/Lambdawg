@@ -14,8 +14,9 @@ const credentials = {
 
 //get user's access key id and secret access key from AWS
 credentialController.getCredentials = async (req, res, next) => {
-  console.log('whatever!!!!');
-  const arn = USER_ARN;
+  // console.log('credential controller arn', req.body.arn);
+  const { arn } = req.body;
+  // const arn = USER_ARN;
   const region = 'us-east-1';
   const info = {
     RoleArn: arn,
