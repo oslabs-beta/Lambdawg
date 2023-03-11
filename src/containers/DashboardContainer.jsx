@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState} from 'react';
-import { Navigate } from "react-router-dom";
 import Panel from '../components/Panel.jsx';
 import DiagramContainer from '../containers/DiagramContainer.jsx';
 import DataWindow from '../components/DataWindow.jsx';
 
+
 const DashboardContainer = (props) => {
-  const { loggedIn, setLoggedIn, user } = props;
+  const { user } = props;
   const [panelFullScreen, setPanelFullScreen] = useState(false);
   const [diagramFullScreen, setDiagramFullScreen] = useState(true);
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import LamdaButton from '../components/LamdaButton.jsx';
+import Refresh from '../components/Refresh.jsx';
 
 const Panel = (props) => {
 
@@ -19,6 +20,7 @@ const Panel = (props) => {
   
     return(
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
+        <Refresh /><br />
         {names}
       </div>
     )
