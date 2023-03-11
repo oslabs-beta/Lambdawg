@@ -14,18 +14,18 @@ const DiagramContainer = (props) => {
       if (event.origin !== "http://localhost:5173") return;
 
       // The incoming message will be refered to as 'event.data'
-      console.log('event.data', event.data)
+      // console.log('event.data', event.data)
       const funcButtonId = event.data;
       const funcButton = document.getElementById(funcButtonId)
-      funcButton.click();
+      // funcButton.click();
   }
 
   
   return (
     <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
-      <HorizontalBarChart msNames={msNames} msTraces={msTraces} />
+      {/* <HorizontalBarChart msNames={msNames} msTraces={msTraces} /> */}
       {/* <CircleChart msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} /> */}
-      {/* <iframe id="chart-frame" width="100%" src="/src/Chart/index.html" /> */}
+      <iframe id="chart-frame" width="100%" src="/src/Chart/index.html" />
     </div>
   );
 };

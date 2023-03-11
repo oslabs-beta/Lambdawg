@@ -6,7 +6,7 @@ import DataWindow from '../components/DataWindow.jsx';
 
 
 const DashboardContainer = (props) => {
-  const { user } = props;
+  const { user, setUser } = props;
   const [panelFullScreen, setPanelFullScreen] = useState(false);
   const [diagramFullScreen, setDiagramFullScreen] = useState(true);
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
@@ -15,6 +15,7 @@ const DashboardContainer = (props) => {
   const [msLogs, setMsLogs] = useState({});
   const [msTraces, setMsTraces] = useState([]);
   const [msServiceIds, setMsServiceIds] = useState([]);
+  const [refreshRedis, setRefreshRedis] = useState(false);
 
   //need to keep track of which panel needs to be open based on which circle was clicked
   const [activePanel, setActivePanel] = useState("");
@@ -75,13 +76,15 @@ const DashboardContainer = (props) => {
             method: 'POST', 
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              arn: user.arn
+              arn: user.arn,
+              user_name: user.user_name
             }),
             muteHttpExceptions: true
           });
           if (response.ok){
             const data = await response.json()
             setMsNames(data);
+            console.log('names in dashboard', msNames)
           }
           else {
             alert('Please confirm correct ARN and region in settings')
@@ -92,7 +95,7 @@ const DashboardContainer = (props) => {
         }
       }; 
       fetchNames(); 
-  }, [user])
+  }, [user, refreshRedis])
 
   // fetch metrics
   useEffect(() => {
@@ -103,12 +106,14 @@ const DashboardContainer = (props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              arn: user.arn
+              arn: user.arn,
+              user_name: user.user_name
             }),
             muteHttpExceptions: true,
           });
           const data = await response.json();
           setMsMetrics(data.MetricDataResults);
+          console.log('metrics in dash', msMetrics)
         } 
         catch (error) {
           console.log('error fetching metrics', error);
@@ -123,12 +128,15 @@ const DashboardContainer = (props) => {
       <div id="dashboard-wrapper" className={dataWindowFullScreen ? "collapse-screen" : "full-screen"}>
         <Panel
           user={user}
+          setUser={setUser}
           msNames={msNames}
           msMetrics={msMetrics}
           panelFullScreen={panelFullScreen}
           setPanelFullScreen={setPanelFullScreen}
           msLogs={msLogs}
           setMsLogs={setMsLogs}
+          refreshRedis={refreshRedis}
+          setRefreshRedis={setRefreshRedis}
         />
         <DiagramContainer
           msNames={msNames}

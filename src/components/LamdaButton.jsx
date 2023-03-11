@@ -7,7 +7,7 @@ const LamdaButton = (props) => {
   const [sortedMetrics, setSortedMetrics] = useState({});
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
-// Parse metrics for specific name (this could happen in panel but whatever for now)
+// Parse metrics for specific func name
   useEffect(() => {
 
     if (!msMetrics || !Array.isArray(msMetrics)) return;
@@ -62,7 +62,8 @@ const LamdaButton = (props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              arn: user.arn
+              arn: user.arn,
+              user_name: user.user_name
             }),
             muteHttpExceptions: true,
           });
@@ -75,7 +76,7 @@ const LamdaButton = (props) => {
       };
       fetchLogs();
     }
-  }, []);
+  }, [sortedMetrics]);
 
 // Populate logs in data window
   const togglePanel = () => {
