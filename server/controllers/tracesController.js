@@ -72,7 +72,7 @@ tracesController.getTraces = async (req, res, next) => {
             60 * 60
           );
           console.log('dataArray', dataArray);
-          next();
+          return next();
         };
         fullfunc();
       }
