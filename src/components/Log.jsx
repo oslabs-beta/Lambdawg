@@ -4,7 +4,6 @@ import React from 'react';
 function Log(props) {
   const { logs, functionName } = props;
 
-  console.log('inside LOG', logs)
   return (
     <div id={functionName}>
       <h2 className='log-name'>{functionName}</h2>

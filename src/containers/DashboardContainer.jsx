@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import Panel from "../components/Panel.jsx";
-import DiagramContainer from "../containers/DiagramContainer.jsx";
-import DataWindow from "../components/DataWindow.jsx";
+
+import React, { useEffect, useState} from 'react';
+import Panel from '../components/Panel.jsx';
+import DiagramContainer from '../containers/DiagramContainer.jsx';
+import DataWindow from '../components/DataWindow.jsx';
+
 
 const DashboardContainer = (props) => {
-  const { loggedIn, setLoggedIn, user } = props;
+  const { user } = props;
   const [panelFullScreen, setPanelFullScreen] = useState(false);
   const [diagramFullScreen, setDiagramFullScreen] = useState(true);
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
@@ -71,105 +72,55 @@ const DashboardContainer = (props) => {
   };
 
   // fetch names
-  useEffect(() => {
-    const fetchNames = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/getLambdaNames", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            arn: user.arn,
-          }),
-          muteHttpExceptions: true,
-        });
-        const data = await response.json();
-        setMsNames(data);
-        console.log("names:", data);
-      } catch (error) {
-        console.log(error, "error fetching MsNames");
-      }
-    };
-    fetchNames();
-  }, [user]);
+  useEffect(() => { 
+    const fetchNames = async() => {
+        try{
+          const response = await fetch('/aws/getLambdaNames', {
+            method: 'POST', 
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              arn: user.arn
+            }),
+            muteHttpExceptions: true
+          });
+          if (response.ok){
+            const data = await response.json()
+            setMsNames(data);
+          }
+          else {
+            alert('Please confirm correct ARN and region in settings')
+          }
+        }
+        catch(error){
+          console.log(error, 'error fetching MsNames')
+        }
+      }; 
+      fetchNames(); 
+  }, [user])
 
   // fetch metrics
   useEffect(() => {
     if (msNames) {
       const fetchMetrics = async () => {
         try {
-          const response = await fetch("http://localhost:3000/getLambdaMetrics", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+          const response = await fetch('/aws/getLambdaMetrics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              arn: user.arn,
+              arn: user.arn
             }),
             muteHttpExceptions: true,
           });
           const data = await response.json();
           setMsMetrics(data.MetricDataResults);
-          console.log("dashboard metrics: ", msMetrics);
-        } catch (error) {
-          console.log("error fetching metrics", error);
+        } 
+        catch (error) {
+          console.log('error fetching metrics', error);
         }
       };
       fetchMetrics();
     }
-  }, []);
-
-  //fetch traces
-  useEffect(() => {
-    if (msNames) {
-      //we need names to fetch traces also
-      const fetchTraces = async () => {
-        console.log("in fetch traces");
-        try {
-          const response = await fetch("http://localhost:3000/getTraces", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              arn: user.arn,
-            }),
-            muteHttpExceptions: true,
-          });
-          const data = await response.json();
-
-          //parsing name, duration, responseTime, service ids
-          const serviceData = [];
-          const traceData = await data.map((obj) => {
-            if (!obj.summary.length) {
-              return {
-                name: obj.name,
-                duration: undefined,
-                responseTime: undefined,
-                serviceIds: undefined,
-              };
-            } else {
-              //create a separate serviceData array to pass as msServiceIds
-              serviceData.push({
-                name: obj.name,
-                serviceIds: obj.summary[0].ServiceIds,
-              });
-              return {
-                name: obj.name,
-                duration: obj.summary[0].Duration,
-                responseTime: obj.summary[0].ResponseTime,
-                serviceIds: obj.summary[0].ServiceIds,
-              };
-            }
-          });
-          //trying to parse serviceIdData all at once
-          setMsTraces(traceData);
-          setMsServiceIds(serviceData);
-          console.log("dashboard traces useEffect: ", msTraces);
-          console.log("servicedata array in dashboard", serviceData);
-        } catch (error) {
-          console.log("error fetching traces", error);
-        }
-      };
-      fetchTraces();
-      console.log("mstraces in fetch dashboard", msTraces);
-    }
-  }, []);
+  }, [msNames]);
 
   return (
     <div id="dashboard-container">

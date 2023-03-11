@@ -6,9 +6,9 @@ const DataWindow = (props) => {
   const { dataWindowFullScreen, msLogs } = props;
   const [logData, setLogData] = useState({});
 
+  // Parse and sort logs
   useEffect(() => {
     if (Array.isArray(msLogs)) {
-      console.log('loggies', msLogs);
 
       const parsedLogs = {};
 
@@ -16,7 +16,6 @@ const DataWindow = (props) => {
         if (!parsedLogs[log.FunctionName]) {
           parsedLogs[log.FunctionName] = [];
         }
-        console.log('119', parsedLogs)
 
         log.logs.forEach(stamp => {
           parsedLogs[log.FunctionName].push({
@@ -29,7 +28,6 @@ const DataWindow = (props) => {
     }
   }, [msLogs]);
 
-  console.log('inside data', logData);
 
   return (
     <div id='data-window-wrapper' className={dataWindowFullScreen ? 'fullscreen' : 'collapse-screen'}>

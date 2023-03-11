@@ -23,7 +23,6 @@ const Auth = (props) => {
     <div id='auth-container'>
           <img src={mascot} className='auth-logo'/>
       <div id='theme-bg-auth'>
-        {/* <img src={mascot} className='large-mascot'/> */}
         {
         formType === 'signIn' ?
         <SignInForm toggleFormType={toggleFormType} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/> :
