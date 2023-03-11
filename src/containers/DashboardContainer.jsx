@@ -22,6 +22,11 @@ const DashboardContainer = (props) => {
     console.log('handletogglepanel', panelName);
     setActivePanel(panelName);
     console.log('current active panel', activePanel);
+    //with the passed up active panel name, select the button with the id name and click open
+    if (panelName) {
+      const button = document.getElementById(panelName);
+      button.click();
+    }
   };
 
   useEffect(() => {

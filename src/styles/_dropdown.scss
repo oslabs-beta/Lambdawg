@@ -1,0 +1,54 @@
+.chart-dropdown {
+  position: absolute;
+  display: block;
+  // background-color: $primary-button-color;
+  border-radius: 10px;
+
+  .chart-dropdown-toggle {
+    background-color: transparent;
+    // border: 1px solid $nav-border;
+    padding: 8px 16px;
+    padding-top: 10px;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .chart-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    top: 100%;
+    display: none;
+    width: 100%;
+    padding: 5px 10px;
+    margin: 2px 0 0;
+    font-size: 1.5em;
+    text-align: center;
+    list-style: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+
+    &.show {
+      display: block;
+    }
+
+    .chart-dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: 400;
+      color: $button-font-color;
+      white-space: nowrap;
+      background-color: $secondary-button-color;
+      border: 0;
+    }
+  }
+}
