@@ -12,7 +12,23 @@ const DashboardContainer = (props) => {
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
-  const [msLogs, setMsLogs] = useState({})
+  const [msLogs, setMsLogs] = useState({});
+  const [msTraces, setMsTraces] = useState([]);
+  const [msServiceIds, setMsServiceIds] = useState([]);
+
+  //need to keep track of which panel needs to be open based on which circle was clicked
+  const [activePanel, setActivePanel] = useState("");
+
+  const handleTogglePanel = (panelName) => {
+    //here, panelName is the circle name passed up from bubble chart
+    console.log("handletogglepanel", panelName);
+    setActivePanel(panelName);
+    console.log("current active panel", activePanel);
+  };
+
+  useEffect(() => {
+    console.log("listening for arn in dashboard");
+  }, [user]);
 
   /// toggle full screen for mobile
   const handlePanelClick = () => {
@@ -49,7 +65,6 @@ const DashboardContainer = (props) => {
     document.getElementById("dataButton").classList.add("current-window-button");
     document.getElementById("diagramButton").classList.remove("current-window-button");
     document.getElementById("panelButton").classList.remove("current-window-button");
- 
   };
 
   // fetch names
@@ -104,24 +119,48 @@ const DashboardContainer = (props) => {
   }, [msNames]);
 
   return (
-    <div id='dashboard-container'>
-
-      <div id='dashboard-wrapper' className={dataWindowFullScreen ? 'collapse-screen' : 'full-screen'}>
-        <Panel user={user} msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} msLogs={msLogs} setMsLogs={setMsLogs}/>
-        <DiagramContainer diagramFullScreen={diagramFullScreen} setDiagramFullScreen={setDiagramFullScreen} />
+    <div id="dashboard-container">
+      <div id="dashboard-wrapper" className={dataWindowFullScreen ? "collapse-screen" : "full-screen"}>
+        <Panel
+          user={user}
+          msNames={msNames}
+          msMetrics={msMetrics}
+          panelFullScreen={panelFullScreen}
+          setPanelFullScreen={setPanelFullScreen}
+          msLogs={msLogs}
+          setMsLogs={setMsLogs}
+        />
+        <DiagramContainer
+          msNames={msNames}
+          msMetrics={msMetrics}
+          msTraces={msTraces}
+          msServiceIds={msServiceIds}
+          diagramFullScreen={diagramFullScreen}
+          setDiagramFullScreen={setDiagramFullScreen}
+          handleTogglePanel={handleTogglePanel}
+        />
       </div>
 
-      <DataWindow dataWindowFullScreen={dataWindowFullScreen} setDataWindowFullScreen={setDataWindowFullScreen} msLogs={msLogs} setMsLogs={setMsLogs}/>
+      <DataWindow
+        dataWindowFullScreen={dataWindowFullScreen}
+        setDataWindowFullScreen={setDataWindowFullScreen}
+        msLogs={msLogs}
+        setMsLogs={setMsLogs}
+      />
 
-      <div className='block-button-wrapper dashboard-buttons'>
-        <button className='secondary-button' id='panelButton' onClick={handlePanelClick}>Panel</button>
-        <button className='secondary-button' id='dataButton' onClick={handleDataClick}>Log</button>
-        <button className='secondary-button' id='diagramButton' onClick={handleDiagramClick}>Map</button>
+      <div className="block-button-wrapper dashboard-buttons">
+        <button className="secondary-button" id="panelButton" onClick={handlePanelClick}>
+          Panel
+        </button>
+        <button className="secondary-button" id="dataButton" onClick={handleDataClick}>
+          Log
+        </button>
+        <button className="secondary-button" id="diagramButton" onClick={handleDiagramClick}>
+          Map
+        </button>
       </div>
-      
     </div>
   );
 };
 
 export default DashboardContainer;
-

@@ -7,7 +7,6 @@ import Auth from './components/Auth.jsx';
 import Docs from './components/Docs.jsx';
 import SettingsContainer from './containers/SettingsContainer.jsx';
 import Navbar from './components/Navbar.jsx';
-
 import './styles/application.scss';
 
 const App = (props) => {
@@ -51,25 +50,44 @@ const App = (props) => {
 
   return (
     <div className="router">
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user}/>
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} />
       <div className="routerMain" id="content">
         <Routes>
-          
-          <Route exact path="/dashboard" element={
-            loggedIn ? <DashboardContainer loggedIn={loggedIn} user={user}/> : 
-            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
-          } /> 
-          <Route exact path="/settings" element={
-            loggedIn ? <SettingsContainer loggedIn={loggedIn} user={user} setUser={setUser}/> : 
-            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
-          } /> 
-          <Route exact path="/auth" element={
-            loggedIn ? <DashboardContainer loggedIn={loggedIn} user={user}/> : 
-            <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
-          } /> 
-          <Route exact path="/docs" element={<Docs/>} />
-          <Route exact path="/" element={<LandingPageContainer/>} /> 
-
+          <Route
+            exact
+            path="/dashboard"
+            element={
+              loggedIn ? (
+                <DashboardContainer loggedIn={loggedIn} user={user} />
+              ) : (
+                <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/settings"
+            element={
+              loggedIn ? (
+                <SettingsContainer loggedIn={loggedIn} user={user} setUser={setUser} />
+              ) : (
+                <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/auth"
+            element={
+              loggedIn ? (
+                <DashboardContainer loggedIn={loggedIn} user={user} />
+              ) : (
+                <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser} />
+              )
+            }
+          />
+          <Route exact path="/docs" element={<Docs />} />
+          <Route exact path="/" element={<LandingPageContainer />} />
         </Routes>
       </div>
     </div>
