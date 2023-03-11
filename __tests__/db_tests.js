@@ -1,6 +1,6 @@
 const db = require('../server/models/dbPool');
-const request = require('supertest');
-const app = require('../server/server');
+// const request = require('supertest');
+// const app = require('../server/server');
 
 describe('database unit tests', () => {
   const newUser = {
