@@ -99,8 +99,8 @@ d3.json("miserables.json", function(error, graph) {
       .text(function(d) { return d.id; })
       node.on("click", function(d) {
         console.log(d3.select(this).select("title").text());
-        // alert('clicked')
-        // parent.postMessage(d.id , "http://localhost:5173/index.html");
+        alert('Hello from chart page')
+        parent.postMessage(`cakerFiveFunction` , "http://localhost:5173/index.html");
       });
 
 

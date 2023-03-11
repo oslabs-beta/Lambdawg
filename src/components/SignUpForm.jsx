@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 const signUpForm = (props) => {
 
@@ -21,9 +20,9 @@ const signUpForm = (props) => {
       }
       if (formData.password_ != formData.confirmPassword) return handleMismatchedPasswords();
       if (formData.password_ == formData.confirmPassword) console.log('signing up....')
-      // console.log(signUpFormData)
+
       try {
-        const response = await fetch('http://localhost:3000/api/newUser', {
+        const response = await fetch('/api/newUser', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify([signUpFormData]),
@@ -37,16 +36,15 @@ const signUpForm = (props) => {
             full_name: full_name,
             user_name: user_name, 
             email: email,
-            _id: _id,
-            // arn: arn,
-            // region: region
+            _id: _id
           })
           onSignUpSuccess();
-          // setLoggedIn(true);
-        } else {
+        } 
+        else {
           console.log('Sign up failed');
         }
-      } catch (error) {
+      } 
+      catch (error) {
         console.error(error);
         console.log('Unable to sign-up at this time.');
       }

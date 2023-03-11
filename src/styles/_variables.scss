@@ -7,18 +7,8 @@ $tertiary-font-color:  lighten($primary-font-color, 50%);
 $code-font-color: #fad6c9;
 $code-background-color: #232324;
 
-
 $box-shadow-color: lighten($primary-font-color, 70%); 
 
-
-$theme-color-1:  #f1eada;
-$theme-color-2:  #8fccd0;
-$theme-color-3:  #9be5a4;
-$theme-color-4:  #ee965c;
-$theme-color-5:  #f7f2f2;
-
-///
-$scroll-bar-color: #f75215;
 
 /// Navbar
 $nav-background-color: #fad6c9;
@@ -29,7 +19,7 @@ $nav-links-color: #f75215;
 $hamburger-icon-color: $primary-font-color;
 $hamburger-menu-bg-color: #595959;
 $hamburger-menu-lines: #4c4c4c;
-// $hamburger-menu-font: $nav-background-color;
+$hamburger-menu-font: $nav-background-color;
 
 /// Dashboard
 $dashboard-background-color: #595959;
