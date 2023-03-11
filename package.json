@@ -39,6 +39,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
+    "react-router-hash-link": "^2.4.3",
     "react-switch": "^7.0.0",
     "redis": "^4.6.5",
     "redis-server": "^1.2.2",

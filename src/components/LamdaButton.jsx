@@ -1,6 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const LamdaButton = (props) => {
   const { name, msMetrics, user, msLogs, setMsLogs } = props;
@@ -88,7 +89,7 @@ const LamdaButton = (props) => {
     <div>
       {sortedMetrics[name] && (
         <div>
-          <button id={name} className='metrics-button' onClick={togglePanel}>{`${name}`}</button>
+          <Link to={`#${name}log`}><button id={name} className='metrics-button' onClick={togglePanel}>{`${name}`}</button></Link>
   
           <div
             id={`${name} Metrics`}
