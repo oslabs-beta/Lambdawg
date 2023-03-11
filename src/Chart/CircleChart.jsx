@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 // import * as d3 from "d3";
-import { scaleOrdinal } from "d3-scale";
 import BubbleChart from "./BubbleChart";
 
 const CircleChart = (props) => {

@@ -15,7 +15,7 @@ const DiagramContainer = (props) => {
   //   document.getElementById("testClick").textContent = event.data; // the node id
   // }
 
-  const [activeChart, setActiveChart] = useState(null);
+  const [activeChart, setActiveChart] = useState("Node");
   console.log("current active chart", activeChart);
 
   return (
