@@ -69,8 +69,9 @@ const DashboardContainer = (props) => {
   };
 
   // fetch names
-  useEffect(() => { 
+  useEffect(async() => { 
     const fetchNames = async() => {
+      if (refreshRedis) setRefreshRedis(false);
         try{
           const response = await fetch('/aws/getLambdaNames', {
             method: 'POST', 
@@ -98,7 +99,7 @@ const DashboardContainer = (props) => {
   }, [user, refreshRedis])
 
   // fetch metrics
-  useEffect(() => {
+  useEffect(async() => {
     if (msNames) {
       const fetchMetrics = async () => {
         try {

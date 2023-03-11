@@ -25,7 +25,6 @@ const Panel = (props) => {
       else {
         console.log('Unable to refresh cached data')
       }
-        setRefreshRedis(false);
     }
     catch{
 
