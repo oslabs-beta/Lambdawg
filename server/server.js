@@ -7,6 +7,7 @@ const listLambdasController = require("./controllers/listLambdasController");
 const rdsMetricsController = require("./controllers/MetricsController.js");
 const lambdaLogsController = require("./controllers/lambdaLogsController");
 const tracesController = require("./controllers/tracesController.js");
+const tracesTestController = require("./controllers/testTraceController.js");
 const jwt = require("jsonwebtoken");
 
 const app = express();
@@ -52,11 +53,20 @@ app.post(
   }
 );
 
+// app.post(
+//   "/getTraces",
+//   credentialController.getCredentials,
+//   listLambdasController.getLambdas,
+//   tracesController.getTraces,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.traces);
+//   }
+// );
 app.post(
   "/getTraces",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
-  tracesController.getTraces,
+  tracesTestController.getTraces,
   (req, res) => {
     return res.status(200).json(res.locals.traces);
   }
