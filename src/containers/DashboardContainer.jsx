@@ -64,8 +64,13 @@ const DashboardContainer = (props) => {
             }),
             muteHttpExceptions: true
           });
-          const data = await response.json()
-          setMsNames(data);
+          if (response.ok){
+            const data = await response.json()
+            setMsNames(data);
+          }
+          else {
+            alert('Please confirm correct ARN and region in settings')
+          }
         }
         catch(error){
           console.log(error, 'error fetching MsNames')
