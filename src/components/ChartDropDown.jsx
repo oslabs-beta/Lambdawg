@@ -3,34 +3,51 @@ import { RiBarChartHorizontalFill } from "react-icons/ri";
 import { GiBubbles } from "react-icons/gi";
 import { GrNodes } from "react-icons/gr";
 
+//renders each chart icon in the dropdown
 function DropdownItem(props) {
-  const { item, onClick } = props;
-
+  const { chart, onClick, chartIcons } = props;
   return (
-    <div className="dropdown-item" onClick={onClick}>
-      {item}
+    <div className="class=dropdown-item nav-links" onClick={onClick}>
+      {chartIcons}
+      {/* {chart} */}
     </div>
   );
 }
+//renders the dropdown menu
+function Dropdown(props) {
+  const { setActiveChart } = props;
+  const [selectedChart, setSelectedChart] = useState(null);
+  const [dropIsOpen, setDropIsOpen] = useState(false);
 
-function Dropdown() {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const options = [<RiBarChartHorizontalFill />, <GiBubbles />, <GrNodes />];
+  //options and corresponding icons
+  const options = ["Bar", "Bubble", "Node"];
+  const chartIcons = [<RiBarChartHorizontalFill />, <GiBubbles />, <GrNodes />];
 
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setIsOpen(false);
+  //icons don't render properly in JSX, so using a func to render icon based on selectedChart
+  const showIcon = (optionsArr, iconsArr, option) => {
+    return chartIcons[optionsArr.indexOf(option)];
+  };
+  //sets SelectedChart with string to show icon, setActiveChart to send it to DiagramContainer for chart render
+  const handleOptionClick = (chart) => {
+    console.log("you clicked " + chart);
+    setSelectedChart(chart);
+    setActiveChart(chart);
+    setDropIsOpen(false);
   };
 
   return (
     <div className="chart-dropdown">
-      <div className="chart-dropdown-toggle" onClick={() => setIsOpen(!isOpen)}>
-        {selectedOption || "Select an option"} <span className="caret"></span>
+      <div className="chart-dropdown-toggle" onClick={() => setDropIsOpen(!dropIsOpen)}>
+        {selectedChart ? showIcon(options, chartIcons, selectedChart) : "View"}
       </div>
-      <div className={`chart-dropdown-menu ${isOpen ? "show" : ""}`}>
-        {options.map((option) => (
-          <DropdownItem key={option} item={option} onClick={() => handleOptionClick(option)} />
+      <div className={`chart-dropdown-menu ${dropIsOpen ? "show" : ""}`}>
+        {options.map((chart, i) => (
+          <DropdownItem
+            key={`chart${i}`}
+            chart={chart}
+            chartIcons={chartIcons[i]}
+            onClick={() => handleOptionClick(chart)}
+          />
         ))}
       </div>
     </div>
