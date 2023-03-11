@@ -14,8 +14,6 @@ const DashboardContainer = (props) => {
   const [msMetrics, setMsMetrics] = useState({});
   const [msLogs, setMsLogs] = useState({})
 
-  useEffect(()=>{ console.log('listening for arn in dashboard') }, [user])
-
   /// toggle full screen for mobile
   const handlePanelClick = () => {
     if (panelFullScreen) {
@@ -54,52 +52,51 @@ const DashboardContainer = (props) => {
  
   };
 
-// fetch names
-useEffect(() => { 
-  const fetchNames = async() => {
-      try{
-        const response = await fetch('/aws/getLambdaNames', {
-          method: 'POST', 
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            arn: user.arn
-          }),
-          muteHttpExceptions: true
-        });
-        const data = await response.json()
-        setMsNames(data);
-        console.log('names:', data)
-      }
-      catch(error){
-        console.log(error, 'error fetching MsNames')
-      }
-    }; 
-    fetchNames(); 
-}, [user])
+  // fetch names
+  useEffect(() => { 
+    const fetchNames = async() => {
+        try{
+          const response = await fetch('/aws/getLambdaNames', {
+            method: 'POST', 
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              arn: user.arn
+            }),
+            muteHttpExceptions: true
+          });
+          const data = await response.json()
+          setMsNames(data);
+        }
+        catch(error){
+          console.log(error, 'error fetching MsNames')
+        }
+      }; 
+      fetchNames(); 
+  }, [user])
 
-// fetch metrics
-useEffect(() => {
-  if (msNames) {
-    const fetchMetrics = async () => {
-      try {
-        const response = await fetch('/aws/getLambdaMetrics', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            arn: user.arn
-          }),
-          muteHttpExceptions: true,
-        });
-        const data = await response.json();
-        setMsMetrics(data.MetricDataResults);
-        console.log('dashboard metrics: ', msMetrics);
-      } catch (error) {
-        console.log('error fetching metrics', error);
-      }
-    };
-    fetchMetrics();
-  }
-}, []);
+  // fetch metrics
+  useEffect(() => {
+    if (msNames) {
+      const fetchMetrics = async () => {
+        try {
+          const response = await fetch('/aws/getLambdaMetrics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              arn: user.arn
+            }),
+            muteHttpExceptions: true,
+          });
+          const data = await response.json();
+          setMsMetrics(data.MetricDataResults);
+        } 
+        catch (error) {
+          console.log('error fetching metrics', error);
+        }
+      };
+      fetchMetrics();
+    }
+  }, [msNames]);
 
   return (
     <div id='dashboard-container'>

@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { VscZoomInVscFileCode } from 'react-icons/vsc';
 
 const LandingPageContainer = (props) => {
 
