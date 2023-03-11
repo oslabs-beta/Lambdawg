@@ -62,6 +62,23 @@ button:active {
   transform:translateY(2px);
 }
 
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+.loading-text{
+  text-align: center;
+  animation: pulse 1s infinite;
+}
+
+
 // media queries
 @media (max-width: 1000px) {
 

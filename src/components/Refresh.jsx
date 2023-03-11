@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Refresh = (props) => {
-const { refreshRedis, setRefreshRedis, user } = props;
+const { refreshRedis, setRefreshRedis, user, names, setMsNames, msNames } = props;
+const navigate = useNavigate()
 
   const refreshMetrics = async () => {
     setRefreshRedis(false);

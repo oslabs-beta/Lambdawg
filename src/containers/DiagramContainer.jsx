@@ -23,8 +23,8 @@ const DiagramContainer = (props) => {
   
   return (
     <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
-      {/* <HorizontalBarChart msNames={msNames} msTraces={msTraces} /> */}
-      <CircleChart msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} />
+      <HorizontalBarChart msNames={msNames} msTraces={msTraces} />
+      {/* <CircleChart msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} /> */}
       {/* <iframe id="chart-frame" width="100%" src="/src/Chart/index.html" /> */}
     </div>
   );

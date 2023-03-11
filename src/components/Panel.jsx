@@ -5,9 +5,8 @@ import Refresh from '../components/Refresh.jsx';
 
 const Panel = (props) => {
 
-  const { panelFullScreen, msNames, msMetrics, user, setUser, msLogs, setMsLogs, refreshRedis, setRefreshRedis } = props;
+  const { panelFullScreen, msNames, setMsNames, msMetrics, user, setUser, msLogs, setMsLogs, refreshRedis, setRefreshRedis } = props;
   const [names, setNames] = useState([]);
-  // const render = false;
 
   // Populate metrics buttons
   useEffect(()=>{
@@ -28,8 +27,8 @@ const Panel = (props) => {
 
     return(
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
-        <Refresh refreshRedis={refreshRedis} setRefreshRedis={setRefreshRedis} user={user}/><br />
-        {names}
+        <Refresh msNames={msNames} setMsNames={setMsNames} refreshRedis={refreshRedis} setRefreshRedis={setRefreshRedis} user={user} names={names}/><br />
+        {(names.length > 0)? names : <span class='loading-text'><h1>Loading...</h1></span> }
       </div>
     )
   }

@@ -129,18 +129,19 @@ const DashboardContainer = (props) => {
   return (
     <div id="dashboard-container">
       <div id="dashboard-wrapper" className={dataWindowFullScreen ? "collapse-screen" : "full-screen"}>
-        <Panel
-          user={user}
-          setUser={setUser}
-          msNames={msNames}
-          msMetrics={msMetrics}
-          panelFullScreen={panelFullScreen}
-          setPanelFullScreen={setPanelFullScreen}
-          msLogs={msLogs}
-          setMsLogs={setMsLogs}
-          refreshRedis={refreshRedis}
-          setRefreshRedis={setRefreshRedis}
-        />
+          <Panel
+            user={user}
+            setUser={setUser}
+            msNames={msNames}
+            setMsNames={setMsNames}
+            msMetrics={msMetrics}
+            panelFullScreen={panelFullScreen}
+            setPanelFullScreen={setPanelFullScreen}
+            msLogs={msLogs}
+            setMsLogs={setMsLogs}
+            refreshRedis={refreshRedis}
+            setRefreshRedis={setRefreshRedis}
+          />
         <DiagramContainer
           msNames={msNames}
           msMetrics={msMetrics}
