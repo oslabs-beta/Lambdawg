@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import DashboardContainer from './containers/DashboardContainer.jsx';
 import LandingPageContainer from './containers/LandingPageContainer.jsx';
 import Auth from './components/Auth.jsx';
@@ -14,13 +14,12 @@ const App = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
 
-  console.log('app.jsx, user in state', user)
-  // check for cookie and if found, log user in and save userdata
+  // Log user in and fetch data if JWT is present
   useEffect(() => {
     const checkAuth = async () => {
      
         try {
-          const response = await fetch('http://localhost:3000/api/', {
+          const response = await fetch('/api/', {
             credentials: 'include'
           })
           if (response.ok) {
@@ -49,8 +48,6 @@ const App = (props) => {
     };
     checkAuth();
   }, []);
-
-
 
   return (
     <div className="router">

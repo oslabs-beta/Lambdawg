@@ -82,7 +82,7 @@ useEffect(() => {
   if (msNames) {
     const fetchMetrics = async () => {
       try {
-        const response = await fetch('http://localhost:3000/getLambdaMetrics', {
+        const response = await fetch('/aws/getLambdaMetrics', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

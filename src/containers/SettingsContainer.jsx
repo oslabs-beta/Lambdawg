@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import SettingsForm from '../components/SettingsForm.jsx';
 
 
@@ -8,7 +8,7 @@ const SettingsContainer = (props) => {
   const mascot = 'src/assets/logo.png'
 
   // this forces the settings container to fetch new user data to display, w/o it - its going to be blank
-  useEffect(()=>{}, [user])
+  // useEffect(()=>{ console.log('') }, [user])
 
   return(
     <div>
@@ -24,7 +24,7 @@ const SettingsContainer = (props) => {
 
     
       <span className='settings-button-wrap'>
-            <button className='settings-secondary-button'>Update profile settings / change password</button>
+            <button className='settings-secondary-button'>Reset my password</button>
           </span>
 
     </div>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const DiagramContainer = (props) => {
-const { diagramFullScreen, setDiagramFullScreen } = props;
+const { diagramFullScreen } = props;
 
 // window.addEventListener("message", receiveMessage, false);
 // function receiveMessage(event) {

@@ -1,8 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-// import { VscSettingsGear, VscBook, VscColorMode, VscMenu, VscKey, VscFileCode } from 'react-icons/vsc';
 
 const Navbar = (props) => {
   const { loggedIn, setLoggedIn, user } = props;
@@ -33,12 +32,12 @@ const Navbar = (props) => {
           console.log('logout worked yo!')
         }
         else console.log('logout didnt work brah', loggedIn)
-      }
-      catch(error){
-        console.log('catch block in logout')
-      }
-      }
-      setNavChecked(false);
+        }
+        catch(error){
+          console.log('catch block in logout')
+        }
+        }
+        setNavChecked(false);
     }
 
     return(

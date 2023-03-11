@@ -1,10 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import LamdaButton from '../components/LamdaButton.jsx';
 
 const Panel = (props) => {
 
-  const { setPanelFullScreen, panelFullScreen, msNames, msMetrics, user, msLogs, setMsLogs } = props;
+  const { panelFullScreen, msNames, msMetrics, user, msLogs, setMsLogs } = props;
  
   const names = []
   let i = 0;

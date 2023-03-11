@@ -10,8 +10,7 @@ const LamdaButton = (props) => {
 // Parse metrics for specific name (this could happen in panel but whatever for now)
   useEffect(() => {
 
-    if (!msMetrics || !Array.isArray(msMetrics)) return console.log('no metrics here dawg');
-    // console.log('LamdaButton metrics', msMetrics)
+    if (!msMetrics || !Array.isArray(msMetrics)) return;
   
     const tempSortedMetrics = {};
     let invocationsSum = 0;
