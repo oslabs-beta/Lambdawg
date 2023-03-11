@@ -1,9 +1,8 @@
-
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import Panel from '../components/Panel.jsx';
-import DiagramContainer from '../containers/DiagramContainer.jsx';
-import DataWindow from '../components/DataWindow.jsx';
+import Panel from "../components/Panel.jsx";
+import DiagramContainer from "../containers/DiagramContainer.jsx";
+import DataWindow from "../components/DataWindow.jsx";
 
 const DashboardContainer = (props) => {
   const { loggedIn, setLoggedIn, user } = props;
@@ -12,9 +11,23 @@ const DashboardContainer = (props) => {
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
   const [msNames, setMsNames] = useState([]);
   const [msMetrics, setMsMetrics] = useState({});
-  const [msLogs, setMsLogs] = useState({})
+  const [msLogs, setMsLogs] = useState({});
+  const [msTraces, setMsTraces] = useState([]);
+  const [msServiceIds, setMsServiceIds] = useState([]);
 
-  useEffect(()=>{ console.log('listening for arn in dashboard') }, [user])
+  //need to keep track of which panel needs to be open based on which circle was clicked
+  const [activePanel, setActivePanel] = useState("");
+
+  const handleTogglePanel = (panelName) => {
+    //here, panelName is the circle name passed up from bubble chart
+    console.log("handletogglepanel", panelName);
+    setActivePanel(panelName);
+    console.log("current active panel", activePanel);
+  };
+
+  useEffect(() => {
+    console.log("listening for arn in dashboard");
+  }, [user]);
 
   /// toggle full screen for mobile
   const handlePanelClick = () => {
@@ -51,75 +64,152 @@ const DashboardContainer = (props) => {
     document.getElementById("dataButton").classList.add("current-window-button");
     document.getElementById("diagramButton").classList.remove("current-window-button");
     document.getElementById("panelButton").classList.remove("current-window-button");
- 
   };
 
-// fetch names
-useEffect(() => { 
-  const fetchNames = async() => {
-      try{
-        const response = await fetch('http://localhost:3000/getLambdaNames', {
-          method: 'POST', 
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            arn: user.arn
-          }),
-          muteHttpExceptions: true
-        });
-        const data = await response.json()
-        setMsNames(data);
-        console.log('names:', data)
-      }
-      catch(error){
-        console.log(error, 'error fetching MsNames')
-      }
-    }; 
-    fetchNames(); 
-}, [user])
-
-// fetch metrics
-useEffect(() => {
-  if (msNames) {
-    const fetchMetrics = async () => {
+  // fetch names
+  useEffect(() => {
+    const fetchNames = async () => {
       try {
-        const response = await fetch('http://localhost:3000/getLambdaMetrics', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const response = await fetch("http://localhost:3000/getLambdaNames", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            arn: user.arn
+            arn: user.arn,
           }),
           muteHttpExceptions: true,
         });
         const data = await response.json();
-        setMsMetrics(data.MetricDataResults);
-        console.log('dashboard metrics: ', msMetrics);
+        setMsNames(data);
+        console.log("names:", data);
       } catch (error) {
-        console.log('error fetching metrics', error);
+        console.log(error, "error fetching MsNames");
       }
     };
-    fetchMetrics();
-  }
-}, []);
+    fetchNames();
+  }, [user]);
+
+  // fetch metrics
+  useEffect(() => {
+    if (msNames) {
+      const fetchMetrics = async () => {
+        try {
+          const response = await fetch("http://localhost:3000/getLambdaMetrics", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              arn: user.arn,
+            }),
+            muteHttpExceptions: true,
+          });
+          const data = await response.json();
+          setMsMetrics(data.MetricDataResults);
+          console.log("dashboard metrics: ", msMetrics);
+        } catch (error) {
+          console.log("error fetching metrics", error);
+        }
+      };
+      fetchMetrics();
+    }
+  }, []);
+
+  //fetch traces
+  useEffect(() => {
+    if (msNames) {
+      //we need names to fetch traces also
+      const fetchTraces = async () => {
+        console.log("in fetch traces");
+        try {
+          const response = await fetch("http://localhost:3000/getTraces", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              arn: user.arn,
+            }),
+            muteHttpExceptions: true,
+          });
+          const data = await response.json();
+
+          //parsing name, duration, responseTime, service ids
+          const serviceData = [];
+          const traceData = await data.map((obj) => {
+            if (!obj.summary.length) {
+              return {
+                name: obj.name,
+                duration: undefined,
+                responseTime: undefined,
+                serviceIds: undefined,
+              };
+            } else {
+              //create a separate serviceData array to pass as msServiceIds
+              serviceData.push({
+                name: obj.name,
+                serviceIds: obj.summary[0].ServiceIds,
+              });
+              return {
+                name: obj.name,
+                duration: obj.summary[0].Duration,
+                responseTime: obj.summary[0].ResponseTime,
+                serviceIds: obj.summary[0].ServiceIds,
+              };
+            }
+          });
+          //trying to parse serviceIdData all at once
+          setMsTraces(traceData);
+          setMsServiceIds(serviceData);
+          console.log("dashboard traces useEffect: ", msTraces);
+          console.log("servicedata array in dashboard", serviceData);
+        } catch (error) {
+          console.log("error fetching traces", error);
+        }
+      };
+      fetchTraces();
+      console.log("mstraces in fetch dashboard", msTraces);
+    }
+  }, []);
 
   return (
-    <div id='dashboard-container'>
-
-      <div id='dashboard-wrapper' className={dataWindowFullScreen ? 'collapse-screen' : 'full-screen'}>
-        <Panel user={user} msNames={msNames} msMetrics={msMetrics} panelFullScreen={panelFullScreen} setPanelFullScreen={setPanelFullScreen} msLogs={msLogs} setMsLogs={setMsLogs}/>
-        <DiagramContainer diagramFullScreen={diagramFullScreen} setDiagramFullScreen={setDiagramFullScreen} />
+    <div id="dashboard-container">
+      <div id="dashboard-wrapper" className={dataWindowFullScreen ? "collapse-screen" : "full-screen"}>
+        <Panel
+          user={user}
+          msNames={msNames}
+          msMetrics={msMetrics}
+          panelFullScreen={panelFullScreen}
+          setPanelFullScreen={setPanelFullScreen}
+          msLogs={msLogs}
+          setMsLogs={setMsLogs}
+        />
+        <DiagramContainer
+          msNames={msNames}
+          msMetrics={msMetrics}
+          msTraces={msTraces}
+          msServiceIds={msServiceIds}
+          diagramFullScreen={diagramFullScreen}
+          setDiagramFullScreen={setDiagramFullScreen}
+          handleTogglePanel={handleTogglePanel}
+        />
       </div>
 
-      <DataWindow dataWindowFullScreen={dataWindowFullScreen} setDataWindowFullScreen={setDataWindowFullScreen} msLogs={msLogs} setMsLogs={setMsLogs}/>
+      <DataWindow
+        dataWindowFullScreen={dataWindowFullScreen}
+        setDataWindowFullScreen={setDataWindowFullScreen}
+        msLogs={msLogs}
+        setMsLogs={setMsLogs}
+      />
 
-      <div className='block-button-wrapper dashboard-buttons'>
-        <button className='secondary-button' id='panelButton' onClick={handlePanelClick}>Panel</button>
-        <button className='secondary-button' id='dataButton' onClick={handleDataClick}>Log</button>
-        <button className='secondary-button' id='diagramButton' onClick={handleDiagramClick}>Map</button>
+      <div className="block-button-wrapper dashboard-buttons">
+        <button className="secondary-button" id="panelButton" onClick={handlePanelClick}>
+          Panel
+        </button>
+        <button className="secondary-button" id="dataButton" onClick={handleDataClick}>
+          Log
+        </button>
+        <button className="secondary-button" id="diagramButton" onClick={handleDiagramClick}>
+          Map
+        </button>
       </div>
-      
     </div>
   );
 };
 
 export default DashboardContainer;
-
