@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import LamdaButton from '../components/LamdaButton.jsx';
 import Refresh from '../components/Refresh.jsx';
 
@@ -7,30 +7,6 @@ const Panel = (props) => {
 
   const { panelFullScreen, msNames, msMetrics, user, setUer, msLogs, setMsLogs, refreshRedis, setRefreshRedis } = props;
   const [names, setNames] = useState([]);
-
-  // Refresh button msg to redis
-  const refreshCachedAwsData = async() => {
-    try{
-      await fetch('/aws/freshRedis', {
-        method: 'POST', 
-        header: {'content-type': 'application/json'},
-        body: JSON.stringify({
-          user_name: user.user_name
-        }),
-        muteHttpExceptions: true
-      })
-      if (response.ok){
-        setRefreshRedis(true);
-      }
-      else {
-        console.log('Unable to refresh cached data')
-      }
-        setRefreshRedis(false);
-    }
-    catch{
-
-    }
-  }
 
   // Populate metrics buttons
   useEffect(()=>{
@@ -45,12 +21,12 @@ const Panel = (props) => {
       console.log('names in panel', msNames)
       setNames(namesArr)
     }
-  }, [msNames])
+  }, [msNames, names])
 
   console.log('panel names array', names)
     return(
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
-        <Refresh onClick={refreshCachedAwsData}/><br />
+        <Refresh refreshRedis={refreshRedis} setRefreshRedis={setRefreshRedis}/><br />
         {names}
       </div>
     )

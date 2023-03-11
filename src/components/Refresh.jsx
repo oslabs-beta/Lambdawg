@@ -1,10 +1,30 @@
 import React from 'react';
 
-const Refresh = () => {
+const Refresh = (props) => {
+const { refreshRedis, setRefreshRedis } = props;
 
-  const refreshMetrics = () => {
-    // send message to dump redis cache
-    // initiate new metrics fetch
+  const refreshMetrics = async () => {
+    setRefreshRedis(false);
+    try{
+      const response = await fetch('/aws/freshRedis', {
+        method: 'POST', 
+        header: {'content-type': 'application/json'},
+        body: JSON.stringify({
+          user_name: user.user_name
+        }),
+        muteHttpExceptions: true
+      })
+      if (response.ok){
+        console.log('response ok from redis')
+        setRefreshRedis(true);
+      }
+      else {
+        console.log('Unable to refresh cached data')
+      }
+    }
+    catch(error){
+      console.log('error reaching redis for refesh: ', error)
+    }
   }
 
   return(
