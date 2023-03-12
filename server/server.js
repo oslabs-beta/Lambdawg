@@ -7,7 +7,6 @@ const listLambdasController = require("./controllers/listLambdasController");
 const rdsMetricsController = require("./controllers/MetricsController.js");
 const lambdaLogsController = require("./controllers/lambdaLogsController");
 const tracesController = require("./controllers/tracesController.js");
-const tracesTestController = require("./controllers/testTraceController.js");
 const jwt = require("jsonwebtoken");
 
 const app = express();
@@ -93,6 +92,8 @@ app.post(
     return res.status(200).json(res.locals.getLambdaMetrics);
   }
 );
+
+app.delete("/deleteRedis", credentialController.deleteRedis);
 
 //Catch All Route Handler for any requests to an unkown route
 //----------------

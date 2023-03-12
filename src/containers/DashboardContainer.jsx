@@ -19,6 +19,7 @@ const DashboardContainer = (props) => {
 
   const handleTogglePanel = (panelName) => {
     //here, panelName is the circle name passed up from bubble chart
+    console.log("handletogglepanel", panelName);
     setActivePanel(panelName);
     console.log("current active panel", activePanel);
     //with the passed up active panel name, select the button with the id name and click open
