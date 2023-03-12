@@ -15,7 +15,7 @@ function BubbleChart({ bubbleChartData, handleTogglePanel }) {
   function simulation(bubbleChartData) {
     const maxRadius = d3.max(bubbleChartData, (d) => d.count);
     const minRadius = d3.min(bubbleChartData, (d) => d.count);
-    const radiusScale = d3.scaleSqrt().domain([minRadius, maxRadius]).range([20, 120]);
+    const radiusScale = d3.scaleSqrt().domain([minRadius, maxRadius]).range([10, 110]);
 
     const ticked = () => setState({ bubbleChartData });
 

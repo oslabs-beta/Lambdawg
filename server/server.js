@@ -53,24 +53,24 @@ app.post(
   }
 );
 
-// app.post(
-//   "/getTraces",
-//   credentialController.getCredentials,
-//   listLambdasController.getLambdas,
-//   tracesController.getTraces,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.traces);
-//   }
-// );
 app.post(
   "/getTraces",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
-  tracesTestController.getTraces,
+  tracesController.getTraces,
   (req, res) => {
     return res.status(200).json(res.locals.traces);
   }
 );
+// app.post(
+//   "/getTraces",
+//   credentialController.getCredentials,
+//   listLambdasController.getLambdas,
+//   tracesTestController.getTraces,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.traces);
+//   }
+// );
 
 app.post(
   "/getLambdaLogs",

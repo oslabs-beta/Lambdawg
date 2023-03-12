@@ -58,7 +58,7 @@ const DiagramContainer = (props) => {
   useEffect(() => {
     if (msServiceIds) {
       //will have to send msServiceIds to this
-      console.log('msServiceId', msServiceIds)
+      console.log("msServiceId", msServiceIds);
       // parseService(msServiceIdsExample);
     }
   }, []);
@@ -76,17 +76,16 @@ const DiagramContainer = (props) => {
     // document.getElementById().textContent = event.data; // the node id
   }
 
+  //this useState provides diagramContainer which chart was selected
   const [activeChart, setActiveChart] = useState("Node");
   console.log("current active chart", activeChart);
 
   return (
-    <div>
+    <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
+      {activeChart === "Bar" && <HorizontalBarChart msNames={msNames} msTraces={msTraces} />}
+      {activeChart === "Bubble" && <CircleChart msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} />}
+      {activeChart === "Node" && <iframe id="chart-frame" width="100%" height="100%" src="/src/Chart/index.html" />}
       <Dropdown setActiveChart={setActiveChart} />
-      <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
-        {activeChart === "Bar" && <HorizontalBarChart msNames={msNames} msTraces={msTraces} />}
-        {activeChart === "Bubble" && <CircleChart msMetrics={msMetrics} handleTogglePanel={handleTogglePanel} />}
-        {activeChart === "Node" && <iframe id="chart-frame" width="100%" src="/src/Chart/index.html" />}
-      </div>
     </div>
   );
 };
