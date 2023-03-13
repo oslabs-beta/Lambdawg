@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-function Log(props) {
+const Log = (props) => {
   const { logs, functionName } = props;
 
   return (

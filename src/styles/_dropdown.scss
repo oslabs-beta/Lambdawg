@@ -1,9 +1,10 @@
 .chart-dropdown {
   position: absolute;
-  top: 5rem;
   display: block;
+  top: calc(60vh + 3rem);
   // background-color: $primary-button-color;
   border-radius: 10px;
+  z-index: 999;
 
   .chart-dropdown-toggle {
     background-color: transparent;
@@ -20,7 +21,7 @@
   .chart-dropdown-menu {
     display: flex;
     flex-direction: column;
-    top: 100%;
+    // top: 100%;
     display: none;
     width: 100%;
     padding: 5px 10px;
@@ -49,13 +50,7 @@
       color: $button-font-color;
       white-space: nowrap;
       background-color: $secondary-button-color;
-      border: 0;
+      border: none;
     }
-  }
-}
-@media (max-width: 1000px) {
-  .chart-dropdown {
-    position: absolute;
-    bottom: 4rem;
   }
 }
