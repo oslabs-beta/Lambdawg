@@ -78,7 +78,10 @@
   #log-ul  {
    padding: 0px;
   }
-  .metrics-button {
+  .metrics-button, #refresh-button {
     width: 90vw;
+    padding: .75rem;
+    margin-bottom: .5rem;
   }
+
 }

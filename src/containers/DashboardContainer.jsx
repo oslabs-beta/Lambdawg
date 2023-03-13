@@ -4,7 +4,7 @@ import DiagramContainer from '../containers/DiagramContainer.jsx';
 import DataWindow from '../components/DataWindow.jsx';
 
 const DashboardContainer = (props) => {
-  const { user } = props;
+  const { user, setUser } = props;
   const [panelFullScreen, setPanelFullScreen] = useState(false);
   const [diagramFullScreen, setDiagramFullScreen] = useState(true);
   const [dataWindowFullScreen, setDataWindowFullScreen] = useState(false);
@@ -13,9 +13,8 @@ const DashboardContainer = (props) => {
   const [msLogs, setMsLogs] = useState({});
   const [msTraces, setMsTraces] = useState([]);
   const [msServiceIds, setMsServiceIds] = useState([]);
-
-  //need to keep track of which panel needs to be open based on which circle was clicked
-  const [activePanel, setActivePanel] = useState('');
+  const [refreshRedis, setRefreshRedis] = useState(false);
+  const [activePanel, setActivePanel] = useState("");
 
   const handleTogglePanel = (panelName) => {
     //panelName is the name of the bubble that was clicked. Passed back up from bubble chart
@@ -29,10 +28,10 @@ const DashboardContainer = (props) => {
   };
 
   useEffect(() => {
-    console.log('listening for arn in dashboard');
+    console.log('listening in dashboard');
   }, [user]);
 
-  /// toggle full screen for mobile
+  /// toggle full screen for mobile Panel
   const handlePanelClick = () => {
     if (panelFullScreen) {
       return;
@@ -44,13 +43,11 @@ const DashboardContainer = (props) => {
       .getElementById('panelButton')
       .classList.add('current-window-button');
     document
-      .getElementById('diagramButton')
-      .classList.remove('current-window-button');
-    document
       .getElementById('dataButton')
       .classList.remove('current-window-button');
   };
 
+  // toggle full screen for mobile charts
   const handleDiagramClick = () => {
     if (diagramFullScreen) {
       return;
@@ -59,9 +56,6 @@ const DashboardContainer = (props) => {
     setDiagramFullScreen(!diagramFullScreen);
     setDataWindowFullScreen(false);
     document
-      .getElementById('diagramButton')
-      .classList.add('current-window-button');
-    document
       .getElementById('panelButton')
       .classList.remove('current-window-button');
     document
@@ -69,6 +63,7 @@ const DashboardContainer = (props) => {
       .classList.remove('current-window-button');
   };
 
+  // toggle full screen for mobile logs
   const handleDataClick = () => {
     if (dataWindowFullScreen) {
       return;
@@ -80,37 +75,38 @@ const DashboardContainer = (props) => {
       .getElementById('dataButton')
       .classList.add('current-window-button');
     document
-      .getElementById('diagramButton')
-      .classList.remove('current-window-button');
-    document
       .getElementById('panelButton')
       .classList.remove('current-window-button');
   };
 
   // fetch names
-  useEffect(() => {
-    const fetchNames = async () => {
-      try {
-        const response = await fetch('/aws/getLambdaNames', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            arn: user.arn,
-          }),
-          muteHttpExceptions: true,
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setMsNames(data);
-        } else {
-          alert('Please confirm correct ARN and region in settings');
-        }
-      } catch (error) {
-        console.log(error, 'error fetching MsNames');
-      }
-    };
-    fetchNames();
-  }, [user]);
+  useEffect(() => { 
+    if(user){
+      const fetchNames = async() => {
+          try{
+            const response = await fetch('/aws/getLambdaNames', {
+              method: 'POST', 
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                arn: user.arn,
+                user_name: user.user_name
+              }),
+              muteHttpExceptions: true
+            });
+            if (response.ok){
+              const data = await response.json()
+              setMsNames(data);
+            }
+            else {
+              alert('Please confirm correct ARN and region in settings')
+            }
+          }
+          catch(error){
+          }
+        }; 
+        fetchNames(); 
+    }
+  }, [user, refreshRedis])
 
   // fetch metrics
   useEffect(() => {
@@ -122,12 +118,14 @@ const DashboardContainer = (props) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               arn: user.arn,
+              user_name: user.user_name
             }),
             muteHttpExceptions: true,
           });
           const data = await response.json();
           setMsMetrics(data.MetricDataResults);
-        } catch (error) {
+        } 
+        catch (error) {
           console.log('error fetching metrics', error);
         }
       };
@@ -139,7 +137,6 @@ const DashboardContainer = (props) => {
   useEffect(() => {
     //we need names to fetch traces also
     const fetchTraces = async () => {
-      console.log('in fetch traces');
       try {
         const response = await fetch('/aws/getTraces', {
           method: 'POST',
@@ -178,30 +175,30 @@ const DashboardContainer = (props) => {
         //trying to parse serviceIdData all at once
         setMsTraces(traceData);
         setMsServiceIds(serviceData);
-        console.log('dashboard traces useEffect: ', msTraces);
-        console.log('servicedata array in dashboard', serviceData);
+    
       } catch (error) {
         console.log('error fetching traces', error);
       }
     };
     fetchTraces();
-    console.log('mstraces in fetch dashboard', msTraces);
   }, []);
+  
   return (
-    <div id='dashboard-container'>
-      <div
-        id='dashboard-wrapper'
-        className={dataWindowFullScreen ? 'collapse-screen' : 'full-screen'}
-      >
-        <Panel
-          user={user}
-          msNames={msNames}
-          msMetrics={msMetrics}
-          panelFullScreen={panelFullScreen}
-          setPanelFullScreen={setPanelFullScreen}
-          msLogs={msLogs}
-          setMsLogs={setMsLogs}
-        />
+    <div id="dashboard-container">
+      <div id="dashboard-wrapper" className={dataWindowFullScreen ? "collapse-screen" : "full-screen"}>
+          <Panel
+            user={user}
+            setUser={setUser}
+            msNames={msNames}
+            setMsNames={setMsNames}
+            msMetrics={msMetrics}
+            panelFullScreen={panelFullScreen}
+            setPanelFullScreen={setPanelFullScreen}
+            msLogs={msLogs}
+            setMsLogs={setMsLogs}
+            refreshRedis={refreshRedis}
+            setRefreshRedis={setRefreshRedis}
+          />
         <DiagramContainer
           msNames={msNames}
           msMetrics={msMetrics}
@@ -235,13 +232,7 @@ const DashboardContainer = (props) => {
         >
           Log
         </button>
-        <button
-          className='secondary-button'
-          id='diagramButton'
-          onClick={handleDiagramClick}
-        >
-          Map
-        </button>
+      
       </div>
     </div>
   );

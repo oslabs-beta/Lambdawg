@@ -32,15 +32,21 @@ const DataWindow = (props) => {
       id='data-window-wrapper'
       className={dataWindowFullScreen ? 'fullscreen' : 'collapse-screen'}
     >
-      <Scrollbar style={{ width: 'auto', height: '100%' }}>
+      <Scrollbar style={{ width: 'auto', height: '100%', }} className='scroll-bar'>
         <code>
-          {Object.entries(logData).map(([functionName, logs]) => (
-            <Log key={functionName} functionName={functionName} logs={logs} />
-          ))}
+          {Object.keys(logData).length > 0 ? (
+          Object.entries(logData).map(([functionName, logs]) => (
+              <Log key={functionName} functionName={functionName} logs={logs} />
+            ))
+        ) : 
+          <span class='loading-text'><br/><h1 className='logs-loading'>Loading...</h1></span>
+        }
         </code>
       </Scrollbar>
     </div>
   );
+  
 };
 
 export default DataWindow;
+

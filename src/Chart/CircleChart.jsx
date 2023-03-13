@@ -7,7 +7,7 @@ const CircleChart = (props) => {
   const [bubbleChartData, setBubbleChartData] = useState([]);
   //fetch metrics to render in chart
   useEffect(() => {
-    if (!msMetrics || !Array.isArray(msMetrics)) return console.log("no bubble bubbles");
+    if (!msMetrics || !Array.isArray(msMetrics)) return console.log("no metrics data");
 
     function bubbleDataParse(metricsArr) {
       const bubbleArray = [];
@@ -38,8 +38,8 @@ const CircleChart = (props) => {
     setBubbleChartData(graphData);
   }, []);
 
-  const width = window.screen.width / 2;
-  const height = window.screen.height / 2;
+  const width = window.screen.width / 1;
+  const height = window.screen.height / 1;
   //setting some styles here to overwrite predefined styles from d3 chart
   return (
     <div

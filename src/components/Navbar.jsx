@@ -35,7 +35,6 @@ const Navbar = (props) => {
     }
 
     const applyFilter = () => {
-      console.log('Applying filter with transition value: ' + transition);
       htmlElement.style.filter = `invert(${transition})`;
       mode === 'dark'
         ? (() => {
@@ -57,7 +56,6 @@ const Navbar = (props) => {
 
   //handle state and triggest transition on click
   const darkClick = () => {
-    console.log('this.state.mode ' + mode);
     setMode(mode === 'dark' ? 'light' : 'dark');
     darkMode(mode);
   };
@@ -71,9 +69,10 @@ const Navbar = (props) => {
         if (response.ok) {
           setLoggedIn(false);
           navigate('/auth');
-          console.log('logout worked yo!');
-        } else console.log('logout didnt work brah', loggedIn);
-      } catch (error) {
+        } 
+        else console.log('logout failed');
+      } 
+      catch (error) {
         console.log('catch block in logout');
       }
     }
@@ -110,10 +109,12 @@ const Navbar = (props) => {
 
       <div className='nav-links'>
         <div className='menuTop'>
+
           <label className='switchLabel'>
             {mode === 'light' ? 'Dark Mode' : 'Light Mode'}
           </label>
           <Switch {...label} onClick={darkClick} />
+          
         </div>
         <Link to={docsLink} onClick={handleLinkClick}>
           Documentation

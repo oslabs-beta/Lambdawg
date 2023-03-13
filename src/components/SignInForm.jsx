@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 const SignInForm = (props) => {
-  const [formData, setFormData] = useState({ user_name: '', password_: '' });
-  const { loggedIn, setLoggedIn, user, setUser } = props;
+  const [formData, setFormData] = useState({ 
+    user_name: '', 
+    password_: '' 
+  });
+  const { setLoggedIn, user, setUser } = props;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  // sign in form logic > logs in & saves { user } to state
+  // will add user data to state
   const handleSubmit = async (event) => {
     event.preventDefault();
     const signInFormData = {
@@ -26,9 +29,7 @@ const SignInForm = (props) => {
       });
 
       if (response.ok) {
-        console.log('Sign in attempt passed auth (signInForm)');
         const data = await response.json();
-        console.log(data, 'line 31 signin')
         const { user_name, full_name, email, _id, arn, region } = data
         setUser({
           full_name: full_name,
@@ -46,14 +47,14 @@ const SignInForm = (props) => {
         passwordInput.style.border = '2px solid red';
         passwordInput.value = '';
       }
-    } catch (error) {
-      console.error(error, 'error from signIn catch');
-      console.log('Unable to sign-in at this time. (signInForm');
+    } 
+    catch (error) {
+      console.error('error signing in: ', error);
     }
   };
 
   useEffect(() => {
-    console.log(user, 'sign in form')
+    console.log('user has been updated in state')
   }, [user])
 
   return (
@@ -86,10 +87,14 @@ const SignInForm = (props) => {
 
         <br />
         <div className='button-flex-wrapper'>
-          <button type='submit' className='primary-button'>
+          <button 
+            type='submit' 
+            className='primary-button'>
             Sign In
           </button>
-          <button onClick={props.toggleFormType} className='secondary-button'>
+          <button 
+            onClick={props.toggleFormType} 
+            className='secondary-button'>
             Sign Up
           </button>
         </div>

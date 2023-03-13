@@ -88,9 +88,9 @@ app.post(
   }
 );
 
-
-// Delete values of this user's redis keys/value pairs
-app.delete('/deleteRedis', credentialController.deleteRedis);
+app.delete('/deleteRedis', credentialController.deleteRedis, (req, res) => {
+  return res.status(200).json('redis cache cleared');
+});
 
 
 //Catch All Route Handler for any requests to an unkown route
