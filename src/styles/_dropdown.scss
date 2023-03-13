@@ -1,6 +1,6 @@
 .chart-dropdown {
   position: absolute;
-  top: 6rem;
+  top: 5rem;
   display: block;
   // background-color: $primary-button-color;
   border-radius: 10px;
@@ -56,6 +56,6 @@
 @media (max-width: 1000px) {
   .chart-dropdown {
     position: absolute;
-    top: 4rem;
+    bottom: 4rem;
   }
 }

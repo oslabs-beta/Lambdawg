@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Refresh = (props) => {
-const { refreshRedis, setRefreshRedis, user, names, setMsNames, msNames } = props;
+const { setRefreshRedis, user } = props;
 const navigate = useNavigate()
 
   const refreshMetrics = async () => {
@@ -17,7 +17,6 @@ const navigate = useNavigate()
         muteHttpExceptions: true
       })
       if (response.ok){
-        console.log('response ok from redis')
         setRefreshRedis(true);
       }
       else {
@@ -30,7 +29,12 @@ const navigate = useNavigate()
   }
 
   return(
-    <button id='refresh-button' onClick={refreshMetrics}>REFRESH METRICS CACHE</button>
+    <button 
+      id='refresh-button' 
+      onClick={refreshMetrics}
+      >
+      REFRESH METRICS CACHE
+      </button>
   )
 }
 

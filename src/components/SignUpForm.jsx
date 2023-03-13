@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 
 const signUpForm = (props) => {
 
-    const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password_: '', confirmPassword: '' });
-    const { toggleFormType, loggedIn, setLoggedIn, user, setUser, onSignUpSuccess } = props
+    const [formData, setFormData] = useState({ 
+      full_name: '', 
+      user_name: '', 
+      email: '', 
+      password_: '', 
+      confirmPassword: '' 
+    });
+    const { toggleFormType, setUser, onSignUpSuccess } = props
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -29,7 +35,6 @@ const signUpForm = (props) => {
         });
       
         if (response.ok) {
-          console.log('Sign up successful');
           const data = await response.json();
           const { user_name, full_name, email, _id } = data
           setUser({
@@ -46,7 +51,7 @@ const signUpForm = (props) => {
       } 
       catch (error) {
         console.error(error);
-        console.log('Unable to sign-up at this time.');
+        console.log('Unable to sign-up at this time: ');
       }
     };
 

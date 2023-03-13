@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
 
 const LamdaButton = (props) => {
   const { name, msMetrics, user, msLogs, setMsLogs } = props;
@@ -47,14 +46,12 @@ const LamdaButton = (props) => {
       }
     });
   
-    // console.log('LamdaButton sorted', tempSortedMetrics[name]);
     setSortedMetrics(tempSortedMetrics);
   }, [msMetrics]);
 
 // Fetch all Logs 
   useEffect(() => {
     if (msMetrics) {
-      console.log('fetchlogs line 59')
 
       const fetchLogs = async () => {
         try {
@@ -69,7 +66,6 @@ const LamdaButton = (props) => {
           });
           const data = await response.json();
           setMsLogs(data);
-          console.log('micro logs: ', msLogs);
         } catch (error) {
           console.log('error fetching logs', error);
         }
@@ -88,12 +84,17 @@ const LamdaButton = (props) => {
     }
   }
   
-
   return (
     <div>
       {sortedMetrics[name] && (
         <div>
-            <button id={name} className='metrics-button' onClick={togglePanel}>{`${name}`}</button>
+            <button 
+              id={name} 
+              className='metrics-button' 
+              onClick={togglePanel}
+              >
+              {`${name}`}
+            </button>
   
           <div
             id={`${name} Metrics`}

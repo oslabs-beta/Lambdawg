@@ -14,16 +14,10 @@ const DashboardContainer = (props) => {
   const [msTraces, setMsTraces] = useState([]);
   const [msServiceIds, setMsServiceIds] = useState([]);
   const [refreshRedis, setRefreshRedis] = useState(false);
-
-  //need to keep track of which panel needs to be open based on which circle was clicked
   const [activePanel, setActivePanel] = useState("");
 
   const handleTogglePanel = (panelName) => {
-    //here, panelName is the circle name passed up from bubble chart
-    console.log("handletogglepanel", panelName);
     setActivePanel(panelName);
-    console.log("current active panel", activePanel);
-    //with the passed up active panel name, select the button with the id name and click open
     if (panelName) {
       const button = document.getElementById(panelName);
       button.click();
@@ -34,7 +28,7 @@ const DashboardContainer = (props) => {
     console.log("listening for arn in dashboard");
   }, [user]);
 
-  /// toggle full screen for mobile
+  /// toggle full screen for mobile Panel
   const handlePanelClick = () => {
     if (panelFullScreen) {
       return;
@@ -47,6 +41,7 @@ const DashboardContainer = (props) => {
     document.getElementById("dataButton").classList.remove("current-window-button");
   };
 
+  // toggle full screen for mobile charts
   const handleDiagramClick = () => {
     if (diagramFullScreen) {
       return;
@@ -59,6 +54,7 @@ const DashboardContainer = (props) => {
     document.getElementById("dataButton").classList.remove("current-window-button");
   };
 
+  // toggle full screen for mobile logs
   const handleDataClick = () => {
     if (dataWindowFullScreen) {
       return;
@@ -88,18 +84,15 @@ const DashboardContainer = (props) => {
             if (response.ok){
               const data = await response.json()
               setMsNames(data);
-              console.log('names in dashboard', msNames)
             }
             else {
               alert('Please confirm correct ARN and region in settings')
             }
           }
           catch(error){
-            console.log(error, 'error fetching MsNames')
           }
         }; 
         fetchNames(); 
-        console.log('names are being fetched again in dhasboard')
     }
   }, [user, refreshRedis])
 
@@ -119,7 +112,6 @@ const DashboardContainer = (props) => {
           });
           const data = await response.json();
           setMsMetrics(data.MetricDataResults);
-          console.log('metrics in dash', msMetrics)
         } 
         catch (error) {
           console.log('error fetching metrics', error);
@@ -133,7 +125,6 @@ const DashboardContainer = (props) => {
   useEffect(() => {
     //we need names to fetch traces also
     const fetchTraces = async () => {
-      console.log("in fetch traces");
       try {
         const response = await fetch("/aws/getTraces", {
           method: "POST",
@@ -172,14 +163,12 @@ const DashboardContainer = (props) => {
         //trying to parse serviceIdData all at once
         setMsTraces(traceData);
         setMsServiceIds(serviceData);
-        console.log("dashboard traces useEffect: ", msTraces);
-        console.log("servicedata array in dashboard", serviceData);
+    
       } catch (error) {
         console.log("error fetching traces", error);
       }
     };
     fetchTraces();
-    console.log("mstraces in fetch dashboard", msTraces);
   }, []);
 
   return (

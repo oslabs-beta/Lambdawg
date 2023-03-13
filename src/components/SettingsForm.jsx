@@ -12,7 +12,6 @@ const Settings = (props) => {
 
   const navigate = useNavigate();
 
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -30,12 +29,10 @@ const Settings = (props) => {
     setFormData((prevFormData) => ({ ...prevFormData, password_: '' }));
   }
 
+  // will update user in db and state
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData.arn, 'yeehaw')
     if (formData.arn.substring(0, 12) !== 'arn:aws:iam:') return handleInvalidArn();
-
-    console.log('username in handlesubmit settings ', user.user_name)
 
     const arnFormData = {
       full_name: user.full_name, 
@@ -48,7 +45,6 @@ const Settings = (props) => {
     };
 
     try{
-      console.log('TRY in settings (the form data)', arnFormData)
       const response = await fetch(`/api/edit/${user.user_name}`, {
         method: 'PATCH',
         credentials: 'include',
@@ -58,13 +54,11 @@ const Settings = (props) => {
 
       if (response.ok){
         const data = await response.json();
-        console.log('user updated from settings! response:', data)
         navigate('/dashboard');
       }
       else {
         handleAuthFail();
-        console.log('Unable to patch arn etc from settings')
-        console.log('user inside else block of fetch in settings', user)
+        console.log('Unable to patch arn from settings')
       }
 
     }
@@ -76,18 +70,24 @@ const Settings = (props) => {
     setUser((prevUser) => ({ ...prevUser, arn: formData.arn, region: formData.aws_region }));
   }
 
-// console.log(user.arn)
-
   return(
     <div className='horizontal-line'>
       <p>
-        Step 1: <span className='visible-link'><a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=lambdawg-permission&param_ExternalId=Lambdawg&templateURL=https://lambdawg.s3.amazonaws.com/cloudFormation.yaml" target='blank'>
-          Connect your AWS account</a><br /><br /></span>
-        Step 2: Paste your ARN key below<br />
+        Step 1: 
+        <span 
+          className='visible-link'
+          >
+          <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=lambdawg-permission&param_ExternalId=Lambdawg&templateURL=https://lambdawg.s3.amazonaws.com/cloudFormation.yaml" 
+          target='blank'
+          >
+          Connect your AWS account
+          </a><br /><br />
+          </span>
+        Step 2: Paste your ARN key below
+        <br />
       </p>
       <div className='settings-form-container'>
         <form onSubmit={handleSubmit}>
-            {/* <input type="password" name="arn" placeholder=' ARN key' value={formData.arn} onChange={handleInputChange} required /> */}
             <input
               id='arnInputField'
               type="password"
@@ -117,11 +117,32 @@ const Settings = (props) => {
               <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
               <option value="sa-east-1">South America (São Paulo)</option>
             </select><br/>
-            <input id='arnPasswordField' type="password" name="password_" placeholder=' Your LAMBDAWG password' value={formData.password_} onChange={handleInputChange} required />
+            <input 
+              id='arnPasswordField' 
+              type="password" 
+              name="password_" 
+              placeholder=' 
+              Your LAMBDAWG password' 
+              value={formData.password_} 
+              onChange={handleInputChange} 
+              required 
+            />
         </form>
       </div>
-      <Link to="/docs" ><button className='settings-secondary-button stack-button'>Read the Docs</button></Link>
-     <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
+      <Link to="/docs" >
+        <button 
+        className='settings-secondary-button stack-button'
+        >
+          Read the Docs
+        </button>
+      </Link>
+
+      <button 
+        onClick={handleSubmit} 
+        className='settings-primary-button stack-button'
+        >
+        Get my metrics
+      </button>
 
     </div>
 
