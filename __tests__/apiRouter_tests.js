@@ -1,5 +1,4 @@
-//UNDER CONSTRUCTION
-const { beforeEach, before, afterEach } = require('node:test');
+const { beforeEach, afterEach } = require('node:test');
 const { afterAll } = require('@jest/globals');
 const request = require('supertest');
 const server = require('../server/server');
@@ -8,7 +7,8 @@ require('dotenv').config();
 
 describe('Our apiRoutes Unit Tests', () => {
   const testKey = process.env.TEST_TOKEN;
-  //password password
+  //These are our test users to run through the tests
+  //Passing User
   const newUser = [
     {
       user_name: 'testUser',
@@ -20,7 +20,7 @@ describe('Our apiRoutes Unit Tests', () => {
       [testKey]: true,
     },
   ];
-  //password password
+  //User Name is too long user- 272 chars
   const newUser272CharsUN_1 = [
     {
       user_name:
@@ -33,7 +33,7 @@ describe('Our apiRoutes Unit Tests', () => {
       [testKey]: true,
     },
   ];
-  //password passwor
+  //Password is too short User
   const newUserShortPass_2 = [
     {
       user_name: 'testUser_2',
@@ -45,7 +45,7 @@ describe('Our apiRoutes Unit Tests', () => {
       [testKey]: true,
     },
   ];
-  //password 'testUser' x34
+  //Password is too long User
   const newUser272CharsPW_3 = [
     {
       user_name: 'testUser_3',
@@ -58,7 +58,7 @@ describe('Our apiRoutes Unit Tests', () => {
       [testKey]: true,
     },
   ];
-  //password password
+  //Email is wrong format User
   const newUserBadEmail_4 = [
     {
       user_name: 'testUser_4',
@@ -70,7 +70,7 @@ describe('Our apiRoutes Unit Tests', () => {
       [testKey]: true,
     },
   ];
-  //password password
+  //Full Name is too long User
   const newUser272CharsFN_5 = [
     {
       user_name: 'testUser_5',
@@ -83,28 +83,25 @@ describe('Our apiRoutes Unit Tests', () => {
       [testKey]: true,
     },
   ];
-  // let _id;
+
   // want to make sure the user being passed into the test does not
-  //already exist in our database
-  //Will want to implement some logic before to check if they exist, and if so delete them
+  //already exist in our database, so we will invoke this function before and after each test
   const deleteUser = async () => {
     const text = `DELETE FROM "public"."users" WHERE ${testKey} = true`;
     console.log('how many times do you see me');
     await db.query(text);
   };
+  // Might need to handle some Open Handle issues, not sure if this is the direction to go
+  // beforeAll(async () => {
+  //   await db.connect();
+  // });
   // const closeDB = async () => {
   //   await db.end();
   // };
 
-  // beforeAll(async () => {
-  //   await db.connect();
-  // });
-
-  //This isnt working the way I think it should
-  //closes the DB connection after all of the tests have run
-  // afterAll(async () => {
-  //   await db.end();
-  // });
+  //Setting up our tests
+  //The outter most scope is testing our Post request at the Path api/newUser
+  //The syntax of Jest will explain what each test is doing
   describe('POST /newUser', () => {
     describe('Testing Validator Middleware', () => {
       beforeEach(deleteUser());
@@ -113,12 +110,9 @@ describe('Our apiRoutes Unit Tests', () => {
         request(server)
           .post('/api/newUser')
           .send(newUser)
-          // .expect('Content-Type', /json/)
-          // .expect('{}')
           .expect(200)
           .end((err, res) => {
             if (err) return done(err);
-            // _id = res.body.data[0]._id;
             return done();
           });
       });
@@ -130,7 +124,6 @@ describe('Our apiRoutes Unit Tests', () => {
           .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            // _id = res.body.data[0]._id;
             return done();
           });
       });
@@ -143,7 +136,6 @@ describe('Our apiRoutes Unit Tests', () => {
           .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            // _id = res.body.data[0]._id;
             return done();
           });
       });
@@ -155,7 +147,6 @@ describe('Our apiRoutes Unit Tests', () => {
           .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            // _id = res.body.data[0]._id;
             return done();
           });
       });
@@ -167,7 +158,6 @@ describe('Our apiRoutes Unit Tests', () => {
           .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            // _id = res.body.data[0]._id;
             return done();
           });
       });
@@ -179,7 +169,6 @@ describe('Our apiRoutes Unit Tests', () => {
           .expect(400)
           .end((err, res) => {
             if (err) return done(err);
-            // _id = res.body.data[0]._id;
             return done();
           });
       });
@@ -206,15 +195,8 @@ describe('Our apiRoutes Unit Tests', () => {
     */
   });
 
-  /*
-  describe('POST /newUser', () => {
-    it('should create a new user without issue', async () => {
-      const response = await request(server).post('/newUser').send(newUser); //does this need to be json?
-      console.log('response ', response);
-      expect(response.status).toBe(200);
-    });
-  });
-  */
+  //Here are some more tests that would be good to implement, the below is just a starting point, and need to be refined
+  //for actual testing of our code
   /*
   describe('POST /:user_name', () => {
     it('should set a session cookie', async () => {
