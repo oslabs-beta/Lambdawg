@@ -1,9 +1,7 @@
-
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Panel from '../components/Panel.jsx';
 import DiagramContainer from '../containers/DiagramContainer.jsx';
 import DataWindow from '../components/DataWindow.jsx';
-
 
 const DashboardContainer = (props) => {
   const { user, setUser } = props;
@@ -18,17 +16,22 @@ const DashboardContainer = (props) => {
   const [refreshRedis, setRefreshRedis] = useState(false);
 
   //need to keep track of which panel needs to be open based on which circle was clicked
-  const [activePanel, setActivePanel] = useState("");
+  const [activePanel, setActivePanel] = useState('');
 
   const handleTogglePanel = (panelName) => {
     //here, panelName is the circle name passed up from bubble chart
-    console.log("handletogglepanel", panelName);
+    console.log('handletogglepanel', panelName);
     setActivePanel(panelName);
-    console.log("current active panel", activePanel);
+    console.log('current active panel', activePanel);
+    //with the passed up active panel name, select the button with the id name and click open
+    if (panelName) {
+      const button = document.getElementById(panelName);
+      button.click();
+    }
   };
 
   useEffect(() => {
-    console.log("listening for arn in dashboard");
+    console.log('listening for arn in dashboard');
   }, [user]);
 
   /// toggle full screen for mobile
@@ -39,9 +42,15 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(!panelFullScreen);
     setDiagramFullScreen(false);
     setDataWindowFullScreen(false);
-    document.getElementById("panelButton").classList.add("current-window-button");
-    document.getElementById("diagramButton").classList.remove("current-window-button");
-    document.getElementById("dataButton").classList.remove("current-window-button");
+    document
+      .getElementById('panelButton')
+      .classList.add('current-window-button');
+    document
+      .getElementById('diagramButton')
+      .classList.remove('current-window-button');
+    document
+      .getElementById('dataButton')
+      .classList.remove('current-window-button');
   };
 
   const handleDiagramClick = () => {
@@ -51,9 +60,15 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(false);
     setDiagramFullScreen(!diagramFullScreen);
     setDataWindowFullScreen(false);
-    document.getElementById("diagramButton").classList.add("current-window-button");
-    document.getElementById("panelButton").classList.remove("current-window-button");
-    document.getElementById("dataButton").classList.remove("current-window-button");
+    document
+      .getElementById('diagramButton')
+      .classList.add('current-window-button');
+    document
+      .getElementById('panelButton')
+      .classList.remove('current-window-button');
+    document
+      .getElementById('dataButton')
+      .classList.remove('current-window-button');
   };
 
   const handleDataClick = () => {
@@ -63,9 +78,15 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(false);
     setDiagramFullScreen(false);
     setDataWindowFullScreen(!dataWindowFullScreen);
-    document.getElementById("dataButton").classList.add("current-window-button");
-    document.getElementById("diagramButton").classList.remove("current-window-button");
-    document.getElementById("panelButton").classList.remove("current-window-button");
+    document
+      .getElementById('dataButton')
+      .classList.add('current-window-button');
+    document
+      .getElementById('diagramButton')
+      .classList.remove('current-window-button');
+    document
+      .getElementById('panelButton')
+      .classList.remove('current-window-button');
   };
 
   // fetch names
@@ -160,14 +181,26 @@ const DashboardContainer = (props) => {
         setMsLogs={setMsLogs}
       />
 
-      <div className="block-button-wrapper dashboard-buttons">
-        <button className="secondary-button" id="panelButton" onClick={handlePanelClick}>
+      <div className='block-button-wrapper dashboard-buttons'>
+        <button
+          className='secondary-button'
+          id='panelButton'
+          onClick={handlePanelClick}
+        >
           Panel
         </button>
-        <button className="secondary-button" id="dataButton" onClick={handleDataClick}>
+        <button
+          className='secondary-button'
+          id='dataButton'
+          onClick={handleDataClick}
+        >
           Log
         </button>
-        <button className="secondary-button" id="diagramButton" onClick={handleDiagramClick}>
+        <button
+          className='secondary-button'
+          id='diagramButton'
+          onClick={handleDiagramClick}
+        >
           Map
         </button>
       </div>

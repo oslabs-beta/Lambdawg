@@ -1,184 +1,176 @@
-
+// 
 
 .chart-container {
- max-width: 60vw;
- padding: 1rem;
+  max-width: 60vw;
+  padding: 1rem;
+  
+ }
  
-}
 
-#dashboard-wrapper { // panel and diagram
+ #dashboard-container {
+   display: flex;
+   flex-direction: column;
+   height: calc(100vh - 3.2rem);
+   overflow: hidden;
+   background-color: $dashboard-background-color;
+   padding: 2rem 1rem 0rem 1rem;
+ }
+ #dashboard-wrapper { // panel and diagram
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+ //  justify-content: flex-start;
   max-height: 60vh;
   min-height: 60vh;
   gap: 1rem;
   margin-bottom: .5rem;
+  border: 1px solid white;
 }
-
-#dashboard-container {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 3.2rem);
-  overflow: hidden;
-  background-color: $dashboard-background-color;
-  padding: 2rem 1rem 0rem 1rem;
-}
-
-#panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
+ #diagram-container-wrapper {
   border: 1px solid $dashboard-border-boxes;
   overflow: auto;
-}
-#data-window-wrapper {
-  height: 80%;
-}
+  border-radius: 1rem;
+  overflow: hidden;
+  flex: 1;
+  justify-content: center;
+  background-color: $diagram-background-color;
+  border: 1px solid pink;
+  width: calc(100vw - 350px - 3rem);
+  flex-grow: 2;
+  height: 60vh;
 
-#panel-wrapper {
-  flex-shrink: 0;
-  // display: flex;
-  // justify-content: center;
-  resize: horizontal;
-  padding: 01rem;
-  background-color: $panel-background-color;
-  overflow-y: scroll;
-}
-#panel-wrapper > button {
+ }
+ #data-window-wrapper {
+  border: 1px solid $dashboard-border-boxes;
+  overflow: auto;
+  height: 80%;
+  padding: 0rem 1rem 1rem 1rem;
+
+ }
+ #panel-wrapper {
+   border: 1px solid $dashboard-border-boxes;
+   overflow: auto;
+   flex-shrink: 0;
+   resize: horizontal;
+   padding: 1rem;
+   background-color: $panel-background-color;
+   overflow-y: scroll;
+   border-radius: 1rem;
+   display: flex;
+   flex-direction: column;
+ }
+
+
+ 
+ #panelButton, #diagramButton, #dataButton, .block-button-wrapper {
+   visibility: hidden;
+   height: 0px;
+   margin: 0px;
+ 
+ }
+ #chart-frame {
+   height: 100%;
+   overflow: hidden !important;
+ 
+ }
+ iframe {
+   padding: 0px !important;
+   overflow: hidden;
+   border: none;
+ }
+ 
+ #panel-wrapper > button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100vw;
   text-align: left;
-  // border: none;
   flex-shrink: 0;
 }
-// .panel-names{
-//   margin: 20px;
-//   width: 100%;
-//   flex-shrink: 0;
-//   border: none;
 
-// }
-#panel-wrapper, #diagram-container-wrapper {
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-}
 
-#data-window-wrapper {
-  padding: 0rem 1rem 1rem 1rem;
-}
-
-#diagram-container-wrapper {
-  overflow: hidden;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  background-color: $diagram-background-color;
-}
-
-#panelButton, #diagramButton, #dataButton, .block-button-wrapper {
-  visibility: hidden;
-  height: 0px;
-  margin: 0px;
-
-}
-#chart-frame {
-  height: 100%;
-  overflow: hidden !important;
-
-}
-iframe {
-  padding: 0px !important;
-  overflow: hidden;
-  border: none;
-}
-
-#hideDetails {
-
-}
-// media queries
-
-@media (max-width: 1000px) {
-  // #content {
-  //   padding-top: 3rem !important;
-  // }
-  #hideDetails {
-    display: none;
-  }
-  #dashboard-container {
-    box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
-    padding: 0rem;
-    background-color: $dashboard-background-color-mobile;
-  }
-
-  #data-window-wrapper {
-    overflow: visible;
-    overflow-y: scroll;
-    height: 90vh !important;
-    position: absolute;
-    top: 3rem;
-    width: 100%;
-  }
-  #panel-wrapper {
-    width: 100% !important;
-    margin: 0px;
-
-  }
-  .current-window-button{
-    background-color: $button-current-page-indicator !important;
-  }
-
-  #dashboard-wrapper {
-    flex-direction: column;
-    width: 100vw;
-  }
-  #diagram-container-wrapper {
-    order: -1;
-    overflow: hidden;
-  }
-  .collapse-screen {
-    visibility: hidden !important;
-    height: 0px !important;
-  }
-  .full-screen {
-    height: 90vh !important;
-    visibility: visible !important;
-  }
-
+ // media queries
+ @media (max-width: 1000px) {
+   // #content {
+   //   padding-top: 3rem !important;
+   // }
+   #hideDetails {
+     display: none;
+   }
+   #dashboard-container {
+     box-sizing: border-box;
+     width: 100vw;
+     height: 100vh;
+     padding: 0rem;
+     background-color: $dashboard-background-color-mobile;
+   }
  
-  .block-button-wrapper {
-    position: fixed;
-    bottom: 0rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    visibility: visible;
-    height: 3.5rem;
-    padding: 1.25rem .25rem 1rem .25rem;
-    background-color: $dashboard-background-color-mobile;
-  }
+   #data-window-wrapper {
+     overflow: visible;
+     overflow-y: scroll;
+     height: 90vh !important;
+     position: absolute;
+     top: 3rem;
+     width: 100%;
+   }
+   #panel-wrapper {
+     width: 100% !important;
+     margin: 0px;
+ 
+   }
+   .current-window-button{
+     background-color: $button-current-page-indicator !important;
+   }
+ 
+   #dashboard-wrapper {
+     flex-direction: column;
+     width: 100vw;
+   }
+   #diagram-container-wrapper {
+     order: -1;
+     overflow: hidden;
+   }
+   .collapse-screen {
+     visibility: hidden !important;
+     height: 0px !important;
+   }
+   .full-screen {
+     height: 90vh !important;
+     visibility: visible !important;
+   }
+ 
+  
+   .block-button-wrapper {
+     position: fixed;
+     bottom: 0rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     visibility: visible;
+     height: 3.5rem;
+     padding: 1.25rem .25rem 1rem .25rem;
+     background-color: $dashboard-background-color-mobile;
+   }
+ 
+   #panelButton, #diagramButton, #dataButton {
+     width: 33.3vw;
+     height: 2.5rem;
+     margin: 1rem .25rem 1rem .25rem;
+     visibility: visible;
+     background-color: $button-color;
+     color: $button-font-color;
+   }
+   #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
+     border: none !important;
+     border-radius: 0px;
+ 
+   }
+   #chart-frame {
+     height: 100vh;
+     overflow-x: hidden;
+     overflow-y: hidden;
+   }
+ 
+ }
 
-  #panelButton, #diagramButton, #dataButton {
-    width: 33.3vw;
-    height: 2.5rem;
-    margin: 1rem .25rem 1rem .25rem;
-    visibility: visible;
-    background-color: $button-color;
-    color: $button-font-color;
-  }
-  #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
-    border: none !important;
-    border-radius: 0px;
-
-  }
-  #chart-frame {
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-}
 

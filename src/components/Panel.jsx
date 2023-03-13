@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import LamdaButton from '../components/LamdaButton.jsx';
 import Refresh from '../components/Refresh.jsx';
+import { Scrollbar } from 'react-scrollbars-custom';
 
 const Panel = (props) => {
 
@@ -26,10 +27,12 @@ const Panel = (props) => {
   console.log('panel names array', names)
 
     return(
+      // <Scrollbar style={{ width: '100%', height: '100%' }}>
       <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
         <Refresh msNames={msNames} setMsNames={setMsNames} refreshRedis={refreshRedis} setRefreshRedis={setRefreshRedis} user={user} names={names}/><br />
         {(names.length > 0)? names : <span class='loading-text'><h1>Loading...</h1></span> }
       </div>
+      // </Scrollbar>
     )
   }
   export default Panel;

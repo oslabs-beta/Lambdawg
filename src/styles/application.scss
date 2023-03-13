@@ -1,40 +1,37 @@
 // import fonts
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap");
 
 // import style modules
-@import 'variables';
-@import 'form';
-@import 'dashboard';
-@import 'navbar';
-@import 'auth';
-@import 'landingpage';
-@import 'settings';
-@import 'newnavbar';
-@import 'metrics';
-
+@import "variables";
+@import "form";
+@import "dashboard";
+@import "navbar";
+@import "auth";
+@import "landingpage";
+@import "settings";
+@import "newnavbar";
+@import "metrics";
+@import "dropdown";
 // global css stuff here
-*{
+* {
   box-sizing: border-box;
   // border: 1px solid red;
 }
 
-
-body{
+body {
   margin: 0px;
   padding: 0px;
   color: $primary-font-color;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   background-color: $body-bg-color;
-
 }
 #content {
   padding-top: 0rem;
-
 }
 code {
   color: $code-font-color;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 h1 {
@@ -42,7 +39,6 @@ h1 {
   text-align: center;
   font-size: 1.5rem;
   color: $primary-font-color;
-
 }
 .centered-text {
   text-align: center;
@@ -59,7 +55,7 @@ a:active {
   color: $tertiary-font-color;
 }
 button:active {
-  transform:translateY(2px);
+  transform: translateY(2px);
 }
 
 @keyframes pulse {
@@ -81,5 +77,4 @@ button:active {
 
 // media queries
 @media (max-width: 1000px) {
-
 }
