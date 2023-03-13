@@ -17,12 +17,7 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     }
 
     if (result.rows.length === 0) {
-      console.log(
-        'user_name/pass: ',
-        user_name,
-        password_,
-        'Invalid Credentials (rows.length is 0) verifyUN auth controller'
-      );
+      console.log('Invalid Credentials');
       return res.status(401).send('Invalid Credentials');
     }
 
