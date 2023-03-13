@@ -136,6 +136,58 @@ const DashboardContainer = (props) => {
     }
   }, [msNames]);
 
+  //fetch individual lambda trace data for latency graphs
+  useEffect(() => {
+    //we need names to fetch traces also
+    const fetchTraces = async () => {
+      console.log('in fetch traces');
+      try {
+        const response = await fetch('/aws/getTraces', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            arn: user.arn,
+          }),
+          muteHttpExceptions: true,
+        });
+        const data = await response.json();
+
+        //parsing name, duration, responseTime, service ids
+        const serviceData = [];
+        const traceData = await data.map((obj) => {
+          if (!obj.summary.length) {
+            return {
+              name: obj.name,
+              duration: undefined,
+              responseTime: undefined,
+              serviceIds: undefined,
+            };
+          } else {
+            //create a separate serviceData array to pass as msServiceIds
+            serviceData.push({
+              name: obj.name,
+              serviceIds: obj.summary[0].ServiceIds,
+            });
+            return {
+              name: obj.name,
+              duration: obj.summary[0].Duration,
+              responseTime: obj.summary[0].ResponseTime,
+              serviceIds: obj.summary[0].ServiceIds,
+            };
+          }
+        });
+        //trying to parse serviceIdData all at once
+        setMsTraces(traceData);
+        setMsServiceIds(serviceData);
+        console.log('dashboard traces useEffect: ', msTraces);
+        console.log('servicedata array in dashboard', serviceData);
+      } catch (error) {
+        console.log('error fetching traces', error);
+      }
+    };
+    fetchTraces();
+    console.log('mstraces in fetch dashboard', msTraces);
+  }, []);
   return (
     <div id='dashboard-container'>
       <div

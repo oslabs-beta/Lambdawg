@@ -17,7 +17,7 @@ tracesController.getTraces = async (req, res, next) => {
   console.log('in tracescontroller getTraces');
 
   redisClient
-    .get('LambdaTraces')
+    .get('LambdaTraces' + req.body.arn)
     .then((data) => JSON.parse(data))
     .then((data) => {
       console.log(data);
@@ -39,6 +39,7 @@ tracesController.getTraces = async (req, res, next) => {
           const dataPromise = [];
           const dataArray = [];
           lambdaNames.forEach((lambda) => {
+            console.log(lambda);
             const name = `service("${lambda}")`;
             const params = {
               StartTime: new Date(Date.now() - 1000 * 60 * 60 * 10), //past 10 hours
@@ -66,7 +67,7 @@ tracesController.getTraces = async (req, res, next) => {
           res.locals.traces = dataArray;
           console.log('full montey');
           await redisClient.set(
-            'LambdaTraces',
+            'LambdaTraces' + req.body.arn,
             JSON.stringify(res.locals.traces),
             'EX',
             60 * 60
