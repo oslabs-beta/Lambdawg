@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const signUpForm = (props) => {
 
     const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password_: '', confirmPassword: '' });
-    const { toggleFormType, loggedIn, setLoggedIn, user, setUser } = props
+    const { toggleFormType, loggedIn, setLoggedIn, user, setUser, onSignUpSuccess } = props
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -20,9 +20,9 @@ const signUpForm = (props) => {
       }
       if (formData.password_ != formData.confirmPassword) return handleMismatchedPasswords();
       if (formData.password_ == formData.confirmPassword) console.log('signing up....')
-      console.log(signUpFormData)
+
       try {
-        const response = await fetch('http://localhost:3000/api/newUser', {
+        const response = await fetch('/api/newUser', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify([signUpFormData]),
@@ -36,15 +36,15 @@ const signUpForm = (props) => {
             full_name: full_name,
             user_name: user_name, 
             email: email,
-            _id: _id,
-            // arn: arn,
-            // region: region
+            _id: _id
           })
-          setLoggedIn(true);
-        } else {
+          onSignUpSuccess();
+        } 
+        else {
           console.log('Sign up failed');
         }
-      } catch (error) {
+      } 
+      catch (error) {
         console.error(error);
         console.log('Unable to sign-up at this time.');
       }

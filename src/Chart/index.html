@@ -1,38 +1,35 @@
-
 <!DOCTYPE html>
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <style>
-body{
-  margin:0px;
-  padding:0px;
-}
-.links line {
-  stroke: #b8b2b2;
-  stroke-width: 3px;
-}
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+  .links line {
+    stroke: #b8b2b2;
+    stroke-width: 3px;
+  }
 
-.nodes circle {
-  pointer-events: all;
-  stroke: #5bfba3;
-  stroke-width: 10px;
-}
+  .nodes circle {
+    pointer-events: all;
+    stroke: #5bfba3;
+    stroke-width: 10px;
+  }
 
-.outline {
-  /* border: 1px solid black; */
-  position: absolute;
-  top: 00px;
-  right: 0px;
-  width: 99%;
-  height: 99%;
-
-}
-svg {
-  
-  width: 100%;
-  height: 100%;
-}
-
-
+  .outline {
+    /* border: 1px solid black; */
+    position: absolute;
+    top: 00px;
+    right: 0px;
+    width: 99%;
+    height: 99%;
+  }
+  svg {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 
 <div id="container">
@@ -41,16 +38,24 @@ svg {
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
-
-const svg = d3.select("svg"),
+  const svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-const simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(100))
+  const simulation = d3
+    .forceSimulation()
+    .force(
+      "link",
+      d3
+        .forceLink()
+        .id(function (d) {
+          return d.id;
+        })
+        .distance(100)
+    )
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("collide", d3.forceCollide().radius(50).strength(0.5))
+    .force("collide", d3.forceCollide().radius(50).strength(0.5));
 
   // const zoom = d3.zoom()
   //   .scaleExtent([0.5, 10])
@@ -61,85 +66,98 @@ const simulation = d3.forceSimulation()
   // function zoomed() {
   //   svg.attr("transform", d3.event.transform);
   // }
-  
-const container = d3.select("#container");
 
-const zoom = d3.zoom()
-  .scaleExtent([0.5, 10])
-  .on("zoom", zoomed);
+  const container = d3.select("#container");
 
-container.call(zoom);
+  const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", zoomed);
 
-function zoomed() {
-  svg.attr("transform", d3.event.transform);
-}
+  container.call(zoom);
 
-
-d3.json("miserables.json", function(error, graph) {
-  if (error) throw error;
-
-  const link = svg.append("g")
-    .attr("class", "links")
-    .selectAll("line")
-    .data(graph.links)
-    .enter().append("line");
-
-    const node = svg.append("g")
-    .attr("class", "nodes")
-    .selectAll("circle")
-    .data(graph.nodes)
-    .enter().append("circle")
-      .attr("r", 10.5)
-      .call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
-
-  node.append("title")
-      .text(function(d) { return d.id; })
-      node.on("click", function(d) {
-        console.log(d3.select(this).select("title").text());
-        // alert('clicked')
-        // parent.postMessage(d.id , "http://localhost:5173/index.html");
-      });
-
-
-  simulation
-      .nodes(graph.nodes)
-      .on("tick", ticked);
-
-  simulation.force("link")
-      .links(graph.links);
-
-  function ticked() {
-    link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+  function zoomed() {
+    svg.attr("transform", d3.event.transform);
   }
-});
 
-function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-  d.fx = d.x;
-  d.fy = d.y;
-}
+  d3.json("service.json", function (error, graph) {
+    if (error) throw error;
 
-function dragged(d) {
-  d.fx = d3.event.x;
-  d.fy = d3.event.y;
-}
+    const link = svg.append("g").attr("class", "links").selectAll("line").data(graph.links).enter().append("line");
 
-function dragended(d) {
-  if (!d3.event.active) simulation.alphaTarget(0);
-  d.fx = null;
-  d.fy = null;
-}
+    //if the parent service is from AWS Lambda, make it bigger
+    const nodeSize = (d) => {
+      let radius = 10.5;
+      if (d.name === "client") {
+        return radius * 1.5;
+      } else {
+        return radius;
+      }
+    };
 
+    const node = svg
+      .append("g")
+      .attr("class", "nodes")
+      .selectAll("circle")
+      .data(graph.nodes)
+      .enter()
+      .append("circle")
+      .attr("r", nodeSize)
+      .call(d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended));
 
-</script> 
+    node.append("title").text(function (d) {
+      return d.id;
+    });
+
+    //on click, send name of func back
+    node.on("click", function (d) {
+      // console.log(d3.select(this).select("title").text());
+      const serviceNode = { id: d.id, name: d.name };
+      // console.log(serviceNode);
+      alert("Hello from chart page", serviceNode.id, serviceNode.name);
+      parent.postMessage(serviceNode, "http://localhost:5173/index.html");
+    });
+
+    simulation.nodes(graph.nodes).on("tick", ticked);
+
+    simulation.force("link").links(graph.links);
+
+    function ticked() {
+      link
+        .attr("x1", function (d) {
+          return d.source.x;
+        })
+        .attr("y1", function (d) {
+          return d.source.y;
+        })
+        .attr("x2", function (d) {
+          return d.target.x;
+        })
+        .attr("y2", function (d) {
+          return d.target.y;
+        });
+
+      node
+        .attr("cx", function (d) {
+          return d.x;
+        })
+        .attr("cy", function (d) {
+          return d.y;
+        });
+    }
+  });
+
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+
+  function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
+
+  function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+</script>

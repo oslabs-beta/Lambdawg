@@ -7,7 +7,7 @@ const authControllers = {};
 authControllers.verifyUN_Pass = (req, res, next) => {
   const { user_name } = req.params;
   const { password_ } = req.body[0];
-  // console.log(user_name, password_);
+  console.log('inside verifyUN in auth controller', user_name, password_);
 
   const text = 'SELECT * FROM public.users WHERE user_name = $1';
   db.query(text, [user_name], async (err, result) => {
@@ -17,7 +17,12 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     }
 
     if (result.rows.length === 0) {
-      console.log('Invalid Credentials');
+      console.log(
+        'user_name/pass: ',
+        user_name,
+        password_,
+        'Invalid Credentials (rows.length is 0) verifyUN auth controller'
+      );
       return res.status(401).send('Invalid Credentials');
     }
 
@@ -26,7 +31,7 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     const match = await bcrypt.compare(password_, password_hash);
 
     if (!match) {
-      console.log('Invalid Credentials!');
+      console.log('username/pw do not match');
       return res.status(401).send('Invalid Credentials!');
     }
 

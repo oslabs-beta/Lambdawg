@@ -10,6 +10,12 @@ const Settings = (props) => {
     region: '',
   });
 
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    console.log('use effect in settings form')
+  }, [user])
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -17,6 +23,8 @@ const Settings = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('username in handlesubmit settings ', user.user_name)
+
     const arnFormData = {
       full_name: user.full_name, 
       user_name: user.user_name,
@@ -26,10 +34,10 @@ const Settings = (props) => {
       arn: formData.arn,
       region: formData.aws_region,
     };
-    console.log([arnFormData])
 
     try{
-      const response = await fetch('http://localhost:3000/api/edit', {
+      console.log('TRY in settings (the form data)', arnFormData)
+      const response = await fetch(`/api/edit/${user.user_name}`, {
         method: 'PATCH',
         credentials: 'include',
         headers: {'content-type': 'application/json'},
@@ -38,12 +46,12 @@ const Settings = (props) => {
 
       if (response.ok){
         const data = await response.json();
-        console.log('user updated from settings!')
-        // const navigate = useNavigate();
-        // navigate('/dashboard');
+        console.log('user updated from settings! response:', data)
+        navigate('/dashboard');
       }
       else {
         console.log('Unable to patch arn etc from settings')
+        console.log('user inside else block of fetch in settings', user)
       }
 
     }
@@ -51,10 +59,12 @@ const Settings = (props) => {
       console.log('Something went wrong in settings patch req')
 
     }
-    setUser({ arn: formData.arn, region: formData.aws_region })
+    // setUser({ user_name: user.user_name, arn: formData.arn, region: formData.aws_region })
+    setUser((prevUser) => ({ ...prevUser, arn: formData.arn, region: formData.aws_region }));
   }
 
-console.log(user.arn)
+// console.log(user.arn)
+
   return(
     <div className='horizontal-line'>
       <p>
@@ -80,7 +90,7 @@ console.log(user.arn)
             value={formData.aws_region}
             onChange={handleInputChange}
             required
-            defaultValue={user.region || ''}
+            defaultValue={user.region}
            >
               <option value="">Select AWS Region</option>
               <option value="us-east-1">US East (N. Virginia)</option>
@@ -97,7 +107,7 @@ console.log(user.arn)
         </form>
       </div>
       <Link to="/docs" ><button className='settings-secondary-button stack-button'>Read the Docs</button></Link>
-      <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
+     <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
 
     </div>
 

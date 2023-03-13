@@ -1,9 +1,9 @@
-
 // * {
 //   border: 1px solid red;
 // }
 
-#dashboard-wrapper { // panel and diagram
+#dashboard-wrapper {
+  // panel and diagram
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -17,10 +17,12 @@
   height: 100vh;
   overflow: hidden;
   background-color: $dashboard-background-color;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
-#panel-wrapper, #diagram-container-wrapper, #data-window-wrapper {
+#panel-wrapper,
+#diagram-container-wrapper,
+#data-window-wrapper {
   border: 1px solid $dashboard-border-boxes;
   overflow: auto;
 }
@@ -34,9 +36,8 @@
   // justify-content: center;
   resize: horizontal;
   padding: 01rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   background-color: $panel-background-color;
-  overflow-y: scroll;
 }
 #panel-wrapper > button {
   white-space: nowrap;
@@ -54,7 +55,8 @@
 //   border: none;
 
 // }
-#panel-wrapper, #diagram-container-wrapper {
+#panel-wrapper,
+#diagram-container-wrapper {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -72,16 +74,17 @@
   background-color: $diagram-background-color;
 }
 
-#panelButton, #diagramButton, #dataButton, .block-button-wrapper {
+#panelButton,
+#diagramButton,
+#dataButton,
+.block-button-wrapper {
   visibility: hidden;
   height: 0px;
   margin: 0px;
-
 }
 #chart-frame {
   height: 100%;
   overflow: hidden !important;
-
 }
 iframe {
   padding: 0px !important;
@@ -90,7 +93,6 @@ iframe {
 }
 
 #hideDetails {
-
 }
 // media queries
 
@@ -102,6 +104,7 @@ iframe {
     display: none;
   }
   #dashboard-container {
+    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
     padding: 0rem;
@@ -119,9 +122,11 @@ iframe {
   #panel-wrapper {
     width: 100% !important;
     margin: 0px;
-
+    padding-top: 35px !important;
   }
-
+  .current-window-button {
+    background-color: $button-current-page-indicator !important;
+  }
 
   #dashboard-wrapper {
     flex-direction: column;
@@ -140,39 +145,43 @@ iframe {
     visibility: visible !important;
   }
 
- 
   .block-button-wrapper {
     position: fixed;
-    bottom: .5rem;
+    bottom: 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     visibility: visible;
-    height: 3rem;
-    padding: 1rem 0rem 1rem 0rem;
+    height: 3.5rem;
+    padding: 1.25rem 0.25rem 1rem 0.25rem;
     background-color: $dashboard-background-color-mobile;
   }
 
-  #panelButton, #diagramButton, #dataButton {
+  #panelButton,
+  #diagramButton,
+  #dataButton {
     width: 33.3vw;
     height: 2.5rem;
-    // border: 1px solid $primary-font-color;
-    margin: 3px;
+    margin: 1rem 0.25rem 1rem 0.25rem;
     visibility: visible;
     background-color: $button-color;
     color: $button-font-color;
   }
-  #panel-wrapper, #diagram-container-wrapper, #data-window-wrapper, #dashboard-wrapper {
+  #panel-wrapper,
+  #diagram-container-wrapper,
+  #data-window-wrapper,
+  #dashboard-wrapper {
     border: none !important;
     border-radius: 0px;
+  }
 
+  #data-window-wrapper {
+    padding-top: 25px !important;
   }
   #chart-frame {
     height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
   }
-
 }
-

@@ -2,23 +2,12 @@ $body-bg-color: white;
 
 $primary-font-color: #363343;
 $secondary-font-color: lighten($primary-font-color, 30%);
-$tertiary-font-color:  lighten($primary-font-color, 50%);
+$tertiary-font-color: lighten($primary-font-color, 50%);
 
 $code-font-color: #fad6c9;
 $code-background-color: #232324;
 
-
-$box-shadow-color: lighten($primary-font-color, 70%); 
-
-
-$theme-color-1:  #f1eada;
-$theme-color-2:  #8fccd0;
-$theme-color-3:  #9be5a4;
-$theme-color-4:  #ee965c;
-$theme-color-5:  #f7f2f2;
-
-///
-$scroll-bar-color: #f75215;
+$box-shadow-color: lighten($primary-font-color, 70%);
 
 /// Navbar
 $nav-background-color: #fad6c9;
@@ -29,26 +18,24 @@ $nav-links-color: #f75215;
 $hamburger-icon-color: $primary-font-color;
 $hamburger-menu-bg-color: #595959;
 $hamburger-menu-lines: #4c4c4c;
-// $hamburger-menu-font: $nav-background-color;
+$hamburger-menu-font: $nav-background-color;
 
 /// Dashboard
 $dashboard-background-color: #595959;
 $dashboard-border-boxes: none;
 $dashboard-background-color-mobile: #fff;
 
-
 $panel-background-color: #fff;
 $error-font-color: #f75215;
 
+$diagram-background-color: #fff;
 
-$diagram-background-color:  #fff;
-
-$data-window-background-color:  #595959;
+$data-window-background-color: #595959;
 $button-background-color: white;
 
 $button-color: #f75215;
 $button-font-color: black;
-
+$button-current-page-indicator: lighten($button-color, 20%);
 
 /// Forms
 $input-box-background-color: white;
@@ -58,6 +45,7 @@ $auth-form-bg-color: #fad6c9;
 /// Buttons
 $primary-button-color: #f75215;
 $secondary-button-color: lighten($primary-button-color, 40%);
+$tertiary-button-color: lighten($primary-button-color, 20%);
 $primary-button-font: #fff;
 $secondary-button-font: #2c2828;
 

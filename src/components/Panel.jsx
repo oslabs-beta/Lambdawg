@@ -1,31 +1,40 @@
-
-import React, { useState, useEffect } from 'react';
-import Microservice from '../components/Microservice.jsx';
+import React from 'react';
+import LamdaButton from '../components/LamdaButton.jsx';
+import Refresh from '../components/Refresh.jsx';
+import { Scrollbar } from 'react-scrollbars-custom';
 
 const Panel = (props) => {
+  const { panelFullScreen, msNames, msMetrics, user, msLogs, setMsLogs } =
+    props;
 
-  const { setPanelFullScreen, panelFullScreen, msNames, msMetrics } = props;
-  // get the list of functions in heirarchal order and display them as a list of 'buttons' >
-  // onClick a button will expand display the functions metrics in the same window, onClick it will hide them
-  // the corresponding node on the diagram will be highlighted
-
-  // iterate through function names and display as buttons > send metrics data to microservices
-  // if (msMetrics) console.log('panel metrics', msMetrics)
-  const names = []
+  const names = [];
   let i = 0;
-  if (msNames){
+  if (msNames) {
     msNames.forEach((name) => {
-      names.push(<Microservice name={name} key={`${name}MsEl${i}`} msMetrics={msMetrics} className='panel-names'/>)
-    })
+      i++;
+      names.push(
+        <LamdaButton
+          name={name}
+          key={`${name}MsEl${i}`}
+          msMetrics={msMetrics}
+          user={user}
+          className='panel-names'
+          msLogs={msLogs}
+          setMsLogs={setMsLogs}
+        />
+      );
+    });
   }
 
-
-  
-    return(
-      <div id="panel-wrapper" className={panelFullScreen? 'full-screen' : 'collapse-screen'}>
-        {names}
-        {/* <h1>hello</h1> */}
-      </div>
-    )
-  }
-  export default Panel;
+  return (
+    <div
+      id='panel-wrapper'
+      className={panelFullScreen ? 'full-screen' : 'collapse-screen'}
+    >
+      <Refresh />
+      <br />
+      <Scrollbar style={{ width: '100%', height: '100%' }}>{names}</Scrollbar>
+    </div>
+  );
+};
+export default Panel;
