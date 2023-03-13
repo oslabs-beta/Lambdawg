@@ -17,7 +17,7 @@ const DiagramContainer = (props) => {
       console.log('event.data', event.data)
       const funcButtonId = event.data;
       const funcButton = document.getElementById(funcButtonId)
-      funcButton.click();
+      // funcButton.click();
   }
 
   // console.log("current active chart", activeChart);

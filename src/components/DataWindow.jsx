@@ -32,7 +32,7 @@ const DataWindow = (props) => {
       id='data-window-wrapper'
       className={dataWindowFullScreen ? 'fullscreen' : 'collapse-screen'}
     >
-      <Scrollbar style={{ width: 'auto', height: '100%' }}>
+      <Scrollbar style={{ width: 'auto', height: '100%', }} className='scroll-bar'>
         <code>
           {Object.keys(logData).length > 0 ? (
           Object.entries(logData).map(([functionName, logs]) => (
