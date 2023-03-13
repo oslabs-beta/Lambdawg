@@ -4,10 +4,12 @@
 --Connects to env file
 \i .env
 
---This file sets up the structure of our database
+--This file sets up the schema of our database, and will maintina the connection to the database across users
 -- 
---To invoke this file throw the below code in the terminal
---psql -d postgres://fzlocmxc:cSVvrq52FYy9AXvuGc2r6lwqoFnzEH82@trumpet.db.elephantsql.com/fzlocmxc -f postgres_table_create.sql
+--To invoke this file, throw the below code in the terminal
+--psql -d ${PG_URI} -f postgres_table_create.sql
+--I did not set a port initially, but to do so you would add -p <port> 
+-- and instead of ${PG_URI} use youor own URI 
 -------------------
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,8 +21,8 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
---SET idleTimeoutMillis = 5000;
---SET connectionTimeoutMillis = 7500;
+SET idleTimeoutMillis = 5000;
+SET connectionTimeoutMillis = 7500;
 --these last 2 items I put in to try and help with the open handle issue
 -------------------
 -- CREATE EXTENSION pgcrypto;
@@ -39,10 +41,8 @@ CREATE TABLE public.users (
 -------------------
 --
 --Test DATA for users
--- 'bf' is referring to the blowfish algorithm for CRYPT
---  removed password for testing-- , password_      , crypt('jdpassword', gen_salt('bf'))
 -------------------
-INSERT INTO public.users (full_name, user_name, email, password_) VALUES ('John Doe', 'JohnnyD', 'johnnyd@johnnyd.com','jdpassword');
+-- INSERT INTO public.users (full_name, user_name, email, password_) VALUES ('John Doe', 'JohnnyD', 'johnnyd@johnnyd.com','jdpassword');
 -------------------
 
 
