@@ -15,7 +15,7 @@ function BubbleChart({ bubbleChartData, handleTogglePanel }) {
   function simulation(bubbleChartData) {
     const maxRadius = d3.max(bubbleChartData, (d) => d.count);
     const minRadius = d3.min(bubbleChartData, (d) => d.count);
-    const radiusScale = d3.scaleSqrt().domain([minRadius, maxRadius]).range([20, 120]);
+    const radiusScale = d3.scaleSqrt().domain([minRadius, maxRadius]).range([10, 110]);
 
     const ticked = () => setState({ bubbleChartData });
 
@@ -27,7 +27,7 @@ function BubbleChart({ bubbleChartData, handleTogglePanel }) {
         "collide",
         d3
           .forceCollide((d) => radiusScale(d.count))
-          .strength(2)
+          .strength(1.5)
           .iterations(1)
       )
       .on("tick", ticked);
@@ -35,8 +35,6 @@ function BubbleChart({ bubbleChartData, handleTogglePanel }) {
 
   const handleCircleClick = (circle) => {
     console.log(`You clicked on ${circle.name} with invocations: ${circle.count}`);
-    //how to id panel button and make it show - need to pass up function name
-    // togglePanel(circle.name);
     //this is supposed to send the name of the circle clicked to dashboard to populate active panel
     console.log("passing " + circle.name + "to dashboard");
     handleTogglePanel(circle.name);
@@ -46,10 +44,10 @@ function BubbleChart({ bubbleChartData, handleTogglePanel }) {
   const svgDimensions = { width: window.screen.width / 2, height: window.screen.height / 2 };
 
   return (
-    <svg width={svgDimensions.width} height={svgDimensions.height}>
+    <svg width={window.screen.width} height={svgDimensions.height} margin={margins}>
       <g
         className="bubbleChartGroup"
-        transform={`translate(${svgDimensions.width / 2},${svgDimensions.height / 2 - 50})`}
+        transform={`translate(${svgDimensions.width / 2},${svgDimensions.height / 2 - 100})`}
       >
         <Circle data={state.bubbleChartData} onClick={handleCircleClick} />
       </g>
