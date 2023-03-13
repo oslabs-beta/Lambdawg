@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 
+//Using Bcrypt to encrypt the users password
 const encryptionController = {};
 
 encryptionController.hashPW = (req, res, next) => {

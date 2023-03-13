@@ -31,16 +31,11 @@ app.use(
 );
 app.use(cookieParser());
 
-//Handle requests for Static Files here
-//--------------**Not working how I expected**-Ted
 app.use(express.static(path.resolve(__dirname, "../src")));
+
 //Define Route handlers Here
 //---------------
 app.use("/api", apiRouter);
-
-// app.get('/', apiRouter);
-
-// app.post('/');
 
 app.post(
   "/getLambdaNames",
