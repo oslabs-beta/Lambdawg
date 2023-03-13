@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "fulldev": "concurrently \"nodemon server/server.js\" \"vite\"",
-    "test": "jest"
+    "test": "jest",
+    "testopen": "jest --detectOpenHandles"
   },
   "dependencies": {
     "@aws-sdk/client-cloudformation": "^3.272.0",

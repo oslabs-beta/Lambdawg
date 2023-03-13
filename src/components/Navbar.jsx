@@ -20,7 +20,10 @@ const Navbar = (props) => {
     setNavChecked(false);
   };
 
+  // create a tracker for dark mode in state
   const [mode, setMode] = useState('light');
+  // If state is 'dark' transition to 'light' and vice-versa
+  //the function creates a progressive transition to dark or light
   const darkMode = (mode = 'dark') => {
     let transition;
     mode === 'dark' ? (transition = 1) : (transition = 0);
@@ -51,6 +54,7 @@ const Navbar = (props) => {
     setTimeout(applyFilter, 30);
   };
 
+  //handle state and triggest transition on click
   const darkClick = () => {
     setMode(mode === 'dark' ? 'light' : 'dark');
     darkMode(mode);

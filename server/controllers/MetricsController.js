@@ -1,26 +1,27 @@
 const Redis = require('redis');
-// const getOrSetCache = require('../redis');
+// Open a new redis client to send requests to the redis server.
 const redisClient = Redis.createClient();
+// Check if the connection is open before proceeding.
 (async () => {
   await redisClient.connect().catch((err) => {
     console.log('Redis Connect Error: ' + err.message);
   });
 })();
-
+// Use AWS SDK for javascript v3 to import cloudWatch Metrics.
 const {
   CloudWatch,
   GetMetricDataCommand,
 } = require('@aws-sdk/client-cloudwatch');
 
 //declare an rdsMetricsController object
-const rdsMetricsController = {};
+const MetricsController = {};
 
-//getRDSCPUUtilizationMetrics function, which will be called by the getRDSCPUUtilizationMetrics route handler
-rdsMetricsController.getMetrics = async (req, res, next) => {
+MetricsController.getMetrics = async (req, res, next) => {
   console.log('in metrics');
 
+  //check if the user's log data is present in redis before making the api calls.
   redisClient
-    .get('LambdaMetrics')
+    .get('LambdaMetrics' + req.body.arn)
     .then((data) => JSON.parse(data))
     .then((data) => {
       console.log(data);
@@ -93,7 +94,7 @@ rdsMetricsController.getMetrics = async (req, res, next) => {
             console.log('full montey');
             res.locals.getLambdaMetrics = data;
             await redisClient.set(
-              'LambdaMetrics',
+              'LambdaMetrics' + req.body.arn,
               JSON.stringify(data),
               'EX',
               60 * 60
@@ -110,4 +111,4 @@ rdsMetricsController.getMetrics = async (req, res, next) => {
     });
 };
 
-module.exports = rdsMetricsController;
+module.exports = MetricsController;
