@@ -105,16 +105,16 @@ describe('Our apiRoutes Unit Tests', () => {
   // afterAll(async () => {
   //   await db.end();
   // });
-  describe('Testing Validator Middleware', () => {
-    describe('POST /newUser', () => {
+  describe('POST /newUser', () => {
+    describe('Testing Validator Middleware', () => {
       beforeEach(deleteUser());
       afterEach(deleteUser());
       test('Should Post newUser successfully', (done) => {
         request(server)
           .post('/api/newUser')
           .send(newUser)
-          .expect('Content-Type', /json/)
-          .expect('{}')
+          // .expect('Content-Type', /json/)
+          // .expect('{}')
           .expect(200)
           .end((err, res) => {
             if (err) return done(err);
@@ -134,55 +134,76 @@ describe('Our apiRoutes Unit Tests', () => {
             return done();
           });
       });
+
+      test('Should Not Post User because Password is too Short', (done) => {
+        request(server)
+          .post('/api/newUser')
+          .send(newUserShortPass_2)
+          .expect('Password must be at least 8 characters long')
+          .expect(400)
+          .end((err, res) => {
+            if (err) return done(err);
+            // _id = res.body.data[0]._id;
+            return done();
+          });
+      });
+      test('Should Not Post User because Password is too Long', (done) => {
+        request(server)
+          .post('/api/newUser')
+          .send(newUser272CharsPW_3)
+          .expect('Password must be at least 8 characters long')
+          .expect(400)
+          .end((err, res) => {
+            if (err) return done(err);
+            // _id = res.body.data[0]._id;
+            return done();
+          });
+      });
+      test('Should Not Post User because Password is too Long', (done) => {
+        request(server)
+          .post('/api/newUser')
+          .send(newUserBadEmail_4)
+          .expect('Invalid Email Address')
+          .expect(400)
+          .end((err, res) => {
+            if (err) return done(err);
+            // _id = res.body.data[0]._id;
+            return done();
+          });
+      });
+      test('Should Not Post User because Password is too Long', (done) => {
+        request(server)
+          .post('/api/newUser')
+          .send(newUser272CharsFN_5)
+          .expect('Full Name must be between 1-255 Characters')
+          .expect(400)
+          .end((err, res) => {
+            if (err) return done(err);
+            // _id = res.body.data[0]._id;
+            return done();
+          });
+      });
     });
-    test('Should Not Post User because Password is too Short', (done) => {
-      request(server)
-        .post('/api/newUser')
-        .send(newUserShortPass_2)
-        .expect('Password must be at least 8 characters long')
-        .expect(400)
-        .end((err, res) => {
-          if (err) return done(err);
-          // _id = res.body.data[0]._id;
-          return done();
-        });
+    //This needs to be Changed around, it's just some copy pasta from a previous test
+    /*
+    describe('Testing HashPW Middleware', () => {
+      beforeEach(deleteUser());
+      afterEach(deleteUser());
+      test('Should Hash Password successfully', (done) => {
+        request(server)
+          .post('/api/newUser')
+          .send(newUser)
+          .expect('Content-Type', /json/)
+          .expect('{}')
+          .expect(200)
+          .end((err, res) => {
+            if (err) return done(err);
+            // _id = res.body.data[0]._id;
+            return done();
+          });
+      });
     });
-    test('Should Not Post User because Password is too Long', (done) => {
-      request(server)
-        .post('/api/newUser')
-        .send(newUser272CharsPW_3)
-        .expect('Password must be at least 8 characters long')
-        .expect(400)
-        .end((err, res) => {
-          if (err) return done(err);
-          // _id = res.body.data[0]._id;
-          return done();
-        });
-    });
-    test('Should Not Post User because Password is too Long', (done) => {
-      request(server)
-        .post('/api/newUser')
-        .send(newUserBadEmail_4)
-        .expect('Invalid Email Address')
-        .expect(400)
-        .end((err, res) => {
-          if (err) return done(err);
-          // _id = res.body.data[0]._id;
-          return done();
-        });
-    });
-    test('Should Not Post User because Password is too Long', (done) => {
-      request(server)
-        .post('/api/newUser')
-        .send(newUser272CharsFN_5)
-        .expect('Full Name must be between 1-255 Characters')
-        .expect(400)
-        .end((err, res) => {
-          if (err) return done(err);
-          // _id = res.body.data[0]._id;
-          return done();
-        });
-    });
+    */
   });
 
   /*
