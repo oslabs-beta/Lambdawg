@@ -14,7 +14,7 @@ tracesController.getTraces = async (req, res, next) => {
   console.log("in tracescontroller getTraces");
 
   redisClient
-    .get("LambdaTraces") //get 'LambdaTracessss' to make redis go fetch
+    .get("LambdaTracessss") //get 'LambdaTracessss' to make redis go fetch
     .then((data) => JSON.parse(data))
     .then((data) => {
       console.log(data);

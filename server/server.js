@@ -85,6 +85,7 @@ app.post(
   }
 );
 
+//post from DiagramContainer to write to the service.json file for D3 node chart
 app.post("/writeToFile", fileController.writeToFile, (req, res) => {
   return res.status(200).json(res.locals.writtenServices);
 });

@@ -2,77 +2,37 @@ const fs = require("fs");
 const path = require("path");
 const fileController = {};
 
+//d3 node chart needs to read data from a json file. fs system does not work from the front end
 fileController.writeToFile = (req, res, next) => {
   const { serviceIds } = req.body;
   console.log("in filecontroller", serviceIds);
+  //writing to service.json file in Charts. D3 node chart is set to read from service.json from the same Charts folder
   const filePath = path.resolve(__dirname, "../../src/Chart/service.json");
-  const msServiceIdsExample = [
-    {
-      name: "cakerSixFunction",
-      serviceIds: [
-        {
-          Name: "cakerSixFunction",
-          Names: ["cakerSixFunction"],
-          Type: "client",
-        },
-        {
-          Name: "cakerSixFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda",
-        },
-        {
-          AccountId: "498545057811",
-          Name: "cakerSixFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda::Function",
-        },
-      ],
-    },
-    {
-      name: "cakerFiveFunction",
-      serviceIds: [
-        {
-          Name: "cakerFiveFunction",
-          Names: ["cakerSixFunction"],
-          Type: "client",
-        },
-        {
-          Name: "cakerFiveFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda",
-        },
-        {
-          AccountId: "498545057811",
-          Name: "cakerFiveFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda::Function",
-        },
-      ],
-    },
-  ];
 
+  //separate service parser function to convert serviceIds array to a format readable by the d3 chart
   function ServiceParser(arrayObj) {
     const serviceJSON = {
       nodes: [],
       links: [],
     };
     arrayObj.forEach((obj) => {
-      //take serviceId array
       const serviceArray = obj.serviceIds;
+      //each service id needs a unique key so the links can work from service to service (if related)
       serviceArray.forEach((serviceObj, i) => {
         serviceJSON.nodes.push({
           id: `${serviceObj.Name}${i}`,
           name: serviceObj.Type,
         });
-
+        //source needs a "0" unique id as the first item in each serviceObj is the source for the other 2 services
         serviceJSON.links.push({
           source: `${serviceObj.Name}0`,
           target: `${serviceObj.Name}${i}`,
         });
       });
     });
-    // console.log(serviceJSON.nodes);
+    //convert the dataResults to JSON format before writing to file
     const dataResults = JSON.stringify(serviceJSON);
+
     //the "w" flag will overwrite whatever is already in the JSON file to update it
     fs.writeFile(filePath, dataResults, { flag: "w" }, (err) => {
       console.log("filePath", filePath);

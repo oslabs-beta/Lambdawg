@@ -5,11 +5,10 @@ import { GrNodes } from "react-icons/gr";
 
 //renders each chart icon in the dropdown
 function DropdownItem(props) {
-  const { chart, onClick, chartIcons } = props;
+  const { onClick, chartIcons } = props;
   return (
     <div className="class=dropdown-item nav-links" onClick={onClick}>
       {chartIcons}
-      {/* {chart} */}
     </div>
   );
 }
@@ -27,7 +26,8 @@ function Dropdown(props) {
   const showIcon = (optionsArr, iconsArr, option) => {
     return chartIcons[optionsArr.indexOf(option)];
   };
-  //sets SelectedChart with string to show icon, setActiveChart to send it to DiagramContainer for chart render
+
+  //sets SelectedChart with the corresponding chart option for the icon clicked. setActiveChart to send it to DiagramContainer for chart render
   const handleOptionClick = (chart) => {
     console.log("you clicked " + chart);
     setSelectedChart(chart);
