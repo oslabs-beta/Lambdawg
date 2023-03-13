@@ -13,8 +13,6 @@ dbControllers.getUser = (req, res, next) => {
   db.query(text)
     .then((response) => {
       res.locals.data = response;
-      // console.log('dbcontrol.getusers:', res.locals.data.rows)
-
       return next();
     })
     .catch((err) => {
@@ -32,9 +30,6 @@ dbControllers.addUser = (req, res, next) => {
   const text = `INSERT INTO "public"."users" (full_name, user_name, email, password_,${testKey}) VALUES ($1, $2, $3, $4, $5)`;
   const { full_name, user_name, email } = req.body[0];
   const hey = req.body[0][testKey];
-  // const myObj {
-  //   [testKey] : req.body[0][testKey];
-  // }
   const { password_ } = res.locals;
 
   db.query(
@@ -45,18 +40,16 @@ dbControllers.addUser = (req, res, next) => {
         console.log('Error at dbControllers.addUser: ', err);
         return res.status(500).send('Error Executing Insert Query ');
       }
-      console.log('Add User Query Executed Successfully', result);
+      console.log('Add User Query Executed Successfully');
       next();
     }
   );
-  console.log('hey! ', hey);
 };
 
 dbControllers.deleteUser = (req, res, next) => {
   const text = 'DELETE FROM "public"."users" WHERE user_name = $1';
   const { user_name } = req.params;
 
-  // console.log(req.params);
   db.query(text, [user_name], (err, result) => {
     if (err) {
       console.log('Error at dbControllers.deleteUser: ', err);
@@ -66,13 +59,12 @@ dbControllers.deleteUser = (req, res, next) => {
       console.log('User Not Found');
       return res.status(404).send('User Not Found');
     }
-    console.log('Delete User Query Executed Successfully', result);
+    console.log('Delete User Query Executed Successfully');
     next();
   });
 };
 
 dbControllers.editUser = (req, res, next) => {
-  // const { full_name, user_name, email, _id } = req.body[0];
   const { arn, region, _id, user_name } = req.body[0];
 
   const text =
