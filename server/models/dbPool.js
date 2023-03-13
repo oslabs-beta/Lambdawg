@@ -3,8 +3,6 @@ const dotenv = require('dotenv').config();
 
 const { PG_URI } = process.env;
 
-
-
 //create a new pool using the connection string above that brings us to our database
 
 const pool = new Pool({
@@ -18,5 +16,11 @@ module.exports = {
   query: (text, params, callback) => {
     console.log('Executed Query: ', text);
     return pool.query(text, params, callback);
+  },
+  end: function () {
+    return pool.end();
+  },
+  connect: function () {
+    return pool.connect();
   },
 };

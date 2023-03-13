@@ -1,29 +1,38 @@
 //UNDER CONSTRUCTION
+const { beforeEach, before, afterEach } = require('node:test');
+const { afterAll } = require('@jest/globals');
 const request = require('supertest');
-const app = require('../server/routes/api');
+const server = require('../server/server');
+const db = require('../server/models/dbPool');
+require('dotenv').config();
 
 describe('Our apiRoutes Unit Tests', () => {
+  const testKey = process.env.TEST_TOKEN;
   //password password
   const newUser = [
     {
-      username: 'testUser',
-      password: 'password',
+      user_name: 'testUser',
+      password_: 'password',
       full_name: 'Test User',
       email: 'testuser@example.com',
       arn: null,
       region: null,
+      [testKey]: true,
     },
   ];
   //password password
-  const newUser272CharsUN_1 = {
-    username:
-      'testUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUser',
-    password: 'password',
-    full_name: 'Test User_1',
-    email: 'testuser_1@example.com',
-    arn: null,
-    region: null,
-  };
+  const newUser272CharsUN_1 = [
+    {
+      username:
+        'testUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUser',
+      password: 'password',
+      full_name: 'Test User_1',
+      email: 'testuser_1@example.com',
+      arn: null,
+      region: null,
+      [testKey]: true,
+    },
+  ];
   //password passwor
   const newUserShortPass_2 = {
     username: 'testUser_2',
@@ -32,6 +41,7 @@ describe('Our apiRoutes Unit Tests', () => {
     email: 'testuser_2@example.com',
     arn: null,
     region: null,
+    [testKey]: true,
   };
   //password 'testUser' x34
   const newUser272CharsPW_3 = {
@@ -42,6 +52,7 @@ describe('Our apiRoutes Unit Tests', () => {
     email: 'testuser_3@example.com',
     arn: null,
     region: null,
+    [testKey]: true,
   };
   //password password
   const newUserBadEmail_4 = {
@@ -51,6 +62,7 @@ describe('Our apiRoutes Unit Tests', () => {
     email: 'testuserexample.com',
     arn: null,
     region: null,
+    [testKey]: true,
   };
   //password password
   const newUser272CharsFN_5 = {
@@ -61,27 +73,66 @@ describe('Our apiRoutes Unit Tests', () => {
     email: 'testuser_5@example.com',
     arn: null,
     region: null,
+    [testKey]: true,
   };
-  let _id;
-  //using different syntax from supertest
-  describe('should create a new user without issue', () => {
-    test('POST /newUser', (done) => {
-      request(app)
-        .post('/newUser')
-        .expect('Content-Type', /json/)
-        .send(newUser)
-        .expect(200)
-        .end((err, res) => {
-          if (err) return done(err);
-          _id = res.body.data[0]._id;
-          return done();
-        });
+  // let _id;
+  // want to make sure the user being passed into the test does not
+  //already exist in our database
+  //Will want to implement some logic before to check if they exist, and if so delete them
+  const deleteUser = async () => {
+    const text = `DELETE FROM "public"."users" WHERE ${testKey} = true`;
+    console.log('how many times do you see me');
+    await db.query(text);
+  };
+  // const closeDB = async () => {
+  //   await db.end();
+  // };
+
+  beforeAll(async () => {
+    await db.connect();
+  });
+
+  //This isnt working the way I think it should
+  //closes the DB connection after all of the tests have run
+  // afterAll(async () => {
+  //   await db.end();
+  // });
+  describe('Testing Validator Middleware', () => {
+    describe('POST /newUser', () => {
+      beforeEach(deleteUser());
+      // afterEach(deleteUser());
+      test('Should Post newUser successfully', (done) => {
+        request(server)
+          .post('/api/newUser')
+          .send(newUser)
+          .expect('Content-Type', /json/)
+          .expect('{}')
+          .expect(200)
+          .end((err, res) => {
+            if (err) return done(err);
+            // _id = res.body.data[0]._id;
+            return done();
+          });
+      });
+      // test('Should Not Post User because User Name is too Long', (done) => {
+      //   request(server)
+      //     .post('/api/newUser')
+      //     .send(newUser272CharsUN_1)
+      //     .expect('Content-Type', /json/)
+      //     .expect('User Name must be between 1-255 Characters')
+      //     .expect(400)
+      //     .end((err, res) => {
+      //       if (err) return done(err);
+      //       // _id = res.body.data[0]._id;
+      //       return done();
+      //     });
+      // });
     });
   });
   /*
   describe('POST /newUser', () => {
     it('should create a new user without issue', async () => {
-      const response = await request(app).post('/newUser').send(newUser); //does this need to be json?
+      const response = await request(server).post('/newUser').send(newUser); //does this need to be json?
       console.log('response ', response);
       expect(response.status).toBe(200);
     });
@@ -90,7 +141,7 @@ describe('Our apiRoutes Unit Tests', () => {
   /*
   describe('POST /:user_name', () => {
     it('should set a session cookie', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .post('/testuser')
         .auth('testuser', 'testpassword'); // set basic authentication
 
@@ -101,7 +152,7 @@ describe('Our apiRoutes Unit Tests', () => {
 
   describe('GET /', () => {
     it('should return a user whose cookie matches', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .get('/')
         .set('Cookie', 'sessionid=abc123'); // set a session cookie
 
@@ -112,7 +163,7 @@ describe('Our apiRoutes Unit Tests', () => {
 
   describe('PATCH /edit', () => {
     it('should update a user', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .patch('/edit')
         .auth('testuser', 'testpassword') // set basic authentication
         .send({
@@ -126,7 +177,7 @@ describe('Our apiRoutes Unit Tests', () => {
 
   describe('DELETE /delete/:user_name', () => {
     it('should delete a user', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .delete('/delete/testuser')
         .auth('testuser', 'testpassword'); // set basic authentication
 
@@ -136,7 +187,7 @@ describe('Our apiRoutes Unit Tests', () => {
 
   describe('GET /logout', () => {
     it('should delete the session cookie', async () => {
-      const response = await request(app)
+      const response = await request(server)
         .get('/logout')
         .set('Cookie', 'sessionid=abc123'); // set a session cookie
 

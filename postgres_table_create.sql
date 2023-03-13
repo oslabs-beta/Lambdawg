@@ -1,6 +1,8 @@
 -- 
 --PostgreSQL database Creation
 --
+--Connects to env file
+\i .env
 
 --This file sets up the structure of our database
 -- 
@@ -26,6 +28,7 @@ CREATE TABLE public.users (
    user_name varchar NOT NULL UNIQUE,
    email varchar NOT NULL UNIQUE,
    password_ varchar NOT NULL,
+   ${TEST_TOKEN} BOOLEAN DEFAULT false,
    CONSTRAINT users_pk PRIMARY KEY ("_id")
 ) WITH (
    OIDS=FALSE

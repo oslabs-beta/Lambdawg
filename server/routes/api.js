@@ -34,6 +34,13 @@ router.post(
     res.status(200).json({});
   }
 );
+// try {
+//   console.log('look im in a try block');
+//   res.status(200).json({});
+//   return next();
+// } catch (err) {
+//   return next(err);
+// }
 //this will probably be somewhere after the user has already been verified
 router.delete(
   '/delete/:user_name',
