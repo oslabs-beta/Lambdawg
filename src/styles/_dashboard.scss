@@ -21,6 +21,7 @@
  //  justify-content: flex-start;
   max-height: 60vh;
   min-height: 60vh;
+  max-width: 95vw;
   gap: 1rem;
   margin-bottom: .5rem;
 }
@@ -34,7 +35,7 @@
   flex: 1;
   justify-content: center;
   background-color: $diagram-background-color;
-  width: calc(100vw - 350px - 5rem);
+  // width: calc(100vw - 350px - 5rem);
   flex-grow: 2;
   height: 60vh;
 
@@ -59,7 +60,7 @@
    border-radius: 1rem;
    display: flex;
    flex-direction: column;
-  height: 60vh;
+    height: 60vh;
  }
 
  
@@ -96,9 +97,7 @@
 
  // media queries
  @media (max-width: 1000px) {
-   // #content {
-   //   padding-top: 3rem !important;
-   // }
+
    #hideDetails {
      display: none;
    }

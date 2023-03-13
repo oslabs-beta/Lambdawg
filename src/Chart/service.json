@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    { "id": "cakerSixFunction0", "name": "client" },
+    { "id": "cakerSixFunction1", "name": "AWS::Lambda" },
+    { "id": "cakerSixFunction2", "name": "AWS::Lambda::Function" },
+    { "id": "cakerFiveFunction0", "name": "client" },
+    { "id": "cakerFiveFunction1", "name": "AWS::Lambda" },
+    { "id": "cakerFiveFunction2", "name": "AWS::Lambda::Function" }
+  ],
+  "links": [
+    { "source": "cakerSixFunction0", "target": "cakerSixFunction0" },
+    { "source": "cakerSixFunction0", "target": "cakerSixFunction1" },
+    { "source": "cakerSixFunction0", "target": "cakerSixFunction2" },
+    { "source": "cakerFiveFunction0", "target": "cakerFiveFunction0" },
+    { "source": "cakerFiveFunction0", "target": "cakerFiveFunction1" },
+    { "source": "cakerFiveFunction0", "target": "cakerFiveFunction2" }
+  ]
+}

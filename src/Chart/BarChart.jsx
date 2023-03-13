@@ -28,14 +28,28 @@ function HorizontalBarChart(props) {
       },
     },
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
-        position: "right",
+        position: "bottom",
       },
       title: {
-        display: true,
+        display: false,
         text: "Lambda Latencies",
       },
+      media: [
+        {
+          query: "(max-width: 1000px)",
+          options: {
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+            maintainAspectRatio: false,
+          },
+        },
+      ],
     },
   };
 
@@ -80,6 +94,12 @@ function HorizontalBarChart(props) {
     console.log("this is lambda serviceid array", tempLambdaServices);
   }, []);
 
-  return <Bar options={options} data={data} className='chart-container'/>;
+  const width = window.screen.width / 2;
+  const height = window.screen.height / 2;
+
+  return (
+    // <div style={{ width: width, height: height, margin: "0 auto" }}>
+    <Bar options={options} data={data} style={{ width: width, height: height, margin: "0 auto" }} />
+  );
 }
 export default HorizontalBarChart;

@@ -1,5 +1,6 @@
 .chart-dropdown {
   position: absolute;
+  top: 6rem;
   display: block;
   // background-color: $primary-button-color;
   border-radius: 10px;
@@ -50,5 +51,11 @@
       background-color: $secondary-button-color;
       border: 0;
     }
+  }
+}
+@media (max-width: 1000px) {
+  .chart-dropdown {
+    position: absolute;
+    top: 4rem;
   }
 }
