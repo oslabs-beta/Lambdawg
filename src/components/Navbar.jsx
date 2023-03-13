@@ -106,10 +106,12 @@ const Navbar = (props) => {
 
       <div className='nav-links'>
         <div className='menuTop'>
+
           <label className='switchLabel'>
             {mode === 'light' ? 'Dark Mode' : 'Light Mode'}
           </label>
           <Switch {...label} onClick={darkClick} />
+          
         </div>
         <Link to={docsLink} onClick={handleLinkClick}>
           Documentation

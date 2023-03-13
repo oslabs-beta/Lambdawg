@@ -23,7 +23,7 @@ const DiagramContainer = (props) => {
   // console.log("current active chart", activeChart);
 
   return (
-    <div>
+    <div className='chart-frame'>
       <Dropdown setActiveChart={setActiveChart} />
       <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
         {activeChart === "Bar" && <HorizontalBarChart msNames={msNames} msTraces={msTraces} />}

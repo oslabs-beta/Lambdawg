@@ -69,17 +69,21 @@
    margin: 0px;
  
  }
- #chart-frame {
+ .chart-frame {
    height: 100%;
    overflow: hidden !important;
- 
+   border: 2px solid red;
  }
+
  iframe {
    padding: 0px !important;
    overflow: hidden;
    border: none;
  }
- 
+ .logs-loading{
+  color: $panel-background-color;
+ }
+
  #panel-wrapper > button {
   white-space: nowrap;
   overflow: hidden;
@@ -100,8 +104,10 @@
    }
    #dashboard-container {
      box-sizing: border-box;
+     overflow: hidden;
      width: 100vw;
-     height: 100vh;
+    //  height: 100vh;
+    height: calc(100vh - 5rem);
      padding: 0rem;
      background-color: $dashboard-background-color-mobile;
    }

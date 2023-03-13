@@ -39,7 +39,7 @@ const DataWindow = (props) => {
               <Log key={functionName} functionName={functionName} logs={logs} />
             ))
         ) : 
-          <span class='loading-text'><br/><h1>Loading...</h1></span>
+          <span class='loading-text'><br/><h1 className='logs-loading'>Loading...</h1></span>
         }
         </code>
       </Scrollbar>
