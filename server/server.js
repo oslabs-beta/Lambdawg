@@ -1,14 +1,15 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const path = require("path");
-const cors = require("cors");
-const credentialController = require("./controllers/credentialController");
-const listLambdasController = require("./controllers/listLambdasController");
-const rdsMetricsController = require("./controllers/MetricsController.js");
-const lambdaLogsController = require("./controllers/lambdaLogsController");
-const tracesController = require("./controllers/tracesController");
-const fileController = require("./controllers/fileController");
-const jwt = require("jsonwebtoken");
+
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const cors = require('cors');
+const credentialController = require('./controllers/credentialController');
+const listLambdasController = require('./controllers/listLambdasController');
+const MetricsController = require('./controllers/MetricsController.js');
+const lambdaLogsController = require('./controllers/lambdaLogsController');
+const tracesController = require('./controllers/tracesController.js');
+const jwt = require('jsonwebtoken');
+
 
 const app = express();
 
@@ -48,6 +49,9 @@ app.post(
   }
 );
 
+//Return a JSON object containing all lambda function traces.
+//The route first requests fresh credentials from the user's AWS accounts. Then collects lambda function names and uses them to request AWS XRAY trace data for all functions
+// Redis implemented
 app.post(
   "/getTraces",
   credentialController.getCredentials,
@@ -58,34 +62,36 @@ app.post(
   }
 );
 
+//Return a JSON object containing all lambda function traces.
+//The route first requests fresh credentials from the user's AWS accounts. Then collects lambda function names and uses them to request AWS Cloudwatch log data for all functions
+// Redis implemented
 app.post(
   "/getLambdaLogs",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   lambdaLogsController.getLambdaLogs,
-  // rdsMetricsController.getRDSCPUUtilizationMetrics,
   (req, res) => {
     return res.status(200).json(res.locals.functionLogs);
   }
 );
 
+//Return a JSON object containing all lambda function traces.
+//The route first requests fresh credentials from the user's AWS accounts. Then collects lambda function names and uses them to request AWS Cloudwatch Metrics data for all functions
+// Redis implemented
 app.post(
   "/getLambdaMetrics",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
-  // lambdaLogsController.getLambdaLogs,
-  rdsMetricsController.getMetrics,
+  MetricsController.getMetrics,
   (req, res) => {
     return res.status(200).json(res.locals.getLambdaMetrics);
   }
 );
 
-//post from DiagramContainer to write to the service.json file for D3 node chart
-app.post("/writeToFile", fileController.writeToFile, (req, res) => {
-  return res.status(200).json(res.locals.writtenServices);
-});
 
-app.delete("/deleteRedis", credentialController.deleteRedis);
+// Delete values of this user's redis keys/value pairs
+app.delete('/deleteRedis', credentialController.deleteRedis);
+
 
 //Catch All Route Handler for any requests to an unkown route
 //----------------
