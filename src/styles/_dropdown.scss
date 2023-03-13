@@ -1,19 +1,17 @@
 .chart-dropdown {
   position: absolute;
   display: block;
-  top: calc(60vh + 3rem);
-  // background-color: $primary-button-color;
+  top: calc(60vh + 2rem);
   border-radius: 10px;
   z-index: 999;
 
   .chart-dropdown-toggle {
     background-color: transparent;
-    // border: 1px solid $nav-border;
     padding: 8px 16px;
     padding-top: 10px;
     font-size: 1.5em;
     text-align: center;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 7px;
     cursor: pointer;
   }
@@ -21,7 +19,6 @@
   .chart-dropdown-menu {
     display: flex;
     flex-direction: column;
-    // top: 100%;
     display: none;
     width: 100%;
     padding: 5px 10px;
@@ -39,6 +36,7 @@
     }
 
     .chart-dropdown-item {
+      color: $primary-button-color;
       display: flex;
       align-items: center;
       justify-content: center;

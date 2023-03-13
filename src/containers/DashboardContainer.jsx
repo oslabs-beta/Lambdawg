@@ -28,7 +28,7 @@ const DashboardContainer = (props) => {
   };
 
   useEffect(() => {
-    console.log('listening for arn in dashboard');
+    console.log('listening in dashboard');
   }, [user]);
 
   /// toggle full screen for mobile Panel
@@ -43,9 +43,6 @@ const DashboardContainer = (props) => {
       .getElementById('panelButton')
       .classList.add('current-window-button');
     document
-      .getElementById('diagramButton')
-      .classList.remove('current-window-button');
-    document
       .getElementById('dataButton')
       .classList.remove('current-window-button');
   };
@@ -58,9 +55,6 @@ const DashboardContainer = (props) => {
     setPanelFullScreen(false);
     setDiagramFullScreen(!diagramFullScreen);
     setDataWindowFullScreen(false);
-    document
-      .getElementById('diagramButton')
-      .classList.add('current-window-button');
     document
       .getElementById('panelButton')
       .classList.remove('current-window-button');
@@ -80,9 +74,6 @@ const DashboardContainer = (props) => {
     document
       .getElementById('dataButton')
       .classList.add('current-window-button');
-    document
-      .getElementById('diagramButton')
-      .classList.remove('current-window-button');
     document
       .getElementById('panelButton')
       .classList.remove('current-window-button');
@@ -146,7 +137,6 @@ const DashboardContainer = (props) => {
   useEffect(() => {
     //we need names to fetch traces also
     const fetchTraces = async () => {
-      console.log('in fetch traces');
       try {
         const response = await fetch('/aws/getTraces', {
           method: 'POST',
