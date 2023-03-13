@@ -3,11 +3,10 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const authControllers = {};
-
+//Verifies that the User Name and Password exist and match
 authControllers.verifyUN_Pass = (req, res, next) => {
   const { user_name } = req.params;
   const { password_ } = req.body[0];
-  console.log('inside verifyUN in auth controller', user_name, password_);
 
   const text = 'SELECT * FROM public.users WHERE user_name = $1';
   db.query(text, [user_name], async (err, result) => {
@@ -35,7 +34,7 @@ authControllers.verifyUN_Pass = (req, res, next) => {
     return next();
   });
 };
-
+//Using Validator to sanitize the incoming data, to help prevent any code injections
 authControllers.validator = (req, res, next) => {
   const { full_name, user_name, email, password_ } = req.body[0];
   if (!validator.isLength(full_name, { min: 1, max: 255 })) {
