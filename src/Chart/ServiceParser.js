@@ -46,7 +46,7 @@ const msServiceIds = [
   },
 ];
 
-function parseService(arrayObj) {
+function ServiceParser(arrayObj) {
   const serviceJSON = {
     nodes: [],
     links: [],
@@ -81,4 +81,4 @@ function parseService(arrayObj) {
 
 //have to write to JSON file for d3 iframe chart to read
 
-export default parseService;
+export default ServiceParser;

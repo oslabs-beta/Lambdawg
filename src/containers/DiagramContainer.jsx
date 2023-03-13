@@ -2,79 +2,76 @@ import React, { useEffect, useState } from "react";
 import HorizontalBarChart from "../Chart/BarChart";
 import CircleChart from "../Chart/CircleChart";
 import Dropdown from "../components/ChartDropDown";
-import parseService from "../Chart/ServiceParser";
+// import parseService from "../Chart/ServiceParser";
 
 const DiagramContainer = (props) => {
   const { diagramFullScreen, setDiagramFullScreen } = props;
+  const [serviceIds, setServiceIds] = useState([]);
   const { msNames, msMetrics, msTraces, msServiceIds, handleTogglePanel } = props;
   console.log("diagram container mstraces n metrics n serviceids", msTraces, msMetrics, msServiceIds);
   // console.log("diagram container props", props);
 
-  const msServiceIdsExample = [
-    {
-      name: "cakerSixFunction",
-      serviceIds: [
-        {
-          Name: "cakerSixFunction",
-          Names: ["cakerSixFunction"],
-          Type: "client",
-        },
-        {
-          Name: "cakerSixFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda",
-        },
-        {
-          AccountId: "498545057811",
-          Name: "cakerSixFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda::Function",
-        },
-      ],
-    },
-    {
-      name: "cakerFiveFunction",
-      serviceIds: [
-        {
-          Name: "cakerFiveFunction",
-          Names: ["cakerSixFunction"],
-          Type: "client",
-        },
-        {
-          Name: "cakerFiveFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda",
-        },
-        {
-          AccountId: "498545057811",
-          Name: "cakerFiveFunction",
-          Names: ["cakerSixFunction"],
-          Type: "AWS::Lambda::Function",
-        },
-      ],
-    },
-  ];
-
+  //writing serviceIds to the JSON file so the D3 node chart can read it
   useEffect(() => {
-    if (msServiceIds) {
-      //will have to send msServiceIds to this
-      console.log("msServiceId", msServiceIds);
-      // parseService(msServiceIdsExample);
+    if (msServiceIds.length) {
+      setServiceIds(msServiceIds);
+      console.log("serviceids in useEffect", serviceIds);
+      const writeToFile = async () => {
+        try {
+          const response = await fetch("/aws/writeToFile", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              serviceIds: serviceIds,
+            }),
+            muteHttpExceptions: true,
+          });
+          if (response.ok) {
+            const data = await response.json();
+            console.log("data written to JSON", data);
+          } else {
+            alert("Error writing service data to JSON file");
+          }
+        } catch (error) {
+          console.log(error, "error posting service data");
+        }
+      };
+      writeToFile();
     }
   }, []);
 
-  window.addEventListener("message", receiveMessage, false);
-  function receiveMessage(event) {
+  // window.addEventListener("message", receiveMessage, false);
+  // function receiveMessage(event) {
+  //   if (event.origin !== "http://localhost:5173") return;
+
+  //   const serviceNodeId = event.data;
+  //   let nodeId = serviceNodeId.id;
+  //   nodeId = nodeId.slice(0, nodeId.length - 1);
+  //   console.log("nodeId", nodeId);
+  //   let button = document.getElementById(nodeId);
+  //   console.log(button);
+  //   // document.getElementById().textContent = event.data; // the node id
+  // }
+
+  window.addEventListener("message", async (event) => {
     if (event.origin !== "http://localhost:5173") return;
 
     const serviceNodeId = event.data;
+    if (!serviceNodeId.id) return;
+
     let nodeId = serviceNodeId.id;
-    nodeId = nodeId.substring(0, nodeId.length - 1);
+    nodeId = nodeId.slice(0, nodeId.length - 1);
     console.log("nodeId", nodeId);
-    let button = document.getElementById(nodeId);
+
+    let button = await document.getElementById(nodeId);
     console.log(button);
-    // document.getElementById().textContent = event.data; // the node id
-  }
+
+    if (button) {
+      button.click();
+    } else {
+      console.log("was the button clicked? noooo");
+    }
+  });
 
   //this useState provides diagramContainer which chart was selected
   const [activeChart, setActiveChart] = useState("Node");
@@ -90,48 +87,3 @@ const DiagramContainer = (props) => {
   );
 };
 export default DiagramContainer;
-
-// const msServiceIds = [
-//   {
-//     name: "cakerSixFunction",
-//     serviceIds: [
-//       {
-//         Name: "cakerSixFunction",
-//         Names: ["cakerSixFunction"],
-//         Type: "client",
-//       },
-//       {
-//         Name: "cakerSixFunction",
-//         Names: ["cakerSixFunction"],
-//         Type: "AWS::Lambda",
-//       },
-//       {
-//         AccountId: "498545057811",
-//         Name: "cakerSixFunction",
-//         Names: ["cakerSixFunction"],
-//         Type: "AWS::Lambda::Function",
-//       },
-//     ],
-//   },
-//   {
-//     name: "cakerFiveFunction",
-//     serviceIds: [
-//       {
-//         Name: "cakerFiveFunction",
-//         Names: ["cakerSixFunction"],
-//         Type: "client",
-//       },
-//       {
-//         Name: "cakerFiveFunction",
-//         Names: ["cakerSixFunction"],
-//         Type: "AWS::Lambda",
-//       },
-//       {
-//         AccountId: "498545057811",
-//         Name: "cakerFiveFunction",
-//         Names: ["cakerSixFunction"],
-//         Type: "AWS::Lambda::Function",
-//       },
-//     ],
-//   },
-// ];

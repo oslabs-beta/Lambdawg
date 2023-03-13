@@ -82,7 +82,7 @@
 
     const link = svg.append("g").attr("class", "links").selectAll("line").data(graph.links).enter().append("line");
 
-    //if the parent service is from AWS Lambda, make it bigger
+    //if the parent service is from the initial client service, make it bigger
     const nodeSize = (d) => {
       let radius = 10.5;
       if (d.name === "client") {

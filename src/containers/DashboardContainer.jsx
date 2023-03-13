@@ -118,7 +118,7 @@ const DashboardContainer = (props) => {
     }
   }, [msNames]);
 
-  //fetch individual lambda trace data for latency graphs
+  //fetch trace data
   useEffect(() => {
     //we need names to fetch traces also
     const fetchTraces = async () => {
@@ -170,6 +170,34 @@ const DashboardContainer = (props) => {
     fetchTraces();
     console.log("mstraces in fetch dashboard", msTraces);
   }, []);
+
+  // //writing serviceIds to the JSON file so the D3 node chart can read it
+  // useEffect(() => {
+  //   if (msServiceIds) {
+  //     console.log("msserviceids in useEffect", msServiceIds);
+  //     const writeToFile = async () => {
+  //       try {
+  //         const response = await fetch("/aws/writeToFile", {
+  //           method: "POST",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify({
+  //             serviceIds: msServiceIds,
+  //           }),
+  //           muteHttpExceptions: true,
+  //         });
+  //         if (response.ok) {
+  //           const data = await response.json();
+  //           console.log("data written to JSON", data);
+  //         } else {
+  //           alert("Error writing service data to JSON file");
+  //         }
+  //       } catch (error) {
+  //         console.log(error, "error posting service data");
+  //       }
+  //     };
+  //     // writeToFile();
+  //   }
+  // }, []);
 
   return (
     <div id="dashboard-container">
