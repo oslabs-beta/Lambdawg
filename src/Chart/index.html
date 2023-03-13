@@ -57,18 +57,9 @@
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3.forceCollide().radius(50).strength(0.5));
 
-  // const zoom = d3.zoom()
-  //   .scaleExtent([0.5, 10])
-  //   .on("zoom", zoomed);
-
-  // svg.call(zoom);
-
-  // function zoomed() {
-  //   svg.attr("transform", d3.event.transform);
-  // }
-
   const container = d3.select("#container");
 
+  //zoom functionality
   const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", zoomed);
 
   container.call(zoom);
@@ -77,12 +68,13 @@
     svg.attr("transform", d3.event.transform);
   }
 
+  //renders nodes and links based on data written to service.json
   d3.json("service.json", function (error, graph) {
     if (error) throw error;
 
     const link = svg.append("g").attr("class", "links").selectAll("line").data(graph.links).enter().append("line");
 
-    //if the parent service is from AWS Lambda, make it bigger
+    //if the parent service is from the initial client service, make it bigger
     const nodeSize = (d) => {
       let radius = 10.5;
       if (d.name === "client") {
@@ -106,12 +98,10 @@
       return d.id;
     });
 
-    //on click, send name of func back
+    //on click, send id of clicked func back to main app.
     node.on("click", function (d) {
-      // console.log(d3.select(this).select("title").text());
       const serviceNode = { id: d.id, name: d.name };
-      // console.log(serviceNode);
-      alert("Hello from chart page", serviceNode.id, serviceNode.name);
+      // alert("Hello from chart page", serviceNode.id, serviceNode.name);
       parent.postMessage(serviceNode, "http://localhost:5173/index.html");
     });
 
