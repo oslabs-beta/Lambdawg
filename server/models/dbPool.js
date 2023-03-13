@@ -7,6 +7,14 @@ const { PG_URI } = process.env;
 
 const pool = new Pool({
   connectionString: PG_URI,
+  idleTimeoutMillis: 5000,
+  connectionTimeoutMillis: 7500,
+  end: function () {
+    return pool.end();
+  },
+  connect: function () {
+    return pool.connect();
+  },
 });
 
 //Now we need to export an object that has a query method in it, that we'll name query
@@ -16,11 +24,5 @@ module.exports = {
   query: (text, params, callback) => {
     console.log('Executed Query: ', text);
     return pool.query(text, params, callback);
-  },
-  end: function () {
-    return pool.end();
-  },
-  connect: function () {
-    return pool.connect();
   },
 };

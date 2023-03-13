@@ -19,6 +19,9 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+--SET idleTimeoutMillis = 5000;
+--SET connectionTimeoutMillis = 7500;
+--these last 2 items I put in to try and help with the open handle issue
 -------------------
 -- CREATE EXTENSION pgcrypto;
 -------------------

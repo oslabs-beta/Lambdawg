@@ -23,9 +23,9 @@ describe('Our apiRoutes Unit Tests', () => {
   //password password
   const newUser272CharsUN_1 = [
     {
-      username:
+      user_name:
         'testUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUser',
-      password: 'password',
+      password_: 'password',
       full_name: 'Test User_1',
       email: 'testuser_1@example.com',
       arn: null,
@@ -34,47 +34,55 @@ describe('Our apiRoutes Unit Tests', () => {
     },
   ];
   //password passwor
-  const newUserShortPass_2 = {
-    username: 'testUser_2',
-    password: 'passwor',
-    full_name: 'Test User_2',
-    email: 'testuser_2@example.com',
-    arn: null,
-    region: null,
-    [testKey]: true,
-  };
+  const newUserShortPass_2 = [
+    {
+      user_name: 'testUser_2',
+      password_: 'passwor',
+      full_name: 'Test User_2',
+      email: 'testuser_2@example.com',
+      arn: null,
+      region: null,
+      [testKey]: true,
+    },
+  ];
   //password 'testUser' x34
-  const newUser272CharsPW_3 = {
-    username: 'testUser_3',
-    password:
-      'testUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUser',
-    full_name: 'Test User_3',
-    email: 'testuser_3@example.com',
-    arn: null,
-    region: null,
-    [testKey]: true,
-  };
+  const newUser272CharsPW_3 = [
+    {
+      user_name: 'testUser_3',
+      password_:
+        'testUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUser',
+      full_name: 'Test User_3',
+      email: 'testuser_3@example.com',
+      arn: null,
+      region: null,
+      [testKey]: true,
+    },
+  ];
   //password password
-  const newUserBadEmail_4 = {
-    username: 'testUser_4',
-    password: 'password',
-    full_name: 'Test User_4',
-    email: 'testuserexample.com',
-    arn: null,
-    region: null,
-    [testKey]: true,
-  };
+  const newUserBadEmail_4 = [
+    {
+      user_name: 'testUser_4',
+      password_: 'password',
+      full_name: 'Test User_4',
+      email: 'testuserexample.com',
+      arn: null,
+      region: null,
+      [testKey]: true,
+    },
+  ];
   //password password
-  const newUser272CharsFN_5 = {
-    username: 'testUser_5',
-    password: 'password',
-    full_name:
-      'testUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUser',
-    email: 'testuser_5@example.com',
-    arn: null,
-    region: null,
-    [testKey]: true,
-  };
+  const newUser272CharsFN_5 = [
+    {
+      user_name: 'testUser_5',
+      password_: 'password',
+      full_name:
+        'testUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUsertestUser',
+      email: 'testuser_5@example.com',
+      arn: null,
+      region: null,
+      [testKey]: true,
+    },
+  ];
   // let _id;
   // want to make sure the user being passed into the test does not
   //already exist in our database
@@ -88,9 +96,9 @@ describe('Our apiRoutes Unit Tests', () => {
   //   await db.end();
   // };
 
-  beforeAll(async () => {
-    await db.connect();
-  });
+  // beforeAll(async () => {
+  //   await db.connect();
+  // });
 
   //This isnt working the way I think it should
   //closes the DB connection after all of the tests have run
@@ -100,7 +108,7 @@ describe('Our apiRoutes Unit Tests', () => {
   describe('Testing Validator Middleware', () => {
     describe('POST /newUser', () => {
       beforeEach(deleteUser());
-      // afterEach(deleteUser());
+      afterEach(deleteUser());
       test('Should Post newUser successfully', (done) => {
         request(server)
           .post('/api/newUser')
@@ -114,21 +122,69 @@ describe('Our apiRoutes Unit Tests', () => {
             return done();
           });
       });
-      // test('Should Not Post User because User Name is too Long', (done) => {
-      //   request(server)
-      //     .post('/api/newUser')
-      //     .send(newUser272CharsUN_1)
-      //     .expect('Content-Type', /json/)
-      //     .expect('User Name must be between 1-255 Characters')
-      //     .expect(400)
-      //     .end((err, res) => {
-      //       if (err) return done(err);
-      //       // _id = res.body.data[0]._id;
-      //       return done();
-      //     });
-      // });
+      test('Should Not Post User because User Name is too Long', (done) => {
+        request(server)
+          .post('/api/newUser')
+          .send(newUser272CharsUN_1)
+          .expect('User Name must be between 1-255 Characters')
+          .expect(400)
+          .end((err, res) => {
+            if (err) return done(err);
+            // _id = res.body.data[0]._id;
+            return done();
+          });
+      });
+    });
+    test('Should Not Post User because Password is too Short', (done) => {
+      request(server)
+        .post('/api/newUser')
+        .send(newUserShortPass_2)
+        .expect('Password must be at least 8 characters long')
+        .expect(400)
+        .end((err, res) => {
+          if (err) return done(err);
+          // _id = res.body.data[0]._id;
+          return done();
+        });
+    });
+    test('Should Not Post User because Password is too Long', (done) => {
+      request(server)
+        .post('/api/newUser')
+        .send(newUser272CharsPW_3)
+        .expect('Password must be at least 8 characters long')
+        .expect(400)
+        .end((err, res) => {
+          if (err) return done(err);
+          // _id = res.body.data[0]._id;
+          return done();
+        });
+    });
+    test('Should Not Post User because Password is too Long', (done) => {
+      request(server)
+        .post('/api/newUser')
+        .send(newUserBadEmail_4)
+        .expect('Invalid Email Address')
+        .expect(400)
+        .end((err, res) => {
+          if (err) return done(err);
+          // _id = res.body.data[0]._id;
+          return done();
+        });
+    });
+    test('Should Not Post User because Password is too Long', (done) => {
+      request(server)
+        .post('/api/newUser')
+        .send(newUser272CharsFN_5)
+        .expect('Full Name must be between 1-255 Characters')
+        .expect(400)
+        .end((err, res) => {
+          if (err) return done(err);
+          // _id = res.body.data[0]._id;
+          return done();
+        });
     });
   });
+
   /*
   describe('POST /newUser', () => {
     it('should create a new user without issue', async () => {
