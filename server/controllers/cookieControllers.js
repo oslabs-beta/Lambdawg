@@ -1,21 +1,18 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-// const cookieParser = require('cookie-parser');
 
 const cookieControllers = {};
 
 cookieControllers.setCookie = (req, res, next) => {
-  console.log('inside set cookie')
   const { user_name } = req.params;
 
   const accessToken = jwt.sign(user_name, process.env.ACCESS_SECRET_TOKEN);
 
   //sends the token as a cookie
-  // , secure: true  // If I want to make it via https only add this in the object below
-  // res.cookie('jwt', accessToken);
+  //Add ' secure: true ' if you want to make it via https only but would need to have certificate first
+
   res.cookie('jwt', accessToken, {
-    httpOnly: true
-    // sameSite: 'none', // this keeps the cookie from being set for some reason
+    httpOnly: true,
   });
   return next();
 };
@@ -25,7 +22,6 @@ cookieControllers.authenticateCookie = (req, res, next) => {
 
   //assigns the jwt string to authHeader
   const authHeader = req.cookies.jwt;
-  // console.log('authheader ', authHeader);
   //this is checking to see if we have a cookie, and if we do, assign the cookie to token
   const token = authHeader && authHeader;
 

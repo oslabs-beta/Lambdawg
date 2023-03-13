@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 // import * as d3 from "d3";
-import { scaleOrdinal } from "d3-scale";
 import BubbleChart from "./BubbleChart";
 
 const CircleChart = (props) => {
@@ -44,10 +43,10 @@ const CircleChart = (props) => {
   }, []);
 
   const width = window.screen.width / 2;
-  const height = window.screen.height;
+  const height = window.screen.height / 2;
 
   return (
-    <div className="charts" style={{ width: width, margin: "0 auto" }}>
+    <div className="charts" style={{ width: width, height: height, margin: "0 auto" }}>
       <div className="bubbleChart" style={{ background: "$theme-color-1" }}>
         <BubbleChart bubbleChartData={bubbleChartData} handleTogglePanel={handleTogglePanel} />
       </div>

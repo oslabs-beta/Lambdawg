@@ -30,16 +30,11 @@ app.use(
 );
 app.use(cookieParser());
 
-//Handle requests for Static Files here
-//--------------**Not working how I expected**-Ted
 app.use(express.static(path.resolve(__dirname, '../src')));
+
 //Define Route handlers Here
 //---------------
 app.use('/api', apiRouter);
-
-// app.get('/', apiRouter);
-
-// app.post('/');
 
 app.post(
   '/getLambdaNames',
@@ -64,6 +59,15 @@ app.post(
     return res.status(200).json(res.locals.traces);
   }
 );
+// app.post(
+//   "/getTraces",
+//   credentialController.getCredentials,
+//   listLambdasController.getLambdas,
+//   tracesTestController.getTraces,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.traces);
+//   }
+// );
 
 //Return a JSON object containing all lambda function traces.
 //The route first requests fresh credentials from the user's AWS accounts. Then collects lambda function names and uses them to request AWS Cloudwatch log data for all functions
