@@ -34,14 +34,7 @@ router.post(
     res.status(200).json(res.locals.user);
   }
 );
-// try {
-//   console.log('look im in a try block');
-//   res.status(200).json({});
-//   return next();
-// } catch (err) {
-//   return next(err);
-// }
-//this will probably be somewhere after the user has already been verified
+
 router.delete(
   '/delete/:user_name',
   authController.verifyUN_Pass,
@@ -49,17 +42,18 @@ router.delete(
   (req, res) => res.status(200).json({})
 );
 
+//This handles the updating of the ARN and the region
 router.patch(
   '/edit/:user_name',
   authController.verifyUN_Pass,
   dbController.editUser,
   (req, res) => {
-    console.log(res.locals.user)
+    console.log(res.locals.user);
     res.status(200).json(res.locals.user);
   }
 );
 
-// sign in -> add a middleware controller after verify to set session cookie
+// sign in -
 router.post(
   '/:user_name',
   authController.verifyUN_Pass,
@@ -71,6 +65,7 @@ router.post(
   }
 );
 
+//Logs user out by deleting cookie
 router.get('/logout', cookieController.deleteCookie, (req, res) => {
   res.status(200).json();
 });
