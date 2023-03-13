@@ -212,9 +212,9 @@ const DashboardContainer = (props) => {
         <button className="secondary-button" id="dataButton" onClick={handleDataClick}>
           Log
         </button>
-        <button className="secondary-button" id="diagramButton" onClick={handleDiagramClick}>
+        {/* <button className="secondary-button" id="diagramButton" onClick={handleDiagramClick}>
           Map
-        </button>
+        </button> */}
       </div>
     </div>
   );

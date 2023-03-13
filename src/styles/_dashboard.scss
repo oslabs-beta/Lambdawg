@@ -1,4 +1,3 @@
-// 
 
 .chart-container {
   max-width: 60vw;
@@ -10,7 +9,7 @@
  #dashboard-container {
    display: flex;
    flex-direction: column;
-   height: calc(100vh - 3.2rem);
+   height: calc(100vh - 4rem);
    overflow: hidden;
    background-color: $dashboard-background-color;
    padding: 2rem 1rem 0rem 1rem;
@@ -42,9 +41,8 @@
  }
  #data-window-wrapper {
   border: 1px solid $dashboard-border-boxes;
-  overflow: auto;
-  height: 80%;
-  padding: 0rem 1rem 1rem 1rem;
+  overflow: hidden;
+  // padding: 0rem 10rem 1rem 1rem;
   overflow-x: hidden;
 
  }
@@ -105,8 +103,8 @@
      box-sizing: border-box;
      overflow: hidden;
      width: 100vw;
-    //  height: 100vh;
-    height: calc(100vh - 5rem);
+     height: 100vh;
+    // height: calc(100vh - 5rem);
      padding: 0rem;
      background-color: $dashboard-background-color-mobile;
    }
@@ -133,9 +131,9 @@
      width: 100vw;
    }
    #diagram-container-wrapper {
-     order: -1;
-     overflow: hidden;
+    visibility: hidden !important;
    }
+
    .collapse-screen {
      visibility: hidden !important;
      height: 0px !important;
@@ -160,7 +158,7 @@
    }
  
    #panelButton, #diagramButton, #dataButton {
-     width: 33.3vw;
+     width: 48vw;
      height: 2.5rem;
      margin: 1rem .25rem 1rem .25rem;
      visibility: visible;
