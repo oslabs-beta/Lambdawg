@@ -1,18 +1,18 @@
 const Redis = require('redis');
-// const getOrSetCache = require('../redis');
+// Open a new redis client to send requests to the redis server.
 const redisClient = Redis.createClient();
+// Check if the connection is open befors proceeding.
 (async () => {
   await redisClient.connect().catch((err) => {
     console.log('Redis Connect Error: ' + err.message);
   });
 })();
+
+// Use AWS SDK for javascript v3 to import session Token.
 const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
 const { triggerAsyncId } = require('async_hooks');
-// const creds = require('../aws/secret');
 const dotenv = require('dotenv').config();
 const { _KEY, _SKEY, USER_ARN } = process.env;
-// const dotenv = require('dotenv');
-// dotenv.config();
 
 const credentialController = {};
 //declare a constant variable called credentials, which will be used to call the AWS STS API, passing in the access key id and secret access key of the cloudband account
@@ -50,26 +50,27 @@ credentialController.getCredentials = async (req, res, next) => {
   }
 };
 
+//delete user-specific redis data
 credentialController.deleteRedis = async (req, res, next) => {
-  redisClient.del('LambdaTraces', (err, result) => {
+  redisClient.del('LambdaTraces' + req.body.arn, (err, result) => {
     if (err) {
       console.log(err);
       return next(err);
     }
   });
-  redisClient.del('LambdaLogs', (err, result) => {
+  redisClient.del('LambdaLogs' + req.body.arn, (err, result) => {
     if (err) {
       console.log(err);
       return next(err);
     }
   });
-  redisClient.del('LambdaList', (err, result) => {
+  redisClient.del('LambdaList' + req.body.arn, (err, result) => {
     if (err) {
       console.log(err);
       return next(err);
     }
   });
-  redisClient.del('LambdaMetrics', (err, result) => {
+  redisClient.del('LambdaMetrics' + req.body.arn, (err, result) => {
     if (err) {
       console.log(err);
       return next(err);
