@@ -1,16 +1,16 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
-import { max, min, scaleSqrt } from "d3";
+
 //function to render each bubble in the bubble chart
 function Circle({ data, onClick }) {
   const maxRadius = d3.max(data, (d) => d.count);
   const minRadius = d3.min(data, (d) => d.count);
   const radiusScale = d3.scaleSqrt().domain([minRadius, maxRadius]).range([20, 120]);
 
+  //returns each circle with properties to render on bubble chart
   return data.map((circle, index) => (
     <g key={index}>
       <circle
-        // key={index}
         className="bubble"
         fill={`hsla(${circle.count},100%,70%,0.5)`}
         strokeWidth="1px"
@@ -30,7 +30,15 @@ function Circle({ data, onClick }) {
         }}
         onClick={() => onClick(circle)}
       />
-      <text className="bubbleLabel" x={circle.x} y={circle.y} dy="0.3em" textAnchor="middle" fontSize="12" fill="#000">
+      <text
+        className="bubbleLabel charts"
+        x={circle.x}
+        y={circle.y}
+        dy="0.3em"
+        textAnchor="middle"
+        fontSize="12"
+        fill="#000"
+      >
         {circle.name + " (" + circle.count + ")"}
       </text>
     </g>

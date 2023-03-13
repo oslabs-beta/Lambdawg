@@ -52,4 +52,9 @@ $secondary-button-font: #2c2828;
 /// LANDING PAGE
 $info-card-background-color: #fad6c9;
 
-$bubble-chart-bubbles: #5ff7de;
+///CHARTS
+$chart-primary-color: #5fba88;
+$chart-secondary-color: lighten($chart-primary-color, 20%);
+$chart-contrast-color: #297fb8;
+$chart-background-color: #ff508480;
+$chart-background-contrast-color: #35a2eb80;

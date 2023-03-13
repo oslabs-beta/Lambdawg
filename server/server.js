@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
@@ -9,9 +10,10 @@ const lambdaLogsController = require('./controllers/lambdaLogsController');
 const tracesController = require('./controllers/tracesController.js');
 const jwt = require('jsonwebtoken');
 
+
 const app = express();
 
-const apiRouter = require('./routes/api');
+const apiRouter = require("./routes/api");
 
 const PORT = process.env.PORT || 3000;
 
@@ -24,20 +26,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
 app.use(cookieParser());
 
-app.use(express.static(path.resolve(__dirname, '../src')));
+app.use(express.static(path.resolve(__dirname, "../src")));
 
 //Define Route handlers Here
 //---------------
-app.use('/api', apiRouter);
+app.use("/api", apiRouter);
 
 app.post(
-  '/getLambdaNames',
+  "/getLambdaNames",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   // lambdaLogsController.getLambdaLogs,
@@ -51,7 +53,7 @@ app.post(
 //The route first requests fresh credentials from the user's AWS accounts. Then collects lambda function names and uses them to request AWS XRAY trace data for all functions
 // Redis implemented
 app.post(
-  '/getTraces',
+  "/getTraces",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   tracesController.getTraces,
@@ -59,21 +61,12 @@ app.post(
     return res.status(200).json(res.locals.traces);
   }
 );
-// app.post(
-//   "/getTraces",
-//   credentialController.getCredentials,
-//   listLambdasController.getLambdas,
-//   tracesTestController.getTraces,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.traces);
-//   }
-// );
 
 //Return a JSON object containing all lambda function traces.
 //The route first requests fresh credentials from the user's AWS accounts. Then collects lambda function names and uses them to request AWS Cloudwatch log data for all functions
 // Redis implemented
 app.post(
-  '/getLambdaLogs',
+  "/getLambdaLogs",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   lambdaLogsController.getLambdaLogs,
@@ -86,7 +79,7 @@ app.post(
 //The route first requests fresh credentials from the user's AWS accounts. Then collects lambda function names and uses them to request AWS Cloudwatch Metrics data for all functions
 // Redis implemented
 app.post(
-  '/getLambdaMetrics',
+  "/getLambdaMetrics",
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   MetricsController.getMetrics,
@@ -99,9 +92,10 @@ app.delete('/deleteRedis', credentialController.deleteRedis, (req, res) => {
   return res.status(200).json('redis cache cleared');
 });
 
+
 //Catch All Route Handler for any requests to an unkown route
 //----------------
-app.use((req, res) => res.status(404).send('This page cannot be found...'));
+app.use((req, res) => res.status(404).send("This page cannot be found..."));
 
 //Default Express Error Handler here
 //____________
@@ -109,7 +103,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: `Express error handler caught unknown middleware error: ${err}`,
     status: 500,
-    message: { err: 'An error occurred' },
+    message: { err: "An error occurred" },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);

@@ -4,10 +4,8 @@ import { Bar } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-//traceObj.data - this is the name of func
-//traceObj.summary
-//"Duration": This key has the value 1.311, which is the duration of the function execution in seconds.
-//"ResponseTime": This key has the value 1.157, which is the time taken to generate the response in seconds.
+//"Duration": duration of the function execution in seconds.
+//"ResponseTime": time taken to generate the response in seconds.
 
 function HorizontalBarChart(props) {
   const { msTraces } = props;
@@ -15,9 +13,6 @@ function HorizontalBarChart(props) {
   const [duration, setDuration] = useState([]);
   const [responseTime, setResponseTime] = useState([]);
   const [lambdaServices, setLambdaServices] = useState([]);
-
-  console.log("in horiz bar, traces", msTraces);
-  //msNames is array of names...dunno if we actually need it tho
 
   //configurations of the bar graph
   const options = {
@@ -59,21 +54,21 @@ function HorizontalBarChart(props) {
       {
         label: "Duration",
         data: duration,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 80, 132, 0.5)",
+        borderColor: "#f75215",
+        backgroundColor: "#f75215",
       },
       {
         label: "Response Time",
         data: responseTime,
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: "#fad6c9",
+        backgroundColor: "#fad6c9",
       },
     ],
   };
 
   useEffect(() => {
     if (!msTraces || !Array.isArray(msTraces)) {
-      return console.log("there aint none here them lambdas");
+      return console.log("Data incoming, please wait");
     }
     const tempDuration = [];
     const tempResponseTime = [];
@@ -86,20 +81,19 @@ function HorizontalBarChart(props) {
       tempLambdaNames.push(traceObj.name);
       tempLambdaServices.push(traceObj.serviceIds);
     });
-    //all parts of msTraces needs to be parsed to add to the bar chart options
+    //all parts of msTraces needs to be parsed separately to add to the bar chart options
     setDuration(tempDuration);
     setResponseTime(tempResponseTime);
     setLambdaServices(tempLambdaServices);
     setLambdaNames(tempLambdaNames);
-    console.log("this is lambda serviceid array", tempLambdaServices);
   }, []);
 
   const width = window.screen.width / 2;
   const height = window.screen.height / 2;
 
   return (
-    // <div style={{ width: width, height: height, margin: "0 auto" }}>
-    <Bar options={options} data={data} style={{ width: width, height: height, margin: "0 auto" }} />
+    //manually inputting style to inherit sizing of parent div
+    <Bar className="charts" options={options} data={data} style={{ width: width, height: height, margin: "0 auto" }} />
   );
 }
 export default HorizontalBarChart;

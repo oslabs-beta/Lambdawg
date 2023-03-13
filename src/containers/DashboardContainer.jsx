@@ -17,7 +17,10 @@ const DashboardContainer = (props) => {
   const [activePanel, setActivePanel] = useState("");
 
   const handleTogglePanel = (panelName) => {
+    //panelName is the name of the bubble that was clicked. Passed back up from bubble chart
     setActivePanel(panelName);
+    //now we can use the panelName id to select the corresponding button in the panel
+
     if (panelName) {
       const button = document.getElementById(panelName);
       button.click();
@@ -139,7 +142,7 @@ const DashboardContainer = (props) => {
     }
   }, [msNames]);
 
-  //fetch individual lambda trace data for latency graphs
+  //fetch trace data
   useEffect(() => {
     //we need names to fetch traces also
     const fetchTraces = async () => {
