@@ -9,7 +9,6 @@
 @import "auth";
 @import "landingpage";
 @import "settings";
-// @import "panel"; //I don't think this merged for some reason? Unless it just wasn't here
 @import "newnavbar";
 @import "metrics";
 @import "dropdown";
@@ -59,6 +58,27 @@ a:active {
 button:active {
   transform: translateY(2px);
 }
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+.loading-text{
+  text-align: center;
+  animation: pulse 1s infinite;
+}
+.scroll-bar {
+  padding: 5rem;
+  border: 1 px solid red;
+}
+
 
 // media queries
 @media (max-width: 1000px) {

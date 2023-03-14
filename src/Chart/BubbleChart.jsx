@@ -34,7 +34,6 @@ function BubbleChart({ bubbleChartData, handleTogglePanel }) {
 
   //passes the name (circle id) of the bubble selected back to dashboard to select corresponding panel
   const handleCircleClick = (circle) => {
-    console.log(`You clicked on ${circle.name} with invocations: ${circle.count}`);
     handleTogglePanel(circle.name);
   };
 

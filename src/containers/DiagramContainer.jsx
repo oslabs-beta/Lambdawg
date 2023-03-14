@@ -4,11 +4,8 @@ import CircleChart from "../Chart/CircleChart";
 import Dropdown from "../components/ChartDropDown";
 
 const DiagramContainer = (props) => {
-  const { diagramFullScreen, setDiagramFullScreen } = props;
+  const { diagramFullScreen } = props;
   const { msNames, msMetrics, msTraces, msServiceIds, handleTogglePanel } = props;
-  console.log("diagram container mstraces n metrics n serviceids", msTraces, msMetrics, msServiceIds);
-
-  //this useState provides diagramContainer which chart was selected
   const [activeChart, setActiveChart] = useState("Node");
 
   //writing serviceIds to the JSON file so the D3 node chart can read it
@@ -36,7 +33,6 @@ const DiagramContainer = (props) => {
   }, []);
 
   //When a node is clicked in the iframe, the message will be sent back
-  //this will id the
   window.addEventListener("message", async (event) => {
     if (event.origin !== "http://localhost:5173") return;
 
@@ -44,18 +40,17 @@ const DiagramContainer = (props) => {
     if (!serviceNodeId.id) return;
 
     let nodeId = serviceNodeId.id;
-    //janky way of slicing the number id (unique identifier) attached to each func name in fileController so that the nodes get individual links
+
     nodeId = nodeId.slice(0, nodeId.length - 1);
     let button = await document.getElementById(nodeId);
     if (button) {
-      //for some reason, have to click button twice to open the panel
       button.click();
     } else {
       console.log("was the button clicked? noooo");
     }
   });
 
-  //active chart updates from dropdown, and renders corresponding chart
+  // active chart updates from dropdown, and renders corresponding chart
   return (
     <div id="diagram-container-wrapper" className={diagramFullScreen ? "full-screen" : "collapse-screen"}>
       {activeChart === "Bar" && <HorizontalBarChart msNames={msNames} msTraces={msTraces} />}

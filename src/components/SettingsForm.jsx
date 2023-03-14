@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom"; 
 
 const Settings = (props) => {
@@ -12,18 +12,27 @@ const Settings = (props) => {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    console.log('use effect in settings form')
-  }, [user])
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  const handleInvalidArn = () => {
+    console.log('not a valid arn')
+    const arnInput = document.getElementById('arnInputField');
+    arnInput.style.border = '2px solid red';
+  }
+
+  const handleAuthFail = () => {
+    const pwInput = document.getElementById('arnPasswordField');
+    pwInput.style.border = '2px solid red';
+    setFormData((prevFormData) => ({ ...prevFormData, password_: '' }));
+  }
+
+  // will update user in db and state
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('username in handlesubmit settings ', user.user_name)
+    if (formData.arn.substring(0, 12) !== 'arn:aws:iam:') return handleInvalidArn();
 
     const arnFormData = {
       full_name: user.full_name, 
@@ -36,7 +45,6 @@ const Settings = (props) => {
     };
 
     try{
-      console.log('TRY in settings (the form data)', arnFormData)
       const response = await fetch(`/api/edit/${user.user_name}`, {
         method: 'PATCH',
         credentials: 'include',
@@ -46,12 +54,11 @@ const Settings = (props) => {
 
       if (response.ok){
         const data = await response.json();
-        console.log('user updated from settings! response:', data)
         navigate('/dashboard');
       }
       else {
-        console.log('Unable to patch arn etc from settings')
-        console.log('user inside else block of fetch in settings', user)
+        handleAuthFail();
+        console.log('Unable to patch arn from settings')
       }
 
     }
@@ -63,19 +70,26 @@ const Settings = (props) => {
     setUser((prevUser) => ({ ...prevUser, arn: formData.arn, region: formData.aws_region }));
   }
 
-// console.log(user.arn)
-
   return(
     <div className='horizontal-line'>
       <p>
-        Step 1: <span className='visible-link'><a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=lambdawg-permission&param_ExternalId=Lambdawg&templateURL=https://lambdawg.s3.amazonaws.com/cloudFormation.yaml" target='blank'>
-          Connect your AWS account</a><br /><br /></span>
-        Step 2: Paste your ARN key below<br />
+        Step 1: 
+        <span 
+          className='visible-link'
+          >
+          <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=lambdawg-permission&param_ExternalId=Lambdawg&templateURL=https://lambdawg.s3.amazonaws.com/cloudFormation.yaml" 
+          target='blank'
+          >
+          Connect your AWS account
+          </a><br /><br />
+          </span>
+        Step 2: Paste your ARN key below
+        <br />
       </p>
       <div className='settings-form-container'>
         <form onSubmit={handleSubmit}>
-            {/* <input type="password" name="arn" placeholder=' ARN key' value={formData.arn} onChange={handleInputChange} required /> */}
             <input
+              id='arnInputField'
               type="password"
               name="arn"
               placeholder={user.arn ? user.arn : ' ARN key'}
@@ -103,11 +117,32 @@ const Settings = (props) => {
               <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
               <option value="sa-east-1">South America (São Paulo)</option>
             </select><br/>
-            <input type="password" name="password_" placeholder=' Your LAMBDAWG password' value={formData.password_} onChange={handleInputChange} required />
+            <input 
+              id='arnPasswordField' 
+              type="password" 
+              name="password_" 
+              placeholder=' 
+              Your LAMBDAWG password' 
+              value={formData.password_} 
+              onChange={handleInputChange} 
+              required 
+            />
         </form>
       </div>
-      <Link to="/docs" ><button className='settings-secondary-button stack-button'>Read the Docs</button></Link>
-     <button onClick={handleSubmit} className='settings-primary-button stack-button'>Get my metrics</button>
+      <Link to="/docs" >
+        <button 
+        className='settings-secondary-button stack-button'
+        >
+          Read the Docs
+        </button>
+      </Link>
+
+      <button 
+        onClick={handleSubmit} 
+        className='settings-primary-button stack-button'
+        >
+        Get my metrics
+      </button>
 
     </div>
 

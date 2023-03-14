@@ -3,7 +3,7 @@ const mascot = "src/assets/mascot_head.svg";
 
 const BouncingDotsLoader = (props) => {
   return (
-    <div className="bouncing-loader">
+    <div className="bouncing-loader bouncing-body">
       <div>
         <img src={mascot} alt="loading mascot" />{" "}
       </div>

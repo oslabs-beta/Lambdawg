@@ -54,14 +54,14 @@ function HorizontalBarChart(props) {
       {
         label: "Duration",
         data: duration,
-        borderColor: "#ff6384",
-        backgroundColor: "#ff508480",
+        borderColor: "#f75215",
+        backgroundColor: "#f75215",
       },
       {
         label: "Response Time",
         data: responseTime,
-        borderColor: "#297fb8",
-        backgroundColor: "#35a2eb80",
+        borderColor: "#fad6c9",
+        backgroundColor: "#fad6c9",
       },
     ],
   };
