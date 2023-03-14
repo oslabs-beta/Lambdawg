@@ -9,6 +9,7 @@ const LandingPageContainer = (props) => {
   const mobilemetrics = "src/assets/mobile-metrics.png";
   const screenshot = "src/assets/desktop.png";
 
+
   return (
     <div>
       <div id="landing-page-container">
@@ -60,6 +61,7 @@ const LandingPageContainer = (props) => {
         </div>
       </div>
     </div>
+
   );
 };
 export default LandingPageContainer;

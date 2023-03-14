@@ -1,13 +1,12 @@
 
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const LamdaButton = (props) => {
   const { name, msMetrics, user, msLogs, setMsLogs } = props;
   const [sortedMetrics, setSortedMetrics] = useState({});
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
-// Parse metrics for specific name (this could happen in panel but whatever for now)
+// Parse metrics for specific func name
   useEffect(() => {
 
     if (!msMetrics || !Array.isArray(msMetrics)) return;
@@ -47,14 +46,12 @@ const LamdaButton = (props) => {
       }
     });
   
-    // console.log('LamdaButton sorted', tempSortedMetrics[name]);
     setSortedMetrics(tempSortedMetrics);
   }, [msMetrics]);
 
 // Fetch all Logs 
   useEffect(() => {
     if (msMetrics) {
-      console.log('fetchlogs line 59')
 
       const fetchLogs = async () => {
         try {
@@ -62,32 +59,42 @@ const LamdaButton = (props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              arn: user.arn
+              arn: user.arn,
+              user_name: user.user_name
             }),
             muteHttpExceptions: true,
           });
           const data = await response.json();
           setMsLogs(data);
-          console.log('micro logs: ', msLogs);
         } catch (error) {
           console.log('error fetching logs', error);
         }
       };
       fetchLogs();
     }
-  }, []);
+  }, [sortedMetrics]);
 
 // Populate logs in data window
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
+
+    const logElement = document.getElementById(`${name}log`);
+    if (logElement) {
+      logElement.scrollIntoView();
+    }
   }
   
-
   return (
     <div>
       {sortedMetrics[name] && (
         <div>
-          <button id={name} className='metrics-button' onClick={togglePanel}>{`${name}`}</button>
+            <button 
+              id={name} 
+              className='metrics-button' 
+              onClick={togglePanel}
+              >
+              {`${name}`}
+            </button>
   
           <div
             id={`${name} Metrics`}
@@ -107,5 +114,3 @@ const LamdaButton = (props) => {
 }
 
 export default LamdaButton;
-
-

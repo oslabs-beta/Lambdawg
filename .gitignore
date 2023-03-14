@@ -19,3 +19,7 @@ server/aws/
 # postgres table creator
 
 postgres_table_create.sql
+
+# redis dumper file
+
+dump.rdb
