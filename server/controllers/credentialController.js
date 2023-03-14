@@ -1,12 +1,12 @@
-const Redis = require('redis');
-// Open a new redis client to send requests to the redis server.
-const redisClient = Redis.createClient();
-// Check if the connection is open befors proceeding.
-(async () => {
-  await redisClient.connect().catch((err) => {
-    console.log('Redis Connect Error: ' + err.message);
-  });
-})();
+// const Redis = require('redis');
+// // Open a new redis client to send requests to the redis server.
+// const redisClient = Redis.createClient();
+// // Check if the connection is open befors proceeding.
+// (async () => {
+//   await redisClient.connect().catch((err) => {
+//     console.log('Redis Connect Error: ' + err.message);
+//   });
+// })();
 
 // Use AWS SDK for javascript v3 to import session Token.
 const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
@@ -50,34 +50,34 @@ credentialController.getCredentials = async (req, res, next) => {
   }
 };
 
-//delete user-specific redis data
-credentialController.deleteRedis = async (req, res, next) => {
-  redisClient.del('LambdaTraces' + req.body.arn, (err, result) => {
-    if (err) {
-      console.log(err);
-      return next(err);
-    }
-  });
-  redisClient.del('LambdaLogs' + req.body.arn, (err, result) => {
-    if (err) {
-      console.log(err);
-      return next(err);
-    }
-  });
-  redisClient.del('LambdaList' + req.body.arn, (err, result) => {
-    if (err) {
-      console.log(err);
-      return next(err);
-    }
-  });
-  redisClient.del('LambdaMetrics' + req.body.arn, (err, result) => {
-    if (err) {
-      console.log(err);
-      return next(err);
-    }
-  });
-  console.log('redis user data deleted !');
-  return res.status(200).json('Redis user data deleted');
-};
+// //delete user-specific redis data
+// credentialController.deleteRedis = async (req, res, next) => {
+//   redisClient.del('LambdaTraces' + req.body.arn, (err, result) => {
+//     if (err) {
+//       console.log(err);
+//       return next(err);
+//     }
+//   });
+//   redisClient.del('LambdaLogs' + req.body.arn, (err, result) => {
+//     if (err) {
+//       console.log(err);
+//       return next(err);
+//     }
+//   });
+//   redisClient.del('LambdaList' + req.body.arn, (err, result) => {
+//     if (err) {
+//       console.log(err);
+//       return next(err);
+//     }
+//   });
+//   redisClient.del('LambdaMetrics' + req.body.arn, (err, result) => {
+//     if (err) {
+//       console.log(err);
+//       return next(err);
+//     }
+// //   });
+//   console.log('redis user data deleted !');
+//   return res.status(200).json('Redis user data deleted');
+// };
 
 module.exports = credentialController;
