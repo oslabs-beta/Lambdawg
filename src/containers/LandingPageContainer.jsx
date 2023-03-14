@@ -1,16 +1,13 @@
-
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const LandingPageContainer = (props) => {
-
-  const mascot = 'src/assets/logo.png'
-  const video1 = 'src/assets/mock-video1.gif'
-  const mobilemap = 'src/assets/mobile-map.png'
-  const mobilelog = 'src/assets/mobile-logs.png'
-  const mobilemetrics = 'src/assets/mobile-metrics.png'
-  const screenshot = 'src/assets/desktop.png';
-
+  const mascot = "src/assets/logo.png";
+  const video1 = "src/assets/mock-video1.gif";
+  const mobilemap = "src/assets/mobile-map.png";
+  const mobilelog = "src/assets/mobile-logs.png";
+  const mobilemetrics = "src/assets/mobile-metrics.png";
+  const screenshot = "src/assets/desktop.png";
 
     return (
       
@@ -43,24 +40,32 @@ const LandingPageContainer = (props) => {
                 </div>
            
             </div>
-
-            <div className='info-card-wrapper'>
-              <img src={screenshot} className='screen-shot'/>
-              <img src={mobilemap} className='screen-shot-mobile'/>
-              <img src={mobilemetrics} className='screen-shot-mobile'/>
-              <img src={mobilelog} className='screen-shot-mobile'/>
-
+            <div className="info-card">
+              <h1>THINGS</h1>Another peek into the amazing world of our developer mindsAnother peek into the amazing
+              world of our developer mindsAnother peek into the amazing world{" "}
             </div>
+          </div>
 
 
             <p className='landing-card'>
               Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our developer minds
               </p>
           </div>
+
+          <p className="landing-card">
+            Another peek into the amazing world of our developer mindsAnother peek into the amazing world of our
+            developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world
+            of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the
+            amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek
+            into the amazing world of our developer mindsAnother peek into the amazing world of our developer
+            mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world of our
+            developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the amazing world
+            of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek into the
+            amazing world of our developer mindsAnother peek into the amazing world of our developer mindsAnother peek
+            into the amazing world of our developer minds
+          </p>
         </div>
 
-
-      </div>
-    )
-  }
-  export default LandingPageContainer;
+  );
+};
+export default LandingPageContainer;

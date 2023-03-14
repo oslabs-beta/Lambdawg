@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Log from './Log.jsx';
 import { Scrollbar } from 'react-scrollbars-custom';
+import BouncingDotsLoader from "../components/Animation";
 
 const DataWindow = (props) => {
   const { dataWindowFullScreen, msLogs } = props;
@@ -39,7 +40,11 @@ const DataWindow = (props) => {
               <Log key={functionName} functionName={functionName} logs={logs} />
             ))
         ) : 
-          <span class='loading-text'><br/><h1 className='logs-loading'>Loading...</h1></span>
+          <span class='loading-text'><br/>
+          <h1 className='logs-loading'>Loading...</h1>
+          {/* <BouncingDotsLoader /> */}
+          
+          </span>
         }
         </code>
       </Scrollbar>
