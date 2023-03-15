@@ -30,6 +30,7 @@ router.post(
   authController.validator,
   encryptionController.hashPW,
   dbController.addUser,
+  dbController.getUser,
   (req, res) => {
     res.status(200).json(res.locals.user);
   }
