@@ -37,6 +37,7 @@
 <li>"Duration": duration of the function execution in seconds.</li>
 <li>"ResponseTime": time taken to generate the response in seconds.</li>
 </ol>
+<p align="right">(<a href="#lambdawg">back to top</a>)</p>
 
 ## Getting Started
 
@@ -65,6 +66,7 @@
 ## Monitoring Features
 
 <p>Once you're signed in, you can see all of the metrics right in one place.  You'll be able to click through the different functions and toggle their logs on and off.  All of the data that was pulled from AWS will be presented in clear readable graphs.</p>
+<p align="right">(<a href="#lambdawg">back to top</a>)</p>
 
 ## Contributing
 
@@ -86,6 +88,7 @@ Don't forget to throw a ⭐️ up for LAMBDAWG, and tell your friends!</p>
 <li>git push origin your/amazingFeature</li>
 <li><b>Open A Pull Request</b></li>
 </ul>
+<p align="right">(<a href="#lambdawg">back to top</a>)</p>
 
 ## Built With
 
@@ -119,10 +122,12 @@ Don't forget to throw a ⭐️ up for LAMBDAWG, and tell your friends!</p>
 - [Supertest](https://www.npmjs.com/package/supertest)
 - [Client XRay](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-xray/index.html)
 - [Docker](https://www.docker.com/)
+<p align="right">(<a href="#lambdawg">back to top</a>)</p>
 
 ## License
 
 <p>Distributed under the MIT License</p>
+<p align="right">(<a href="#lambdawg">back to top</a>)</p>
 
 ## Authors
 
