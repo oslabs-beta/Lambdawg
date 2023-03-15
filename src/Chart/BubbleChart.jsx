@@ -34,13 +34,12 @@ function BubbleChart({ bubbleChartData, handleTogglePanel }) {
 
   //passes the name (circle id) of the bubble selected back to dashboard to select corresponding panel
   const handleCircleClick = (circle) => {
-    console.log(`You clicked on ${circle.name} with invocations: ${circle.count}`);
     handleTogglePanel(circle.name);
   };
 
   //d3 chart boilerplate sizing
   const margins = { top: 20, right: 50, bottom: 20, left: 50 };
-  const svgDimensions = { width: window.screen.width / 2, height: window.screen.height / 2 };
+  const svgDimensions = { width: window.screen.width, height: window.screen.height / 2 };
 
   return (
     <svg width={window.screen.width} height={svgDimensions.height} margin={margins}>

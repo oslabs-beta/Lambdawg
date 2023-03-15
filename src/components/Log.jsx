@@ -1,11 +1,11 @@
 
 import React from 'react';
 
-function Log(props) {
+const Log = (props) => {
   const { logs, functionName } = props;
 
   return (
-    <div id={functionName}>
+    <div id={`${functionName}log`}>
       <h2 className='log-name'>{functionName}</h2>
       <ul id='log-ul'>
         {logs.map((log, index) => (

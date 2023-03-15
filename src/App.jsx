@@ -54,7 +54,7 @@ const App = (props) => {
             path="/dashboard"
             element={
               loggedIn ? (
-                <DashboardContainer loggedIn={loggedIn} user={user} />
+                <DashboardContainer loggedIn={loggedIn} user={user} setUser={setUser}/>
               ) : (
                 <Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser} />
               )

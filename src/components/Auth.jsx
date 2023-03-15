@@ -25,16 +25,25 @@ const Auth = (props) => {
       <div id='theme-bg-auth'>
         {
         formType === 'signIn' ?
-        <SignInForm toggleFormType={toggleFormType} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/> :
-        <SignUpForm toggleFormType={toggleFormType} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser} onSignUpSuccess={handleSignUpSuccess}/>
-         }
+        <SignInForm 
+          toggleFormType={toggleFormType} 
+          loggedIn={loggedIn} 
+          setLoggedIn={setLoggedIn} 
+          user={user} 
+          setUser={setUser}
+        /> :
+        <SignUpForm 
+          toggleFormType={toggleFormType} 
+          loggedIn={loggedIn} 
+          setLoggedIn={setLoggedIn} 
+          user={user} 
+          setUser={setUser} 
+          onSignUpSuccess={handleSignUpSuccess}
+        />
+        }
       </div>
-
     </div>
   )
- 
-
-
 }
 
 export default Auth;
