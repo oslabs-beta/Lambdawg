@@ -1,4 +1,4 @@
-#landing-page-container{
+#landing-page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,12 +19,18 @@
 }
 
 #get-started-button {
-  padding: .5rem 1rem .5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   font-size: 1.5rem;
+  transition: transform 0.2s; /* Animation */
+}
+#get-started-button:hover {
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 #landing-page-container > .button-flex-wrapper > button {
-  margin: .5rem;
+  margin: 0.5rem;
 }
 #landing-page-container > .large-mascot {
   display: flex;
@@ -38,18 +44,27 @@
   border: 1px solid $nav-background-color;
   border-radius: 1rem;
   margin: 1rem;
+  transition: transform 0.2s; /* Animation */
+}
+.screen-shot:hover {
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 .screen-shot-mobile {
   max-width: 70vw;
   max-width: 200px;
   border: 5px solid $nav-background-color;
-  padding: -.2rem;
+  padding: -0.2rem;
   border-radius: 1rem;
-  margin: .5rem;
-
+  margin: 0.5rem;
+  transition: transform 0.2s; /* Animation */
+}
+.screen-shot-mobile:hover {
+  transform: scale(1.1);
 }
 
-.info-card-wrapper{
+.info-card-wrapper {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -65,7 +80,6 @@
   background-color: $info-card-background-color;
   padding: 0rem 1rem 1rem 1rem;
   margin: 1rem;
-
 }
 .info-card-icon {
   font-size: 4rem;
@@ -76,7 +90,6 @@
 }
 // media queries
 @media (max-width: 1000px) {
-
   .video {
     width: 90vw;
   }
@@ -87,9 +100,9 @@
   .landing-logo {
     max-width: 300px;
   }
-  .screen-shot-mobile, .screen-shot {
+  .screen-shot-mobile,
+  .screen-shot {
     max-width: 70vw;
     min-width: 70vw;
-
   }
 }
