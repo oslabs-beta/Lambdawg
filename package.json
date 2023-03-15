@@ -2,6 +2,7 @@
   "name": "lambdawg",
   "private": true,
   "version": "0.0.0",
+  "description": "Lambdawg is a visualization UI for your AWS Lambda Functions",
   "main": "./client/index.js",
   "scripts": {
     "dev": "vite; export NODE_ENV=development",
@@ -11,6 +12,17 @@
     "test": "jest",
     "testopen": "jest --detectOpenHandles"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oslabs-beta/Lambdawg"
+  },
+  "keywords": [],
+  "author": "Vincent Jacquemin, Chanda Gonet, Ted Gusek, Erica Park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/Lambdawg/blob/main/Contributions.md"
+  },
+  "homepage": "https://github.com/oslabs-beta/Lambdawg/blob/main/README.md",
   "dependencies": {
     "@aws-sdk/client-cloudformation": "^3.272.0",
     "@aws-sdk/client-cloudwatch": "^3.272.0",
@@ -29,7 +41,7 @@
     "cors": "^2.8.5",
     "d3": "^7.8.2",
     "dotenv": "^16.0.3",
-    "eslint": "^8.35.0",
+    "eslint": "^8.36.0",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "jest": "^29.4.3",
