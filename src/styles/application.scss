@@ -1,22 +1,22 @@
 // import fonts
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap');
 
 // import style modules
-@import "variables";
-@import "form";
-@import "dashboard";
-@import "navbar";
-@import "auth";
-@import "landingpage";
-@import "settings";
-@import "newnavbar";
-@import "metrics";
-@import "dropdown";
+@import 'variables';
+@import 'form';
+@import 'dashboard';
+@import 'navbar';
+@import 'auth';
+@import 'landingpage';
+@import 'settings';
+@import 'newnavbar';
+@import 'metrics';
+@import 'dropdown';
 
-@import "docs";
+@import 'docs';
 
-@import "animation";
-
+@import 'animation';
+@import 'footer';
 // global css stuff here
 * {
   box-sizing: border-box;
@@ -27,7 +27,7 @@ body {
   margin: 0px;
   padding: 0px;
   color: $primary-font-color;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
   background-color: $body-bg-color;
 }
@@ -74,7 +74,7 @@ button:active {
     opacity: 0.4;
   }
 }
-.loading-text{
+.loading-text {
   text-align: center;
   animation: pulse 1s infinite;
 }
@@ -82,7 +82,6 @@ button:active {
   padding: 5rem;
   border: 1 px solid red;
 }
-
 
 // media queries
 @media (max-width: 1000px) {
