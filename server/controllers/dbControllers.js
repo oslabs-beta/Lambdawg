@@ -29,18 +29,19 @@ dbControllers.getUser = (req, res, next) => {
 dbControllers.addUser = (req, res, next) => {
   const text = `INSERT INTO "public"."users" (full_name, user_name, email, password_,${testKey}) VALUES ($1, $2, $3, $4, $5)`;
   const { full_name, user_name, email } = req.body[0];
-  const hey = req.body[0][testKey];
+  const forTesting = req.body[0][testKey];
   const { password_ } = res.locals;
 
   db.query(
     text,
-    [full_name, user_name, email, password_, hey],
+    [full_name, user_name, email, password_, forTesting],
     (err, result) => {
       if (err) {
         console.log('Error at dbControllers.addUser: ', err);
         return res.status(500).send('Error Executing Insert Query ');
       }
       console.log('Add User Query Executed Successfully');
+      res.locals.user = user_name;
       next();
     }
   );
