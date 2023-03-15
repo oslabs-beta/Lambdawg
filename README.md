@@ -22,7 +22,7 @@
         <li><a href="#contributing">Contributing</a></li>      
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#license">License</a></li>
-        <li><a href="#authors">authors</a></li>         
+        <li><a href="#authors">Authors</a></li>         
   </ol>
 </details>
 
@@ -91,35 +91,34 @@ Don't forget to throw a ⭐️ up for LAMBDAWG, and tell your friends!</p>
 
 <p>Some of the great Technologies that we used in this app are listed below!</p>
 
-<ul>
-  <li>React/ React Router</li>
-  <li>NodeJS</li>
-  <li>Express</li>
-  <li>PostgreSQL</li>
-  <li>JWT</li>
-  <li>D3</li>
-  <li>Chart.js</li>
-  <li>Redis</li>
-  <li>Jest</li>
-  <li>Axios</li>
-  <li>Vite</li>
-  <li>AWS SDK</li>
-  <li>AWS IAM</li>
-  <li>AWS Lambda</li>
-  <li>AWS Elasticache</li>
-  <li>AWS Cloudwatch</li>
-  <li>AWS STS</li>
-  <li>AWS Could Formation</li>
-  <li>Javascript</li>
-  <li>HTML</li>
-  <li>Sass</li>
-  <li>Babel</li>
-  <li>BCrypt</li>
-  <li>Validator</li>
-  <li>Supertest</li>
-  <li>Client XRay</li>
-  <li>Docker</li>
- </ul>
+- [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/en/main)
+- [NodeJS](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [JWT](https://jwt.io/)
+- [D3](https://d3js.org/)
+- [Chart.js](https://www.chartjs.org/)
+- [Redis](https://redis.com/)
+- [Jest](https://jestjs.io/)
+- [Axios](https://axios-http.com/)
+- [Vite](https://vitejs.dev/)
+- [AWS SDK](https://aws.amazon.com/sdk-for-javascript/)
+- [AWS IAM](https://aws.amazon.com/iam/)
+- [AWS Lambda](https://aws.amazon.com/lambda/)
+- [AWS Elasticache](https://aws.amazon.com/elasticache/)
+- [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/)
+- [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html)
+- [AWS Could Formation](https://docs.aws.amazon.com/cloudformation/index.html)
+- [Javascript](https://www.javascript.com/)
+- [HTML](https://html.com/)
+- [Sass](https://sass-lang.com/)
+- [Babel](https://babeljs.io/)
+- [BCrypt](https://bcrypt.online/)
+- [Validator](https://www.npmjs.com/package/validator)
+- [Supertest](https://www.npmjs.com/package/supertest)
+- [Client XRay](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-xray/index.html)
+- [Docker](https://www.docker.com/)
 
 ## License
 
@@ -127,5 +126,9 @@ Don't forget to throw a ⭐️ up for LAMBDAWG, and tell your friends!</p>
 
 ## Authors
 
-<p>Chanda Gonet </p>
+- Chanda Gonet - [LinkedIn](https://www.linkedin.com/in/chanda-gonet-317b91237/)|[Github](https://github.com/Chanduh)
+- Erica Park - [LinkedIn](https://www.linkedin.com/in/erica-s-park/)|[Github](https://github.com/EPsparky)
+- Vincent Jacquemin - [LinkedIn](https://www.linkedin.com/in/vincentjacquemin/)|[Github](https://github.com/GIjack2001)
+- Ted Gusek - [LinkedIn](https://www.linkedin.com/in/tedgusek/)|[Github](https://github.com/tedgusek)
+
 <p align="right">(<a href="#lambdawg">back to top</a>)</p>
