@@ -12,6 +12,7 @@ const DiagramContainer = (props) => {
   useEffect(() => {
     if (msServiceIds.length) {
       const writeToFile = async (services) => {
+        console.log(msServiceIds, 'msids')
         try {
           const response = await fetch("/aws/writeToFile", {
             method: "POST",

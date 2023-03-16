@@ -9,7 +9,7 @@ const MetricsController = require('./controllers/MetricsController.js');
 const lambdaLogsController = require('./controllers/lambdaLogsController');
 const tracesController = require('./controllers/tracesController.js');
 const jwt = require('jsonwebtoken');
-
+const fileController = require("./controllers/fileController.js");
 
 const app = express();
 
@@ -87,6 +87,10 @@ app.post(
     return res.status(200).json(res.locals.getLambdaMetrics);
   }
 );
+
+app.post("/writeToFile", fileController.writeToFile, (req, res) => {
+  return res.status(200).json(res.locals.writtenServices);
+});
 
 app.delete('/deleteRedis', credentialController.deleteRedis, (req, res) => {
   return res.status(200).json('redis cache cleared');

@@ -51,7 +51,7 @@ const Panel = (props) => {
 
               {(names.length > 0)?
                 names :
-                <span class='loading-text'><h1>Loading...</h1></span> }
+                <span className='loading-text'><h1>Loading...</h1></span> }
 
             </div>
 
