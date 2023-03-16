@@ -7,7 +7,7 @@
 <a name='readme-top'></a>
 
 <div align='center'>
-<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/logo.png?raw=true" height ="350px" width="350px" align="center">
+<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/logo.png?raw=true" height ="350px" width="auto" align="center">
   </a>
 <h1>Lambdawg Users's Guide</h1>
 
@@ -59,6 +59,18 @@
 <li>Re-Enter your LAMBDAWG password</li>
 <img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/docs-gif-03.gif?raw=true" height ="250px">
 <p>Now you're ready to get your metrics!</p>
+
+<li>View active service trace data for each Lambda function:</li>
+<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/readme-node.gif?raw=true" height ="250px">
+
+<li>View error logs and function summary:</li>
+<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/readme-node-2.gif?raw=true" height ="250px">
+
+<li>View duration and response times for each active Lambda function:</li>
+<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/readme-bar.gif?raw=true" height ="250px">
+
+<li>View invocation data to easily grasp which functions are used most frequently:</li>
+<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/readme-bubble.gif?raw=true" height ="250px">
 </ol>
 
 <p align="right">(<a href="#lambdawg">back to top</a>)</p>
