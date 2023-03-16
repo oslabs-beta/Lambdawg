@@ -4,7 +4,7 @@
   margin: 0 auto;
   padding-top: 3em;
   width: 400px;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 #docs-page {
@@ -30,23 +30,25 @@
 
 .docs-setup-section {
   display: flex;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   max-width: 1000px;
   img {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     height: auto;
     display: block;
     margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: .5rem;
   }
-  //   p {
-  //     background-color: $nav-background-color;
-  //   }
+
 }
 
 .docs-setup-section div {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1em;
+  // border-radius: 8px;
+  // padding: 1em;
   margin: 1em;
 }
 
@@ -54,11 +56,11 @@
   color: $secondary-font-color;
 }
 
-.docs-dev span {
-  font-style: italic;
-  a {
-    color: rgb(87, 87, 173);
-    text-decoration: none;
-    font-weight: bold;
-  }
-}
+// .docs-dev span {
+//   font-style: italic;
+//   a {
+//     color: rgb(87, 87, 173);
+//     text-decoration: none;
+//     font-weight: bold;
+//   }
+// }

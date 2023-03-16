@@ -100,7 +100,7 @@ const SignInForm = (props) => {
         </div>
         <br />
 
-        <label className='centered-text'>I forgot my password / username</label>
+        {/* <label className='centered-text'>I forgot my password / username</label> */}
       </form>
     </div>
   );

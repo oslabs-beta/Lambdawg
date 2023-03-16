@@ -33,7 +33,8 @@
   height: fit-content;
   width: 100%;
   background-color: $nav-background-color;
-  position: relative;
+  position: fixed;
+  top: 0px;
   z-index: 999;
 }
 
