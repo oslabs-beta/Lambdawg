@@ -26,11 +26,10 @@
 }
  #diagram-container-wrapper {
   border: 1px solid $dashboard-border-boxes;
-  overflow: auto;
   border-radius: 1rem;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  overflow: hidden;
+  overflow-y: hidden;
   flex: 1;
   justify-content: center;
   background-color: $diagram-background-color;
