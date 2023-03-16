@@ -40,8 +40,11 @@
     height: auto;
     display: block;
     margin: 0 auto;
-    border: 1px solid #ccc;
+    border: 1px solid $nav-background-color;
+    background-color: $nav-background-color;
+    border-radius: 1rem;
     padding: .5rem;
+    margin-top: 1rem;
   }
 
 }

@@ -28,17 +28,17 @@ const Docs = () => {
       <section className='docs-setup-section'>
         <div>
           <p>Connect to your AWS account</p>
-          <img src={signup} alt='Connect your AWS account' />
+          <img src={signup} alt='Connect your AWS account' className='image-effect'/>
         </div>
 
         <div>
           <p>Copy and paste your ARN key</p>
-          <img src={stack} alt='Locate your ARN key' />
+          <img src={stack} alt='Locate your ARN key' className='image-effect'/>
         </div>
 
         <div>
           <p>Select your region</p>
-          <img src={arn} alt='Select your region' />
+          <img src={arn} alt='Select your region' className='image-effect'/>
         </div>
 
       </section>
