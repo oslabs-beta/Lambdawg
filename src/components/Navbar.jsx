@@ -12,7 +12,7 @@ const Navbar = (props) => {
   const settingsLink = './settings';
   const authLink = './auth';
   const homeLink = '/';
-  const mascot = 'src/assets/mascot_head.svg';
+  const mascot = 'src/assets/logowhite.png';
   const logoText = 'src/assets/logo-text.png';
 
   const navigate = useNavigate();

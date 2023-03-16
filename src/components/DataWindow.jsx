@@ -42,7 +42,6 @@ const DataWindow = (props) => {
         ) : 
           <span class='loading-text'><br/>
           <h1 className='logs-loading'>Loading...</h1>
-          {/* <BouncingDotsLoader /> */}
           
           </span>
         }

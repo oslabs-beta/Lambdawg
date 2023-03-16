@@ -38,7 +38,9 @@ code {
   color: $code-font-color;
   font-size: 0.75rem;
 }
-
+p {
+  color: $primary-font-color !important;
+}
 h1 {
   // font-family: 'Press Start 2P', 'Roboto', sans-serif;
   text-align: center;

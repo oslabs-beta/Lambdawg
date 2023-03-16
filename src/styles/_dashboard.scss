@@ -4,7 +4,6 @@
   padding: 1rem;
   
  }
- 
 
  #dashboard-container {
    display: flex;
@@ -13,6 +12,7 @@
    overflow: hidden;
    background-color: $dashboard-background-color;
    padding: 2rem 1rem 0rem 1rem;
+   margin-top: 4rem;
  }
  #dashboard-wrapper { // panel and diagram
   display: flex;
@@ -44,8 +44,13 @@
   overflow: hidden;
   // padding: 0rem 10rem 1rem 1rem;
   overflow-x: hidden;
+  overflow-y: hidden !important;
 
  }
+#log-ul {
+  overflow: hidden;
+}
+
  #panel-wrapper {
    border: 1px solid $dashboard-border-boxes;
    overflow: auto;
@@ -110,8 +115,8 @@
    }
  
    #data-window-wrapper {
-     overflow: visible;
-     overflow-y: scroll;
+    //  overflow: visible;
+     overflow-y: hidden !important;
      height: 90vh !important;
      position: absolute;
      top: 3rem;
