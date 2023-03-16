@@ -27,7 +27,7 @@ router.post(
   dbController.addUser,
   dbController.getUser,
   (req, res) => {
-    res.status(200).json(res.locals.user);
+    res.status(200).json(res.locals.data.rows[0]);
   }
 );
 

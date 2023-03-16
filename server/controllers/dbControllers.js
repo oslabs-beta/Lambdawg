@@ -41,7 +41,7 @@ dbControllers.addUser = (req, res, next) => {
         return res.status(500).send('Error Executing Insert Query ');
       }
       console.log('Add User Query Executed Successfully');
-      res.locals.user = user_name;
+      res.locals.user_name = user_name;
       next();
     }
   );

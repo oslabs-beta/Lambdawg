@@ -37,6 +37,7 @@ const signUpForm = (props) => {
         if (response.ok) {
           const data = await response.json();
           const { user_name, full_name, email, _id } = data
+          console.log(data, 'from signup')
           setUser({
             full_name: full_name,
             user_name: user_name, 

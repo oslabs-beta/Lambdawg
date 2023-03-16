@@ -6,7 +6,7 @@ const SettingsContainer = (props) => {
 
   const { loggedIn, user, setUser } = props
   const mascot = 'src/assets/logo.png'
-
+  console.log(user, 'user in settings')
 
   return(
     <div>

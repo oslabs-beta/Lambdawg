@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    { "id": "4773bf7d1aa9b37b", "name": "GET /date" },
+    { "id": "db2894c84c643164", "name": "request handler - /date" },
+    { "id": "9a054dc4257fd82b", "name": "middleware - expressInit" },
+    { "id": "d297cf02aad4bc9b", "name": "middleware - query" },
+    { "id": "bc8a725770883100", "name": "HTTP POST" },
+    { "id": "6955e0a59650ee66", "name": "middleware - expressInit" },
+    { "id": "f7924394cc345ead", "name": "middleware - query" },
+    { "id": "f7924394cc345ead1", "name": "fakey" },
+    { "id": "f7924394cc345ead2", "name": "fakey2" },
+    { "id": "f7924394cc345ead3", "name": "fakey3" },
+    { "id": "f7924394cc345ead4", "name": "fakey4" },
+    { "id": "f7924394cc345ead5", "name": "fakey5" },
+    { "id": "f7924394cc345ead6", "name": "fakey6" },
+    { "id": "f7924394cc345ead7", "name": "fakey7" },
+
+    { "id": "f7924394cc345ead8", "name": "fakey8" },
+    { "id": "f7924394cc345ead9", "name": "fakey9" },
+    { "id": "f7924394cc345ead10", "name": "fakey10" }
+  ],
+  "links": [
+    { "source": "4773bf7d1aa9b37b", "target": "4773bf7d1aa9b37b" },
+    { "source": "db2894c84c643164", "target": "4773bf7d1aa9b37b" },
+    { "source": "9a054dc4257fd82b", "target": "4773bf7d1aa9b37b" },
+    { "source": "d297cf02aad4bc9b", "target": "4773bf7d1aa9b37b" },
+    { "source": "bc8a725770883100", "target": "bc8a725770883100" },
+    { "source": "6955e0a59650ee66", "target": "bc8a725770883100" },
+    { "source": "f7924394cc345ead", "target": "bc8a725770883100" },
+
+    { "source": "f7924394cc345ead1", "target": "bc8a725770883100" },
+    { "source": "f7924394cc345ead2", "target": "bc8a725770883100" },
+    { "source": "f7924394cc345ead3", "target": "bc8a725770883100" },
+    { "source": "f7924394cc345ead4", "target": "bc8a725770883100" },
+    { "source": "f7924394cc345ead5", "target": "bc8a725770883100" },
+    { "source": "f7924394cc345ead6", "target": "f7924394cc345ead5" },
+    { "source": "f7924394cc345ead7", "target": "f7924394cc345ead5" },
+
+    { "source": "f7924394cc345ead8", "target": "f7924394cc345ead7" },
+    { "source": "f7924394cc345ead9", "target": "f7924394cc345ead7" },
+    { "source": "f7924394cc345ead10", "target": "f7924394cc345ead7" }
+  ]
+}
