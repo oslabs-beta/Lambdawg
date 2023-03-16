@@ -72,7 +72,7 @@ export TEST_TOKEN = ****************
 
 ```
 
-<p>Next you want toinstall the dependencies via the command line in your directory</p>
+<p>Next you want to install the dependencies via the command line in your directory</p>
 
 ```
 npm install
