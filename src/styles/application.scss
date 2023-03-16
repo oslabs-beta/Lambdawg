@@ -7,29 +7,54 @@
 @import 'dashboard';
 @import 'navbar';
 @import 'auth';
+@import 'landingpage';
+@import 'settings';
+@import 'newnavbar';
+@import 'metrics';
+@import 'dropdown';
 
+@import 'docs';
 
-
+@import 'animation';
+@import 'footer';
 // global css stuff here
-*{
+* {
   box-sizing: border-box;
+  // border: 1px solid red;
 }
 
-body{
-  // background-color: $theme-color-1;
+.image-effect {
+    transition: transform 0.2s; /* Animation */
+}
+.image-effect:hover {
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+body {
   margin: 0px;
   padding: 0px;
   color: $primary-font-color;
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  background-color: $body-bg-color;
 }
-
-
+#content {
+  padding-top: 0rem;
+}
+code {
+  color: $code-font-color;
+  font-size: 0.75rem;
+}
+p {
+  color: $primary-font-color !important;
+}
 h1 {
-  font-family: 'Press Start 2P', 'Roboto', sans-serif;
+  // font-family: 'Press Start 2P', 'Roboto', sans-serif;
   text-align: center;
   font-size: 1.5rem;
   color: $primary-font-color;
-
 }
 .centered-text {
   text-align: center;
@@ -45,9 +70,30 @@ a:visited {
 a:active {
   color: $tertiary-font-color;
 }
+button:active {
+  transform: translateY(2px);
+}
 
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+.loading-text {
+  text-align: center;
+  animation: pulse 1s infinite;
+}
+.scroll-bar {
+  padding: 5rem;
+  border: 1 px solid red;
+}
 
 // media queries
 @media (max-width: 1000px) {
-
 }

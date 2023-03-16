@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const signUpForm = (props) => {
 
-
-    const [formData, setFormData] = useState({ full_name: '', user_name: '', email: '', password_: '', confirmPassword: '' });
-    const { toggleFormType } = props
+    const [formData, setFormData] = useState({ 
+      full_name: '', 
+      user_name: '', 
+      email: '', 
+      password_: '', 
+      confirmPassword: '' 
+    });
+    const { toggleFormType, setUser, onSignUpSuccess } = props
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -21,25 +26,33 @@ const signUpForm = (props) => {
       }
       if (formData.password_ != formData.confirmPassword) return handleMismatchedPasswords();
       if (formData.password_ == formData.confirmPassword) console.log('signing up....')
-      console.log(signUpFormData)
+
       try {
-        const response = await fetch('http://localhost:3000/api', {
+        const response = await fetch('/api/newUser', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          // mode: 'no-cors',
           body: JSON.stringify([signUpFormData]),
         });
       
         if (response.ok) {
-          console.log('Sign up successful');
-          // Redirect the user to the settings page
-          // window.location.href = '/settings';
-        } else {
+          const data = await response.json();
+          const { user_name, full_name, email, _id } = data
+          console.log(data, 'from signup')
+          setUser({
+            full_name: full_name,
+            user_name: user_name, 
+            email: email,
+            _id: _id
+          })
+          onSignUpSuccess();
+        } 
+        else {
           console.log('Sign up failed');
         }
-      } catch (error) {
+      } 
+      catch (error) {
         console.error(error);
-        console.log('Unable to sign-up at this time.');
+        console.log('Unable to sign-up at this time: ');
       }
     };
 
@@ -54,36 +67,35 @@ const signUpForm = (props) => {
   return(
 
     <div className='form-container'>
+          <h1>SIGN UP</h1>
+
       <form onSubmit={handleSubmit}>
         <label>
-        First / Last name<br />
-        <input type="name" name="full_name" value={formData.full_name} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Username<br />
-        <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Email<br />
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Password<br />
-        <input type="password" name="password_" value={formData.password_} onChange={handleInputChange} required/>
-      </label>
-      <label>
-        Confirm Password<br />
-        <input type="password" name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required/>
-      </label>
-      <br />
-      <div className='button-flex-wrapper'>
-        <button type="submit" className='primary-button'>Sign Up</button>
-        <button onClick={toggleFormType} className='secondary-button'>Sign In</button>
-      </div>
-
-  </form>
-
-
+          First / Last name<br />
+          <input type="name" name="full_name" value={formData.full_name} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Username<br />
+          <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Email<br />
+          <input type="email" name="email" value={formData.email} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Password<br />
+          <input type="password" name="password_" value={formData.password_} onChange={handleInputChange} required/>
+        </label>
+        <label>
+          Confirm Password<br />
+          <input type="password" name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} required/>
+        </label>
+        <br />
+        <div className='button-flex-wrapper'>
+          <button type="submit" className='primary-button'>Sign Up</button>
+          <button onClick={toggleFormType} className='secondary-button'>Sign In</button>
+        </div>
+      </form>
     </div>
   
   )

@@ -1,21 +1,60 @@
-$primary-font-color: #363343;
+$body-bg-color: white;
+
+$primary-font-color: #212021;
 $secondary-font-color: lighten($primary-font-color, 30%);
-$tertiary-font-color:  lighten($primary-font-color, 50%);
+$tertiary-font-color: lighten($primary-font-color, 50%);
 
-$box-shadow-color: lighten($primary-font-color, 70%); 
+$code-font-color: #fad6c9;
+$code-background-color: #232324;
 
-$button-color: #272220;
-$secondary-button-color: lighten($button-color, 70%);
-$button-font: #d9d6d6;
+$box-shadow-color: lighten($primary-font-color, 70%);
 
-$theme-color-1:  #efc8d4;
-$theme-color-2:  #8fccd0;
-$theme-color-3:  #9be5a4;
-$theme-color-4:  #ee965c;
-$theme-color-5:  #f7f2f2;
+/// Navbar
+$nav-background-color: #fad6c9;
+$nav-border: rgb(199, 192, 192);
+$lambdawg-color: #f75215;
+$nav-links-color: #f75215;
 
-$theme-primary-font-color:  #f0eeee;
-$theme-secondary-font-color:  darken($theme-primary-font-color, 30%);
-$theme-tertiray-font-color:  darken($theme-primary-font-color, 50%);
+$hamburger-icon-color: $primary-font-color;
+$hamburger-menu-bg-color: #595959;
+$hamburger-menu-lines: #4c4c4c;
+$hamburger-menu-font: $nav-background-color;
 
-$theme-primary-bg-color: #1e1c1b;
+/// Dashboard
+$dashboard-background-color: #595959;
+$dashboard-border-boxes: none;
+$dashboard-background-color-mobile: #fff;
+
+$panel-background-color: #fff;
+$error-font-color: #f75215;
+
+$diagram-background-color: #fff;
+
+$data-window-background-color: #595959;
+$button-background-color: white;
+
+$button-color: #f75215;
+$button-font-color: black;
+$button-current-page-indicator: lighten($button-color, 20%);
+
+/// Forms
+$input-box-background-color: white;
+$input-box-border-color: black;
+$auth-form-bg-color: #fad6c9;
+
+/// Buttons
+$primary-button-color: #f75215;
+$secondary-button-color: lighten($primary-button-color, 40%);
+$tertiary-button-color: lighten($primary-button-color, 20%);
+$primary-button-font: #fff;
+$secondary-button-font: #2c2828;
+
+/// LANDING PAGE
+$info-card-background-color: #fad6c9;
+
+///CHARTS
+$chart-primary-color: #5fba88;
+$chart-secondary-color: lighten($chart-primary-color, 20%);
+$chart-contrast-color: #297fb8;
+$chart-background-color: #ff508480;
+$chart-background-contrast-color: #35a2eb80;

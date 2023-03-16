@@ -1,54 +1,61 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
+import LamdaButton from '../components/LamdaButton.jsx';
+import Refresh from '../components/Refresh.jsx';
 
 const Panel = (props) => {
 
-  // Bullshit crap ass minimization / full screen for heirarchy view
-  // const [isOpen, setIsOpen] = useState(false);
+  const { panelFullScreen, msNames, setMsNames, msMetrics, user, setUser, msLogs, setMsLogs, refreshRedis, setRefreshRedis } = props;
+  const [names, setNames] = useState([]);
 
-  //   useEffect(() => {
-  //     const handleClick = () => {
-  //       setIsOpen(prevOpen => !prevOpen);
-  //     };
-  //     document.body.addEventListener('click', handleClick);
-  //     return () => {
-  //       document.body.removeEventListener('click', handleClick);
-  //     };
-  //   }, []);
+  // Populate metrics buttons
+  useEffect(()=>{
+    if (msNames && msMetrics){
+      const namesArr = []
+      let i = 0;
+    
+      msNames.forEach((name) => {
+        i++;
+        namesArr.push(
+          <LamdaButton 
+            name={name} 
+            key={`${name}MsEl${i}`} 
+            msMetrics={msMetrics} 
+            user={user} 
+            className='panel-names' 
+            msLogs={msLogs} 
+            setMsLogs={setMsLogs}
+          />
+        )
+      })
+      setNames(namesArr)
+    }
+  }, [msMetrics, msNames])
 
-  //   const panelWrapperHeight = isOpen ? '90vh' : '3.5rem';
 
     return(
+            <div 
+            id="panel-wrapper" 
+            className={
+              panelFullScreen? 'full-screen' : 'collapse-screen'
+              }>
 
-      // <div id="panel-wrapper" style={{ height: panelWrapperHeight }}>
+              <Refresh
+                msNames={msNames}
+                setMsNames={setMsNames}
+                refreshRedis={refreshRedis}
+                setRefreshRedis={setRefreshRedis}
+                user={user}
+                names={names}
+                />
+              <br />
 
-      <div id="panel-wrapper" >
-        <h1>Panel</h1>
-        <ul>
-          <li> This is a thing </li>
-            <ul>
-            <li> This is a thing </li>
-            <li> This is a thing </li>
-            <li> This is a thing </li>
-            </ul>
-          <li> This is a thing </li>
-          <li> This is a thing </li>
-          <li> This is a thing </li>
-          <li> This is a thing </li>
-          <ul>
-            <li> This is a thing </li>
-            </ul>
-          <li> This is a thing </li>
-          <li> This is a thing </li>
-          <li> This is a thing </li>
-          <ul>
-            <li> This is a thing </li>
-            </ul>
-          <li> This is a thing </li>
-          <li> This is a thing </li>
-          <li> This is a thing </li>
-        </ul>
-      </div>
+              {(names.length > 0)?
+                names :
+                <span className='loading-text'><h1>Loading...</h1></span> }
+
+            </div>
+
     )
   }
   export default Panel;
+

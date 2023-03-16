@@ -1,0 +1,69 @@
+.docs-logo {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 3em;
+  width: 400px;
+  max-width: 300px;
+}
+
+#docs-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+#docs-page p {
+  text-align: center;
+  max-width: 800px;
+}
+
+.docs-first-line {
+  color: $primary-font-color;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.docs-setup-section {
+  display: flex;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+  img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid $nav-background-color;
+    background-color: $nav-background-color;
+    border-radius: 1rem;
+    padding: .5rem;
+    margin-top: 1rem;
+  }
+
+}
+
+.docs-setup-section div {
+  // border-radius: 8px;
+  // padding: 1em;
+  margin: 1em;
+}
+
+.docs-setup-section p {
+  color: $secondary-font-color;
+}
+
+// .docs-dev span {
+//   font-style: italic;
+//   a {
+//     color: rgb(87, 87, 173);
+//     text-decoration: none;
+//     font-weight: bold;
+//   }
+// }

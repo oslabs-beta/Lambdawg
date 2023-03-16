@@ -1,61 +1,109 @@
 import React, { useState, useEffect } from 'react';
 
-
-const signInForm = (props) => {
-
-  const [formData, setFormData] = useState({ user_name: '', password: '' });
-  const { toggleFormType } = props
+const SignInForm = (props) => {
+  const [formData, setFormData] = useState({ 
+    user_name: '', 
+    password_: '' 
+  });
+  const { setLoggedIn, user, setUser } = props;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  // will add user data to state
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('signing in....')
-    // check credentials against database
-    // if no match, hangleWrongPassword();
-    // if matched, create cookie and redirect to dashboard
+    const signInFormData = {
+      user_name: formData.user_name,
+      password_: formData.password_,
+    };
+
+    try {
+      const response = await fetch(`/api/${formData.user_name}`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify([signInFormData]),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const { user_name, full_name, email, _id, arn, region } = data
+        setUser({
+          full_name: full_name,
+          user_name: user_name, 
+          email: email,
+          _id: _id,
+          arn: arn,
+          region: region
+        })
+        setLoggedIn(true);
+      } 
+      else {
+        console.log('Invalid password');
+        const passwordInput = document.getElementById('password_');
+        passwordInput.style.border = '2px solid red';
+        passwordInput.value = '';
+      }
+    } 
+    catch (error) {
+      console.error('error signing in: ', error);
+    }
   };
 
-  const handleWrongPassword = () => {
-      const passwordInput = document.getElementById('password');
-      passwordInput.style.border = '2px solid red';
-   };
+  useEffect(() => {
+    console.log('user has been updated in state')
+  }, [user])
 
+  return (
+    <div className='form-container'>
+      <h1>SIGN IN</h1>
 
-return(
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username
+          <input
+            type='username'
+            name='user_name'
+            value={formData.user_name}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
 
-  <div className='form-container'>
-    <form onSubmit={handleSubmit}>
+        <label>
+          Password
+          <input
+            type='password'
+            name='password_'
+            id='password_'
+            value={formData.password_}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
 
-    <label>
-      Username<br />
-      <input type="username" name="user_name" value={formData.user_name} onChange={handleInputChange} required/>
-    </label>
+        <br />
+        <div className='button-flex-wrapper'>
+          <button 
+            type='submit' 
+            className='primary-button'>
+            Sign In
+          </button>
+          <button 
+            onClick={props.toggleFormType} 
+            className='secondary-button'>
+            Sign Up
+          </button>
+        </div>
+        <br />
 
-    <label>
-      Password<br />
-      <input type="password" name="password" id="password" value={formData.password} onChange={handleInputChange} required/>
-    </label>
-   
-    <br />
-    <div className='button-flex-wrapper'>
-      <button type="submit" className='primary-button'>Sign In</button>
-      <button onClick={toggleFormType} className='secondary-button'>Sign Up</button>
+        {/* <label className='centered-text'>I forgot my password / username</label> */}
+      </form>
     </div>
-    <br />
-    <label className='centered-text'>I forgot my password / username</label>
+  );
+};
 
-</form>
-
-
-  </div>
-
-)
-
-
-}
-
-export default signInForm;
+export default SignInForm;

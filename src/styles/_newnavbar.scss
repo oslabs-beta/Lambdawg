@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+.switchLabel {
+  padding: 10px 13px;
+  color: #f75215;
+  padding-right: 0;
+}
+
+.nav-logo-wrapper {
+  display: flex;
+  margin-top: 0.4rem;
+  align-items: center;
+}
+
+.nav-logo {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+  // margin-top: -.5rem;
+  filter: invert(10);
+}
+.nav-text-logo {
+  // margin-top: .6rem;
+}
+.text-logo {
+  max-height: 1.8rem;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  height: fit-content;
+  width: 100%;
+  background-color: $nav-background-color;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+}
+
+.nav > .nav-header {
+  display: flex;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  float: right;
+  font-size: 18px;
+  margin-right: 3rem;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: $nav-links-color;
+}
+
+// .nav > .nav-links > a:hover {
+//   background-color: rgba(0, 0, 0, 0.3);
+// }
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .menuTop {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  .switchLabel {
+    padding-right: 13px;
+  }
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  // .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+  //   background-color: pink;
+  // }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid $primary-font-color;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: $hamburger-menu-bg-color;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 60px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+  .nav {
+    display: flex;
+    min-height: fit-content;
+  }
+}

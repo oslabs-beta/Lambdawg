@@ -1,21 +1,33 @@
+.nav {
+  position: fixed;
+  top: 0px;
+}
 
 #navbar-container {
   width: 100vw;
+  min-height: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 8vh;
+  height: 3rem;
   margin: 0px;
-  border-bottom: 1px solid $primary-font-color;
+  border-bottom: 1px solid $nav-border;
+  background-color: $nav-background-color;
+  z-index: 999;
 }
+
 .nav-item-group {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: flex-end;
 }
 .nav-item-logo {
   margin-left: 1rem;
   display: flex;
   align-items: center;
+}
+.nav-item-logo > h1 {
+  color: $lambdawg-color;
 }
 
 .mascot {
@@ -24,29 +36,41 @@
   margin-right: 10px;
 }
 
-.nav-icon, .icon-docs, .icon-settings, .icon-dark-mode {
-  visibility: visible;
-  margin-left: 10px;
-  color: "$primary-font-color";
-  font-size: 1.5rem;
-}
-
 #hamburger-icon {
   visibility: hidden;
 }
 
-.collapse-burger-menu{
+.collapse-burger-menu {
   visibility: hidden;
 }
 
-
+#desktop-menu {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+  align-items: baseline;
+}
+#desktop-menu > li {
+  padding: 1rem 0px 0.8rem 1rem;
+}
 
 // media queries
 @media (max-width: 1000px) {
+  /////////////
 
-  #navbar-container{
-  position: fixed;
-  z-index: 999;
+  ////////////
+
+  #desktop-menu {
+    display: none;
+  }
+  .collapse-desktop-menu {
+    visibility: hidden;
+  }
+
+  #navbar-container {
+    position: fixed;
+    z-index: 999;
   }
 
   #hamburger-icon {
@@ -57,42 +81,40 @@
     overflow-x: hidden;
   }
 
-  .mascot {
-    display: none;
-  }
-  
   .nav-icon {
     visibility: hidden;
   }
 
   #hamburger-icon {
     visibility: visible;
-    margin: 0px 1rem 0px 1rem;
-    color: "$primary-font-color";
+    margin: 0px 1rem 0px 0px;
+    color: $hamburger-icon-color;
     font-size: 1.5rem;
   }
 
   #hamburger-menu {
-    background-color: $theme-primary-font-color;
+    position: fixed;
+    background-color: $hamburger-menu-bg-color;
     margin: 0px;
     padding: 1rem 1rem 0px 1rem;
     width: 100vw;
+    max-width: 15rem;
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 8vh;
-    left: 0px;
+    top: 3rem;
+    right: 0px;
     list-style: none;
-    z-index: 999;
+    z-index: 998;
     border-bottom-left-radius: 30px;
   }
 
-  li {
-   background-color: $theme-primary-font-color;
-   padding: 1rem;
-   border-top: 1px solid $secondary-font-color;
-   border-bottom-left-radius: 30px;
-  //  color: $button-font;
+  #hamburger-menu > li {
+    background-color: $hamburger-menu-bg-color;
+    padding: 1rem;
+    border-top: 1px solid $hamburger-menu-lines;
+    border-bottom-left-radius: 30px;
+    color: $hamburger-menu-lines;
+    z-index: 999;
   }
 }
-

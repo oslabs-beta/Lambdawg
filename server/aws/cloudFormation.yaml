@@ -1,0 +1,306 @@
+Description: "CloudFormation stack"
+
+Resources:
+  LambdawgDelegationRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS:
+                - arn:aws:iam::403777712406:user/New-Lambdawg
+            Action:
+              - "sts:AssumeRole"
+            Condition:
+              StringEquals:
+                "sts:ExternalId": !Ref ExternalId
+      Path: /
+      RoleName: LambdawgDelegationRole
+      Policies:
+        - PolicyName: Resources
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "apigateway:GET"
+                Resource: "*"
+              - Effect: Allow
+                Action: "apigateway:HEAD"
+                Resource: "*"
+              - Effect: Allow
+                Action: "apigateway:OPTIONS"
+                Resource: "*"
+              - Effect: Allow
+                Action: "appsync:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "appsync:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "athena:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "athena:batchGet*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "athena:getNamedQuery"
+                Resource: "*"
+              - Effect: Allow
+                Action: "athena:getQueryExecution"
+                Resource: "*"
+              - Effect: Allow
+                Action: "athena:getQueryExecution"
+                Resource: "*"
+              - Effect: Allow
+                Action: "autoscaling:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "batch:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "cloudformation:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "cloudformation:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "cloudformation:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "cloudfront:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "cloudfront:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "cloudwatch:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "cloudwatch:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "dax:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "dax:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "discovery:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "discovery:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "dynamodb:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "dynamodb:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "ec2:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "ecs:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "ecs:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "ecr:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "ecr:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "ecr:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "eks:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "eks:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "elasticache:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "elasticache:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "elasticloadbalancing:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "es:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "es:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "events:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "events:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "firehose:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "firehose:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "glacier:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "glacier:getDataRetrievalPolicy"
+                Resource: "*"
+              - Effect: Allow
+                Action: "glacier:getVaultAccessPolicy"
+                Resource: "*"
+              - Effect: Allow
+                Action: "glacier:getVaultLock"
+                Resource: "*"
+              - Effect: Allow
+                Action: "glacier:getVaultNotifications"
+                Resource: "*"
+              - Effect: Allow
+                Action: "glacier:listTagsForVault"
+                Resource: "*"
+              - Effect: Allow
+                Action: "glacier:listVaults"
+                Resource: "*"
+              - Effect: Allow
+                Action: "iot:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "iot:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "iot:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "kinesis:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "kinesis:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "kinesisanalytics:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "kinesisanalytics:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "lambda:listFunctions"
+                Resource: "*"
+              - Effect: Allow
+                Action: "lambda:listTags"
+                Resource: "*"
+              - Effect: Allow
+                Action: "rds:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "rds:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "route53:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "route53:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "s3:getBucket*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "s3:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "sdb:domainMetadata"
+                Resource: "*"
+              - Effect: Allow
+                Action: "sdb:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "sdb:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "sns:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "sns:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "sqs:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "sqs:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "states:describe*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "states:get*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "states:list*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "tag:get*"
+                Resource: "*"
+        - PolicyName: Logs
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "logs:deleteSubscriptionFilter"
+                Resource: "*"
+              - Effect: Allow
+                Action: "logs:describeLogStreams"
+                Resource: "*"
+              - Effect: Allow
+                Action: "logs:describeSubscriptionFilters"
+                Resource: "*"
+              - Effect: Allow
+                Action: "logs:filterLogEvents"
+                Resource: "*"
+              - Effect: Allow
+                Action: "logs:putSubscriptionFilter"
+                Resource: "*"
+              - Effect: Allow
+                Action: "logs:startQuery"
+                Resource: "*"
+              - Effect: Allow
+                Action: "logs:stopQuery"
+                Resource: "*"
+        - PolicyName: Metrics
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "cloudwatch:get*"
+                Resource: "*"
+        - PolicyName: Traces
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "xray:batch*"
+                Resource: "*"
+              - Effect: Allow
+                Action: "xray:get*"
+                Resource: "*"
+Parameters:
+  ExternalId:
+    Description: "The external ID for the LAMBDAWG delegation role"
+    Type: String
+
+Outputs:
+  Version:
+    Description: LAMBDAWG CF template version
+    Value: 2020-02-06
+  LambdawgDelegationRoleArn:
+    Description: "The ARN for the LAMBDAWG delegation role"
+    Value: !GetAtt
+      - LambdawgDelegationRole
+      - Arn
