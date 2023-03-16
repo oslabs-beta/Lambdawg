@@ -19,12 +19,7 @@ router.get(
   }
 );
 
-//consider having a cache of username /email, so we
-//could use the cache to check if username/email already exists
-//our dbController.addUser middleware will prevent multiple
-//UN/Email from occurring, however not until we make the call
-//if we create a local cache to handle this it would improve
-//the ease for the user rather than having to wait until the db is queried
+// Create new user
 router.post(
   '/newUser',
   authController.validator,
@@ -36,6 +31,7 @@ router.post(
   }
 );
 
+// Delete user
 router.delete(
   '/delete/:user_name',
   authController.verifyUN_Pass,
@@ -43,7 +39,7 @@ router.delete(
   (req, res) => res.status(200).json({})
 );
 
-//This handles the updating of the ARN and the region
+// Updates ARN and region
 router.patch(
   '/edit/:user_name',
   authController.verifyUN_Pass,
@@ -54,19 +50,18 @@ router.patch(
   }
 );
 
-// sign in -
+// Sign In
 router.post(
   '/:user_name',
   authController.verifyUN_Pass,
   cookieController.setCookie,
   dbController.getUser,
   (req, res) => {
-    // console.log('res.headers -> ', res.getHeaders());
     res.status(200).json(res.locals.user);
   }
 );
 
-//Logs user out by deleting cookie
+// Delete JWT 
 router.get('/logout', cookieController.deleteCookie, (req, res) => {
   res.status(200).json();
 });
