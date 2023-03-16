@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "fulldev": "concurrently \"nodemon server/server.js\" \"vite\"",
+    "start": "concurrently \"nodemon server/server.js\" \"vite\"",
     "test": "jest",
     "testopen": "jest --detectOpenHandles"
   },
