@@ -116,24 +116,18 @@ Don't forget to throw a ⭐️ up for LAMBDAWG, and tell your friends!</p>
 - [Chart.js](https://www.chartjs.org/)
 - [Redis](https://redis.com/)
 - [Jest](https://jestjs.io/)
-- [Axios](https://axios-http.com/)
 - [Vite](https://vitejs.dev/)
 - [AWS SDK](https://aws.amazon.com/sdk-for-javascript/)
 - [AWS IAM](https://aws.amazon.com/iam/)
 - [AWS Lambda](https://aws.amazon.com/lambda/)
-- [AWS Elasticache](https://aws.amazon.com/elasticache/)
 - [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/)
 - [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html)
 - [AWS Could Formation](https://docs.aws.amazon.com/cloudformation/index.html)
-- [Javascript](https://www.javascript.com/)
-- [HTML](https://html.com/)
-- [Sass](https://sass-lang.com/)
-- [Babel](https://babeljs.io/)
 - [BCrypt](https://bcrypt.online/)
 - [Validator](https://www.npmjs.com/package/validator)
 - [Supertest](https://www.npmjs.com/package/supertest)
 - [Client XRay](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-xray/index.html)
-- [Docker](https://www.docker.com/)
+
 <p align="right">(<a href="#lambdawg">back to top</a>)</p>
 
 ## License
