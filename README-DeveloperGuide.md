@@ -5,7 +5,7 @@
 <a name='readme-top'></a>
 
 <div align='center'>
-<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/logo.png?raw=true" height ="350px" width="350px" align="center">
+<img src="https://github.com/oslabs-beta/Lambdawg/blob/dev/src/assets/logo.png?raw=true" height ="350px" width="auto" align="center">
   </a>
 <h1>Lambdawg Developer's Guide</h1>
 
