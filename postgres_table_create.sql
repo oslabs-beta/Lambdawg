@@ -4,12 +4,12 @@
 --Connects to env file
 \i .env
 
---This file sets up the schema of our database, and will maintina the connection to the database across users
+--This file sets up the schema of our database, and will maintain the connection to the database across users
 -- 
---To invoke this file, throw the below code in the terminal
+--To invoke this file, insert the below code in the terminal
 --psql -d ${PG_URI} -f postgres_table_create.sql
 --I did not set a port initially, but to do so you would add -p <port> 
--- and instead of ${PG_URI} use youor own URI 
+-- and instead of ${PG_URI} use your own URI 
 -------------------
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 SET idleTimeoutMillis = 5000;
 SET connectionTimeoutMillis = 7500;
---these last 2 items I put in to try and help with the open handle issue
+--these last 2 items are in place to correct thr open handle issue
 -------------------
 -- CREATE EXTENSION pgcrypto;
 -------------------
