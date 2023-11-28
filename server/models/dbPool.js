@@ -20,7 +20,7 @@ const pool = new Pool({
 
 //Now we need to export an object that has a query method in it, that we'll name query
 //this method will return the invocation of the pool.query() after logging the query
-//***This will be required in our controllers to gain access tp pur database***
+//***This will be required in our controllers to gain access to pur database***
 module.exports = {
   query: (text, params, callback) => {
     console.log('Executed Query: ', text);
